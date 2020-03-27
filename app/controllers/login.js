@@ -9,7 +9,7 @@ export default class LoginController extends Controller {
 
   @action
   submit() {
-    localStorage.setItem('bed_tracker_token', this.hospitalId);
+    localStorage.setItem('bed_tracker_token', JSON.stringify(this.hospitalId));
 
     if (this.hospitalId) {
       this.router.transitionTo('/home');

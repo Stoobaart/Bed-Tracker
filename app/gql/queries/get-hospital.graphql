@@ -1,0 +1,12 @@
+query getHospital($input: GetHospitalInput!) {
+  getHospital(input: $input) {
+    hospital {
+      address
+      availableBeds
+      id
+      name
+      totalBeds
+      unavailableBeds
+    }
+  }
+}

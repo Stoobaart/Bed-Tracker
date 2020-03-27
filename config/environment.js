@@ -21,10 +21,10 @@ module.exports = function(environment) {
       }
     },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    }
+    APP: {},
+    graphqlApi: {
+      url: 'https://bed-tracking.gigalixirapp.com/api'
+    },
   };
 
   if (environment === 'development') {

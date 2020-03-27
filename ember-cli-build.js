@@ -7,6 +7,9 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true
     },
+    emberApolloClient: {
+      keepGraphqlFileExtension: false
+    },
     sassOptions: {
       extension: 'scss'
     },

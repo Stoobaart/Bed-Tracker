@@ -6,10 +6,10 @@ export default class extends Route {
   @action
   didTransition() {
     super.init(...arguments);
-    if (localStorage.getItem('bed_tracker_token')) {
-      this.transitionTo('/home');
-    } else {
+    if (!JSON.parse(localStorage.getItem('bed_tracker_token'))) {
       this.transitionTo('/login');
+    } else {
+      this.transitionTo('/home');
     }
   }
 }

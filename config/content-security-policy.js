@@ -5,7 +5,8 @@ module.exports = {
   ],
   'connect-src': [
     "'self'",
-    'localhost'
+    'localhost',
+    "https://bed-tracking.gigalixirapp.com/api"
   ],
   'manifest-src': [],
   'img-src': [
