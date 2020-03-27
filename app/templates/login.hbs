@@ -1,0 +1,24 @@
+<form 
+  class="form" 
+  autocomplete="off"
+  {{on "click" this.submit}}>
+  <label 
+    for="hospitalId" 
+    class="form_label">
+    Enter your hospital id
+  </label>
+  <Input 
+    @id="hospitalId"
+    @type="text" 
+    @name="hospitalId" 
+    @required={{true}}
+    @class="form_input"
+    @value={{this.hospitalId}}
+    @key-up={{action (mut this.hospitalId) value=@target.value}} />
+
+  <button 
+    type="button" 
+    class="form_btn">
+    Enter
+  </button>
+</form>
