@@ -1,7 +1,6 @@
 # bed-tracker
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This webapp allows hospitals to easily track their bed usages by printing and scanning QR codes. The data sent from this will be used to improve the coordination of resources, and therefore, patient treatment.
 
 ## Prerequisites
 
