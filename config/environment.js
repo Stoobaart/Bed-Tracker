@@ -1,11 +1,15 @@
 'use strict';
 
+const contentSecurityPolicy = require('./content-security-policy');
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'bed-tracker',
     environment,
     rootURL: '/',
     locationType: 'auto',
+    contentSecurityPolicyMeta: true,
+    contentSecurityPolicy,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
