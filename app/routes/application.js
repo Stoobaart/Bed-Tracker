@@ -8,8 +8,6 @@ export default class extends Route {
     super.init(...arguments);
     if (!JSON.parse(localStorage.getItem('bed_tracker_token'))) {
       this.transitionTo('/login');
-    } else {
-      this.transitionTo('/home');
     }
   }
 }

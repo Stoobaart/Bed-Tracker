@@ -1,0 +1,6 @@
+<Input @value={{this.textValue}} />
+<button {{on "click" this.generateQrCode}}>Generate</button>
+
+{{#if this.qrCode}}
+  <img src={{this.qrCode}}>
+{{/if}}

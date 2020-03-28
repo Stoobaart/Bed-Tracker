@@ -63,6 +63,9 @@
     "edition": "octane"
   },
   "dependencies": {
-    "apollo-link-context": "^1.0.19"
+    "apollo-link-context": "^1.0.19",
+    "jsqr": "^1.2.0",
+    "qr-scanner": "^1.1.1",
+    "qrcode": "^1.4.4"
   }
 }
