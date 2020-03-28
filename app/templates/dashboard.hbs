@@ -1,1 +1,20 @@
-{{outlet}}
+<div class="page">
+  <div>{{this.name}}</div>
+  <div>Total beds: {{this.totalBeds}}</div>
+
+  {{#if (eq this.model.hospital.useQrCode false)}}
+    <div class="qr-choice-warning">Please select how your hospital will be tracking beds. Please note that this choice cannot be changed after you have selected.</div>
+    <button class="form_btn">Use mobile device QR scanning ONLY</button>
+    <button class="form_btn">Use manual entry throough this app ONLY</button>
+  {{else}}
+
+    {{#if this.model.hospital.useQrCode}}
+    {{else}}
+      <div>Unavailable beds: {{this.unavailableBeds}}</div>
+      <button {{on "click" (fn updateUnavailableNumber '+')}}>+</button><button {{on "click" updateUnavailableNumber}}>-</button>
+      <div>Available beds: {{this.availableBeds}}</div>
+      <button {{on "click" (fn updateAvailableNumber '+')}}>+</button><button {{on "click" updateAvailableNumber}}>-</button>
+    {{/if}}
+
+  {{/if}}
+</div>

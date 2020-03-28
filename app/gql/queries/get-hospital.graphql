@@ -7,7 +7,7 @@ query {
       name
       totalBeds
       unavailableBeds
-      
+      useQrCode
     }
   }
 }

@@ -15,4 +15,13 @@ export default class DashboardRoute extends Route {
       this.errors.hasError = true;
     }
   }
+
+  // setupController(controller, model) {
+  //   super.setupController(controller);
+  //   controller.setProperties({
+  //     totalBeds: model.hospital.totalBeds,
+  //     availableBeds: model.hospital.availableBeds,
+  //     unavailableBeds: model.unavailableBeds
+  //   });
+  // }
 }

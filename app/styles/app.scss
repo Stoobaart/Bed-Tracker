@@ -31,6 +31,10 @@ html, body {
   text-align: center;
 }
 
+.page {
+  padding: 2rem;
+}
+
 .form {
   margin: auto;
   padding: 1rem;
@@ -83,4 +87,10 @@ html, body {
       opacity: 0.25;
     }
   }
+}
+
+.qr-choice-warning {
+  color: red;
+  font-weight: bolder;
+  padding: 1rem 0;
 }

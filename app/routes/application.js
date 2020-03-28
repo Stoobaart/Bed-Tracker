@@ -14,7 +14,8 @@ export default class extends Route {
     super.init(...arguments);
 
     const isQrRoute = DASHBOARD_ROUTES.some((route) => this.router._router.url.includes(route));
-    const hasToken = JSON.parse(localStorage.getItem('bed_tracker_token'))
+    const hasToken = JSON.parse(localStorage.getItem('bed_tracker_token'));
+    const isManager = JSON.parse(localStorage.getItem('hospital_manager'));
 
     if (!hasToken) {
       if (isQrRoute) {
@@ -24,5 +25,10 @@ export default class extends Route {
       }
     }
 
+    if (hasToken && !isManager) {
+      if (this.router._router.url.includes('dashboard')) {
+        this.transitionTo('/');
+      }
+    }
   }
 }
