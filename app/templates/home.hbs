@@ -1,12 +1,11 @@
-{{#let this.model.hospital as |hospital|}}
-  <div>{{hospital.name}}</div>
-  <div>Total beds: {{hospital.totalBeds}}</div>
-  <div>Unavailable beds: {{hospital.unavailableBeds}}</div>
-  <div>Available beds: {{hospital.availableBeds}}</div>
+<div class="content">
+  {{#let this.model.hospital as |hospital|}}
+    <div>{{hospital.name}}</div>
+    <div>Total beds: {{hospital.totalBeds}}</div>
+    <div>Unavailable beds: {{hospital.unavailableBeds}}</div>
+    <div>Available beds: {{hospital.availableBeds}}</div>
 
-  {{#if hospital.useQrCode}}
-    {{!-- Sorin your QR stuff will go here --}}
-  {{else}}
-    
-  {{/if}}
-{{/let}}
+    <LinkTo @route="add-bed" @tagName="button">Add bed</LinkTo>
+    <LinkTo @route="scan" @tagName="button">Scan a bed</LinkTo>
+  {{/let}}
+</div>

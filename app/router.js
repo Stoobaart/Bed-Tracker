@@ -11,4 +11,8 @@ Router.map(function() {
   this.route('hospital-id');
   this.route('login', { path: ''});
   this.route('dashboard');
+
+  this.route('add-bed');
+  this.route('scan');
+  this.route('bed', { path: '/bed/:id' });
 });
