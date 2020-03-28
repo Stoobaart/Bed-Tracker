@@ -15,7 +15,7 @@ export default class HomeRoute extends Route {
       const response = await this.apollo.watchQuery({ query: GetHospital, variables });
       return response.getHospital;
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       localStorage.setItem('bed_tracker_token', JSON.stringify(null));
       this.transitionTo('/login');
     }

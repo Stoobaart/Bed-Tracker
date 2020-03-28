@@ -8,7 +8,8 @@ export default class LoginController extends Controller {
   hospitalId = null;
 
   @action
-  submit() {
+  submit(event) {
+    event.preventDefault();
     localStorage.setItem('bed_tracker_token', JSON.stringify(this.hospitalId));
 
     if (this.hospitalId) {

@@ -1,7 +1,7 @@
 <form 
   class="form" 
   autocomplete="off"
-  {{on "click" this.submit}}>
+  {{on "submit" this.submit}}>
   <label 
     for="hospitalId" 
     class="form_label">
@@ -17,7 +17,7 @@
     @key-up={{action (mut this.hospitalId) value=@target.value}} />
 
   <button 
-    type="button" 
+    type="submit" 
     class="form_btn">
     Enter
   </button>
