@@ -1,0 +1,7 @@
+mutation {
+  registerBed {
+    bed {
+      id
+    }
+  }
+}

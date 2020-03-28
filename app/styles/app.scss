@@ -1,5 +1,25 @@
 @import 'normalize';
 
+@mixin button {
+  color: white;
+  height: 48px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background-color: #005eb8;
+  padding: 1rem;
+  width: 100%;
+  transition: opacity .5s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.25;
+  }
+}
+
 html * {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -19,6 +39,7 @@ html, body {
 .top-bar {
   height: 130px;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   margin: auto;
   width: calc(100vw - 4rem);
@@ -67,20 +88,36 @@ html, body {
   }
 
   &_btn {
-    color: white;
-    height: 48px;
-    border-radius: 4px;
-    background-color: #005eb8;
-    padding: 1rem;
+    @include button;
+  }
+}
+
+canvas {
+  margin: auto;
+  display: flex;
+}
+
+button {
+  @include button;
+}
+
+.content {
+  margin: auto;
+  width: calc(100% - 4rem);
+  max-width: 600px;
+  height: calc(100% - 130px);
+  display: flex;
+  flex-direction: column;
+
+  .qr-code {
+    margin: auto;
     width: 100%;
-    transition: opacity .5s;
+    height: auto;
+    image-rendering: pixelated;
+  }
 
-    &:focus {
-      outline: none;
-    }
-
-    &:disabled {
-      opacity: 0.25;
-    }
+  button {
+    align-self: flex-end;
+    margin-bottom: 2rem;
   }
 }
