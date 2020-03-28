@@ -16,14 +16,21 @@ module.exports = {
   ],
   'style-src': [
     "'self'",
-    "'unsafe-inline'"
+    "'unsafe-inline'",
+    "https://fonts.googleapis.com"
+  ],
+  'style-src-elem': [
+    "'self'",
+    "'unsafe-inline'",
+    "https://fonts.googleapis.com"
   ],
   'frame-src': [
     "'self'"
   ],
   'font-src': [
     "'self'",
-    "data: "
+    "data: ",
+    "https://fonts.gstatic.com"
   ],
   'media-src': [
     "'self'",

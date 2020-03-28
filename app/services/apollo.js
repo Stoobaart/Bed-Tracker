@@ -33,7 +33,7 @@ export default class Service extends ApolloService {
         return {};
       }
       return {
-        headers: { authorization: `Bearer ${localStorage.getItem('bed_tracker_token')}` }
+        headers: { hospitalId: localStorage.getItem('bed_tracker_token') }
       };
     });
 
