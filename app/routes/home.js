@@ -19,7 +19,7 @@ export default class HomeRoute extends Route {
     } catch (error) {
       this.errors.hasError = true;
       localStorage.setItem('bed_tracker_token', JSON.stringify(null));
-      this.transitionTo('/login');
+      this.transitionTo('/hospital-id');
     }
   }
 }

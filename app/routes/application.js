@@ -7,7 +7,7 @@ export default class extends Route {
   didTransition() {
     super.init(...arguments);
     if (!JSON.parse(localStorage.getItem('bed_tracker_token'))) {
-      this.transitionTo('/login');
+      this.transitionTo('/hospital-id');
     } else {
       this.transitionTo('/home');
     }
