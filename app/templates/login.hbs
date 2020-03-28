@@ -1,0 +1,43 @@
+<form 
+  class="form" 
+  autocomplete="off"
+  {{on "submit" this.submit}}>
+  <label 
+    for="email" 
+    class="form_label">
+    Enter your email
+  </label>
+  <Input 
+    @id="email"
+    @type="text" 
+    @name="email" 
+    @required={{true}}
+    @class="form_input"
+    @value={{this.email}}
+    @key-up={{action (mut this.email) value=@target.value}} />
+  <div class="form_error--container"></div>
+  <label 
+    for="password" 
+    class="form_label">
+    Enter your password
+  </label>
+  <Input 
+    @id="password"
+    @type="password" 
+    @name="password" 
+    @required={{true}}
+    @class="form_input"
+    @value={{this.password}}
+    @key-up={{action (mut this.password) value=@target.value}} />
+  <div class="form_error--container">
+    {{#if this.errors.hasError}}
+      <div class="form_error">Error. Please check your credentials and try again</div>
+    {{/if}}
+  </div>
+  <button 
+    type="submit" 
+    class="form_btn"
+    disabled={{and (not this.password) (not this.email)}}>
+    Enter
+  </button>
+</form>
