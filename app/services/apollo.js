@@ -2,11 +2,6 @@ import ApolloService from 'ember-apollo-client/services/apollo';
 import { inject as service } from '@ember/service';
 import { setContext } from 'apollo-link-context';
 import config from '../config/environment';
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher
-} from 'apollo-cache-inmemory';
-import introspectionQueryResultData from 'bed-tracker/gql/fragmentMatcher';
 
 export default class Service extends ApolloService {
   @service router;
@@ -17,14 +12,6 @@ export default class Service extends ApolloService {
     };
   }
 
-  cache() {
-    return new InMemoryCache({
-      fragmentMatcher: new IntrospectionFragmentMatcher({
-        introspectionQueryResultData
-      })
-    });
-  }
-
   link() {
     let httpLink = super.link();
 
@@ -33,7 +20,7 @@ export default class Service extends ApolloService {
         return {};
       }
       return {
-        headers: { hospitalid: localStorage.getItem('bed_tracker_token') }
+        headers: { hospitalId: JSON.parse(localStorage.getItem('bed_tracker_token')) }
       };
     });
 

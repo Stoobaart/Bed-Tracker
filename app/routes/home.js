@@ -8,6 +8,10 @@ export default class HomeRoute extends Route {
   @service errors;
 
   async model() {
+    // const hospitalId = JSON.parse(localStorage.getItem('bed_tracker_token'));	
+    // let variables = {	
+    //   input: { hospitalId }	
+    // };
     try {
       const response = await this.apollo.watchQuery({ query: GetHospital });
       this.errors.hasError = false;
