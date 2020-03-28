@@ -1,0 +1,16 @@
+mutation ($input:LoginHospitalManagerInput!) {
+  loginHospitalManager (input: $input) {
+    hospitalManager {
+      name
+      email
+      hospital {
+        id
+        name
+        address
+        availableBeds
+        totalBeds
+        unavailableBeds
+      }
+    }
+  }
+}

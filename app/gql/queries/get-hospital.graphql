@@ -1,4 +1,4 @@
-query { 
+query {
   getHospital {
     hospital {
       address
@@ -7,7 +7,7 @@ query {
       name
       totalBeds
       unavailableBeds
-      useQrCode
+      
     }
   }
 }
