@@ -6,7 +6,7 @@ export default class HospitalIdController extends Controller {
   @service router;
   @service errors;
 
-  hospitalId = null;
+  hospitalId = 'ed20d06e-60af-4a67-a7db-3a00285e5786';
 
   @action
   submit(event) {

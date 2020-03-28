@@ -9,6 +9,6 @@ export default class HomeController extends Controller {
   @action
   addBed() {
     const uuid = v4();
-    this.router.transitionTo('generate', uuid);
+    this.router.transitionTo('add-bed.js', uuid);
   }
 }

@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 
-export default class GenerateController extends Controller {
+export default class AddBedController extends Controller {
   @action
   printCode() {
 
