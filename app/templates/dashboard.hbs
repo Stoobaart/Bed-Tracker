@@ -35,18 +35,18 @@
             {{/if}}
           </button>
           {{#if this.showEditTotalBedsForm}}
-            <form 
+            <form
               class="edit-beds_form total-beds"
               {{on "submit" this.editTotalBeds}}>
               <div class="edit-beds_subheader">Edit total number of beds</div>
 
-              <label 
-                for="editTotalBedsNumber" 
+              <label
+                for="editTotalBedsNumber"
                 class="form_label">
                 Total beds
               </label>
               <Input
-                @type="number" 
+                @type="number"
                 @name="editTotalBedsNumber"
                 @required={{true}}
                 @class="form_input edit-beds_input"
@@ -56,11 +56,11 @@
               {{#if this.totalErrorMessage}}
                 <div class="edit-beds_help-text error">{{this.totalErrorMessage}}</div>
               {{else}}
-                <div class="edit-beds_help-text">The total number of beds at the hospital</div> 
+                <div class="edit-beds_help-text">The total number of beds at the hospital</div>
               {{/if}}
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 class="form_btn"
                 disabled={{not this.newNoOfTotalBeds}}>
                 Enter
@@ -76,36 +76,36 @@
         </div>
       </div>
 
-      <form 
+      <form
         class="edit-beds_form"
         {{on "submit" this.editBedsAvailability}}>
         <div class="edit-beds_subheader">Edit bed availability</div>
 
-        <label 
-          for="editBedsNumber" 
+        <label
+          for="editBedsNumber"
           class="form_label">
           Number of beds
         </label>
         <Input
-          @type="number" 
+          @type="number"
           @name="editBedsNumber"
           @required={{true}}
           @class="form_input edit-beds_input"
           @value={{this.noOfBedsToEditAvailabiity}}
           @key-up={{action (mut this.noOfBedsToEditAvailabiity) value=@target.value}} />
-        
+
         {{#if this.errorMessage}}
           <div class="edit-beds_help-text error">{{this.errorMessage}}</div>
         {{else}}
-          <div class="edit-beds_help-text">The number of beds that have changed status</div>  
+          <div class="edit-beds_help-text">The number of beds that have changed status</div>
         {{/if}}
 
         <div class="edit-beds_help-text bold">These beds are now:</div>
 
         <div class="edit-beds_radio">
-          <input 
+          <input
             id="available"
-            type="radio" 
+            type="radio"
             checked={{this.makeBedsAvailable}}
             onclick={{action (mut this.makeBedsAvailable) true}}>
           <label for="available" class="edit-beds_radio--label">
@@ -114,9 +114,9 @@
         </div>
 
         <div class="edit-beds_radio">
-          <input 
+          <input
             id="unavailable"
-            type="radio" 
+            type="radio"
             checked={{not this.makeBedsAvailable}}
             onclick={{action (mut this.makeBedsAvailable) false}}>
           <label for="unavailable" class="edit-beds_radio--label">
@@ -124,8 +124,8 @@
           </label>
         </div>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           class="form_btn"
           disabled={{not this.noOfBedsToEditAvailabiity}}>
           Enter

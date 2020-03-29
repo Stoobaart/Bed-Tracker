@@ -1,0 +1,10 @@
+mutation ($input: UpdateBedAvailabilityInput!) {
+  updateBedAvailability (input: $input) {
+    bed {
+      active
+      available
+      id
+      reference
+    }
+  }
+}

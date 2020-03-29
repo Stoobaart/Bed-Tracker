@@ -37,17 +37,20 @@ html, body {
 }
 
 .top-bar {
-  height: 130px;
+  height: 80px;
   display: flex;
+  overflow: hidden;
   box-sizing: border-box;
-  flex-direction: column;
+  margin: auto;
+  width: calc(100vw - 4rem);
   border-bottom: 2px solid #2c98ff;
 }
 
 .app-name {
+  margin-left: 1rem;
   color: #003e78;
   font-size: 1rem;
-  text-align: center;
+  align-self: center;
 }
 
 .page {
@@ -238,7 +241,37 @@ button {
 
   button {
     align-self: flex-end;
-    margin-bottom: 2rem;
+    margin: 1rem 0;
+  }
+
+  .row {
+    margin: 1rem 0;
+    display: flex;
+
+    div + div {
+      flex-grow: 1;
+      font-weight: 600;
+      text-align: end;
+    }
+  }
+
+  .badge {
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #005eb8;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+
+    &--success {
+      background-color: #31872d;
+    }
+
+    &--error {
+      background-color: #e30a0a;
+    }
   }
 }
 
@@ -246,4 +279,21 @@ button {
   color: red;
   font-weight: bolder;
   padding: 1rem 0;
+}
+
+.hospital-details {
+  margin-left: 1rem;
+  align-self: center;
+  overflow: hidden;
+
+  div {
+    margin: 0.2rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    strong {
+      font-weight: 600;
+    }
+  }
 }

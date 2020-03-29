@@ -1,5 +1,35 @@
 <div class="content">
-  <div>Bed ID: {{this.model.id}}</div>
-  <div>Active: {{this.model.active}}</div>
-  <div>Available: {{this.model.available}}</div>
+  {{#if this.model.active}}
+    <div class="badge {{if this.model.available "badge--success" "badge--error"}}">
+      {{if this.model.available "Available" "Not available"}}
+    </div>
+    <div class="row">
+      <div>Reference:</div>
+      <div>{{this.model.reference}}</div>
+    </div>
+
+    {{#if this.model.available}}
+      <button {{on "click" this.makeUnavailable}}>Make unavailable</button>
+    {{else}}
+      <button {{on "click" this.makeAvailable}}>Make available</button>
+    {{/if}}
+  {{else}}
+    <div class="badge badge--error">Not active</div>
+
+    <label for="reference" class="form_label">
+      Reference
+    </label>
+    <Input @id="reference"
+           @type="text"
+           @name="reference"
+           @required={{true}}
+           @class="form_input"
+           @value={{this.bedReference}} />
+
+    <button {{on "click" this.activateBed}} disabled={{not this.bedReference}}>Activate</button>
+  {{/if}}
+
+  {{#if this.errors.hasError}}
+    <p>Something went wrong, please try again.</p>
+  {{/if}}
 </div>

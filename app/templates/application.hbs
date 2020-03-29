@@ -1,7 +1,14 @@
 <div class="application">
   <div class="top-bar">
     <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
-    <div class="app-name">Bed Checker</div>
+    {{#if this.account.hospital}}
+      <div class="hospital-details">
+        <div><strong>{{this.account.hospital.name}}</strong></div>
+        <div>{{this.account.hospital.address}}</div>
+      </div>
+    {{else}}
+      <div class="app-name">Bed Checker</div>
+    {{/if}}
   </div>
   {{outlet}}
 </div>

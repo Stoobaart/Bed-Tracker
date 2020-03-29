@@ -1,0 +1,10 @@
+mutation ($input: ActivateBedInput!) {
+  activateBed (input: $input) {
+    bed {
+      active
+      available
+      id
+      reference
+    }
+  }
+}
