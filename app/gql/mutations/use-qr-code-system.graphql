@@ -3,6 +3,12 @@ mutation ($input:UseQrCodeSystemInput!) {
     hospital {
       address
       availableBeds
+      beds {
+        active
+        available
+        id
+        reference
+      }
       id
       name
       totalBeds

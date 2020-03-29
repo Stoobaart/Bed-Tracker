@@ -13,6 +13,9 @@ export default class DashboardController extends Controller {
   @tracked noOfBedsToEditAvailabiity = null;
   @tracked makeBedsAvailable = true;
   @tracked errorMessage = null;
+  @tracked totalErrorMessage = null;
+  @tracked showEditTotalBedsForm = false;
+  @tracked newNoOfTotalBeds = null;
 
   get valuesHaveChanged() {
     if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
@@ -67,7 +70,7 @@ export default class DashboardController extends Controller {
       const variables = {
         input: {
           numberOfAvailableBeds: updatedAvailableBeds,
-          numberOfTotalBeds: this.totalBeds,
+          numberOfTotalBeds: JSON.parse(this.totalBeds),
         }
       }
   
@@ -76,6 +79,32 @@ export default class DashboardController extends Controller {
         this.availableBeds = updatedAvailableBeds;
         this.noOfBedsToEditAvailabiity = null;
         this.errorMessage = null;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  @action
+  async editTotalBeds(event) {
+    event.preventDefault();
+
+    if (this.newNoOfTotalBeds < this.availableBeds) {
+      this.totalErrorMessage = 'Total beds cannot be less than available beds';
+    } else {
+      const variables = {
+        input: {
+          numberOfAvailableBeds: this.availableBeds,
+          numberOfTotalBeds: JSON.parse(this.newNoOfTotalBeds),
+        }
+      }
+
+      try {
+        await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
+        this.totalBeds = this.newNoOfTotalBeds;
+        this.newNoOfTotalBeds = null;
+        this.totalErrorMessage = null;
+        this.showEditTotalBedsForm = false;
       } catch (error) {
         console.error(error);
       }

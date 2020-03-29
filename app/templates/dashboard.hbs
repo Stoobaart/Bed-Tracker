@@ -6,15 +6,67 @@
   {{else}}
 
     {{#if this.model.hospital.useQrCode}}
+        <div class="divTable">
+          <div class="divTableBody">
+            {{#each this.model.hospital.beds as |beds|}}
+              {{log beds}}
+              <div class="divTableRow">
+                <div class="divTableCell">&nbsp;</div>
+                <div class="divTableCell">&nbsp;</div>
+                <div class="divTableCell">&nbsp;</div>
+                <div class="divTableCell">&nbsp;</div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
     {{else}}
       <div class="cards-container">
         <div class="page_header">Beds</div>
 
-        <div class="card">
+        <div class="card {{if this.showEditTotalBedsForm "with-form"}}">
           <div class="card_header">{{this.totalBeds}}</div>
           <div class="card_subheader">Total Beds</div>
           <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-          <button class="card_btn">Edit</button>
+          <button class="card_btn" onclick={{action toggleProperty "showEditTotalBedsForm"}}>
+            {{#if this.showEditTotalBedsForm}}
+              <img class="" src="/assets/images/cross.png" alt="">
+            {{else}}
+              Edit
+            {{/if}}
+          </button>
+          {{#if this.showEditTotalBedsForm}}
+            <form 
+              class="edit-beds_form total-beds"
+              {{on "submit" this.editTotalBeds}}>
+              <div class="edit-beds_subheader">Edit total number of beds</div>
+
+              <label 
+                for="editTotalBedsNumber" 
+                class="form_label">
+                Total beds
+              </label>
+              <Input
+                @type="number" 
+                @name="editTotalBedsNumber"
+                @required={{true}}
+                @class="form_input edit-beds_input"
+                @value={{this.newNoOfTotalBeds}}
+                @key-up={{action (mut this.newNoOfTotalBeds) value=@target.value}} />
+
+              {{#if this.totalErrorMessage}}
+                <div class="edit-beds_help-text error">{{this.totalErrorMessage}}</div>
+              {{else}}
+                <div class="edit-beds_help-text">The total number of beds at the hospital</div> 
+              {{/if}}
+
+              <button 
+                type="submit" 
+                class="form_btn"
+                disabled={{not this.newNoOfTotalBeds}}>
+                Enter
+              </button>
+            </form>
+          {{/if}}
         </div>
 
         <div class="card">
@@ -48,7 +100,7 @@
           <div class="edit-beds_help-text">The number of beds that have changed status</div>  
         {{/if}}
 
-        <div class="edit-beds_help-text bold">These beds are now</div>
+        <div class="edit-beds_help-text bold">These beds are now:</div>
 
         <div class="edit-beds_radio">
           <input 
