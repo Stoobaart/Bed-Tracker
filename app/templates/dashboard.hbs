@@ -1,8 +1,39 @@
 <div class="page">
-  {{#if (eq this.model.hospital.useQrCode null)}}
-    <div class="qr-choice-warning">Please select how your hospital will be tracking beds. Please note that this choice cannot be changed after you have selected.</div>
-    <button class="form_btn" {{on "click" (fn setQrCodeSystem true)}}>Use mobile device QR scanning ONLY</button>
-    <button class="form_btn" {{on "click" (fn setQrCodeSystem false)}}>Use manual entry throough this app ONLY</button>
+  {{#if (eq this.model.hospital.useQrCode false)}}
+    <div class="qr-choice_warning">Please select how your hospital will be tracking beds. <br> <br>Please note that this choice cannot be changed after you have made your selection.</div>
+
+    <div class="qr-choice_form">
+      <div class="edit-beds_radio">
+        <input
+          id="available"
+          type="radio"
+          checked={{this.useQrCode}}
+          onclick={{action (mut this.useQrCode) true}}>
+        <label for="available" class="edit-beds_radio--label">
+          <div class="edit-beds_radio--text">Mobile device QR scanning only</div>
+        </label>
+      </div>
+
+      <div class="edit-beds_radio">
+        <input
+          id="unavailable"
+          type="radio"
+          checked={{and (not this.useQrCode) (not (eq this.useQrCode null))}}
+          onclick={{action (mut this.useQrCode) false}}>
+        <label for="unavailable" class="edit-beds_radio--label">
+          <div class="edit-beds_radio--text">Manual entry only</div>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="form_btn"
+        disabled={{eq this.useQrCode null}}
+        {{on "click" this.setQrCodeSystem}}>
+        Enter
+      </button>
+    </div>
+
   {{else}}
 
     {{#if this.model.hospital.useQrCode}}

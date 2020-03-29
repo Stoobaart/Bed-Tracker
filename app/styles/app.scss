@@ -275,10 +275,16 @@ button {
   }
 }
 
-.qr-choice-warning {
-  color: red;
-  font-weight: bolder;
-  padding: 1rem 0;
+.qr-choice {
+  
+  &_warning {
+    font-weight: 600;
+    padding: 2rem;
+  }
+
+  &_form {
+    padding: 0 2rem;
+  }
 }
 
 .hospital-details {

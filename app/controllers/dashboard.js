@@ -8,6 +8,7 @@ import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds'
 export default class DashboardController extends Controller {
   @service apollo;
 
+  @tracked useQrCode = null;
   @tracked totalBeds = this.model.hospital.totalBeds;
   @tracked availableBeds = this.model.hospital.availableBeds;
   @tracked noOfBedsToEditAvailabiity = null;
