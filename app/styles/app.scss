@@ -54,6 +54,12 @@ html, body {
 }
 
 .page {
+  max-width: 32rem;
+  margin: auto;
+
+  &--QR {
+    max-width: 64rem;
+  }
 
   &_header {
     font-size: 24px;
@@ -282,8 +288,22 @@ button {
     padding: 2rem;
   }
 
+  &_final-warning {
+    font-weight: 600;
+  }
+
   &_form {
     padding: 0 2rem;
+  }
+
+  &_header {
+    padding-bottom: 1rem;
+  }
+
+  &_btn {
+    margin-top: 1.5rem;
+    line-height: 1;
+    transition: opacity .5s 3s;
   }
 }
 
@@ -301,5 +321,16 @@ button {
     strong {
       font-weight: 600;
     }
+  }
+}
+
+.div-table {
+
+  &_row {
+    display: flex;
+  }
+
+  &_cell {
+    border: 1px solid grey;
   }
 }

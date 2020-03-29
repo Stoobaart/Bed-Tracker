@@ -17,6 +17,7 @@ export default class DashboardController extends Controller {
   @tracked totalErrorMessage = null;
   @tracked showEditTotalBedsForm = false;
   @tracked newNoOfTotalBeds = null;
+  @tracked noOfBedsToRegister = null;
 
   get valuesHaveChanged() {
     if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
@@ -36,10 +37,10 @@ export default class DashboardController extends Controller {
   }
 
   @action
-  async setQrCodeSystem(value) {
+  async setQrCodeSystem() {
     const variables = {
       input: {
-        useQrCode: value
+        useQrCode: this.useQrCode
       }
     }
 
@@ -109,6 +110,24 @@ export default class DashboardController extends Controller {
       } catch (error) {
         console.error(error);
       }
+    }
+  }
+
+  @action
+  async registerBeds(event) {
+    event.preventDefault();
+
+    const variables = {
+      input: {
+        numberOfBeds: JSON.parse(this.noOfBedsToRegister),
+      }
+    }
+
+    try {
+      await this.apollo.mutate({ mutation: RegisterBeds, variables });
+      this.noOfBedsToRegister = null;
+    } catch (error) {
+      console.error(error);
     }
   }
 }

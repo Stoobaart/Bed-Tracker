@@ -1,8 +1,10 @@
-<div class="page">
-  {{#if (eq this.model.hospital.useQrCode false)}}
+<div class="page {{if this.model.hospital.useQrCode "page--QR"}}">
+  {{#if (eq this.model.hospital.useQrCode null)}}
     <div class="qr-choice_warning">Please select how your hospital will be tracking beds. <br> <br>Please note that this choice cannot be changed after you have made your selection.</div>
 
     <div class="qr-choice_form">
+      <div class="qr-choice_header">Bed tracking method:</div>
+
       <div class="edit-beds_radio">
         <input
           id="available"
@@ -25,32 +27,63 @@
         </label>
       </div>
 
+      {{#if (not (eq this.useQrCode null))}}
+        <div class="qr-choice_final-warning">*This cannot be changed later</div>
+      {{/if}}
+
       <button
         type="submit"
-        class="form_btn"
+        class="qr-choice_btn form_btn"
         disabled={{eq this.useQrCode null}}
         {{on "click" this.setQrCodeSystem}}>
-        Enter
+        Choose bed tracking method
       </button>
     </div>
 
   {{else}}
 
     {{#if this.model.hospital.useQrCode}}
-        <div class="divTable">
-          <div class="divTableBody">
-            {{#each this.model.hospital.beds as |beds|}}
-              {{log beds}}
-              <div class="divTableRow">
-                <div class="divTableCell">&nbsp;</div>
-                <div class="divTableCell">&nbsp;</div>
-                <div class="divTableCell">&nbsp;</div>
-                <div class="divTableCell">&nbsp;</div>
+
+      <form
+        class="edit-beds_form"
+        {{on "submit" this.registerBeds}}>
+        <div class="edit-beds_subheader">Register beds</div>
+
+        <label
+          for="registerBeds"
+          class="form_label">
+          Number of beds to register:
+        </label>
+        <Input
+          @type="number"
+          @name="registerBeds"
+          @required={{true}}
+          @class="form_input edit-beds_input"
+          @value={{this.noOfBedsToRegister}}
+          @key-up={{action (mut this.noOfBedsToRegister) value=@target.value}} />
+        <button
+          type="submit"
+          class="form_btn"
+          disabled={{not this.noOfBedsToRegister}}>
+          Register
+        </button>
+      </form>
+
+        <div class="div-table">
+          <div class="div-table_body">
+            {{#each this.model.hospital.beds as |bed|}}
+              <div class="div-table_row">
+                <div class="div-table_cell">{{bed.reference}}</div>
+                <div class="div-table_cell">{{bed.available}}</div>
+                <div class="div-table_cell">Activate/Deactivate</div>
+                <div class="div-table_cell">Print Qr code</div>
               </div>
             {{/each}}
           </div>
         </div>
+
     {{else}}
+
       <div class="cards-container">
         <div class="page_header">Beds</div>
 
