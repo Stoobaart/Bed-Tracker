@@ -1,5 +1,10 @@
 mutation ($input:RegisterBedsInput!) {
   registerBeds (input: $input) {
-    success
+    beds {
+      active
+      available
+      id
+      reference
+    }
   }
 }

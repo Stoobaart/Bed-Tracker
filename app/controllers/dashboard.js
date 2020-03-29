@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import UseQrCodeSystem from 'bed-tracker/gql/mutations/use-qr-code-system';
 import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds';
+import RegisterBeds from 'bed-tracker/gql/mutations/register-beds';
 
 export default class DashboardController extends Controller {
   @service apollo;
@@ -124,7 +125,8 @@ export default class DashboardController extends Controller {
     }
 
     try {
-      await this.apollo.mutate({ mutation: RegisterBeds, variables });
+      const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
+      this.model.hospital.beds = response.beds;
       this.noOfBedsToRegister = null;
     } catch (error) {
       console.error(error);
