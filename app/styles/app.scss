@@ -382,3 +382,19 @@ button {
     }
   }
 }
+
+.qr-code {
+  height: 0;
+  width: 0;
+
+  @media print {
+    @page {
+      marks: none;
+    }
+
+    visibility: visible;
+    image-rendering: pixelated;
+    width: 400px;
+    height: 400px;
+  }
+}

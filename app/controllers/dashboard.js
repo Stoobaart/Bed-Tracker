@@ -4,9 +4,11 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import UseQrCodeSystem from 'bed-tracker/gql/mutations/use-qr-code-system';
 import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds';
+import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
   @service apollo;
+  @service printThis;
 
   @tracked useQrCode = null;
   @tracked totalBeds = this.model.hospital.totalBeds;
@@ -18,6 +20,7 @@ export default class DashboardController extends Controller {
   @tracked showEditTotalBedsForm = false;
   @tracked newNoOfTotalBeds = null;
   @tracked noOfBedsToRegister = null;
+  @tracked qrCode = null;
 
   get valuesHaveChanged() {
     if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
@@ -75,7 +78,7 @@ export default class DashboardController extends Controller {
           numberOfTotalBeds: JSON.parse(this.totalBeds),
         }
       }
-  
+
       try {
         await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
         this.availableBeds = updatedAvailableBeds;
@@ -129,5 +132,11 @@ export default class DashboardController extends Controller {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  @action
+  async printQrCode(bedId) {
+    this.qrCode = await QRCode.toDataURL(bedId);
+    await this.printThis.print('img.qr-code');
   }
 }

@@ -76,7 +76,7 @@
                 <div class="div-table_cell">{{bed.reference}}</div>
                 <div class="div-table_cell">{{bed.available}}</div>
                 <div class="div-table_cell">Activate/Deactivate</div>
-                <div class="div-table_cell">Print Qr code</div>
+                <div class="div-table_cell"><button {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
               </div>
             {{/each}}
           </div>
@@ -199,3 +199,5 @@
 
   {{/if}}
 </div>
+
+<img class="qr-code" src={{this.qrCode}} alt="">
