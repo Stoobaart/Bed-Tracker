@@ -41,8 +41,6 @@ html, body {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  margin: auto;
-  width: calc(100vw - 4rem);
   border-bottom: 2px solid #2c98ff;
 }
 
@@ -53,7 +51,106 @@ html, body {
 }
 
 .page {
-  padding: 2rem;
+
+  &_header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+}
+
+.cards-container {
+  padding: 2rem 2rem 0.01rem;
+  background-color: #d8d8d8;
+}
+
+.card {
+  background-color: white;
+  height: 86px;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  &_header {
+    width: 100%;
+    height: 48px;
+    font-size: 48px;
+    font-weight: 600;
+    color: #003e78;
+    line-height: 1;
+  }
+
+  &_subheader {
+    width: 112px;
+    height: 22px;
+    top: .6rem;
+    position: relative;
+    color: #333333;
+  }
+
+  &_btn {
+    background: none;
+    color: #005eb8;
+    position: relative;
+    top: -3.5rem;
+    left: 50%;
+    width: 2rem;
+    height: 1rem;
+    padding: 0;
+  }
+}
+
+.edit-beds {
+  &_form {
+    padding: 1rem 2rem;
+  }
+
+  &_input.form_input {
+    line-height: 2.5;
+    margin-top: 0;
+  }
+
+  &_subheader {
+    font-weight: 600;
+    line-height: 1.5;
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+
+  &_help-text {
+    font-size: 12px;
+    line-height: 1.33;
+    color: #737373;
+    margin-bottom: 1rem;
+
+    &.bold {
+      font-weight: 600;
+      color: black;
+    }
+
+    &.error {
+      font-weight: 600;
+      color: red;
+    }
+  }
+
+  &_radio {
+    display: flex;
+    line-height: 1;
+    margin-bottom: 1rem;
+
+    &--label {
+      line-height: 1.5;
+    }
+
+    &--text {
+      font-size: 12px;
+      color: #333333;
+    }
+  }
 }
 
 .form {
@@ -65,6 +162,10 @@ html, body {
   top: 10rem;
   width: 80vw;
   max-width: 21rem;
+
+  &_subheader {
+
+  }
 
   &_label {
     width: 100%;

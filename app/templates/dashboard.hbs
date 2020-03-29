@@ -1,45 +1,82 @@
 <div class="page">
-  {{#if (eq this.model.hospital.useQrCode false)}}
+  {{#if (eq this.model.hospital.useQrCode null)}}
     <div class="qr-choice-warning">Please select how your hospital will be tracking beds. Please note that this choice cannot be changed after you have selected.</div>
-    <button class="form_btn">Use mobile device QR scanning ONLY</button>
-    <button class="form_btn">Use manual entry throough this app ONLY</button>
+    <button class="form_btn" {{on "click" (fn setQrCodeSystem true)}}>Use mobile device QR scanning ONLY</button>
+    <button class="form_btn" {{on "click" (fn setQrCodeSystem false)}}>Use manual entry throough this app ONLY</button>
   {{else}}
 
     {{#if this.model.hospital.useQrCode}}
     {{else}}
-      <div>{{this.model.hospital.name}}</div>
-      <label 
-        for="totalBeds" 
-        class="form_label">
-        Total beds: 
-      </label>
-      <Input
-        @type="number" 
-        @name="totalBeds"
-        @required={{true}}
-        @class="form_input"
-        @value={{this.totalBeds}}
-        @key-up={{action (mut this.totalBeds) value=@target.value}} />
+      <div class="cards-container">
+        <div class="page_header">Beds</div>
 
-      <label 
-        for="availableBeds" 
-        class="form_label">
-        Available beds:
-      </label>
-      <Input
-        @type="number" 
-        @name="availableBeds"
-        @required={{true}}
-        @class="form_input"
-        @value={{this.availableBeds}}
-        @key-up={{action (mut this.availableBeds) value=@target.value}} />
+        <div class="card">
+          <div class="card_header">{{this.totalBeds}}</div>
+          <div class="card_subheader">Total Beds</div>
+          <button class="card_btn">Edit</button>
+        </div>
 
-      <button 
-        class="form_btn" 
-        disabled={{not this.valuesHaveChanged}}
-        {{on "click" this.updateBedNumber}}>
-        Submit
-      </button>
+        <div class="card">
+          <div class="card_header">{{this.availableBeds}}</div>
+          <div class="card_subheader">Available Beds</div>
+        </div>
+      </div>
+
+      <form 
+        class="edit-beds_form"
+        {{on "submit" this.editBedsAvailability}}>
+        <div class="edit-beds_subheader">Edit bed availability</div>
+
+        <label 
+          for="editBedsNumber" 
+          class="form_label">
+          Number of beds
+        </label>
+        <Input
+          @type="number" 
+          @name="editBedsNumber"
+          @required={{true}}
+          @class="form_input edit-beds_input"
+          @value={{this.noOfBedsToEditAvailabiity}}
+          @key-up={{action (mut this.noOfBedsToEditAvailabiity) value=@target.value}} />
+        
+        {{#if this.errorMessage}}
+          <div class="edit-beds_help-text error">{{this.errorMessage}}</div>
+        {{else}}
+          <div class="edit-beds_help-text">The number of beds that have changed status</div>  
+        {{/if}}
+
+        <div class="edit-beds_help-text bold">These beds are now</div>
+
+        <div class="edit-beds_radio">
+          <input 
+            id="available"
+            type="radio" 
+            checked={{this.makeBedsAvailable}}
+            onclick={{action (mut this.makeBedsAvailable) true}}>
+          <label for="available" class="edit-beds_radio--label">
+            <div class="edit-beds_radio--text">Available beds</div>
+          </label>
+        </div>
+
+        <div class="edit-beds_radio">
+          <input 
+            id="unavailable"
+            type="radio" 
+            checked={{not this.makeBedsAvailable}}
+            onclick={{action (mut this.makeBedsAvailable) false}}>
+          <label for="unavailable" class="edit-beds_radio--label">
+            <div class="edit-beds_radio--text">Unavailable beds</div>
+          </label>
+        </div>
+
+        <button 
+          type="submit" 
+          class="form_btn"
+          disabled={{not this.noOfBedsToEditAvailabiity}}>
+          Enter
+        </button>
+      </form>
     {{/if}}
 
   {{/if}}

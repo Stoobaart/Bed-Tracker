@@ -1,0 +1,13 @@
+mutation ($input:UseQrCodeSystemInput!) {
+  useQrCodeSystem (input: $input) {
+    hospital {
+      address
+      availableBeds
+      id
+      name
+      totalBeds
+      unavailableBeds
+      useQrCode
+    }
+  }
+}

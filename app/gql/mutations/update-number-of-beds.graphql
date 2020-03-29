@@ -1,0 +1,5 @@
+mutation ($input:UpdateNumberOfBedsInput!) {
+  updateNumberOfBeds (input: $input) {
+    success
+  }
+}
