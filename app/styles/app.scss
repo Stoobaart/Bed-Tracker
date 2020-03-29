@@ -62,12 +62,13 @@ html, body {
 
 .cards-container {
   padding: 2rem 2rem 0.01rem;
-  background-color: #d8d8d8;
+  background-color: rgba(216,216,216, 0.3);
 }
 
 .card {
   background-color: white;
   height: 86px;
+  width: calc(100% - 2rem);
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -84,7 +85,7 @@ html, body {
   }
 
   &_subheader {
-    width: 112px;
+    width: calc(100% - 4rem);
     height: 22px;
     top: .6rem;
     position: relative;
@@ -95,11 +96,16 @@ html, body {
     background: none;
     color: #005eb8;
     position: relative;
-    top: -3.5rem;
-    left: 50%;
+    top: -7.5rem;
+    left: 90%;
     width: 2rem;
     height: 1rem;
     padding: 0;
+  }
+
+  &_icon {
+    position: relative;
+    top: -.75rem;
   }
 }
 
