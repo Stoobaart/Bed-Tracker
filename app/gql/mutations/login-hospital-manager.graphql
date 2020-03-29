@@ -1,7 +1,6 @@
 mutation ($input:LoginHospitalManagerInput!) {
   loginHospitalManager (input: $input) {
     hospitalManager {
-      name
       email
       hospital {
         id
@@ -9,7 +8,6 @@ mutation ($input:LoginHospitalManagerInput!) {
         address
         availableBeds
         totalBeds
-        unavailableBeds
       }
     }
   }

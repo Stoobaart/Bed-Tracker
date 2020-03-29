@@ -6,27 +6,21 @@ export default class DashboardController extends Controller {
 
   @tracked totalBeds = this.model.hospital.totalBeds;
   @tracked availableBeds = this.model.hospital.availableBeds;
-  @tracked unavailableBeds = this.model.hospital.unavailableBeds;
 
-  @action
-  updateUnavailableNumber(symbol) {
-    if (symbol === '+') {
-      this.unavailableBeds++
-      this.totalBeds++
+  get valuesHaveChanged() {
+    if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
+      return true;
     } else {
-      this.unavailableBeds--
-      this.totalBeds--
+      return false;
     }
   }
 
   @action
-  updateAvailableNumber(symbol) {
-    if (symbol === '+') {
-      this.availableBeds++
-      this.totalBeds++
+  updateBedNumber() {
+    if (this.availableBeds > this.totalBeds) {
+      alert('The available beds cannot be more than the total beds, you idiot');
     } else {
-      this.availableBeds--
-      this.totalBeds--
+      alert(`You're submitting ${this.availableBeds} available beds and ${this.totalBeds} Total beds`);
     }
   }
 }

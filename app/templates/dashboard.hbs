@@ -1,7 +1,4 @@
 <div class="page">
-  <div>{{this.name}}</div>
-  <div>Total beds: {{this.totalBeds}}</div>
-
   {{#if (eq this.model.hospital.useQrCode false)}}
     <div class="qr-choice-warning">Please select how your hospital will be tracking beds. Please note that this choice cannot be changed after you have selected.</div>
     <button class="form_btn">Use mobile device QR scanning ONLY</button>
@@ -10,10 +7,39 @@
 
     {{#if this.model.hospital.useQrCode}}
     {{else}}
-      <div>Unavailable beds: {{this.unavailableBeds}}</div>
-      <button {{on "click" (fn updateUnavailableNumber '+')}}>+</button><button {{on "click" updateUnavailableNumber}}>-</button>
-      <div>Available beds: {{this.availableBeds}}</div>
-      <button {{on "click" (fn updateAvailableNumber '+')}}>+</button><button {{on "click" updateAvailableNumber}}>-</button>
+      <div>{{this.model.hospital.name}}</div>
+      <label 
+        for="totalBeds" 
+        class="form_label">
+        Total beds: 
+      </label>
+      <Input
+        @type="number" 
+        @name="totalBeds"
+        @required={{true}}
+        @class="form_input"
+        @value={{this.totalBeds}}
+        @key-up={{action (mut this.totalBeds) value=@target.value}} />
+
+      <label 
+        for="availableBeds" 
+        class="form_label">
+        Available beds:
+      </label>
+      <Input
+        @type="number" 
+        @name="availableBeds"
+        @required={{true}}
+        @class="form_input"
+        @value={{this.availableBeds}}
+        @key-up={{action (mut this.availableBeds) value=@target.value}} />
+
+      <button 
+        class="form_btn" 
+        disabled={{not this.valuesHaveChanged}}
+        {{on "click" this.updateBedNumber}}>
+        Submit
+      </button>
     {{/if}}
 
   {{/if}}
