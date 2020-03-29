@@ -234,7 +234,6 @@ button {
   margin: auto;
   width: calc(100% - 4rem);
   max-width: 600px;
-  height: calc(100% - 130px);
   display: flex;
   flex-direction: column;
 
@@ -248,6 +247,16 @@ button {
   button {
     align-self: flex-end;
     margin: 1rem 0;
+  }
+
+  h1 {
+    margin: 2rem 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  input {
+    margin: 0.5rem 0;
   }
 
   .row {
@@ -279,10 +288,28 @@ button {
       background-color: #e30a0a;
     }
   }
+
+  .help-text {
+    font-size: 12px;
+    line-height: 1rem;
+    color: #737373;
+    margin-bottom: 1rem;
+
+    &.bold {
+      font-size: 16px;
+      font-weight: 600;
+      color: black;
+    }
+
+    &.error {
+      font-weight: 600;
+      color: red;
+    }
+  }
 }
 
 .qr-choice {
-  
+
   &_warning {
     font-weight: 600;
     padding: 2rem;
@@ -332,5 +359,26 @@ button {
 
   &_cell {
     border: 1px solid grey;
+  }
+}
+
+.banner {
+  background-color: rgba(227, 10, 10, 0.25);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin-top: 0.5rem;
+    font-size: 12px;
+  }
+
+  &_title {
+    display: flex;
+    font-weight: 600;
+
+    img {
+      margin-right: 0.5rem;
+    }
   }
 }
