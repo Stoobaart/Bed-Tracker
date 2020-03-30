@@ -441,6 +441,7 @@ button {
   }
 
   &_column-4 {
+    text-align: center;
     width: 20%;
   }
 
@@ -460,7 +461,7 @@ button {
     margin: auto;
     width: 20rem;
     background-color: white;
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 1rem;
   }
 }

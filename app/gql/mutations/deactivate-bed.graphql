@@ -1,0 +1,10 @@
+mutation ($input: DeactivateBedInput!) {
+  deactivateBed (input: $input) {
+    bed {
+      active
+      available
+      id
+      reference
+    }
+  }
+}

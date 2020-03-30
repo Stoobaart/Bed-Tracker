@@ -158,7 +158,7 @@
                 </div>
                 <div class="div-table_cell div-table_column-4">
                   {{#if bed.active}}
-                    Deactivate
+                    <button class="div-table_btn" {{on "click" (fn this.deactivateBed bed)}}>Deactivate</button>
                   {{else}}
                     {{#if bed.reference}}
                       <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
@@ -175,6 +175,8 @@
 
         {{#if this.showReferenceEntryPopUp}}
           <div class="div-table_pop-up">
+            <div>A reference is required to activate this bed</div>
+            <div {{on "click" this.cancelBedActivation}}>Cancel</div>
             <Input
               @type="text"
               @class="form_input edit-beds_input"

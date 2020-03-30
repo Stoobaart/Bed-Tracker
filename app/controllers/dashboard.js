@@ -6,6 +6,7 @@ import UseQrCodeSystem from 'bed-tracker/gql/mutations/use-qr-code-system';
 import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds';
 import RegisterBeds from 'bed-tracker/gql/mutations/register-beds';
 import ActivateBedMutation from 'bed-tracker/gql/mutations/activate-bed';
+import DeactivateBedMutation from 'bed-tracker/gql/mutations/deactivate-bed';
 import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
@@ -213,6 +214,43 @@ export default class DashboardController extends Controller {
       this.showReferenceEntryPopUp = false;
       this.tempReference = '';
 
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  @action
+  cancelBedActivation() {
+    this.tempBedForReference = {};
+    this.showReferenceEntryPopUp = false;
+    this.tempReference = '';
+  }
+
+  @action
+  async deactivateBed(bed) {
+
+    try {
+      const variables = {
+        input: {
+          id: bed.id
+        }
+      };
+
+      await this.apollo.mutate({ mutation: DeactivateBedMutation, variables });
+      
+      const newBeds = [
+        {
+          reference: bed.reference,
+          active: false,
+          available: false,
+          id: bed.id
+        }
+      ]
+      const updatedBeds = this.beds.map(x => {
+        const bed = newBeds.find(({ id }) => id === x.id);
+        return bed ? bed : x;
+      });
+      this.beds = updatedBeds;
     } catch (error) {
       console.error(error);
     }
