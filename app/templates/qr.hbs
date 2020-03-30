@@ -1,0 +1,28 @@
+<form
+  class="form"
+  autocomplete="off"
+  {{on "submit" this.submit}}>
+  <label
+    for="hospitalId"
+    class="form_label">
+    Enter your hospital id
+  </label>
+  <Input
+    @id="hospitalId"
+    @type="text"
+    @name="hospitalId"
+    @required={{true}}
+    @class="form_input"
+    @value={{this.hospitalId}} />
+  <div class="form_error--container">
+    {{#if this.errors.hasError}}
+      <div class="form_error">Error. Please check the id and try again</div>
+    {{/if}}
+  </div>
+  <button
+    type="submit"
+    class="form_btn"
+    disabled={{not this.hospitalId}}>
+    Enter
+  </button>
+</form>
