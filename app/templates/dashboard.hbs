@@ -44,8 +44,35 @@
 
     {{#if this.model.hospital.useQrCode}}
 
-      {{#if (eq this.totalBeds 0)}}
-        SORIN!
+      {{#if (eq this.totalQrBeds 0)}}
+        <div class="instructions">
+          <p><strong>Welcome to Bed Checked</strong></p>
+          <p>Add the number of beds you would like to register to get started. You can also add more beds in the future.</p>
+          <p>Once these beds are registered each bed will have a reference number and unique QR code that needs to be printed an attached to the bed.</p>
+          <p>To make a bed available for patient occupancy it needs to be activated by entering it’s reference number.</p>
+
+          <h1>Register Beds</h1>
+
+          <div class="instructions_form">
+            <label for="beds-to-register"
+                   class="form_label">
+              Number of beds to register
+            </label>
+            <Input @id="beds-to-register"
+                   @type="number"
+                   @name="beds-to-register"
+                   @required={{true}}
+                   @class="form_input"
+                   @value={{this.noOfBedsToRegister}} />
+            <div class="form_error--container">
+              {{#if this.errors.hasError}}
+                <div class="form_error">Error. Please try again.</div>
+              {{/if}}
+            </div>
+
+            <button disabled={{not this.noOfBedsToRegister}} {{on "click" this.registerBeds}}>Register</button>
+          </div>
+        </div>
       {{else}}
 
         <div class="cards-container">
