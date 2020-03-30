@@ -146,8 +146,13 @@ export default class DashboardController extends Controller {
     }
 
     try {
-      await this.apollo.mutate({ mutation: RegisterBeds, variables });
-      this.send('refreshModel');
+      const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
+      const newBedArray = [...this.beds];
+      response.registerBeds.beds.forEach((bed) => {
+        newBedArray.push(bed);
+      });
+      this.beds = newBedArray;
+      
       this.totalQrBeds = this.totalQrBeds + JSON.parse(this.noOfBedsToRegister);
       this.noOfBedsToRegister = null;
       this.showRegisterBedsForm = false;

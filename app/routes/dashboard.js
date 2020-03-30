@@ -16,9 +16,4 @@ export default class DashboardRoute extends Route {
       this.errors.hasError = true;
     }
   }
-
-  @action 
-  refreshModel() {
-    this.refresh();
-  }
 }
