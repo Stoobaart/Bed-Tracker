@@ -15,7 +15,6 @@ export default class DashboardController extends Controller {
   @tracked totalBeds = this.model.hospital.totalBeds;
   @tracked totalQrBeds = this.model.hospital.beds.length;
   @tracked availableBeds = this.model.hospital.availableBeds;
-  @tracked availableBedsPercentage = Math.round((this.availableBeds / this.totalQrBeds) * 100);
   @tracked noOfBedsToEditAvailabiity = null;
   @tracked makeBedsAvailable = true;
   @tracked errorMessage = null;
@@ -25,6 +24,10 @@ export default class DashboardController extends Controller {
   @tracked newNoOfTotalBeds = null;
   @tracked noOfBedsToRegister = null;
   @tracked qrCode = null;
+
+  get availableBedsPercentage() {
+    return Math.round((this.availableBeds / this.totalQrBeds) * 100);
+  }
 
   get valuesHaveChanged() {
     if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
@@ -135,6 +138,7 @@ export default class DashboardController extends Controller {
       this.send('refreshModel');
       this.totalQrBeds = this.totalQrBeds + JSON.parse(this.noOfBedsToRegister);
       this.noOfBedsToRegister = null;
+      this.showRegisterBedsForm = false;
     } catch (error) {
       console.error(error);
     }
