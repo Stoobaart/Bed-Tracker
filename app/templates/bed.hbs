@@ -1,21 +1,31 @@
 {{#if this.model.active}}
-  <div class="content">
-    <div class="badge {{if this.model.available "badge--success" "badge--error"}}">
-      {{if this.model.available "Available" "Not available"}}
+  {{#if this.model.available}}
+  <div class="banner banner--success">
+    <div class="banner_title"><img src="/assets/images/success.svg" alt="">This bed is active</div>
+    <p>Bed available for patient occupation.</p>
+    <div class="height-line"></div>
+  </div>
+  {{else}}
+    <div class="banner banner--info">
+      <div class="banner_title"><img src="/assets/images/info.svg" alt="">This bed is not available</div>
+      <p>Add the bed reference number to activate and make the bed available for use.</p>
     </div>
-    <div class="row">
-      <div>Reference:</div>
-      <div>{{this.model.reference}}</div>
+  {{/if}}
+
+  <div class="content">
+    <h1>Bed reference: {{this.model.reference}}</h1>
+
+    <div class="controls">
+      <span>Bed available for use</span>
+      <div class="toggle {{if this.model.available "toggle-on" "toggle-off"}}" {{on "click" this.toggleAvailability}}>
+        <img src="{{if this.model.available "/assets/images/toggle-tick.svg" "/assets/images/toggle-cross.svg"}}" alt="">
+      </div>
     </div>
 
-    {{#if this.model.available}}
-      <button {{on "click" this.makeUnavailable}}>Make unavailable</button>
-    {{else}}
-      <button {{on "click" this.makeAvailable}}>Make available</button>
-    {{/if}}
+    <p>Immediately change the status of this bed between available for use and occupied or no longer available.</p>
   </div>
 {{else}}
-  <div class="banner">
+  <div class="banner banner--error">
     <div class="banner_title"><img src="/assets/images/error.svg" alt="">This bed is inactive</div>
     <p>Add the bed reference number to activate and make the bed available for use.</p>
   </div>
@@ -41,3 +51,5 @@
     <button {{on "click" this.activateBed}} disabled={{not this.bedReference}}>Activate</button>
   </div>
 {{/if}}
+
+<LinkTo @route="scan" @tagName="button" class="button--secondary">Return to QR scanner</LinkTo>
