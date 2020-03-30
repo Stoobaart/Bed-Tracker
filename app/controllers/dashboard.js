@@ -26,6 +26,9 @@ export default class DashboardController extends Controller {
   @tracked noOfBedsToRegister = null;
   @tracked qrCode = null;
   @tracked beds = this.model.hospital.beds;
+  @tracked tempBedForReference = {};
+  @tracked showReferenceEntryPopUp = false;
+  @tracked tempReference = '';
 
   get availableBedsPercentage() {
     return  Math.round((this.availableBeds / this.totalQrBeds) * 100);
@@ -152,7 +155,7 @@ export default class DashboardController extends Controller {
         newBedArray.push(bed);
       });
       this.beds = newBedArray;
-      
+
       this.totalQrBeds = this.totalQrBeds + JSON.parse(this.noOfBedsToRegister);
       this.noOfBedsToRegister = null;
       this.showRegisterBedsForm = false;
@@ -168,39 +171,50 @@ export default class DashboardController extends Controller {
   }
 
   @action
+  enterReference(bed) {
+    this.tempBedForReference = bed;
+    this.showReferenceEntryPopUp = true;
+  }
+
+  @action
   async activateBed(bed) {
-    if (!bed.reference) {
-      alert('Please enter a bed reference');
+    let reference;
+
+    if (bed.reference) {
+      reference = bed.reference;
     } else {
-      const tempRef = 'ABC';
+      reference = this.tempReference;
+    }
 
-      try {
-        const variables = {
-          input: {
-            id: bed.id,
-            reference: tempRef,
-          }
-        };
-  
-        await this.apollo.mutate({ mutation: ActivateBedMutation, variables });
-        
-        const newBeds = [
-          {
-            reference: tempRef,
-            active: true,
-            available: true,
-            id: bed.id
-          }
-        ]
-        const updatedBeds = this.beds.map(x => {
-          const bed = newBeds.find(({ id }) => id === x.id);
-          return bed ? bed : x;
-        });
-        this.beds = updatedBeds;
+    try {
+      const variables = {
+        input: {
+          id: bed.id,
+          reference,
+        }
+      };
 
-      } catch (error) {
-        console.error(error);
-      }
+      await this.apollo.mutate({ mutation: ActivateBedMutation, variables });
+      
+      const newBeds = [
+        {
+          reference,
+          active: true,
+          available: true,
+          id: bed.id
+        }
+      ]
+      const updatedBeds = this.beds.map(x => {
+        const bed = newBeds.find(({ id }) => id === x.id);
+        return bed ? bed : x;
+      });
+      this.beds = updatedBeds;
+      this.tempBedForReference = {};
+      this.showReferenceEntryPopUp = false;
+      this.tempReference = '';
+
+    } catch (error) {
+      console.error(error);
     }
   }
 }

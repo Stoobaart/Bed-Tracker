@@ -160,7 +160,11 @@
                   {{#if bed.active}}
                     Deactivate
                   {{else}}
-                    <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
+                    {{#if bed.reference}}
+                      <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
+                    {{else}}
+                      <button class="div-table_btn" {{on "click" (fn this.enterReference bed)}}>Activate</button>
+                    {{/if}}
                   {{/if}}
                 </div>
                 <div class="div-table_cell div-table_column-5"><button class="div-table_btn" {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
@@ -168,6 +172,23 @@
             {{/each}}
           </div>
         </div>
+
+        {{#if this.showReferenceEntryPopUp}}
+          <div class="div-table_pop-up">
+            <Input
+              @type="text"
+              @class="form_input edit-beds_input"
+              @value={{this.tempReference}}
+              @key-up={{action (mut this.tempReference) value=@target.value}} />
+            <button
+              type="submit"
+              class="form_btn"
+              disabled={{not this.tempReference}}
+              {{on "click" (fn this.activateBed this.tempBedForReference)}}>
+              Enter
+            </button>
+          </div>
+        {{/if}}
 
     {{else}}
 
