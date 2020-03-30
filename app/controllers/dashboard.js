@@ -13,7 +13,7 @@ export default class DashboardController extends Controller {
 
   @tracked useQrCode = null;
   @tracked totalBeds = this.model.hospital.totalBeds;
-  @tracked totalQrBeds = this.model.hospital.beds.length;
+  @tracked totalQrBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
   @tracked availableBeds = this.model.hospital.availableBeds;
   @tracked availableBedsPercentage = Math.round((this.availableBeds / this.totalQrBeds) * 100);
   @tracked noOfBedsToEditAvailabiity = null;

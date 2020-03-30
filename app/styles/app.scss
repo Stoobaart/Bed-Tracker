@@ -498,3 +498,27 @@ button {
     }
   }
 }
+
+.instructions {
+  max-width: 540px;
+  margin: 2rem auto;
+  width: calc(100vw - 4rem);
+
+  p {
+    margin: 1rem 0;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  h1 {
+    margin: 2rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  &_form {
+    max-width: 360px;
+  }
+}
