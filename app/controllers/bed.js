@@ -18,31 +18,17 @@ export default class BedController extends Controller {
   };
 
   @action
-  async makeAvailable() {
+  async toggleAvailability() {
     try {
       this.errors.hasError = false;
-      this.variables.input.available = true;
+      this.variables.input.available = !this.variables.input.available;
       await this.apollo.mutate({ mutation: UpdateBedAvailabilityMutation, variables: this.variables });
-      this.set('model.available', true);
+      this.set('model.available', this.variables.input.available);
     } catch (error) {
       console.log(error);
       this.errors.hasError = true;
     }
   }
-
-  @action
-  async makeUnavailable() {
-    try {
-      this.errors.hasError = false;
-      this.variables.input.available = false;
-      await this.apollo.mutate({ mutation: UpdateBedAvailabilityMutation, variables: this.variables });
-      this.set('model.available', false);
-    } catch (error) {
-      console.log(error);
-      this.errors.hasError = true;
-    }
-  }
-
   @action
   async activateBed() {
     try {

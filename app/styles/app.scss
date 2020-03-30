@@ -252,6 +252,15 @@ canvas {
 
 button {
   @include button;
+
+  &.button--secondary {
+    width: calc(100vw - 4rem);
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background-color: #d8d8d8;
+    color: #000000;
+  }
 }
 
 .content {
@@ -281,6 +290,14 @@ button {
 
   input {
     margin: 0.5rem 0;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .height-line {
+    height: 12px;
   }
 
   .row {
@@ -392,8 +409,25 @@ button {
   display: flex;
   flex-direction: column;
 
+  &--error {
+    background-color: rgba(227, 10, 10, 0.25);
+  }
+
+  &--success {
+    background-color: rgba(49, 135, 45, 0.25);
+  }
+
+  &--info {
+    background-color: rgba(44, 152, 255, 0.25);
+  }
+
   p {
     margin-top: 0.5rem;
+    font-size: 12px;
+  }
+
+  .height-line {
+    height: 17px;
     font-size: 12px;
   }
 
@@ -420,5 +454,47 @@ button {
     image-rendering: pixelated;
     width: 400px;
     height: 400px;
+  }
+}
+
+.controls {
+  display: flex;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border-top: 2px solid #d8d8d8;
+  border-bottom: 2px solid #d8d8d8;
+
+  span {
+    flex-grow: 1;
+  }
+
+  .toggle {
+    width: 4rem;
+    height: 1.5rem;
+    background-color: #2c98ff;
+    border: 1px solid #c2c2c2;
+    border-radius: 0.8rem;
+
+    &-off {
+      background-color: #e30a0a;
+
+      img {
+        margin-left: 2px;
+      }
+    }
+
+    &-on {
+      background-color: #31872d;
+
+      img {
+        margin-left: 42px;
+      }
+    }
+
+    img {
+      margin-top: 2px;
+
+      transition: margin-left 0.5s;
+    }
   }
 }
