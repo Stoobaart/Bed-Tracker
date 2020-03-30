@@ -129,12 +129,35 @@
 
         <div class="div-table">
           <div class="div-table_body">
+            <div class="div-table_row div-table_head">
+              <div class="div-table_cell div-table_head div-table_column-1">Bed Reference</div>
+              <div class="div-table_cell div-table_head div-table_column-2">Availability</div>
+              <div class="div-table_cell div-table_head div-table_column-3">Active Status</div>
+              <div class="div-table_cell div-table_head div-table_column-4">Change Status</div>
+              <div class="div-table_cell div-table_head div-table_column-5">Print QR Code</div>
+            </div>
+
             {{#each this.model.hospital.beds as |bed|}}
               <div class="div-table_row">
-                <div class="div-table_cell">{{bed.reference}}</div>
-                <div class="div-table_cell">{{bed.available}}</div>
-                <div class="div-table_cell">Activate/Deactivate</div>
-                <div class="div-table_cell"><button {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
+                <div class="div-table_cell div-table_column-1">{{bed.reference}}</div>
+                <div class="div-table_cell div-table_column-2">
+                  {{#if (and bed.active bed.available)}}
+                    Available
+                  {{else if (and bed.active (not bed.available))}}
+                    Occupied
+                  {{else}}
+                    Unavailable
+                  {{/if}}
+                </div>
+                <div class="div-table_cell div-table_column-3">
+                  {{#if bed.active}}
+                    Active
+                  {{else}}
+                    Inactive
+                  {{/if}}
+                </div>
+                <div class="div-table_cell div-table_column-4">Activate/Deactivate</div>
+                <div class="div-table_cell div-table_column-5"><button class="div-table_btn" {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
               </div>
             {{/each}}
           </div>

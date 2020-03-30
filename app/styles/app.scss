@@ -192,7 +192,7 @@ html, body {
     margin-bottom: 1rem;
 
     &--label {
-      line-height: 1.2;
+      line-height: 1.5;
     }
 
     &--text {
@@ -393,13 +393,53 @@ button {
 }
 
 .div-table {
+  margin-top: 2rem;
+
+  &_head {
+    color: white;
+    height: 48px;
+    background-color: #003e78;
+  }
 
   &_row {
     display: flex;
   }
 
   &_cell {
-    border: 1px solid grey;
+    border-bottom: 1px solid grey;
+    text-align: left;
+    line-height: 3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &_column-1 {
+    width: 20%;
+    padding-left: 2rem;
+    padding-right: 1rem;
+  }
+
+  &_column-2 {
+    width: 20%;
+  }
+
+  &_column-3 {
+    width: 20%;
+  }
+
+  &_column-4 {
+    width: 20%;
+  }
+
+  &_column-5 {
+    text-align: center;
+    width: 20%;
+  }
+
+  &_btn {
+    background: none;
+    color: #005eb8;
   }
 }
 
