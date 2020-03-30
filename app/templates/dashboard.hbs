@@ -137,7 +137,7 @@
               <div class="div-table_cell div-table_head div-table_column-5">Print QR Code</div>
             </div>
 
-            {{#each this.model.hospital.beds as |bed|}}
+            {{#each this.beds as |bed|}}
               <div class="div-table_row">
                 <div class="div-table_cell div-table_column-1">{{bed.reference}}</div>
                 <div class="div-table_cell div-table_column-2">
@@ -156,7 +156,13 @@
                     Inactive
                   {{/if}}
                 </div>
-                <div class="div-table_cell div-table_column-4">Activate/Deactivate</div>
+                <div class="div-table_cell div-table_column-4">
+                  {{#if bed.active}}
+                    Deactivate
+                  {{else}}
+                    <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
+                  {{/if}}
+                </div>
                 <div class="div-table_cell div-table_column-5"><button class="div-table_btn" {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
               </div>
             {{/each}}

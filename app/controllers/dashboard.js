@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 import UseQrCodeSystem from 'bed-tracker/gql/mutations/use-qr-code-system';
 import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds';
 import RegisterBeds from 'bed-tracker/gql/mutations/register-beds';
+import ActivateBedMutation from 'bed-tracker/gql/mutations/activate-bed';
 import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
@@ -24,6 +25,7 @@ export default class DashboardController extends Controller {
   @tracked newNoOfTotalBeds = null;
   @tracked noOfBedsToRegister = null;
   @tracked qrCode = null;
+  @tracked beds = this.model.hospital.beds;
 
   get availableBedsPercentage() {
     return Math.round((this.availableBeds / this.totalQrBeds) * 100);
@@ -148,5 +150,42 @@ export default class DashboardController extends Controller {
   async printQrCode(bedId) {
     this.qrCode = await QRCode.toDataURL(bedId);
     await this.printThis.print('img.qr-code');
+  }
+
+  @action
+  async activateBed(bed) {
+    if (!bed.reference) {
+      alert('Please enter a bed reference');
+    } else {
+      const tempRef = 'ABC';
+
+      try {
+        const variables = {
+          input: {
+            id: bed.id,
+            reference: tempRef,
+          }
+        };
+  
+        await this.apollo.mutate({ mutation: ActivateBedMutation, variables });
+        
+        const newBeds = [
+          {
+            reference: tempRef,
+            active: true,
+            available: true,
+            id: bed.id
+          }
+        ]
+        const updatedBeds = this.beds.map(x => {
+          const bed = newBeds.find(({ id }) => id === x.id);
+          return bed ? bed : x;
+        });
+        this.beds = updatedBeds;
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 }
