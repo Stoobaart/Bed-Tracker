@@ -26,7 +26,17 @@ export default class DashboardController extends Controller {
   @tracked qrCode = null;
 
   get availableBedsPercentage() {
-    return Math.round((this.availableBeds / this.totalQrBeds) * 100);
+    return  Math.round((this.availableBeds / this.totalQrBeds) * 100);
+  }
+
+  get availableBedsPercentageClass() {
+    if (this.availableBedsPercentage <= 25) {
+      return 'low';
+    } else if (this.availableBedsPercentage < 75) {
+      return 'medium';
+    } else {
+      return 'high';
+    }
   }
 
   get valuesHaveChanged() {

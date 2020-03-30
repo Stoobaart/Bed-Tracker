@@ -107,6 +107,18 @@ html, body {
     font-weight: 600;
     color: #003e78;
     line-height: 1;
+
+    &--low {
+      color: #b60000;
+    }
+
+    &--medium {
+      color: #003e78;
+    }
+
+    &--high {
+      color: #22661f;
+    }
   }
 
   &_subheader {
