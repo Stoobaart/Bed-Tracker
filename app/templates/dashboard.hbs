@@ -52,7 +52,7 @@
           <div class="page_header">Registered Beds</div>
 
           <div class="card {{if this.showRegisterBedsForm "with-form"}}">
-            <div class="card_header">{{this.totalBeds}}</div>
+            <div class="card_header">{{this.totalQrBeds}}</div>
             <div class="card_subheader">Total Beds</div>
             <img class="card_icon" src="/assets/images/occupied.svg" alt="">
             <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{action toggleProperty "showRegisterBedsForm"}}>
@@ -99,32 +99,6 @@
           </div>
         </div>
       {{/if}}
-
-{{!-- 
-      <form
-        class="edit-beds_form"
-        {{on "submit" this.registerBeds}}>
-        <div class="edit-beds_subheader">Register beds</div>
-
-        <label
-          for="registerBeds"
-          class="form_label">
-          Number of beds to register:
-        </label>
-        <Input
-          @type="number"
-          @name="registerBeds"
-          @required={{true}}
-          @class="form_input edit-beds_input"
-          @value={{this.noOfBedsToRegister}}
-          @key-up={{action (mut this.noOfBedsToRegister) value=@target.value}} />
-        <button
-          type="submit"
-          class="form_btn"
-          disabled={{not this.noOfBedsToRegister}}>
-          Register
-        </button>
-      </form> --}}
 
         <div class="div-table">
           <div class="div-table_body">

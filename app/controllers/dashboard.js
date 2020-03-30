@@ -13,8 +13,9 @@ export default class DashboardController extends Controller {
 
   @tracked useQrCode = null;
   @tracked totalBeds = this.model.hospital.totalBeds;
+  @tracked totalQrBeds = this.model.hospital.beds.length;
   @tracked availableBeds = this.model.hospital.availableBeds;
-  @tracked availableBedsPercentage = Math.round((this.availableBeds / this.totalBeds) * 100);
+  @tracked availableBedsPercentage = Math.round((this.availableBeds / this.totalQrBeds) * 100);
   @tracked noOfBedsToEditAvailabiity = null;
   @tracked makeBedsAvailable = true;
   @tracked errorMessage = null;
@@ -130,12 +131,9 @@ export default class DashboardController extends Controller {
     }
 
     try {
-      const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
-      const newBeds = response.registerBeds.beds;
-      newBeds.forEach((bed) => {
-        this.model.hospital.beds.push(bed);
-      })
-      
+      await this.apollo.mutate({ mutation: RegisterBeds, variables });
+      this.send('refreshModel');
+      this.totalQrBeds = this.totalQrBeds + JSON.parse(this.noOfBedsToRegister);
       this.noOfBedsToRegister = null;
     } catch (error) {
       console.error(error);
