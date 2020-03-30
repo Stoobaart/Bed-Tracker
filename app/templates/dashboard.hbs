@@ -44,6 +44,63 @@
 
     {{#if this.model.hospital.useQrCode}}
 
+      {{#if (eq this.totalBeds 0)}}
+        SORIN!
+      {{else}}
+
+        <div class="cards-container">
+          <div class="page_header">Registered Beds</div>
+
+          <div class="card {{if this.showRegisterBedsForm "with-form"}}">
+            <div class="card_header">{{this.totalBeds}}</div>
+            <div class="card_subheader">Total Beds</div>
+            <img class="card_icon" src="/assets/images/occupied.svg" alt="">
+            <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{action toggleProperty "showRegisterBedsForm"}}>
+              {{#if this.showRegisterBedsForm}}
+                <img class="" src="/assets/images/cross.png" alt="">
+              {{else}}
+                + Register more
+              {{/if}}
+            </button>
+            {{#if this.showRegisterBedsForm}}
+              <form
+                class="edit-beds_form total-beds"
+                {{on "submit" this.registerBeds}}>
+                <div class="edit-beds_subheader">Register more beds</div>
+
+                <label
+                  for="registerBedsNumber"
+                  class="form_label">
+                  Number of beds to register
+                </label>
+                <Input
+                  @type="number"
+                  @name="registerBedsNumber"
+                  @required={{true}}
+                  @class="form_input edit-beds_input"
+                  @value={{this.noOfBedsToRegister}}
+                  @key-up={{action (mut this.noOfBedsToRegister) value=@target.value}} />
+                <div class="edit-beds_help-text">Enter the number of extra beds to register</div>
+
+                <button
+                  type="submit"
+                  class="form_btn"
+                  disabled={{not this.noOfBedsToRegister}}>
+                  Register beds
+                </button>
+              </form>
+            {{/if}}
+          </div>
+
+          <div class="card">
+            <div class="card_header">{{this.availableBedsPercentage}}%</div>
+            <div class="card_subheader">Bed Availability</div>
+            <img class="card_icon" src="/assets/images/available.svg" alt="">
+          </div>
+        </div>
+      {{/if}}
+
+{{!-- 
       <form
         class="edit-beds_form"
         {{on "submit" this.registerBeds}}>
@@ -67,7 +124,7 @@
           disabled={{not this.noOfBedsToRegister}}>
           Register
         </button>
-      </form>
+      </form> --}}
 
         <div class="div-table">
           <div class="div-table_body">
@@ -76,7 +133,7 @@
                 <div class="div-table_cell">{{bed.reference}}</div>
                 <div class="div-table_cell">{{bed.available}}</div>
                 <div class="div-table_cell">Activate/Deactivate</div>
-                <div class="div-table_cell">Print Qr code</div>
+                <div class="div-table_cell"><button {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
               </div>
             {{/each}}
           </div>
@@ -199,3 +256,5 @@
 
   {{/if}}
 </div>
+
+<img class="qr-code" src={{this.qrCode}} alt="">

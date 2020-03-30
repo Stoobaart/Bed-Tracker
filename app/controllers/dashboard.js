@@ -5,20 +5,25 @@ import { tracked } from '@glimmer/tracking';
 import UseQrCodeSystem from 'bed-tracker/gql/mutations/use-qr-code-system';
 import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds';
 import RegisterBeds from 'bed-tracker/gql/mutations/register-beds';
+import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
   @service apollo;
+  @service printThis;
 
   @tracked useQrCode = null;
   @tracked totalBeds = this.model.hospital.totalBeds;
   @tracked availableBeds = this.model.hospital.availableBeds;
+  @tracked availableBedsPercentage = Math.round((this.availableBeds / this.totalBeds) * 100);
   @tracked noOfBedsToEditAvailabiity = null;
   @tracked makeBedsAvailable = true;
   @tracked errorMessage = null;
   @tracked totalErrorMessage = null;
   @tracked showEditTotalBedsForm = false;
+  @tracked showRegisterBedsForm = false;
   @tracked newNoOfTotalBeds = null;
   @tracked noOfBedsToRegister = null;
+  @tracked qrCode = null;
 
   get valuesHaveChanged() {
     if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
@@ -76,7 +81,7 @@ export default class DashboardController extends Controller {
           numberOfTotalBeds: JSON.parse(this.totalBeds),
         }
       }
-  
+
       try {
         await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
         this.availableBeds = updatedAvailableBeds;
@@ -126,10 +131,20 @@ export default class DashboardController extends Controller {
 
     try {
       const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
-      this.model.hospital.beds = response.beds;
+      const newBeds = response.registerBeds.beds;
+      newBeds.forEach((bed) => {
+        this.model.hospital.beds.push(bed);
+      })
+      
       this.noOfBedsToRegister = null;
     } catch (error) {
       console.error(error);
     }
+  }
+
+  @action
+  async printQrCode(bedId) {
+    this.qrCode = await QRCode.toDataURL(bedId);
+    await this.printThis.print('img.qr-code');
   }
 }
