@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import LoginHospitalManager from 'bed-tracker/gql/mutations/login-hospital-manager';
+import LoginHospitalManager from 'bed-checker/gql/mutations/login-hospital-manager';
 
 export default class LoginController extends Controller {
   @service apollo;
@@ -22,7 +22,7 @@ export default class LoginController extends Controller {
         email: this.email,
         password: this.password
       }
-    }
+    };
 
     try {
       const response = await this.apollo.mutate({ mutation: LoginHospitalManager, variables });

@@ -1,10 +1,10 @@
 {{#if this.model.active}}
   {{#if this.model.available}}
-  <div class="banner banner--success">
-    <div class="banner_title"><img src="/assets/images/success.svg" alt="">This bed is active</div>
-    <p>Bed available for patient occupation.</p>
-    <div class="height-line"></div>
-  </div>
+    <div class="banner banner--success">
+      <div class="banner_title"><img src="/assets/images/success.svg" alt="">This bed is active</div>
+      <p>Bed available for patient occupation.</p>
+      <div class="height-line"></div>
+    </div>
   {{else}}
     <div class="banner banner--info">
       <div class="banner_title"><img src="/assets/images/info.svg" alt="">This bed is not available</div>
@@ -17,7 +17,7 @@
 
     <div class="controls">
       <span>Bed available for use</span>
-      <div class="toggle {{if this.model.available "toggle-on" "toggle-off"}}" {{on "click" this.toggleAvailability}}>
+      <div role="button" class="toggle {{if this.model.available "toggle-on" "toggle-off"}}" {{on "click" this.toggleAvailability}}>
         <img src="{{if this.model.available "/assets/images/toggle-tick.svg" "/assets/images/toggle-cross.svg"}}" alt="">
       </div>
     </div>

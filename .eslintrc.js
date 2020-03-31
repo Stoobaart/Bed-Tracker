@@ -19,6 +19,9 @@ module.exports = {
     browser: true
   },
   rules: {
+    'no-console': 'off',
+    'space-before-blocks': [2, 'always'],
+    'semi': [2, 'always'],
     'ember/no-jquery': 'error'
   },
   overrides: [

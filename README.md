@@ -1,4 +1,4 @@
-# bed-tracker
+# bed-checker
 
 This webapp allows hospitals to easily track their bed usages by printing and scanning QR codes. The data sent from this will be used to improve the coordination of resources, and therefore, patient treatment.
 
@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd bed-tracker`
+* `cd bed-checker`
 * `npm install`
 
 ## Running / Development

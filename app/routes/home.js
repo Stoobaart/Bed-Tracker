@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { queryManager } from "ember-apollo-client";
-import GetHospital from 'bed-tracker/gql/queries/get-hospital';
+import GetHospital from 'bed-checker/gql/queries/get-hospital';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 

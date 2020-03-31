@@ -2,8 +2,8 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import UpdateBedAvailabilityMutation from 'bed-tracker/gql/mutations/update-bed-availability';
-import ActivateBedMutation from 'bed-tracker/gql/mutations/activate-bed';
+import UpdateBedAvailabilityMutation from 'bed-checker/gql/mutations/update-bed-availability';
+import ActivateBedMutation from 'bed-checker/gql/mutations/activate-bed';
 
 export default class BedController extends Controller {
   @service apollo;

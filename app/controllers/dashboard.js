@@ -2,11 +2,11 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import UseQrCodeSystem from 'bed-tracker/gql/mutations/use-qr-code-system';
-import UpdateNumberOfBeds from 'bed-tracker/gql/mutations/update-number-of-beds';
-import RegisterBeds from 'bed-tracker/gql/mutations/register-beds';
-import ActivateBedMutation from 'bed-tracker/gql/mutations/activate-bed';
-import DeactivateBedMutation from 'bed-tracker/gql/mutations/deactivate-bed';
+import UseQrCodeSystem from 'bed-checker/gql/mutations/use-qr-code-system';
+import UpdateNumberOfBeds from 'bed-checker/gql/mutations/update-number-of-beds';
+import RegisterBeds from 'bed-checker/gql/mutations/register-beds';
+import ActivateBedMutation from 'bed-checker/gql/mutations/activate-bed';
+import DeactivateBedMutation from 'bed-checker/gql/mutations/deactivate-bed';
 import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
@@ -68,7 +68,7 @@ export default class DashboardController extends Controller {
       input: {
         useQrCode: this.useQrCode
       }
-    }
+    };
 
     try {
       const response = await this.apollo.mutate({ mutation: UseQrCodeSystem, variables });
@@ -100,7 +100,7 @@ export default class DashboardController extends Controller {
           numberOfAvailableBeds: updatedAvailableBeds,
           numberOfTotalBeds: JSON.parse(this.totalBeds),
         }
-      }
+      };
 
       try {
         await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
@@ -125,7 +125,7 @@ export default class DashboardController extends Controller {
           numberOfAvailableBeds: this.availableBeds,
           numberOfTotalBeds: JSON.parse(this.newNoOfTotalBeds),
         }
-      }
+      };
 
       try {
         await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
@@ -147,7 +147,7 @@ export default class DashboardController extends Controller {
       input: {
         numberOfBeds: JSON.parse(this.noOfBedsToRegister),
       }
-    }
+    };
 
     try {
       const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
@@ -204,7 +204,7 @@ export default class DashboardController extends Controller {
           available: true,
           id: bed.id
         }
-      ]
+      ];
       const updatedBeds = this.beds.map(x => {
         const bed = newBeds.find(({ id }) => id === x.id);
         return bed ? bed : x;
@@ -245,7 +245,7 @@ export default class DashboardController extends Controller {
           available: false,
           id: bed.id
         }
-      ]
+      ];
       const updatedBeds = this.beds.map(x => {
         const bed = newBeds.find(({ id }) => id === x.id);
         return bed ? bed : x;

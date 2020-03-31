@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import QRCode from 'qrcode';
 import { inject as service } from '@ember/service';
-import RegisterBedMutation from 'bed-tracker/gql/mutations/register-bed';
+import RegisterBedMutation from 'bed-checker/gql/mutations/register-bed';
 
 export default class AddBedRoute extends Route {
   @service apollo;

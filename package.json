@@ -1,8 +1,8 @@
 {
-  "name": "bed-tracker",
+  "name": "bed-checker",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for bed-tracker goes here",
+  "description": "Small description for bed-checker goes here",
   "repository": "",
   "license": "MIT",
   "author": "",

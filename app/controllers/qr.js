@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { queryManager } from 'ember-apollo-client';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import GetHospitalQuery from 'bed-tracker/gql/queries/get-hospital';
+import GetHospitalQuery from 'bed-checker/gql/queries/get-hospital';
 
 export default class QrController extends Controller {
   @service router;

@@ -4,7 +4,7 @@ const contentSecurityPolicy = require('./content-security-policy');
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'bed-tracker',
+    modulePrefix: 'bed-checker',
     environment,
     rootURL: '/',
     locationType: 'auto',

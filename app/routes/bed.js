@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { queryManager } from 'ember-apollo-client';
-import GetBedQuery from 'bed-tracker/gql/queries/get-bed';
+import GetBedQuery from 'bed-checker/gql/queries/get-bed';
 import { action } from '@ember/object';
 
 export default class BedRoute extends Route {

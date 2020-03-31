@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BedTracker</title>
+  <title>BedChecker</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <meta name="bed-tracker/config/environment" content="%7B%22modulePrefix%22%3A%22bed-tracker%22%2C%22environment%22%3A%22development%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22auto%22%2C%22contentSecurityPolicyMeta%22%3Atrue%2C%22contentSecurityPolicy%22%3A%7B%22script-src%22%3A%5B%22'self'%22%2C%22'unsafe-eval'%22%5D%2C%22connect-src%22%3A%5B%22'self'%22%2C%22localhost%22%2C%22https%3A%2F%2Fbed-tracking.gigalixirapp.com%2Fapi%22%5D%2C%22manifest-src%22%3A%5B%5D%2C%22img-src%22%3A%5B%22'self'%22%2C%22data%3A%22%2C%22data%3A%20blob%3A%20%22%5D%2C%22style-src%22%3A%5B%22'self'%22%2C%22'unsafe-inline'%22%2C%22https%3A%2F%2Ffonts.googleapis.com%22%5D%2C%22style-src-elem%22%3A%5B%22'self'%22%2C%22'unsafe-inline'%22%2C%22https%3A%2F%2Ffonts.googleapis.com%22%5D%2C%22frame-src%22%3A%5B%22'self'%22%5D%2C%22font-src%22%3A%5B%22'self'%22%2C%22data%3A%20%22%2C%22https%3A%2F%2Ffonts.gstatic.com%22%5D%2C%22media-src%22%3A%5B%22'self'%22%5D%2C%22child-src%22%3A%5B%22'self'%22%2C%22blob%3A%20%22%5D%2C%22default-src%22%3A%5B%22'none'%22%5D%7D%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Afalse%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22bed-tracker%22%2C%22version%22%3A%220.0.0%2Bf9ff7528%22%7D%2C%22graphqlApi%22%3A%7B%22url%22%3A%22https%3A%2F%2Fbed-tracking.gigalixirapp.com%2Fapi%22%7D%2C%22contentSecurityPolicyHeader%22%3A%22Content-Security-Policy-Report-Only%22%2C%22exportApplicationGlobal%22%3Atrue%7D" />
+  <meta name="bed-checker/config/environment" content="%7B%22modulePrefix%22%3A%22bed-tracker%22%2C%22environment%22%3A%22development%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22auto%22%2C%22contentSecurityPolicyMeta%22%3Atrue%2C%22contentSecurityPolicy%22%3A%7B%22script-src%22%3A%5B%22'self'%22%2C%22'unsafe-eval'%22%5D%2C%22connect-src%22%3A%5B%22'self'%22%2C%22localhost%22%2C%22https%3A%2F%2Fbed-tracking.gigalixirapp.com%2Fapi%22%5D%2C%22manifest-src%22%3A%5B%5D%2C%22img-src%22%3A%5B%22'self'%22%2C%22data%3A%22%2C%22data%3A%20blob%3A%20%22%5D%2C%22style-src%22%3A%5B%22'self'%22%2C%22'unsafe-inline'%22%2C%22https%3A%2F%2Ffonts.googleapis.com%22%5D%2C%22style-src-elem%22%3A%5B%22'self'%22%2C%22'unsafe-inline'%22%2C%22https%3A%2F%2Ffonts.googleapis.com%22%5D%2C%22frame-src%22%3A%5B%22'self'%22%5D%2C%22font-src%22%3A%5B%22'self'%22%2C%22data%3A%20%22%2C%22https%3A%2F%2Ffonts.gstatic.com%22%5D%2C%22media-src%22%3A%5B%22'self'%22%5D%2C%22child-src%22%3A%5B%22'self'%22%2C%22blob%3A%20%22%5D%2C%22default-src%22%3A%5B%22'none'%22%5D%7D%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Afalse%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22bed-tracker%22%2C%22version%22%3A%220.0.0%2Bf9ff7528%22%7D%2C%22graphqlApi%22%3A%7B%22url%22%3A%22https%3A%2F%2Fbed-tracking.gigalixirapp.com%2Fapi%22%7D%2C%22contentSecurityPolicyHeader%22%3A%22Content-Security-Policy-Report-Only%22%2C%22exportApplicationGlobal%22%3Atrue%7D" />
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval'; connect-src 'self' localhost https://bed-tracking.gigalixirapp.com/api; manifest-src ; img-src 'self' data: data: blob: ; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src 'self'; font-src 'self' data:  https://fonts.gstatic.com; media-src 'self'; child-src 'self' blob: ; default-src 'none'; ">
 
   <link rel="icon" href="/assets/images/bed-checker-logo.svg">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link integrity="" rel="stylesheet" href="/assets/vendor.css">
-  <link integrity="" rel="stylesheet" href="/assets/bed-tracker.css">
+  <link integrity="" rel="stylesheet" href="/assets/bed-checker.css">
 
 
 </head>
@@ -22,7 +22,7 @@
 
 
 <script src="/assets/vendor.js"></script>
-<script src="/assets/bed-tracker.js"></script>
+<script src="/assets/bed-checker.js"></script>
 
 
 </body>
