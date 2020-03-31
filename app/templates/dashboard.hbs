@@ -210,7 +210,11 @@
             {{#if this.showEditTotalBedsForm}}
               <img class="" src="/assets/images/cross.png" alt="">
             {{else}}
-              Edit
+              {{#if (eq this.totalBeds 0)}}
+                Add
+              {{else}}
+                Edit
+              {{/if}}
             {{/if}}
           </button>
           {{#if this.showEditTotalBedsForm}}
@@ -257,63 +261,65 @@
         </div>
       </div>
 
-      <form
-        class="edit-beds_form"
-        {{on "submit" this.editBedsAvailability}}>
-        <div class="edit-beds_subheader">Edit bed availability</div>
+      {{#unless (eq this.totalBeds 0)}}
+        <form
+          class="edit-beds_form"
+          {{on "submit" this.editBedsAvailability}}>
+          <div class="edit-beds_subheader">Edit bed availability</div>
 
-        <label
-          for="editBedsNumber"
-          class="form_label">
-          Number of beds
-        </label>
-        <Input
-          @type="number"
-          @name="editBedsNumber"
-          @required={{true}}
-          @class="form_input edit-beds_input"
-          @value={{this.noOfBedsToEditAvailabiity}}
-          @min="1"
-          @focus-in={{action (mut this.errorMessage) null}}
-          @key-up={{action (mut this.noOfBedsToEditAvailabiity) value=@target.value}} />
-
-        {{#if this.errorMessage}}
-          <div class="edit-beds_help-text error">{{this.errorMessage}}</div>
-        {{else}}
-          <div class="edit-beds_help-text">The number of beds that have changed status</div>
-        {{/if}}
-
-        <div class="edit-beds_help-text bold">These beds are now:</div>
-
-        <div class="edit-beds_radio">
-          <input
-            id="available"
-            type="radio"
-            checked={{this.makeBedsAvailable}}
-            onclick={{action (mut this.makeBedsAvailable) true}}>
-          <label for="available" class="edit-beds_radio--label">
-            <div class="edit-beds_radio--text">Available beds</div>
+          <label
+            for="editBedsNumber"
+            class="form_label">
+            Number of beds
           </label>
-        </div>
+          <Input
+            @type="number"
+            @name="editBedsNumber"
+            @required={{true}}
+            @class="form_input edit-beds_input"
+            @value={{this.noOfBedsToEditAvailabiity}}
+            @min="1"
+            @focus-in={{action (mut this.errorMessage) null}}
+            @key-up={{action (mut this.noOfBedsToEditAvailabiity) value=@target.value}} />
 
-        <div class="edit-beds_radio">
-          <input
-            id="unavailable"
-            type="radio"
-            checked={{not this.makeBedsAvailable}}
-            onclick={{action (mut this.makeBedsAvailable) false}}>
-          <label for="unavailable" class="edit-beds_radio--label">
-            <div class="edit-beds_radio--text">Occupied beds</div>
-          </label>
-        </div>
+          {{#if this.errorMessage}}
+            <div class="edit-beds_help-text error">{{this.errorMessage}}</div>
+          {{else}}
+            <div class="edit-beds_help-text">The number of beds that have changed status</div>
+          {{/if}}
 
-        <button
-          type="submit"
-          class="form_btn"
-          disabled={{not this.noOfBedsToEditAvailabiity}}>
-          Enter
-        </button>
-      </form>
+          <div class="edit-beds_help-text bold">These beds are now:</div>
+
+          <div class="edit-beds_radio">
+            <input
+              id="available"
+              type="radio"
+              checked={{this.makeBedsAvailable}}
+              onclick={{action (mut this.makeBedsAvailable) true}}>
+            <label for="available" class="edit-beds_radio--label">
+              <div class="edit-beds_radio--text">Available beds</div>
+            </label>
+          </div>
+
+          <div class="edit-beds_radio">
+            <input
+              id="unavailable"
+              type="radio"
+              checked={{not this.makeBedsAvailable}}
+              onclick={{action (mut this.makeBedsAvailable) false}}>
+            <label for="unavailable" class="edit-beds_radio--label">
+              <div class="edit-beds_radio--text">Occupied beds</div>
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            class="form_btn"
+            disabled={{not this.noOfBedsToEditAvailabiity}}>
+            Enter
+          </button>
+        </form>
+      {{/unless}}
     {{/if}}
 
   {{/if}}

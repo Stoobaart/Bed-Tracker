@@ -219,7 +219,7 @@ export default class DashboardController extends Controller {
       this.tempBedForReference = {};
       this.showReferenceEntryPopUp = false;
       this.tempReference = '';
-      this.availableBeds++
+      this.availableBeds++;
 
     } catch (error) {
       console.error(error);
@@ -258,7 +258,7 @@ export default class DashboardController extends Controller {
         return bed ? bed : x;
       });
       this.beds = updatedBeds;
-      this.availableBeds--
+      this.availableBeds--;
     } catch (error) {
       console.error(error);
     }
