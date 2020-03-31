@@ -450,8 +450,9 @@ button {
   &_column-0 {
     width: 2%;
     overflow: visible;
-    padding-left: .5rem;
-    padding-right: 1rem;
+    padding-left: .75rem;
+    padding-right: .75rem;
+    text-align: center;
 
     &:not(.div-table_head) {
       background-color: rgba(216, 216, 216, 0.3);
