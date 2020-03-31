@@ -46,9 +46,9 @@
 
       {{#if (eq this.totalQrBeds 0)}}
         <div class="instructions">
-          <p><strong>Welcome to Bed Checked</strong></p>
+          <p><strong>Welcome to Bed Checker</strong></p>
           <p>Add the number of beds you would like to register to get started. You can also add more beds in the future.</p>
-          <p>Once these beds are registered each bed will have a reference number and unique QR code that needs to be printed an attached to the bed.</p>
+          <p>Once these beds are registered each bed will have a reference number and a unique QR code that needs to be printed and attached to the bed.</p>
           <p>To make a bed available for patient occupancy it needs to be activated by entering it’s reference number.</p>
 
           <h1>Register Beds</h1>
@@ -65,13 +65,7 @@
                    @class="form_input"
                    @min="1"
                    pattern="[0-9]"
-                   @focus-in={{action (mut this.errors.hasError) false}}
                    @value={{this.noOfBedsToRegister}} />
-            <div class="form_error--container">
-              {{#if this.errors.hasError}}
-                <div class="form_error">Error. Please try again.</div>
-              {{/if}}
-            </div>
 
             <button disabled={{not this.noOfBedsToRegister}} {{on "click" this.registerBeds}}>Register</button>
           </div>
@@ -130,53 +124,53 @@
             <img class="card_icon" src="/assets/images/available.svg" alt="">
           </div>
         </div>
-      {{/if}}
 
-      <div class="div-table">
-        <div class="div-table_body">
-          <div class="div-table_row div-table_head">
-            <div class="div-table_cell div-table_head div-table_column-1">Bed Reference</div>
-            <div class="div-table_cell div-table_head div-table_column-2">Availability</div>
-            <div class="div-table_cell div-table_head div-table_column-3">Active Status</div>
-            <div class="div-table_cell div-table_head div-table_column-4">Change Status</div>
-            <div class="div-table_cell div-table_head div-table_column-5">Print QR Code</div>
-          </div>
-
-          {{#each this.beds as |bed|}}
-            <div class="div-table_row">
-              <div class="div-table_cell div-table_column-1">{{bed.reference}}</div>
-              <div class="div-table_cell div-table_column-2">
-                {{#if (and bed.active bed.available)}}
-                  Available
-                {{else if (and bed.active (not bed.available))}}
-                  Occupied
-                {{else}}
-                  Unavailable
-                {{/if}}
-              </div>
-              <div class="div-table_cell div-table_column-3">
-                {{#if bed.active}}
-                  Active
-                {{else}}
-                  Inactive
-                {{/if}}
-              </div>
-              <div class="div-table_cell div-table_column-4">
-                {{#if bed.active}}
-                  <button class="div-table_btn" {{on "click" (fn this.deactivateBed bed)}}>Deactivate</button>
-                {{else}}
-                  {{#if bed.reference}}
-                    <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
-                  {{else}}
-                    <button class="div-table_btn" {{on "click" (fn this.enterReference bed)}}>Activate</button>
-                  {{/if}}
-                {{/if}}
-              </div>
-              <div class="div-table_cell div-table_column-5"><button class="div-table_btn" {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
+        <div class="div-table">
+          <div class="div-table_body">
+            <div class="div-table_row div-table_head">
+              <div class="div-table_cell div-table_head div-table_column-1">Bed Reference</div>
+              <div class="div-table_cell div-table_head div-table_column-2">Availability</div>
+              <div class="div-table_cell div-table_head div-table_column-3">Active Status</div>
+              <div class="div-table_cell div-table_head div-table_column-4">Change Status</div>
+              <div class="div-table_cell div-table_head div-table_column-5">Print QR Code</div>
             </div>
-          {{/each}}
+
+            {{#each this.beds as |bed|}}
+              <div class="div-table_row">
+                <div class="div-table_cell div-table_column-1">{{bed.reference}}</div>
+                <div class="div-table_cell div-table_column-2">
+                  {{#if (and bed.active bed.available)}}
+                    Available
+                  {{else if (and bed.active (not bed.available))}}
+                    Occupied
+                  {{else}}
+                    Unavailable
+                  {{/if}}
+                </div>
+                <div class="div-table_cell div-table_column-3">
+                  {{#if bed.active}}
+                    Active
+                  {{else}}
+                    Inactive
+                  {{/if}}
+                </div>
+                <div class="div-table_cell div-table_column-4">
+                  {{#if bed.active}}
+                    <button class="div-table_btn" {{on "click" (fn this.deactivateBed bed)}}>Deactivate</button>
+                  {{else}}
+                    {{#if bed.reference}}
+                      <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
+                    {{else}}
+                      <button class="div-table_btn" {{on "click" (fn this.enterReference bed)}}>Activate</button>
+                    {{/if}}
+                  {{/if}}
+                </div>
+                <div class="div-table_cell div-table_column-5"><button class="div-table_btn" {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
+              </div>
+            {{/each}}
+          </div>
         </div>
-      </div>
+      {{/if}}
 
       {{#if this.showReferenceEntryPopUp}}
         <div class="div-table_pop-up">
@@ -234,7 +228,7 @@
                 @required={{true}}
                 @class="form_input edit-beds_input"
                 @value={{this.newNoOfTotalBeds}}
-                @min="1"
+                @min="0"
                 @focus-in={{action (mut this.totalErrorMessage) null}}
                 @key-up={{action (mut this.newNoOfTotalBeds) value=@target.value}} />
 
