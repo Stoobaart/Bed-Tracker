@@ -194,7 +194,13 @@
         <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
           <div class="modal_header">A reference is required to activate this bed</div>
           <div class="modal_body">
+             <label
+                for="reference"
+                class="form_label">
+                Bed reference number
+              </label>
             <Input
+              @name="reference"
               @type="text"
               @class="form_input edit-beds_input"
               @value={{this.tempReference}}
@@ -209,7 +215,7 @@
                 class="form_btn modal_btn"
                 disabled={{not this.tempReference}}
                 {{on "click" (fn this.activateBed this.selectedBedInMemory)}}>
-                Enter
+                Activate
               </button>
             </div>
           </div>
@@ -220,6 +226,7 @@
         <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
           <div class="modal_header">Delete this bed?</div>
           <div class="modal_body">
+            <div class="modal_text">After deletion, this bed will have to be registered and activated again to use</div>
             <div class="modal_btn-container">
               <button
                 class="form_btn modal_btn cancel"

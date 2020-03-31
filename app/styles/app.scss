@@ -654,7 +654,12 @@ button {
     padding: 0 1.5rem;
   }
 
+  &_text {
+    font-size: .75rem;
+  }
+
   &_btn-container {
+    padding-top: 2rem;
     display: flex;
     width: 100%;
     justify-content: flex-end;
@@ -662,7 +667,7 @@ button {
 
   &_btn {
     &.cancel {
-      color: #005eb8;
+      color: #333333;
       background-color: white;
     }
   }
