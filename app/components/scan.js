@@ -6,9 +6,10 @@ import jsQR from 'jsqr';
 export default class ScanComponent extends Component {
   @service router;
 
-  @tracked cameraFeed = document.querySelector('#camera-feed');
-  @tracked video = document.createElement('video');
+  @tracked video = document.getElementById('camera-feed');
+  @tracked cameraFeed = document.createElement('canvas');
   @tracked canvas = this.cameraFeed.getContext('2d');
+  @tracked debouncedCodeCheck = null;
 
   async didUpdate() {
     super.didUpdate();
@@ -17,7 +18,7 @@ export default class ScanComponent extends Component {
     this.video.setAttribute('muted', true);
     await this.video.play();
 
-    requestAnimationFrame(this.tick.bind(this));
+    this.tick();
   }
 
   tick() {
@@ -38,7 +39,7 @@ export default class ScanComponent extends Component {
       }
     }
 
-    requestAnimationFrame(this.tick.bind(this));
+    setTimeout(this.tick.bind(this), 500);
   }
 }
 
