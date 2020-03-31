@@ -85,9 +85,9 @@ export default class DashboardController extends Controller {
     let updatedAvailableBeds;
 
     if (this.makeBedsAvailable) {
-      updatedAvailableBeds = this.availableBeds + JSON.parse(this.noOfBedsToEditAvailabiity);
+      updatedAvailableBeds = this.availableBeds + Math.round(Math.floor(JSON.parse(this.noOfBedsToEditAvailabiity)));
     } else {
-      updatedAvailableBeds = this.availableBeds - JSON.parse(this.noOfBedsToEditAvailabiity);
+      updatedAvailableBeds = this.availableBeds - Math.round(Math.floor(JSON.parse(this.noOfBedsToEditAvailabiity)));
     }
 
     if (updatedAvailableBeds > this.totalBeds) {
@@ -129,7 +129,7 @@ export default class DashboardController extends Controller {
 
       try {
         await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
-        this.totalBeds = this.newNoOfTotalBeds;
+        this.totalBeds = Math.round(Math.floor(JSON.parse(this.newNoOfTotalBeds)));
         this.newNoOfTotalBeds = null;
         this.totalErrorMessage = null;
         this.showEditTotalBedsForm = false;
@@ -137,6 +137,12 @@ export default class DashboardController extends Controller {
         console.error(error);
       }
     }
+  }
+
+  @action
+  resetForms() {
+    this.newNoOfTotalBeds = null;
+    this.noOfBedsToRegister = null;
   }
 
   @action

@@ -63,6 +63,9 @@
                    @name="beds-to-register"
                    @required={{true}}
                    @class="form_input"
+                   @min="1"
+                   pattern="[0-9]"
+                   @focus-in={{action (mut this.errors.hasError) false}}
                    @value={{this.noOfBedsToRegister}} />
             <div class="form_error--container">
               {{#if this.errors.hasError}}
@@ -82,7 +85,7 @@
             <div class="card_header">{{this.totalQrBeds}}</div>
             <div class="card_subheader">Total Beds</div>
             <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-            <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{action toggleProperty "showRegisterBedsForm"}}>
+            <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{pipe-action (action toggleProperty "showRegisterBedsForm") (action this.resetForms)}}>
               {{#if this.showRegisterBedsForm}}
                 <img class="" src="/assets/images/cross.png" alt="">
               {{else}}
@@ -106,6 +109,8 @@
                   @required={{true}}
                   @class="form_input edit-beds_input"
                   @value={{this.noOfBedsToRegister}}
+                  @min="1"
+                  pattern="[0-9]"
                   @key-up={{action (mut this.noOfBedsToRegister) value=@target.value}} />
                 <div class="edit-beds_help-text">Enter the number of extra beds to register</div>
 
@@ -201,7 +206,7 @@
           <div class="card_header">{{this.totalBeds}}</div>
           <div class="card_subheader">Total Beds</div>
           <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-          <button class="card_btn" onclick={{action toggleProperty "showEditTotalBedsForm"}}>
+          <button class="card_btn" onclick={{pipe-action (action toggleProperty "showEditTotalBedsForm") (action this.resetForms)}}>
             {{#if this.showEditTotalBedsForm}}
               <img class="" src="/assets/images/cross.png" alt="">
             {{else}}
@@ -225,6 +230,8 @@
                 @required={{true}}
                 @class="form_input edit-beds_input"
                 @value={{this.newNoOfTotalBeds}}
+                @min="1"
+                @focus-in={{action (mut this.totalErrorMessage) null}}
                 @key-up={{action (mut this.newNoOfTotalBeds) value=@target.value}} />
 
               {{#if this.totalErrorMessage}}
@@ -266,6 +273,8 @@
           @required={{true}}
           @class="form_input edit-beds_input"
           @value={{this.noOfBedsToEditAvailabiity}}
+          @min="1"
+          @focus-in={{action (mut this.errorMessage) null}}
           @key-up={{action (mut this.noOfBedsToEditAvailabiity) value=@target.value}} />
 
         {{#if this.errorMessage}}

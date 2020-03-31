@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 const DASHBOARD_ROUTES = [
   'home',
-  'hospital-id'
+  'qr'
 ];
 export default class extends Route {
   @service router;
@@ -19,7 +19,7 @@ export default class extends Route {
 
     if (!hasToken) {
       if (isQrRoute) {
-        this.transitionTo('/hospital-id');
+        this.transitionTo('/qr');
       } else {
         this.transitionTo('/');
       }
@@ -30,5 +30,7 @@ export default class extends Route {
         this.transitionTo('/');
       }
     }
+
+
   }
 }
