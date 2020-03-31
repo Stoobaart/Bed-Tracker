@@ -199,13 +199,19 @@
               @class="form_input edit-beds_input"
               @value={{this.tempReference}}
               @key-up={{action (mut this.tempReference) value=@target.value}} />
-            <button
-              type="submit"
-              class="form_btn"
-              disabled={{not this.tempReference}}
-              {{on "click" (fn this.activateBed this.selectedBedInMemory)}}>
-              Enter
-            </button>
+            <div class="modal_btn-container">
+              <button
+                class="form_btn modal_btn cancel"
+                {{on "click" this.cancelModal}}>
+                Cancel
+              </button>
+              <button
+                class="form_btn modal_btn"
+                disabled={{not this.tempReference}}
+                {{on "click" (fn this.activateBed this.selectedBedInMemory)}}>
+                Enter
+              </button>
+            </div>
           </div>
         </ModalDialog>
       {{/if}}
@@ -214,7 +220,14 @@
         <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
           <div class="modal_header">Delete this bed?</div>
           <div class="modal_body">
-            <button class="form_btn" {{on "click" this.removeBed}}>Delete</button>
+            <div class="modal_btn-container">
+              <button
+                class="form_btn modal_btn cancel"
+                {{on "click" this.cancelModal}}>
+                Cancel
+              </button>
+              <button class="form_btn modal_btn" {{on "click" this.removeBed}}>Delete</button>
+            </div>
           </div>
         </ModalDialog>
       {{/if}}

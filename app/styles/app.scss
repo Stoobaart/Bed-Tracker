@@ -659,4 +659,11 @@ button {
     width: 100%;
     justify-content: flex-end;
   }
+
+  &_btn {
+    &.cancel {
+      color: #005eb8;
+      background-color: white;
+    }
+  }
 }
