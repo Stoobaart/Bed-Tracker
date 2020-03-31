@@ -1,0 +1,5 @@
+mutation ($input: RemoveBedInput!) {
+  removeBed (input: $input) {
+    success
+  }
+}

@@ -119,76 +119,104 @@
           </div>
 
           <div class="card">
-            <div class="card_header card_header--{{this.availableBedsPercentageClass}}">{{this.availableBedsPercentage}}%</div>
-            <div class="card_subheader">Bed Availability</div>
+            <div class="card_header">{{this.availableBeds}}</div>
+            <div class="card_subheader">Total Available Beds</div>
             <img class="card_icon" src="/assets/images/available.svg" alt="">
+          </div>
+
+          <div class="card">
+            <div class="card_header card_header--{{this.availableBedsPercentageClass}} card_last-card">{{this.availableBedsPercentage}}%</div>
+            <div class="card_subheader">Available Capacity</div>
+            <img class="card_icon--hospital" src="/assets/images/hospital.svg" alt="">
           </div>
         </div>
 
         <div class="div-table">
           <div class="div-table_body">
             <div class="div-table_row div-table_head">
+              <div class="div-table_cell div-table_head div-table_column-0">#</div>
               <div class="div-table_cell div-table_head div-table_column-1">Bed Reference</div>
-              <div class="div-table_cell div-table_head div-table_column-2">Availability</div>
-              <div class="div-table_cell div-table_head div-table_column-3">Active Status</div>
-              <div class="div-table_cell div-table_head div-table_column-4">Change Status</div>
-              <div class="div-table_cell div-table_head div-table_column-5">Print QR Code</div>
+              <div class="div-table_cell div-table_head div-table_column-2"><img class="div-table_icon" src="/assets/images/circle.svg" alt="">Availability</div>
+              <div class="div-table_cell div-table_head div-table_column-2-5"></div>
+              <div class="div-table_cell div-table_head div-table_column-4"><img class="div-table_icon" src="/assets/images/white.svg" alt="">Read For Use</div>
+              <div class="div-table_cell div-table_head div-table_column-5"><img class="div-table_icon qr" src="/assets/images/qr-code.svg" alt="">Print QR Code</div>
+              <div class="div-table_cell div-table_head div-table_column-3"><img class="div-table_icon delete" src="/assets/images/delete.svg" alt="">Delete</div>
             </div>
 
-            {{#each this.beds as |bed|}}
+            {{#each this.beds as |bed index|}}
               <div class="div-table_row">
+                <div class="div-table_cell div-table_column-0">{{plus-one index}}</div>
                 <div class="div-table_cell div-table_column-1">{{bed.reference}}</div>
                 <div class="div-table_cell div-table_column-2">
                   {{#if (and bed.active bed.available)}}
+                    <img class="div-table_icon" src="/assets/images/available-green.svg" alt="">
                     Available
                   {{else if (and bed.active (not bed.available))}}
+                    <img class="div-table_icon" src="/assets/images/occupied-red.svg" alt="">
                     Occupied
                   {{else}}
-                    Unavailable
                   {{/if}}
                 </div>
-                <div class="div-table_cell div-table_column-3">
-                  {{#if bed.active}}
-                    Active
-                  {{else}}
-                    Inactive
-                  {{/if}}
-                </div>
-                <div class="div-table_cell div-table_column-4">
-                  {{#if bed.active}}
-                    <button class="div-table_btn" {{on "click" (fn this.deactivateBed bed)}}>Deactivate</button>
+
+                <div class="div-table_cell div-table_column-2-5">
+                  {{#if (and bed.active bed.available)}}
+                    <button class="div-table_btn" {{on "click" (fn this.toggleAvailability bed false)}}>Change</button>
+                  {{else if (and bed.active (not bed.available))}}
+                    <button class="div-table_btn" {{on "click" (fn this.toggleAvailability bed true)}}>Change</button>
                   {{else}}
                     {{#if bed.reference}}
                       <button class="div-table_btn" {{on "click" (fn this.activateBed bed)}}>Activate</button>
                     {{else}}
-                      <button class="div-table_btn" {{on "click" (fn this.enterReference bed)}}>Activate</button>
+                      <button class="div-table_btn" {{on "click" (fn this.showReferenceModal bed)}}>Activate</button>
                     {{/if}}
                   {{/if}}
                 </div>
-                <div class="div-table_cell div-table_column-5"><button class="div-table_btn" {{on "click" (fn this.printQrCode bed.id)}}>Print Qr code</button></div>
+
+                <div class="div-table_cell div-table_column-4">
+                  {{#if bed.active}}
+                    <img class="div-table_icon" src="/assets/images/blue.svg" alt="">Ready
+                  {{/if}}
+                </div>
+                <div class="div-table_cell div-table_column-5">
+                  <button class="div-table_btn print" {{on "click" (fn this.printQrCode bed.id)}}>Print code</button>
+                </div>
+
+                <div class="div-table_cell div-table_column-3">
+                  <button class="div-table_btn print" {{on "click" (fn this.showDeleteModal bed)}}>Delete</button>
+                </div>
               </div>
             {{/each}}
           </div>
         </div>
       {{/if}}
 
-      {{#if this.showReferenceEntryPopUp}}
-        <div class="div-table_pop-up">
-          <div>A reference is required to activate this bed</div>
-          <div role="button" {{on "click" this.cancelBedActivation}}>Cancel</div>
-          <Input
-            @type="text"
-            @class="form_input edit-beds_input"
-            @value={{this.tempReference}}
-            @key-up={{action (mut this.tempReference) value=@target.value}} />
-          <button
-            type="submit"
-            class="form_btn"
-            disabled={{not this.tempReference}}
-            {{on "click" (fn this.activateBed this.tempBedForReference)}}>
-            Enter
-          </button>
-        </div>
+      {{#if this.showReferenceEntryModal}}
+        <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+          <div class="modal_header">A reference is required to activate this bed</div>
+          <div class="modal_body">
+            <Input
+              @type="text"
+              @class="form_input edit-beds_input"
+              @value={{this.tempReference}}
+              @key-up={{action (mut this.tempReference) value=@target.value}} />
+            <button
+              type="submit"
+              class="form_btn"
+              disabled={{not this.tempReference}}
+              {{on "click" (fn this.activateBed this.selectedBedInMemory)}}>
+              Enter
+            </button>
+          </div>
+        </ModalDialog>
+      {{/if}}
+
+      {{#if this.showDeleteBedModal}}
+        <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+          <div class="modal_header">Delete this bed?</div>
+          <div class="modal_body">
+            <button class="form_btn" {{on "click" this.removeBed}}>Delete</button>
+          </div>
+        </ModalDialog>
       {{/if}}
 
     {{else}}

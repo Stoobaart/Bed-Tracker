@@ -1,4 +1,6 @@
 @import 'normalize';
+@import 'ember-modal-dialog/ember-modal-structure';
+@import 'ember-modal-dialog/ember-modal-appearance';
 
 @mixin button {
   color: white;
@@ -93,11 +95,15 @@ html, body {
   }
 
   @media (min-width: 769px) {
-    max-width: 27rem;
+    max-width: 16.66rem;
   }
 
   &.with-form {
     height: 345px;
+  }
+
+  &_last-card {
+    padding-right: 0;
   }
 
   &_header {
@@ -141,8 +147,8 @@ html, body {
 
     &.register {
       width: 8rem;
-      top: -3rem;
-      left: 33%;
+      top: -7.5rem;
+      left: 53%;
 
       &.open {
         width: 2rem;
@@ -155,6 +161,11 @@ html, body {
   &_icon {
     position: relative;
     top: -.75rem;
+
+    &--hospital {
+      position: relative;
+      top: -1.3rem;
+    }
   }
 }
 
@@ -413,56 +424,74 @@ button {
     background-color: #003e78;
   }
 
+  &_icon {
+    padding-right: .5rem;
+
+    &.delete, &.qr {
+      top: .2rem;
+      position: relative;
+    }
+  }
+
   &_row {
     display: flex;
   }
 
   &_cell {
-    border-bottom: 1px solid grey;
-    text-align: left;
+    border-bottom: 1px solid #d8d8d8;
     line-height: 3;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
 
+  &_column-0 {
+    width: 2%;
+    overflow: visible;
+    padding-left: .5rem;
+    padding-right: 1rem;
+
+    &:not(.div-table_head) {
+      background-color: rgba(216, 216, 216, 0.3);
+    }
+  }
+
   &_column-1 {
-    width: 20%;
-    padding-left: 2rem;
+    width: 18%;
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
   &_column-2 {
-    width: 20%;
+    width: 12%;
+  }
+
+  &_column-2-5 {
+    overflow: visible;
+    width: 13%;
   }
 
   &_column-3 {
-    width: 20%;
+    width: 10%;
   }
 
   &_column-4 {
-    text-align: center;
     width: 20%;
   }
 
   &_column-5 {
-    text-align: center;
-    width: 20%;
+    width: 25%;
   }
 
   &_btn {
+    padding-left: 18px;
+    text-align: left;
     background: none;
     color: #005eb8;
-  }
 
-  &_pop-up {
-    position: relative;
-    bottom: 60vh;
-    margin: auto;
-    width: 20rem;
-    background-color: white;
-    border: 1px solid black;
-    padding: 1rem;
+    &.print {
+      padding-left: 26px;
+    }
   }
 }
 
@@ -583,5 +612,48 @@ button {
 
   &_form {
     max-width: 360px;
+  }
+}
+
+
+
+
+
+.ember-modal-overlay {
+  background-color: rgba(0,0,0,0.8);
+  opacity: 0;
+  animation: fade .5s forwards;
+}
+
+.ember-modal-dialog {
+  padding: 1.5rem 0;
+  min-width: 20rem;
+  max-width: 23.4375rem;
+}
+
+@keyframes fade {
+  100% {
+    opacity: 100;
+  }
+}
+
+.modal {
+
+  &_header {
+    font-size: 1.25rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #d8d8d8;
+  }
+
+  &_body {
+    padding: 0 1.5rem;
+  }
+
+  &_btn-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
   }
 }

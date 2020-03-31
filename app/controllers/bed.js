@@ -29,6 +29,7 @@ export default class BedController extends Controller {
       this.errors.hasError = true;
     }
   }
+  
   @action
   async activateBed() {
     try {

@@ -5,8 +5,9 @@ import { tracked } from '@glimmer/tracking';
 import UseQrCodeSystem from 'bed-checker/gql/mutations/use-qr-code-system';
 import UpdateNumberOfBeds from 'bed-checker/gql/mutations/update-number-of-beds';
 import RegisterBeds from 'bed-checker/gql/mutations/register-beds';
+import UpdateBedAvailabilityMutation from 'bed-checker/gql/mutations/update-bed-availability';
 import ActivateBedMutation from 'bed-checker/gql/mutations/activate-bed';
-import DeactivateBedMutation from 'bed-checker/gql/mutations/deactivate-bed';
+import RemoveBedMutation from 'bed-checker/gql/mutations/remove-bed';
 import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
@@ -27,9 +28,10 @@ export default class DashboardController extends Controller {
   @tracked noOfBedsToRegister = null;
   @tracked qrCode = null;
   @tracked beds = this.model.hospital.beds;
-  @tracked tempBedForReference = {};
-  @tracked showReferenceEntryPopUp = false;
+  @tracked selectedBedInMemory = {};
+  @tracked showReferenceEntryModal = false;
   @tracked tempReference = '';
+  @tracked showDeleteBedModal = false;
 
   get availableBedsPercentage() {
     return  Math.round((this.availableBeds / this.totalQrBeds) * 100);
@@ -178,9 +180,37 @@ export default class DashboardController extends Controller {
   }
 
   @action
-  enterReference(bed) {
-    this.tempBedForReference = bed;
-    this.showReferenceEntryPopUp = true;
+  showReferenceModal(bed) {
+    this.selectedBedInMemory = bed;
+    this.showReferenceEntryModal = true;
+  }
+
+  @action
+  showDeleteModal(bed) {
+    this.selectedBedInMemory = bed;
+    this.showDeleteBedModal = true;
+  }
+
+  @action
+  async toggleAvailability(bed, toggleChoice) {
+    const variables = {
+      input: {
+        available: toggleChoice,
+        id: bed.id
+      }
+    };
+    try {
+      await this.apollo.mutate({ mutation: UpdateBedAvailabilityMutation, variables });
+      this.updateTable(bed, true, toggleChoice);
+
+      if (toggleChoice === true) {
+        this.availableBeds++;
+      } else {
+        this.availableBeds--;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @action
@@ -203,21 +233,10 @@ export default class DashboardController extends Controller {
 
       await this.apollo.mutate({ mutation: ActivateBedMutation, variables });
       
-      const newBeds = [
-        {
-          reference,
-          active: true,
-          available: true,
-          id: bed.id
-        }
-      ];
-      const updatedBeds = this.beds.map(x => {
-        const bed = newBeds.find(({ id }) => id === x.id);
-        return bed ? bed : x;
-      });
-      this.beds = updatedBeds;
-      this.tempBedForReference = {};
-      this.showReferenceEntryPopUp = false;
+      this.updateTable(bed, true, true, reference);
+      
+      this.selectedBedInMemory = {};
+      this.showReferenceEntryModal = false;
       this.tempReference = '';
       this.availableBeds++;
 
@@ -227,40 +246,52 @@ export default class DashboardController extends Controller {
   }
 
   @action
-  cancelBedActivation() {
-    this.tempBedForReference = {};
-    this.showReferenceEntryPopUp = false;
+  cancelModal() {
+    this.selectedBedInMemory = {};
+    this.showDeleteBedModal = false;
+    this.showReferenceEntryModal = false;
     this.tempReference = '';
   }
 
   @action
-  async deactivateBed(bed) {
+  async removeBed() {
+    const idToRemove = this.selectedBedInMemory.id;
 
     try {
       const variables = {
         input: {
-          id: bed.id
+          id: idToRemove
         }
       };
 
-      await this.apollo.mutate({ mutation: DeactivateBedMutation, variables });
+      await this.apollo.mutate({ mutation: RemoveBedMutation, variables });
       
-      const newBeds = [
-        {
-          reference: bed.reference,
-          active: false,
-          available: false,
-          id: bed.id
-        }
-      ];
-      const updatedBeds = this.beds.map(x => {
-        const bed = newBeds.find(({ id }) => id === x.id);
-        return bed ? bed : x;
-      });
+      const updatedBeds = this.beds.filter(x => x.id !== idToRemove);
       this.beds = updatedBeds;
+
+      this.totalQrBeds--;
       this.availableBeds--;
+      this.showDeleteBedModal = false;
+      this.selectedBedInMemory = {};
     } catch (error) {
       console.error(error);
     }
+  }
+
+  updateTable(bed, active, available, newReference) {
+    let reference = bed.reference ? bed.reference : newReference;
+    const newBeds = [
+      {
+        reference,
+        active,
+        available,
+        id: bed.id
+      }
+    ];
+    const updatedBeds = this.beds.map(x => {
+      const bed = newBeds.find(({ id }) => id === x.id);
+      return bed ? bed : x;
+    });
+    this.beds = updatedBeds;
   }
 }
