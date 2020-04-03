@@ -1,5 +1,6 @@
-<div class="page {{if this.model.hospital.useQrCode "page--QR"}}">
-  {{#if (eq this.model.hospital.useQrCode null)}}
+<div class="page">{{!--<div class="page {{if this.model.hospital.useManagement "page--QR"}}">--}}
+{{!-- TRACKING TYPE SELECTION SCREEN
+  {{#if (eq this.model.hospital.useManagement null)}}
     <div class="qr-choice_warning">Please select how your hospital will be tracking beds. <br> <br>Please note that this choice cannot be changed after you have made your selection.</div>
 
     <div class="qr-choice_form">
@@ -9,8 +10,8 @@
         <input
           id="available"
           type="radio"
-          checked={{this.useQrCode}}
-          onclick={{action (mut this.useQrCode) true}}>
+          checked={{this.useManagement}}
+          onclick={{action (mut this.useManagement) true}}>
         <label for="available" class="edit-beds_radio--label">
           <div class="edit-beds_radio--text">Mobile device QR scanning only</div>
         </label>
@@ -20,30 +21,32 @@
         <input
           id="unavailable"
           type="radio"
-          checked={{and (not this.useQrCode) (not (eq this.useQrCode null))}}
-          onclick={{action (mut this.useQrCode) false}}>
+          checked={{and (not this.useManagement) (not (eq this.useManagement null))}}
+          onclick={{action (mut this.useManagement) false}}>
         <label for="unavailable" class="edit-beds_radio--label">
           <div class="edit-beds_radio--text">Manual entry only</div>
         </label>
       </div>
 
-      {{#if (not (eq this.useQrCode null))}}
+      {{#if (not (eq this.useManagement null))}}
         <div class="qr-choice_final-warning">*This cannot be changed later</div>
       {{/if}}
 
       <button
         type="submit"
         class="qr-choice_btn form_btn"
-        disabled={{eq this.useQrCode null}}
+        disabled={{eq this.useManagement null}}
         {{on "click" this.setQrCodeSystem}}>
         Choose bed tracking method
       </button>
     </div>
 
   {{else}}
+--}}
 
-    {{#if this.model.hospital.useQrCode}}
+  {{#if this.model.hospital.useManagement}}
 
+{{!-- REGISTER BEDS FUNCTIONALITY
       {{#if (eq this.totalQrBeds 0)}}
         <div class="instructions">
           <p><strong>Welcome to Bed Checker</strong></p>
@@ -71,66 +74,68 @@
           </div>
         </div>
       {{else}}
+--}}
 
-        <div class="cards-container">
-          <div class="page_header">Registered Beds</div>
+    <div class="cards-container">
+      <div class="page_header">Registered Beds</div>
 
-          <div class="card {{if this.showRegisterBedsForm "with-form"}}">
-            <div class="card_header">{{this.totalQrBeds}}</div>
-            <div class="card_subheader">Total Beds</div>
-            <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-            <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{pipe-action (action toggleProperty "showRegisterBedsForm") (action this.resetForms)}}>
-              {{#if this.showRegisterBedsForm}}
-                <img class="" src="/assets/images/cross.png" alt="">
-              {{else}}
-                + Register more
-              {{/if}}
+      <div class="card {{if this.showRegisterBedsForm "with-form"}}">
+        <div class="card_header">{{this.totalQrBeds}}</div>
+        <div class="card_subheader">Total Beds</div>
+        <img class="card_icon" src="/assets/images/occupied.svg" alt="">
+        <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{pipe-action (action toggleProperty "showRegisterBedsForm") (action this.resetForms)}}>
+          {{#if this.showRegisterBedsForm}}
+            <img class="" src="/assets/images/cross.png" alt="">
+          {{else}}
+            + Register more
+          {{/if}}
+        </button>
+        {{#if this.showRegisterBedsForm}}
+          <form
+            class="edit-beds_form total-beds"
+            {{on "submit" this.registerBeds}}>
+            <div class="edit-beds_subheader">Register more beds</div>
+
+            <label
+              for="registerBedsNumber"
+              class="form_label">
+              Number of beds to register
+            </label>
+            <Input
+              @type="number"
+              @name="registerBedsNumber"
+              @required={{true}}
+              @class="form_input edit-beds_input"
+              @value={{this.noOfBedsToRegister}}
+              @min="1"
+              pattern="[0-9]"
+              @key-up={{action (mut this.noOfBedsToRegister) value=@target.value}} />
+            <div class="edit-beds_help-text">Enter the number of extra beds to register</div>
+
+            <button
+              type="submit"
+              class="form_btn"
+              disabled={{not this.noOfBedsToRegister}}>
+              Register beds
             </button>
-            {{#if this.showRegisterBedsForm}}
-              <form
-                class="edit-beds_form total-beds"
-                {{on "submit" this.registerBeds}}>
-                <div class="edit-beds_subheader">Register more beds</div>
+          </form>
+        {{/if}}
+      </div>
 
-                <label
-                  for="registerBedsNumber"
-                  class="form_label">
-                  Number of beds to register
-                </label>
-                <Input
-                  @type="number"
-                  @name="registerBedsNumber"
-                  @required={{true}}
-                  @class="form_input edit-beds_input"
-                  @value={{this.noOfBedsToRegister}}
-                  @min="1"
-                  pattern="[0-9]"
-                  @key-up={{action (mut this.noOfBedsToRegister) value=@target.value}} />
-                <div class="edit-beds_help-text">Enter the number of extra beds to register</div>
+      <div class="card">
+        <div class="card_header">{{this.availableBeds}}</div>
+        <div class="card_subheader">Total Available Beds</div>
+        <img class="card_icon" src="/assets/images/available.svg" alt="">
+      </div>
 
-                <button
-                  type="submit"
-                  class="form_btn"
-                  disabled={{not this.noOfBedsToRegister}}>
-                  Register beds
-                </button>
-              </form>
-            {{/if}}
-          </div>
+      <div class="card">
+        <div class="card_header card_header--{{this.availableBedsPercentageClass}} card_last-card">{{this.availableBedsPercentage}}%</div>
+        <div class="card_subheader">Available Capacity</div>
+        <img class="card_icon--hospital" src="/assets/images/hospital.svg" alt="">
+      </div>
+    </div>
 
-          <div class="card">
-            <div class="card_header">{{this.availableBeds}}</div>
-            <div class="card_subheader">Total Available Beds</div>
-            <img class="card_icon" src="/assets/images/available.svg" alt="">
-          </div>
-
-          <div class="card">
-            <div class="card_header card_header--{{this.availableBedsPercentageClass}} card_last-card">{{this.availableBedsPercentage}}%</div>
-            <div class="card_subheader">Available Capacity</div>
-            <img class="card_icon--hospital" src="/assets/images/hospital.svg" alt="">
-          </div>
-        </div>
-
+{{!-- QR BEDS TABLE?
         <div class="div-table">
           <div class="div-table_body">
             <div class="div-table_row div-table_head">
@@ -188,57 +193,63 @@
             {{/each}}
           </div>
         </div>
-      {{/if}}
+--}}
+      {{!-- {{/if}} --}}
 
-      {{#if this.showReferenceEntryModal}}
-        <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
-          <div class="modal_header">A reference is required to activate this bed</div>
-          <div class="modal_body">
-             <label
-                for="reference"
-                class="form_label">
-                Bed reference number
-              </label>
-            <Input
-              @name="reference"
-              @type="text"
-              @class="form_input edit-beds_input"
-              @value={{this.tempReference}}
-              @key-up={{action (mut this.tempReference) value=@target.value}} />
-            <div class="modal_btn-container">
-              <button
-                class="form_btn modal_btn cancel"
-                {{on "click" this.cancelModal}}>
-                Cancel
-              </button>
-              <button
-                class="form_btn modal_btn"
-                disabled={{not this.tempReference}}
-                {{on "click" (fn this.activateBed this.selectedBedInMemory)}}>
-                Activate
-              </button>
-            </div>
+{{!-- REFERENCE MODAL
+    {{#if this.showReferenceEntryModal}}
+      <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+        <div class="modal_header">A reference is required to activate this bed</div>
+        <div class="modal_body">
+           <label
+              for="reference"
+              class="form_label">
+              Bed reference number
+            </label>
+          <Input
+            @name="reference"
+            @type="text"
+            @class="form_input edit-beds_input"
+            @value={{this.tempReference}}
+            @key-up={{action (mut this.tempReference) value=@target.value}} />
+          <div class="modal_btn-container">
+            <button
+              class="form_btn modal_btn cancel"
+              {{on "click" this.cancelModal}}>
+              Cancel
+            </button>
+            <button
+              class="form_btn modal_btn"
+              disabled={{not this.tempReference}}
+              {{on "click" (fn this.activateBed this.selectedBedInMemory)}}>
+              Activate
+            </button>
           </div>
-        </ModalDialog>
-      {{/if}}
+        </div>
+      </ModalDialog>
+    {{/if}}
+--}}
 
-      {{#if this.showDeleteBedModal}}
-        <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
-          <div class="modal_header">Delete this bed?</div>
-          <div class="modal_body">
-            <div class="modal_text">After deletion, this bed will have to be registered and activated again to use</div>
-            <div class="modal_btn-container">
-              <button
-                class="form_btn modal_btn cancel"
-                {{on "click" this.cancelModal}}>
-                Cancel
-              </button>
-              <button class="form_btn modal_btn" {{on "click" this.removeBed}}>Delete</button>
-            </div>
+{{!-- DELETE MODAL
+    {{#if this.showDeleteBedModal}}
+      <ModalDialog @onClose={{this.cancelModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+        <div class="modal_header">Delete this bed?</div>
+        <div class="modal_body">
+          <div class="modal_text">After deletion, this bed will have to be registered and activated again to use</div>
+          <div class="modal_btn-container">
+            <button
+              class="form_btn modal_btn cancel"
+              {{on "click" this.cancelModal}}>
+              Cancel
+            </button>
+            <button class="form_btn modal_btn" {{on "click" this.removeBed}}>Delete</button>
           </div>
-        </ModalDialog>
-      {{/if}}
+        </div>
+      </ModalDialog>
+    {{/if}}
+--}}
 
+{{!-- UMMM NON-QR BEDS?
     {{else}}
 
       <div class="cards-container">
@@ -363,8 +374,9 @@
         </form>
       {{/unless}}
     {{/if}}
+    --}}
 
   {{/if}}
 </div>
 
-<img class="qr-code" src={{this.qrCode}} alt="">
+{{!-- <img class="qr-code" src={{this.qrCode}} alt=""> --}}

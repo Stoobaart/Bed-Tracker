@@ -14,27 +14,31 @@ export default class DashboardController extends Controller {
   @service apollo;
   @service printThis;
 
-  @tracked useQrCode = null;
-  @tracked totalBeds = this.model.hospital.totalBeds;
+  // @tracked useManagement = null;
+  // @tracked totalBeds = this.model.hospital.totalBeds;
   @tracked totalQrBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
   @tracked availableBeds = this.model.hospital.availableBeds;
-  @tracked noOfBedsToEditAvailabiity = null;
-  @tracked makeBedsAvailable = true;
-  @tracked errorMessage = null;
-  @tracked totalErrorMessage = null;
-  @tracked showEditTotalBedsForm = false;
-  @tracked showRegisterBedsForm = false;
-  @tracked newNoOfTotalBeds = null;
+  // @tracked noOfBedsToEditAvailabiity = null;
+  // @tracked makeBedsAvailable = true;
+  // @tracked errorMessage = null;
+  // @tracked totalErrorMessage = null;
+  // @tracked showEditTotalBedsForm = false;
+  // @tracked showRegisterBedsForm = false;
+  // @tracked newNoOfTotalBeds = null;
   @tracked noOfBedsToRegister = null;
-  @tracked qrCode = null;
-  @tracked beds = this.model.hospital.beds;
-  @tracked selectedBedInMemory = {};
-  @tracked showReferenceEntryModal = false;
-  @tracked tempReference = '';
-  @tracked showDeleteBedModal = false;
+  // @tracked qrCode = null;
+  // @tracked beds = this.model.hospital.beds;
+  // @tracked selectedBedInMemory = {};
+  // @tracked showReferenceEntryModal = false;
+  // @tracked tempReference = '';
+  // @tracked showDeleteBedModal = false;
 
   get availableBedsPercentage() {
-    return  Math.round((this.availableBeds / this.totalQrBeds) * 100);
+    if (this.totalQrBeds === 0) {
+      return 0;
+    }
+    
+    return Math.round((this.availableBeds / this.totalQrBeds) * 100);
   }
 
   get availableBedsPercentageClass() {
@@ -47,99 +51,99 @@ export default class DashboardController extends Controller {
     }
   }
 
-  get valuesHaveChanged() {
-    if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // get valuesHaveChanged() {
+  //   if (this.totalBeds != this.model.hospital.totalBeds || this.availableBeds != this.model.hospital.availableBeds) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  @action
-  updateBedNumber() {
-    if (this.availableBeds > this.totalBeds) {
-      alert('The available beds cannot be more than the total beds, you idiot');
-    } else {
-      alert(`You're submitting ${this.availableBeds} available beds and ${this.totalBeds} Total beds`);
-    }
-  }
+  // @action
+  // updateBedNumber() {
+  //   if (this.availableBeds > this.totalBeds) {
+  //     alert('The available beds cannot be more than the total beds, you idiot');
+  //   } else {
+  //     alert(`You're submitting ${this.availableBeds} available beds and ${this.totalBeds} Total beds`);
+  //   }
+  // }
 
-  @action
-  async setQrCodeSystem() {
-    const variables = {
-      input: {
-        useQrCode: this.useQrCode
-      }
-    };
+  // @action
+  // async setQrCodeSystem() {
+  //   const variables = {
+  //     input: {
+  //       useManagement: this.useManagement
+  //     }
+  //   };
+  //
+  //   try {
+  //     const response = await this.apollo.mutate({ mutation: UseQrCodeSystem, variables });
+  //     this.model = response.useQrCodeSystem;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
-    try {
-      const response = await this.apollo.mutate({ mutation: UseQrCodeSystem, variables });
-      this.model = response.useQrCodeSystem;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // @action
+  // async editBedsAvailability(event) {
+  //   event.preventDefault();
+  //
+  //   let updatedAvailableBeds;
+  //
+  //   if (this.makeBedsAvailable) {
+  //     updatedAvailableBeds = this.availableBeds + Math.round(Math.floor(JSON.parse(this.noOfBedsToEditAvailabiity)));
+  //   } else {
+  //     updatedAvailableBeds = this.availableBeds - Math.round(Math.floor(JSON.parse(this.noOfBedsToEditAvailabiity)));
+  //   }
+  //
+  //   if (updatedAvailableBeds > this.totalBeds) {
+  //     this.errorMessage = 'Available beds cannot exceed the total number of beds';
+  //   } else if (updatedAvailableBeds < 0) {
+  //     this.errorMessage = 'Available beds cannot be less than 0';
+  //   } else {
+  //     const variables = {
+  //       input: {
+  //         numberOfAvailableBeds: updatedAvailableBeds,
+  //         numberOfTotalBeds: JSON.parse(this.totalBeds),
+  //       }
+  //     };
+  //
+  //     try {
+  //       await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
+  //       this.availableBeds = updatedAvailableBeds;
+  //       this.noOfBedsToEditAvailabiity = null;
+  //       this.errorMessage = null;
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // }
 
-  @action
-  async editBedsAvailability(event) {
-    event.preventDefault();
-
-    let updatedAvailableBeds;
-
-    if (this.makeBedsAvailable) {
-      updatedAvailableBeds = this.availableBeds + Math.round(Math.floor(JSON.parse(this.noOfBedsToEditAvailabiity)));
-    } else {
-      updatedAvailableBeds = this.availableBeds - Math.round(Math.floor(JSON.parse(this.noOfBedsToEditAvailabiity)));
-    }
-
-    if (updatedAvailableBeds > this.totalBeds) {
-      this.errorMessage = 'Available beds cannot exceed the total number of beds';
-    } else if (updatedAvailableBeds < 0) {
-      this.errorMessage = 'Available beds cannot be less than 0';
-    } else {
-      const variables = {
-        input: {
-          numberOfAvailableBeds: updatedAvailableBeds,
-          numberOfTotalBeds: JSON.parse(this.totalBeds),
-        }
-      };
-
-      try {
-        await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
-        this.availableBeds = updatedAvailableBeds;
-        this.noOfBedsToEditAvailabiity = null;
-        this.errorMessage = null;
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
-
-  @action
-  async editTotalBeds(event) {
-    event.preventDefault();
-
-    if (this.newNoOfTotalBeds < this.availableBeds) {
-      this.totalErrorMessage = 'Total beds cannot be less than available beds';
-    } else {
-      const variables = {
-        input: {
-          numberOfAvailableBeds: this.availableBeds,
-          numberOfTotalBeds: JSON.parse(this.newNoOfTotalBeds),
-        }
-      };
-
-      try {
-        await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
-        this.totalBeds = Math.round(Math.floor(JSON.parse(this.newNoOfTotalBeds)));
-        this.newNoOfTotalBeds = null;
-        this.totalErrorMessage = null;
-        this.showEditTotalBedsForm = false;
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
+  // @action
+  // async editTotalBeds(event) {
+  //   event.preventDefault();
+  //
+  //   if (this.newNoOfTotalBeds < this.availableBeds) {
+  //     this.totalErrorMessage = 'Total beds cannot be less than available beds';
+  //   } else {
+  //     const variables = {
+  //       input: {
+  //         numberOfAvailableBeds: this.availableBeds,
+  //         numberOfTotalBeds: JSON.parse(this.newNoOfTotalBeds),
+  //       }
+  //     };
+  //
+  //     try {
+  //       await this.apollo.mutate({ mutation: UpdateNumberOfBeds, variables });
+  //       this.totalBeds = Math.round(Math.floor(JSON.parse(this.newNoOfTotalBeds)));
+  //       this.newNoOfTotalBeds = null;
+  //       this.totalErrorMessage = null;
+  //       this.showEditTotalBedsForm = false;
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // }
 
   @action
   resetForms() {
@@ -173,125 +177,125 @@ export default class DashboardController extends Controller {
     }
   }
 
-  @action
-  async printQrCode(bedId) {
-    this.qrCode = await QRCode.toDataURL(bedId);
-    await this.printThis.print('img.qr-code');
-  }
+  // @action
+  // async printQrCode(bedId) {
+  //   this.qrCode = await QRCode.toDataURL(bedId);
+  //   await this.printThis.print('img.qr-code');
+  // }
+  //
+  // @action
+  // showReferenceModal(bed) {
+  //   this.selectedBedInMemory = bed;
+  //   this.showReferenceEntryModal = true;
+  // }
+  //
+  // @action
+  // showDeleteModal(bed) {
+  //   this.selectedBedInMemory = bed;
+  //   this.showDeleteBedModal = true;
+  // }
 
-  @action
-  showReferenceModal(bed) {
-    this.selectedBedInMemory = bed;
-    this.showReferenceEntryModal = true;
-  }
+  // @action
+  // async toggleAvailability(bed, toggleChoice) {
+  //   const variables = {
+  //     input: {
+  //       available: toggleChoice,
+  //       id: bed.id
+  //     }
+  //   };
+  //   try {
+  //     await this.apollo.mutate({ mutation: UpdateBedAvailabilityMutation, variables });
+  //     this.updateTable(bed, true, toggleChoice);
+  //
+  //     if (toggleChoice === true) {
+  //       this.availableBeds++;
+  //     } else {
+  //       this.availableBeds--;
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  @action
-  showDeleteModal(bed) {
-    this.selectedBedInMemory = bed;
-    this.showDeleteBedModal = true;
-  }
+  // @action
+  // async activateBed(bed) {
+  //   let reference;
+  //
+  //   if (bed.reference) {
+  //     reference = bed.reference;
+  //   } else {
+  //     reference = this.tempReference;
+  //   }
+  //
+  //   try {
+  //     const variables = {
+  //       input: {
+  //         id: bed.id,
+  //         reference,
+  //       }
+  //     };
+  //
+  //     await this.apollo.mutate({ mutation: ActivateBedMutation, variables });
+  //
+  //     this.updateTable(bed, true, true, reference);
+  //
+  //     this.selectedBedInMemory = {};
+  //     this.showReferenceEntryModal = false;
+  //     this.tempReference = '';
+  //     this.availableBeds++;
+  //
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
-  @action
-  async toggleAvailability(bed, toggleChoice) {
-    const variables = {
-      input: {
-        available: toggleChoice,
-        id: bed.id
-      }
-    };
-    try {
-      await this.apollo.mutate({ mutation: UpdateBedAvailabilityMutation, variables });
-      this.updateTable(bed, true, toggleChoice);
+  // @action
+  // cancelModal() {
+  //   this.selectedBedInMemory = {};
+  //   this.showDeleteBedModal = false;
+  //   this.showReferenceEntryModal = false;
+  //   this.tempReference = '';
+  // }
 
-      if (toggleChoice === true) {
-        this.availableBeds++;
-      } else {
-        this.availableBeds--;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // @action
+  // async removeBed() {
+  //   const idToRemove = this.selectedBedInMemory.id;
+  //
+  //   try {
+  //     const variables = {
+  //       input: {
+  //         id: idToRemove
+  //       }
+  //     };
+  //
+  //     await this.apollo.mutate({ mutation: RemoveBedMutation, variables });
+  //
+  //     const updatedBeds = this.beds.filter(x => x.id !== idToRemove);
+  //     this.beds = updatedBeds;
+  //
+  //     this.totalQrBeds--;
+  //     this.availableBeds--;
+  //     this.showDeleteBedModal = false;
+  //     this.selectedBedInMemory = {};
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
-  @action
-  async activateBed(bed) {
-    let reference;
-
-    if (bed.reference) {
-      reference = bed.reference;
-    } else {
-      reference = this.tempReference;
-    }
-
-    try {
-      const variables = {
-        input: {
-          id: bed.id,
-          reference,
-        }
-      };
-
-      await this.apollo.mutate({ mutation: ActivateBedMutation, variables });
-      
-      this.updateTable(bed, true, true, reference);
-      
-      this.selectedBedInMemory = {};
-      this.showReferenceEntryModal = false;
-      this.tempReference = '';
-      this.availableBeds++;
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  @action
-  cancelModal() {
-    this.selectedBedInMemory = {};
-    this.showDeleteBedModal = false;
-    this.showReferenceEntryModal = false;
-    this.tempReference = '';
-  }
-
-  @action
-  async removeBed() {
-    const idToRemove = this.selectedBedInMemory.id;
-
-    try {
-      const variables = {
-        input: {
-          id: idToRemove
-        }
-      };
-
-      await this.apollo.mutate({ mutation: RemoveBedMutation, variables });
-      
-      const updatedBeds = this.beds.filter(x => x.id !== idToRemove);
-      this.beds = updatedBeds;
-
-      this.totalQrBeds--;
-      this.availableBeds--;
-      this.showDeleteBedModal = false;
-      this.selectedBedInMemory = {};
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  updateTable(bed, active, available, newReference) {
-    let reference = bed.reference ? bed.reference : newReference;
-    const newBeds = [
-      {
-        reference,
-        active,
-        available,
-        id: bed.id
-      }
-    ];
-    const updatedBeds = this.beds.map(x => {
-      const bed = newBeds.find(({ id }) => id === x.id);
-      return bed ? bed : x;
-    });
-    this.beds = updatedBeds;
-  }
+  // updateTable(bed, active, available, newReference) {
+  //   let reference = bed.reference ? bed.reference : newReference;
+  //   const newBeds = [
+  //     {
+  //       reference,
+  //       active,
+  //       available,
+  //       id: bed.id
+  //     }
+  //   ];
+  //   const updatedBeds = this.beds.map(x => {
+  //     const bed = newBeds.find(({ id }) => id === x.id);
+  //     return bed ? bed : x;
+  //   });
+  //   this.beds = updatedBeds;
+  // }
 }
