@@ -166,8 +166,36 @@
         {{/if}} --}}
     </div>
 
-    <div class="wards-container">
+    <div class="wards_container">
+      <div class="wards_header--container">
+        <div class="wards_header">WARDS</div>
+        <LinkTo @route="add-ward" class="wards_link--button" role="button">
+          <img class="wards_link--icon" src="/assets/images/plus.svg" alt=""> 
+          Add Ward
+        </LinkTo>
+      </div>
 
+      {{#if this.model.hospital.wards.length}}
+        {{#each this.model.hospital.wards as |ward|}}
+          <div class="wards_card">
+            <div class="wards_card--ward-name">{{ward.shortName}}</div>
+            {{#if (eq ward.availableBeds 0)}}
+              <img src="/assets/images/empty.svg" alt="">
+            {{else}}
+              <img src="/assets/images/available-green.svg" alt="">
+            {{/if}}
+            <div class="wards_card--beds-number">{{ward.availableBeds}}</div> 
+            <div class="wards_card--beds-text">Available COVID beds</div>
+            <LinkTo @route="ward" @model={{ward.id}} class="wards_link--button" role="button">
+              <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
+            </LinkTo>
+          </div>
+        {{/each}}
+      {{else}}
+        <div class="wards_body-text">
+          To get started add a ward and register the number of COVID beds.<br><br>If a bed is occupied, set the COVID status of the patient and whether any ventilators are being used. 
+        </div>
+      {{/if}}
     </div>
 
 {{!-- QR BEDS TABLE?

@@ -88,12 +88,58 @@ html, body {
   background-color: rgba(216,216,216, 0.3);
 }
 
-.wards-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  padding: 1rem 0 0.01rem 1rem;
-  background-color: #003e78;
+.wards {
+  &_container {
+    flex-grow: 1;
+    padding: 1rem 1rem 0.01rem 1rem;
+    background-color: #003e78;
+  }
+
+  &_header {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-top: .5rem;
+
+    &--container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &_link--button {
+    border-radius: 4px;
+    background-color: white;
+    height: 48px;
+    width: 124px;
+    text-align: center;
+    line-height: 3.2;
+    text-decoration: none;
+    color: #005eb8;
+  }
+
+  &_body-text {
+    color: white;
+  }
+
+  &_card {
+    &--ward-name {
+      width: 110px;
+    }
+
+    &--beds {
+      &-number {
+        font-size: 1.5rem;
+      }
+
+      &-text {
+        font-size: .75rem;
+      }
+    }
+    
+  }
 }
 
 .card {

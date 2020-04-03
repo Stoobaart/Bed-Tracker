@@ -15,4 +15,5 @@ Router.map(function() {
   // this.route('add-bed');
   // this.route('scan');
   // this.route('bed', { path: '/bed/:id' });
+  this.route('add-ward');
 });
