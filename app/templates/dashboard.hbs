@@ -77,20 +77,64 @@
 --}}
 
     <div class="cards-container">
-      <div class="page_header">Registered Beds</div>
+      <div class="page_header">
+        <img class="page_icon" src="/assets/images/hospital.svg" alt="">
+        Hospital Dashboard
+      </div>
 
-      <div class="card {{if this.showRegisterBedsForm "with-form"}}">
-        <div class="card_header">{{this.totalManagedBeds}}</div>
-        <div class="card_subheader">Total Beds</div>
-        <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-        <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{pipe-action (action toggleProperty "showRegisterBedsForm") (action this.resetForms)}}>
+      <div class="card">
+        <div class="card_header">
+          <img class="card_icon" src="/assets/images/occupied.svg" alt="">
+          <div class="card_header-text">TOTAL COVID BEDS  {{this.totalManagedBeds}}</div>
+        </div>
+
+        <div class="card_data-block">
+          <div class="card_data-block--value">{{this.availableBeds}}</div>
+          <div class="card_data-block--label">Total available COVID beds</div>
+        </div>
+
+        <div class="card_data-block">
+          <div class="card_data-block--value">{{this.availableBedsPercentage}}%</div>
+          <div class="card_data-block--label">Total available bed capacity</div>
+        </div>
+
+        <div class="card_data-block">
+          <div class="card_data-block--value">0</div>
+          <div class="card_data-block--label">Total ventilators in use</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card_header">
+          <img class="card_icon" src="/assets/images/covid-19-positive.svg" alt="">
+          <div class="card_header-text">TOTAL COVID PATIENT STATS</div>
+        </div>
+
+        <div class="card_data-block">
+          <div class="card_data-block--value">0</div>
+          <div class="card_data-block--label">Total COVID positive</div>
+        </div>
+
+        <div class="card_data-block">
+          <div class="card_data-block--value">0</div>
+          <div class="card_data-block--label">Total COVID negative</div>
+        </div>
+
+        <div class="card_data-block">
+          <div class="card_data-block--value">0</div>
+          <div class="card_data-block--label">Total COVID suspected</div>
+        </div>
+      </div>
+
+
+        {{!-- <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{pipe-action (action toggleProperty "showRegisterBedsForm") (action this.resetForms)}}>
           {{#if this.showRegisterBedsForm}}
             <img class="" src="/assets/images/cross.png" alt="">
           {{else}}
             + Register more
           {{/if}}
-        </button>
-        {{#if this.showRegisterBedsForm}}
+        </button> --}}
+        {{!-- {{#if this.showRegisterBedsForm}}
           <form
             class="edit-beds_form total-beds"
             {{on "submit" this.registerBeds}}>
@@ -119,20 +163,7 @@
               Register beds
             </button>
           </form>
-        {{/if}}
-      </div>
-
-      <div class="card">
-        <div class="card_header">{{this.availableBeds}}</div>
-        <div class="card_subheader">Total Available Beds</div>
-        <img class="card_icon" src="/assets/images/available.svg" alt="">
-      </div>
-
-      <div class="card">
-        <div class="card_header card_header--{{this.availableBedsPercentageClass}} card_last-card">{{this.availableBedsPercentage}}%</div>
-        <div class="card_subheader">Available Capacity</div>
-        <img class="card_icon--hospital" src="/assets/images/hospital.svg" alt="">
-      </div>
+        {{/if}} --}}
     </div>
 
 {{!-- QR BEDS TABLE?

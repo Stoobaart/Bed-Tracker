@@ -58,51 +58,51 @@ html, body {
 }
 
 .page {
-  max-width: 32rem;
+  max-width: 876px;
   margin: auto;
 
-  &--QR {
-    max-width: 64rem;
+  &_icon {
+    position: relative;
+    height: 32px;
+    width: 32px;
+    top: .5rem;
   }
 
   &_header {
-    font-size: 24px;
     font-weight: 600;
-    color: #333333;
+    color: #003e78;
     margin-bottom: 1rem;
     width: 100%;
+    line-height: 2;
   }
 }
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 2rem 0 0.01rem 2rem;
+  padding: 1rem 0 0.01rem 1rem;
   background-color: rgba(216,216,216, 0.3);
 }
 
 .card {
   background-color: white;
-  height: 86px;
   width: calc(100% - 2rem);
+  max-width: 382px;
   border-radius: 4px;
   padding: 1rem;
-  margin-bottom: 2rem;
-  margin-right: 2rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
-  @media (min-width: 450px) {
-    max-width: 19rem;
-  }
+  // @media (min-width: 450px) {
+  //   max-width: 19rem;
+  // }
 
-  @media (min-width: 769px) {
-    max-width: 16.66rem;
-  }
-
-  &.with-form {
-    height: 345px;
-  }
+  // @media (min-width: 769px) {
+  //   max-width: 16.66rem;
+  // }
 
   &_last-card {
     padding-right: 0;
@@ -110,31 +110,44 @@ html, body {
 
   &_header {
     width: 100%;
-    height: 48px;
-    font-size: 48px;
+    height: 2rem;
+    font-size: 12px;
     font-weight: 600;
-    color: #003e78;
-    line-height: 1;
+    display: flex;
 
-    &--low {
-      color: #b60000;
+    &-text {
+      font-size: 12px;
+      margin: 0 .5rem;
+      font-weight: normal;
+      height: 1.5rem;
+      align-self: center;
     }
 
-    &--medium {
-      color: #003e78;
-    }
+    // &--low {
+    //   color: #b60000;
+    // }
 
-    &--high {
-      color: #22661f;
-    }
+    // &--medium {
+    //   color: #003e78;
+    // }
+
+    // &--high {
+    //   color: #22661f;
+    // }
   }
 
-  &_subheader {
-    width: calc(100% - 4rem);
-    height: 22px;
-    top: 1rem;
-    position: relative;
-    color: #333333;
+  &_data-block {
+    width: 98px;
+    height: 72px;
+
+    &--value {
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    &--label {
+      font-size: 12px;
+    }
   }
 
   &_btn {
@@ -162,12 +175,8 @@ html, body {
 
   &_icon {
     position: relative;
-    top: -.75rem;
-
-    &--hospital {
-      position: relative;
-      top: -1.3rem;
-    }
+    width: 24px;
+    height: 24px;
   }
 }
 
