@@ -96,13 +96,13 @@ html, body {
   flex-wrap: wrap;
   justify-content: space-between;
 
-  // @media (min-width: 450px) {
-  //   max-width: 19rem;
-  // }
+  @media (min-width: 450px) {
+    max-width: 20.5rem;
+  }
 
-  // @media (min-width: 769px) {
-  //   max-width: 16.66rem;
-  // }
+  @media (min-width: 769px) {
+    max-width: 382px;
+  }
 
   &_last-card {
     padding-right: 0;
