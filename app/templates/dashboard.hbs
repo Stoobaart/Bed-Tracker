@@ -47,7 +47,7 @@
   {{#if this.model.hospital.useManagement}}
 
 {{!-- REGISTER BEDS FUNCTIONALITY
-      {{#if (eq this.totalQrBeds 0)}}
+      {{#if (eq this.totalManagedBeds 0)}}
         <div class="instructions">
           <p><strong>Welcome to Bed Checker</strong></p>
           <p>Add the number of beds you would like to register to get started. You can also add more beds in the future.</p>
@@ -80,7 +80,7 @@
       <div class="page_header">Registered Beds</div>
 
       <div class="card {{if this.showRegisterBedsForm "with-form"}}">
-        <div class="card_header">{{this.totalQrBeds}}</div>
+        <div class="card_header">{{this.totalManagedBeds}}</div>
         <div class="card_subheader">Total Beds</div>
         <img class="card_icon" src="/assets/images/occupied.svg" alt="">
         <button class="card_btn register {{if this.showRegisterBedsForm "open"}}" onclick={{pipe-action (action toggleProperty "showRegisterBedsForm") (action this.resetForms)}}>
@@ -249,7 +249,7 @@
     {{/if}}
 --}}
 
-{{!-- UMMM NON-QR BEDS?
+{{!-- non management dashboard
     {{else}}
 
       <div class="cards-container">

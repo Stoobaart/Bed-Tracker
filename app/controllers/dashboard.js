@@ -2,21 +2,21 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import UseQrCodeSystem from 'bed-checker/gql/mutations/use-qr-code-system';
-import UpdateNumberOfBeds from 'bed-checker/gql/mutations/update-number-of-beds';
+// import UseQrCodeSystem from 'bed-checker/gql/mutations/use-qr-code-system';
+// import UpdateNumberOfBeds from 'bed-checker/gql/mutations/update-number-of-beds';
 import RegisterBeds from 'bed-checker/gql/mutations/register-beds';
-import UpdateBedAvailabilityMutation from 'bed-checker/gql/mutations/update-bed-availability';
-import ActivateBedMutation from 'bed-checker/gql/mutations/activate-bed';
-import RemoveBedMutation from 'bed-checker/gql/mutations/remove-bed';
-import QRCode from 'qrcode';
+// import UpdateBedAvailabilityMutation from 'bed-checker/gql/mutations/update-bed-availability';
+// import ActivateBedMutation from 'bed-checker/gql/mutations/activate-bed';
+// import RemoveBedMutation from 'bed-checker/gql/mutations/remove-bed';
+// import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
   @service apollo;
-  @service printThis;
+  // @service printThis;
 
   // @tracked useManagement = null;
   // @tracked totalBeds = this.model.hospital.totalBeds;
-  @tracked totalQrBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
+  @tracked totalManagedBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
   @tracked availableBeds = this.model.hospital.availableBeds;
   // @tracked noOfBedsToEditAvailabiity = null;
   // @tracked makeBedsAvailable = true;
@@ -34,11 +34,11 @@ export default class DashboardController extends Controller {
   // @tracked showDeleteBedModal = false;
 
   get availableBedsPercentage() {
-    if (this.totalQrBeds === 0) {
+    if (this.totalManagedBeds === 0) {
       return 0;
     }
     
-    return Math.round((this.availableBeds / this.totalQrBeds) * 100);
+    return Math.round((this.availableBeds / this.totalManagedBeds) * 100);
   }
 
   get availableBedsPercentageClass() {
@@ -169,7 +169,7 @@ export default class DashboardController extends Controller {
       });
       this.beds = newBedArray;
 
-      this.totalQrBeds = this.totalQrBeds + JSON.parse(this.noOfBedsToRegister);
+      this.totalManagedBeds = this.totalManagedBeds + JSON.parse(this.noOfBedsToRegister);
       this.noOfBedsToRegister = null;
       this.showRegisterBedsForm = false;
     } catch (error) {
@@ -273,7 +273,7 @@ export default class DashboardController extends Controller {
   //     const updatedBeds = this.beds.filter(x => x.id !== idToRemove);
   //     this.beds = updatedBeds;
   //
-  //     this.totalQrBeds--;
+  //     this.totalManagedBeds--;
   //     this.availableBeds--;
   //     this.showDeleteBedModal = false;
   //     this.selectedBedInMemory = {};

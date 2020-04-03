@@ -20,7 +20,7 @@ export default class QrController extends Controller {
     localStorage.setItem('hospital_manager', false);
 
     const response = await this.apollo.watchQuery({ query: GetHospitalQuery });
-    const hospitalId = response.getHospital.hospital.id;
+    // const hospitalId = response.getHospital.hospital.id;
 
     if (this.hospitalId) {
       this.router.transitionTo('/scan');
