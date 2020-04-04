@@ -15,6 +15,10 @@
   <button {{on "click" this.addBeds}} disabled={{this.addButtonDisabled}}>Add COVID beds</button>
 
   {{#if this.error}}
-    <p class="error">Something went wrong, please try again.</p>
+    <div class="banner banner--error">
+      <div class="banner_title"><img src="/assets/images/error.svg" alt="">Something went wrong</div>
+      <p>Please try adding the beds again</p>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.error) false)}}>
+    </div>
   {{/if}}
 </div>

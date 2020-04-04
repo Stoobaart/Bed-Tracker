@@ -9,7 +9,6 @@ import { inject as service } from '@ember/service';
 
 export default class extends Route {
   @service router;
-  @service notifications;
 
   @action
   didTransition() {
@@ -32,7 +31,5 @@ export default class extends Route {
         this.transitionTo('/');
       }
     }
-
-
   }
 }

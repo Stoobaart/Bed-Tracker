@@ -1,4 +1,12 @@
 <div class="ward-details">
+  {{#if this.model.showSuccessMessage}}
+    <div class="banner banner--success">
+      <div class="banner_title"><img src="/assets/images/success.svg" alt="">COVID beds added successfully</div>
+      <p>The beds are ready for patients</p>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.model.showSuccessMessage) null)}}>
+    </div>
+  {{/if}}
+
   <div class="breadcrumbs">
     <img src="/assets/images/hospital.svg" alt="">
     <LinkTo @route="dashboard" @tagName="span">Dashboard</LinkTo> > Ward

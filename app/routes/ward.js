@@ -12,6 +12,13 @@ export default class WardRoute extends Route {
   }
 
   @action
+  willTransition(transition) {
+    if (transition.to.name !== 'ward.index') {
+      this.controller.set('model.showSuccessMessage', false);
+    }
+  }
+
+  @action
   error(error) {
     console.error(error);
     this.transitionTo('dashboard');

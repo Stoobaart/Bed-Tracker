@@ -18,6 +18,13 @@ export default class DashboardRoute extends Route {
   }
 
   @action
+  willTransition(transition) {
+    if (transition.to.name !== 'dashboard') {
+      this.controller.set('model.showSuccessMessage', false);
+    }
+  }
+
+  @action
   error() {
     localStorage.setItem('bed_tracker_token', JSON.stringify(null));
     localStorage.setItem('hospital', JSON.stringify(null));

@@ -32,6 +32,7 @@ export default class WardAddBedsController extends Controller {
       const { registerBeds } = await this.apollo.mutate({ mutation: RegisterBedsMutation, variables });
       this.noOfBedsToAdd = null;
       this.set('model.beds', [...this.model.beds, ...registerBeds.beds]);
+      this.set('model.showSuccessMessage', true);
       this.router.transitionTo('ward', this.model.id);
     } catch (error) {
       this.error = true;
