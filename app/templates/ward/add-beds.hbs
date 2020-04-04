@@ -12,7 +12,7 @@
          @value={{this.noOfBedsToAdd}} />
   <div class="help-text">The number of COVID beds to add to this ward</div>
 
-  <button {{on "click" this.addBeds}} disabled={{not this.noOfBedsToAdd}}>Add COVID beds</button>
+  <button {{on "click" this.addBeds}} disabled={{this.addButtonDisabled}}>Add COVID beds</button>
 
   {{#if this.error}}
     <p class="error">Something went wrong, please try again.</p>

@@ -10,10 +10,16 @@ export default class WardAddBedsController extends Controller {
 
   @tracked noOfBedsToAdd = null;
   @tracked error = false;
+  @tracked isSaving = false;
+
+  get addButtonDisabled() {
+    return !this.noOfBedsToAdd || this.noOfBedsToAdd <= 0 || this.isSaving;
+  }
 
   @action
   async addBeds() {
     this.error = false;
+    this.isSaving = true;
 
     const variables = {
       input: {
@@ -30,5 +36,7 @@ export default class WardAddBedsController extends Controller {
       this.error = true;
       console.error(error);
     }
+
+    this.isSaving = false;
   }
 }
