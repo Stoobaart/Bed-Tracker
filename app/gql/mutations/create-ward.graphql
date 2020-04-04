@@ -2,6 +2,11 @@ mutation ($input:CreateWardInput!) {
   createWard (input: $input) {
     ward {
       id
+      shortName
+      longName
+      totalBeds
+      availableBeds
+      unavailableBeds
     }
   }
 }
