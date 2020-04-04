@@ -1,0 +1,20 @@
+<div class="add-beds">
+  <h1>Add COVID beds</h1>
+  <p>to ward: {{this.model.shortName}}</p>
+
+  <label for="add-beds" class="form_label">
+    Number of COVID beds
+  </label>
+  <Input @id="add-beds"
+         @type="number"
+         @name="add-beds"
+         @class="form_input"
+         @value={{this.noOfBedsToAdd}} />
+  <div class="help-text">The number of COVID beds to add to this ward</div>
+
+  <button {{on "click" this.addBeds}} disabled={{not this.noOfBedsToAdd}}>Add COVID beds</button>
+
+  {{#if this.error}}
+    <p class="error">Something went wrong, please try again.</p>
+  {{/if}}
+</div>

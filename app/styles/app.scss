@@ -143,6 +143,7 @@ html, body {
     background-color: white;
     padding: 1rem;
     line-height: 1;
+    border-bottom: 2px solid #d8d8d8;
 
     &--ward-name {
       width: 110px;
@@ -159,7 +160,7 @@ html, body {
         line-height: 1.5;
       }
     }
-    
+
   }
 }
 
@@ -783,5 +784,89 @@ button {
       color: #333333;
       background-color: white;
     }
+  }
+}
+
+.ward-details {
+  padding: 1rem;
+  background-color: rgba(44, 152, 255, 0.25);
+
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #003e78;
+
+    span {
+      margin: 0 0.4rem;
+      color: #005eb8;
+    }
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  h1 {
+    margin: 1rem 0 0;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    a {
+      text-decoration: none;
+      color: #005eb8;
+    }
+
+    &_header-text {
+      flex-grow: 1;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.ward-beds {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.add-beds {
+  padding: 2rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0.5rem 0 2rem;
+  }
+
+  input {
+    margin: 0.5rem 0;
+    width: 5rem;
+  }
+
+  button {
+    margin-top: 2rem;
+  }
+
+  .help-text {
+    font-size: 0.75rem;
+    color: #737373;
+  }
+
+  .error {
+    color: #e30a0a;
   }
 }

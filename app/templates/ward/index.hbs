@@ -1,0 +1,60 @@
+<div class="ward-details">
+  <div class="breadcrumbs">
+    <img src="/assets/images/hospital.svg" alt="">
+    <LinkTo @route="dashboard" @tagName="span">Dashboard</LinkTo> > Ward
+  </div>
+  <h1>{{this.model.shortName}}</h1>
+  <p>{{this.model.longName}}</p>
+
+  <div class="card">
+    <div class="card_header">
+      <img class="card_icon" src="/assets/images/occupied.svg" alt="">
+      <div class="card_header-text">WARD TOTAL COVID BEDS  {{this.totalBeds}}</div>
+      <LinkTo @route="ward.add-beds" @model={{this.model.id}}>+ Add beds</LinkTo>
+    </div>
+
+    <div class="card_data-block">
+      <div class="card_data-block--value">{{this.availableBeds}}</div>
+      <div class="card_data-block--label">Total available COVID beds</div>
+    </div>
+
+    <div class="card_data-block">
+      <div class="card_data-block--value">{{this.availableBedsPercentage}}%</div>
+      <div class="card_data-block--label">Total available bed capacity</div>
+    </div>
+
+    <div class="card_data-block">
+      <div class="card_data-block--value">0</div>
+      <div class="card_data-block--label">Total ventilators in use</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card_header">
+      <img class="card_icon" src="/assets/images/covid-19-positive.svg" alt="">
+      <div class="card_header-text">TOTAL COVID PATIENT STATS</div>
+    </div>
+
+    <div class="card_data-block">
+      <div class="card_data-block--value">0</div>
+      <div class="card_data-block--label">Total COVID positive</div>
+    </div>
+
+    <div class="card_data-block">
+      <div class="card_data-block--value">0</div>
+      <div class="card_data-block--label">Total COVID negative</div>
+    </div>
+
+    <div class="card_data-block">
+      <div class="card_data-block--value">0</div>
+      <div class="card_data-block--label">Total COVID suspected</div>
+    </div>
+  </div>
+</div>
+
+{{#if this.model.beds}}
+  <div class="ward-beds">
+    <h1>COVID beds</h1>
+    <p>There are {{this.model.beds.length}} in this ward</p>
+  </div>
+{{/if}}
