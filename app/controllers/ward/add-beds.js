@@ -9,7 +9,7 @@ export default class WardAddBedsController extends Controller {
   @service apollo;
 
   @tracked noOfBedsToAdd = null;
-  @tracked error = false;
+  @tracked error = true;
   @tracked isSaving = false;
 
   get addButtonDisabled() {
