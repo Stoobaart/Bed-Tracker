@@ -17,7 +17,11 @@ export default class DashboardController extends Controller {
   // @tracked useManagement = null;
   // @tracked totalBeds = this.model.hospital.totalBeds;
   @tracked totalManagedBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
-  @tracked availableBeds = this.model.hospital.availableBeds;
+  @tracked availableBeds = this.model.hospital.availableBeds || 0;
+  @tracked totalVentilators = this.model.hospital.totalVentilatorInUse || 0;
+  @tracked totalCovidStatusNegative = this.model.hospital.totalCovidStatusNegative || 0;
+  @tracked totalCovidStatusPositive = this.model.hospital.totalCovidStatusPositive || 0;
+  @tracked totalCovidStatusSuspected = this.model.hospital.totalCovidStatusSuspected || 0;
   // @tracked noOfBedsToEditAvailabiity = null;
   // @tracked makeBedsAvailable = true;
   // @tracked errorMessage = null;

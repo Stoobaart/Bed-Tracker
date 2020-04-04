@@ -6,6 +6,10 @@ query {
       id
       name
       totalBeds
+      totalCovidStatusNegative
+      totalCovidStatusPositive
+      totalCovidStatusSuspected
+      totalVentilatorInUse
       unavailableBeds
       useManagement
       wards {
@@ -20,6 +24,10 @@ query {
         longName
         shortName
         totalBeds
+        totalCovidStatusNegative
+        totalCovidStatusPositive
+        totalCovidStatusSuspected
+        totalVentilatorInUse
         unavailableBeds
       }
     }
