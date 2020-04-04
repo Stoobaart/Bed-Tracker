@@ -1,1 +1,42 @@
-{{outlet}}
+<div class="page">
+  <form
+    class="form form_add"
+    {{on "submit" this.createWard}}>
+    <div class="form_header">Add a ward</div>
+
+    <label
+      for="shortName"
+      class="form_label">
+      Ward short name
+    </label>
+    <Input
+      @type="text"
+      @name="shortName"
+      @class="form_input form_short-name-input"
+      @value={{this.shortName}}
+      @maxlength="7"
+      @key-up={{action (mut this.shortName) value=@target.value}} />
+    <div class="form_help-text">Enter the ward abbreviation</div>
+
+    <label
+      for="longName"
+      class="form_label">
+      Ward long name
+      <span>~ optional</span>
+    </label>
+    <Input
+      @type="text"
+      @name="longName"
+      @class="form_input form_longName-input"
+      @value={{this.longName}}
+      @key-up={{action (mut this.longName) value=@target.value}} />
+    <div class="form_help-text">Enter the ward full name</div>
+
+    <button
+      type="submit"
+      class="form_btn"
+      disabled={{not this.shortName}}>
+      Add ward
+    </button>
+  </form>
+</div>

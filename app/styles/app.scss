@@ -109,15 +109,27 @@ html, body {
     }
   }
 
-  &_link--button {
-    border-radius: 4px;
-    background-color: white;
-    height: 48px;
-    width: 124px;
-    text-align: center;
-    line-height: 3.2;
-    text-decoration: none;
-    color: #005eb8;
+  &_link {
+    &--arrow {
+      position: relative;
+      top: -.2rem;
+      left: 1rem;
+    }
+
+    &--button {
+      border-radius: 4px;
+      background-color: white;
+      height: 48px;
+      width: 124px;
+      text-align: center;
+      line-height: 3.2;
+      text-decoration: none;
+      color: #005eb8;
+    }
+
+    &--container {
+      width: 3rem;
+    }
   }
 
   &_body-text {
@@ -125,17 +137,26 @@ html, body {
   }
 
   &_card {
+    display: flex;
+    justify-content: space-between;
+    height: 1.125rem;
+    background-color: white;
+    padding: 1rem;
+    line-height: 1;
+
     &--ward-name {
       width: 110px;
     }
 
     &--beds {
       &-number {
+        line-height: 0.75;
         font-size: 1.5rem;
       }
 
       &-text {
         font-size: .75rem;
+        line-height: 1.5;
       }
     }
     
@@ -238,60 +259,60 @@ html, body {
   }
 }
 
-.edit-beds {
-  &_form {
-    padding: 1rem 2rem;
+// .edit-beds {
+//   &_form {
+//     padding: 1rem 2rem;
 
-    &.total-beds {
-      padding: 0;
-      width: 100%;
-    }
-  }
+//     &.total-beds {
+//       padding: 0;
+//       width: 100%;
+//     }
+//   }
 
-  &_input.form_input {
-    line-height: 2.5;
-    margin-top: 0;
-  }
+//   &_input.form_input {
+//     line-height: 2.5;
+//     margin-top: 0;
+//   }
 
-  &_subheader {
-    font-weight: 600;
-    line-height: 1.5;
-    color: #333333;
-    margin-bottom: 1.5rem;
-  }
+//   &_subheader {
+//     font-weight: 600;
+//     line-height: 1.5;
+//     color: #333333;
+//     margin-bottom: 1.5rem;
+//   }
 
-  &_help-text {
-    font-size: 12px;
-    line-height: 1.33;
-    color: #737373;
-    margin-bottom: 1rem;
+//   &_help-text {
+//     font-size: 12px;
+//     line-height: 1.33;
+//     color: #737373;
+//     margin-bottom: 1rem;
 
-    &.bold {
-      font-size: 16px;
-      font-weight: 600;
-      color: black;
-    }
+//     &.bold {
+//       font-size: 16px;
+//       font-weight: 600;
+//       color: black;
+//     }
 
-    &.error {
-      font-weight: 600;
-      color: red;
-    }
-  }
+//     &.error {
+//       font-weight: 600;
+//       color: red;
+//     }
+//   }
 
-  &_radio {
-    display: flex;
-    line-height: 1;
-    margin-bottom: 1rem;
+//   &_radio {
+//     display: flex;
+//     line-height: 1;
+//     margin-bottom: 1rem;
 
-    &--label {
-      line-height: 1.5;
-    }
+//     &--label {
+//       line-height: 1.5;
+//     }
 
-    &--text {
-      color: #333333;
-    }
-  }
-}
+//     &--text {
+//       color: #333333;
+//     }
+//   }
+// }
 
 .form {
   margin: auto;
@@ -303,14 +324,27 @@ html, body {
   width: 80vw;
   max-width: 21rem;
 
-  &_subheader {
+  &_header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+  }
 
+  &_add {
+    top: 0;
+    max-width: 311px;
+    margin: 1rem auto;
   }
 
   &_label {
+    display: flex;
     width: 100%;
-    font-size: 12px;
     font-weight: bold;
+
+    span {
+      padding-left: .5rem;
+      color: #737373;
+    }
   }
 
   &_input {
@@ -322,6 +356,17 @@ html, body {
     &:focus {
       outline: none;
     }
+  }
+
+  &_help-text {
+    font-size: 12px;
+    line-height: 1.33;
+    color: #737373;
+    margin-bottom: 2.5rem;
+  }
+
+  &_short-name-input {
+    width: 80px;
   }
 
   &_error {

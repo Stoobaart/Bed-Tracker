@@ -3,17 +3,25 @@ query {
     hospital {
       address
       availableBeds
-      beds {
-        active
-        available
-        id
-        reference
-      }
       id
       name
       totalBeds
       unavailableBeds
       useManagement
+      wards {
+        availableBeds
+        beds {
+          active
+          available
+          id
+          reference
+        }
+        id
+        longName
+        shortName
+        totalBeds
+        unavailableBeds
+      }
     }
   }
 }

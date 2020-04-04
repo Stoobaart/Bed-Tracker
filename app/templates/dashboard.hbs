@@ -186,7 +186,7 @@
             {{/if}}
             <div class="wards_card--beds-number">{{ward.availableBeds}}</div> 
             <div class="wards_card--beds-text">Available COVID beds</div>
-            <LinkTo @route="ward" @model={{ward.id}} class="wards_link--button" role="button">
+            <LinkTo class="wards_link--container" @route="ward" @model={{ward.id}} role="button">
               <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
             </LinkTo>
           </div>
