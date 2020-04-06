@@ -748,13 +748,27 @@ button {
 .ember-modal-overlay {
   background-color: rgba(0,0,0,0.8);
   opacity: 0;
-  animation: fade .5s forwards;
+  animation: fade .1s forwards;
 }
 
 .ember-modal-dialog {
-  padding: 1.5rem 0;
-  min-width: 20rem;
-  max-width: 23.4375rem;
+  top: 174% !important;
+  min-width: 100%;
+  height: 85%;
+  padding: 0;
+  border-radius: 6px 6px 0 0;
+  animation: slideUp .3s forwards;
+
+  .header {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #d8d8d8;
+  }
+  
+  .subheader {
+    padding-left: 2rem;
+  }
 }
 
 @keyframes fade {
@@ -763,15 +777,13 @@ button {
   }
 }
 
-.modal {
-
-  &_header {
-    font-size: 1.25rem;
-    padding-left: 1.5rem;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #d8d8d8;
+@keyframes slideUp {
+  100% {
+    top: 74%;
   }
+}
+
+.modal {
 
   &_body {
     padding: 0 1.5rem;
@@ -880,10 +892,10 @@ button {
   .header {
     display: inline-flex;
     justify-content: space-between;
-    width: calc(100% - 4rem);
+    width: calc(100% - 4.6rem);
     height: 48px;
     background-color: #003e78;
-    padding: 0 2rem;
+    padding: 0 2rem 0 2.6rem;
 
     &--column {
       color: white;
@@ -898,11 +910,15 @@ button {
   &_card {
     display: flex;
     justify-content: space-between;
-    width: calc(100% - 4rem);
+    width: calc(100% - 2rem);
     height: 1.125rem;
     background-color: white;
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 1rem 0;
     border-bottom: 2px solid #d8d8d8;
+
+    .bed-number {
+      padding: 0 1rem;
+    }
 
     .column {
       display: inline-flex;

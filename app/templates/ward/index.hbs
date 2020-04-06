@@ -86,10 +86,11 @@
       </div>
     </div>
 
-    {{#each this.model.beds as |bed|}}
+    {{#each this.model.beds as |bed index|}}
       <div class="ward-beds_card">
+        <div class="bed-number">{{plus-one index}}</div>
         {{#if bed.available}}
-          <div class="column column--available">
+          <div class="column column--available" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
             <img class="icon" src="/assets/images/empty-new.svg" alt="">
             Available
           </div>
@@ -104,20 +105,30 @@
             {{bed.ventilatorInUse}}
           </div>
         {{/if}}
-
-        {{!-- <div class="wards_card--ward-name">{{bed.shortName}}</div>
-        {{#if (eq ward.availableBeds 0)}}
-          <img src="/assets/images/empty.svg" alt="">
-        {{else}}
-          <img src="/assets/images/available-green.svg" alt="">
-        {{/if}}
-        <div class="wards_card--beds-number">{{ward.availableBeds}}</div>
-        <div class="wards_card--beds-text">Available COVID beds</div>
-        <LinkTo class="wards_link--container" @route="ward" @model={{ward.id}} role="button">
-          <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
-        </LinkTo> --}}
       </div>
     {{/each}}
 
   </div>
+{{/if}}
+
+{{#if this.editBedModalIsOpen}}
+  <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+    <div class="header">Change status of bed {{this.bedInMemory.index}}</div>
+
+    <form>
+      <div class="subheader">The patient occupying the bed is:</div>
+
+      {{!-- <div class="edit-beds_radio">
+        <input
+          id="positive"
+          type="radio"
+          checked={{this.patientPositive}}
+          onclick={{action this.setCovidStatus}}>
+        <label for="positive" class="edit-beds_radio--label">
+          <div class="edit-beds_radio--text">Mobile device QR scanning only</div>
+        </label>
+      </div> --}}
+    </form>
+    
+  </ModalDialog>
 {{/if}}

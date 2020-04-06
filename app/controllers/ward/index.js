@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class WardController extends Controller {
   @tracked totalBeds = this.model.totalBeds || 0;
@@ -8,6 +9,8 @@ export default class WardController extends Controller {
   @tracked totalCovidStatusPositive = this.model.totalCovidStatusPositive || 0;
   @tracked totalCovidStatusNegative = this.model.totalCovidStatusNegative || 0;
   @tracked totalCovidStatusSuspected = this.model.totalCovidStatusSuspected || 0;
+  @tracked editBedModalIsOpen = false;
+  @tracked bedInMemory = null;
 
   get availableBedsPercentage() {
     if (this.totalBeds === 0) {
@@ -16,4 +19,26 @@ export default class WardController extends Controller {
 
     return Math.round((this.availableBeds / this.totalBeds) * 100);
   }
+
+  @action
+  openEditBedModal(bed, index) {
+    this.bedInMemory = bed;
+    this.set('bedInMemory', { index: index + 1 });
+    this.editBedModalIsOpen = true;
+  }
+
+  @action
+  closeModal() {
+    this.editBedModalIsOpen = false;
+    this.bedInMemory = null;
+  }
+
+  // @action
+  // setCovidStatus(status) {
+  //   if (status === 'positive') {
+  //     this.setProperties('bedInMemory', {
+
+  //     });
+  //   }
+  // }
 }
