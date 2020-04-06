@@ -1,10 +1,10 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+// import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 // import UseQrCodeSystem from 'bed-checker/gql/mutations/use-qr-code-system';
 // import UpdateNumberOfBeds from 'bed-checker/gql/mutations/update-number-of-beds';
-import RegisterBeds from 'bed-checker/gql/mutations/register-beds';
+// import RegisterBeds from 'bed-checker/gql/mutations/register-beds';
 // import UpdateBedAvailabilityMutation from 'bed-checker/gql/mutations/update-bed-availability';
 // import ActivateBedMutation from 'bed-checker/gql/mutations/activate-bed';
 // import RemoveBedMutation from 'bed-checker/gql/mutations/remove-bed';
@@ -29,7 +29,7 @@ export default class DashboardController extends Controller {
   // @tracked showEditTotalBedsForm = false;
   // @tracked showRegisterBedsForm = false;
   // @tracked newNoOfTotalBeds = null;
-  @tracked noOfBedsToRegister = null;
+  // @tracked noOfBedsToRegister = null;
   // @tracked qrCode = null;
   // @tracked beds = this.model.hospital.beds;
   // @tracked selectedBedInMemory = {};
@@ -149,37 +149,37 @@ export default class DashboardController extends Controller {
   //   }
   // }
 
-  @action
-  resetForms() {
-    this.newNoOfTotalBeds = null;
-    this.noOfBedsToRegister = null;
-  }
+  // @action
+  // resetForms() {
+  //   this.newNoOfTotalBeds = null;
+  //   this.noOfBedsToRegister = null;
+  // }
 
-  @action
-  async registerBeds(event) {
-    event.preventDefault();
+  // @action
+  // async registerBeds(event) {
+  //   event.preventDefault();
 
-    const variables = {
-      input: {
-        numberOfBeds: JSON.parse(this.noOfBedsToRegister),
-      }
-    };
+  //   const variables = {
+  //     input: {
+  //       numberOfBeds: JSON.parse(this.noOfBedsToRegister),
+  //     }
+  //   };
 
-    try {
-      const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
-      const newBedArray = [...this.beds];
-      response.registerBeds.beds.forEach((bed) => {
-        newBedArray.push(bed);
-      });
-      this.beds = newBedArray;
+  //   try {
+  //     const response = await this.apollo.mutate({ mutation: RegisterBeds, variables });
+  //     const newBedArray = [...this.beds];
+  //     response.registerBeds.beds.forEach((bed) => {
+  //       newBedArray.push(bed);
+  //     });
+  //     this.beds = newBedArray;
 
-      this.totalManagedBeds = this.totalManagedBeds + JSON.parse(this.noOfBedsToRegister);
-      this.noOfBedsToRegister = null;
-      this.showRegisterBedsForm = false;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //     this.totalManagedBeds = this.totalManagedBeds + JSON.parse(this.noOfBedsToRegister);
+  //     this.noOfBedsToRegister = null;
+  //     this.showRegisterBedsForm = false;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   // @action
   // async printQrCode(bedId) {
