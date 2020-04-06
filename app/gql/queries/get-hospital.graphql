@@ -15,10 +15,10 @@ query {
       wards {
         availableBeds
         beds {
-          active
           available
+          covidStatus
           id
-          reference
+          ventilatorInUse
         }
         id
         longName

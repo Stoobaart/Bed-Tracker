@@ -8,8 +8,10 @@
   {{/if}}
 
   <div class="breadcrumbs">
-    <img src="/assets/images/hospital.svg" alt="">
-    <LinkTo @route="dashboard" @tagName="span">Dashboard</LinkTo> > Ward
+    <LinkTo @route="dashboard" @tagName="span">
+      <img src="/assets/images/hospital.svg" alt="">
+      <div class="text">Dashboard</div>
+    </LinkTo> > Ward {{this.model.shortName}}
   </div>
   <h1>{{this.model.shortName}}</h1>
   <p>{{this.model.longName}}</p>
@@ -18,7 +20,6 @@
     <div class="card_header">
       <img class="card_icon" src="/assets/images/occupied.svg" alt="">
       <div class="card_header-text">WARD TOTAL COVID BEDS  {{this.totalBeds}}</div>
-      <LinkTo @route="ward.add-beds" @model={{this.model.id}}>+ Add beds</LinkTo>
     </div>
 
     <div class="card_data-block">
@@ -61,8 +62,62 @@
 </div>
 
 {{#if this.model.beds}}
+  <div class="ward-beds--top-bar">
+    <div class="header">COVID beds</div>
+    <LinkTo class="link-button" role="button" @route="ward.add-beds" @model={{this.model.id}}>
+      <img src="/assets/images/plus.svg" alt="">
+        Add beds
+    </LinkTo>
+  </div>
+
   <div class="ward-beds">
-    <h1>COVID beds</h1>
-    <p>There are {{this.model.beds.length}} beds in this ward</p>
+    <div class="header">
+      <div class="header--column">
+        <img class="icon" src="/assets/images/cross-no-bg.svg" alt="">
+        Availability
+      </div>
+      <div class="header--column">
+        <img class="icon" src="/assets/images/covid-19-positive.svg" alt="">
+        COVID
+      </div>
+      <div class="header--column">
+        <img class="icon" src="/assets/images/white.svg" alt="">
+        Ventilation
+      </div>
+    </div>
+
+    {{#each this.model.beds as |bed|}}
+      <div class="ward-beds_card">
+        {{#if bed.available}}
+          <div class="column column--available">
+            <img class="icon" src="/assets/images/empty-new.svg" alt="">
+            Available
+          </div>
+        {{else}}
+          <div class="column">
+            Occupied
+          </div>
+          <div class="column">
+            {{bed.covidStatus}}
+          </div>
+          <div class="column">
+            {{bed.ventilatorInUse}}
+          </div>
+        {{/if}}
+
+        {{!-- <div class="wards_card--ward-name">{{bed.shortName}}</div>
+        {{#if (eq ward.availableBeds 0)}}
+          <img src="/assets/images/empty.svg" alt="">
+        {{else}}
+          <img src="/assets/images/available-green.svg" alt="">
+        {{/if}}
+        <div class="wards_card--beds-number">{{ward.availableBeds}}</div>
+        <div class="wards_card--beds-text">Available COVID beds</div>
+        <LinkTo class="wards_link--container" @route="ward" @model={{ward.id}} role="button">
+          <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
+        </LinkTo> --}}
+      </div>
+    {{/each}}
+
   </div>
 {{/if}}

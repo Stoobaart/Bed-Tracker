@@ -1,10 +1,8 @@
 query ($input: GetBedInput!) {
   getBed (input: $input) {
     bed {
-      active
       available
       id
-      reference
     }
   }
 }

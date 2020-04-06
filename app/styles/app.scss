@@ -808,8 +808,15 @@ button {
     color: #003e78;
 
     span {
+      display: inline-flex;
       margin: 0 0.4rem;
       color: #005eb8;
+
+      .text {
+        line-height: 2;
+        padding-left: .5rem;
+        color: #005eb8;
+      }
     }
 
     img {
@@ -845,10 +852,73 @@ button {
 }
 
 .ward-beds {
-  padding: 1rem;
 
-  h1 {
-    font-size: 1.5rem;
+  &--top-bar {
+    display: flex;
+    
+    .header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 1.5rem 1rem;
+      width: calc(100% - 174px);
+    }
+
+    .link-button {
+      border-radius: 4px;
+      background-color: white;
+      height: 48px;
+      width: 124px;
+      text-align: center;
+      line-height: 3.2;
+      text-decoration: none;
+      color: #005eb8;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+    }
+  }
+
+  .header {
+    display: inline-flex;
+    justify-content: space-between;
+    width: calc(100% - 4rem);
+    height: 48px;
+    background-color: #003e78;
+    padding: 0 2rem;
+
+    &--column {
+      color: white;
+      line-height: 3;
+
+      .icon {
+        filter: brightness(100);
+      }
+    }
+  }
+
+  &_card {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 4rem);
+    height: 1.125rem;
+    background-color: white;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #d8d8d8;
+
+    .column {
+      display: inline-flex;
+      
+      &--available {
+        width: 100%;
+      }
+
+      .icon {
+        width: 25px;
+        height: 24px;
+        padding-right: .2rem;
+        position: relative;
+        top: -2px;
+      }
+    }
   }
 }
 

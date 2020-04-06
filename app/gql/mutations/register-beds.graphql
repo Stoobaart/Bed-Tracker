@@ -1,10 +1,8 @@
 mutation ($input:RegisterBedsInput!) {
   registerBeds (input: $input) {
     beds {
-      active
       available
       id
-      reference
     }
   }
 }
