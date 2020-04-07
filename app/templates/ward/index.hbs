@@ -61,15 +61,15 @@
   </div>
 </div>
 
-{{#if this.model.beds}}
-  <div class="ward-beds--top-bar">
-    <div class="header">COVID beds</div>
-    <LinkTo class="link-button" role="button" @route="ward.add-beds" @model={{this.model.id}}>
-      <img src="/assets/images/plus.svg" alt="">
-        Add beds
-    </LinkTo>
-  </div>
+<div class="ward-beds--top-bar">
+  <div class="header">COVID beds</div>
+  <LinkTo class="link-button" role="button" @route="ward.add-beds" @model={{this.model.id}}>
+    <img src="/assets/images/plus.svg" alt="">
+    Add beds
+  </LinkTo>
+</div>
 
+{{#if this.model.beds}}
   <div class="ward-beds">
     <div class="header">
       <div class="bed-number"></div>
