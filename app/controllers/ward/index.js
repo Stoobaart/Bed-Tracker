@@ -7,13 +7,8 @@ import RemoveBed from 'bed-checker/gql/mutations/remove-bed';
 
 export default class WardController extends Controller {
   @service apollo;
+  @service hospital;
 
-  @tracked totalBeds = this.model.totalBeds || 0;
-  @tracked availableBeds = this.model.availableBeds || 0;
-  @tracked totalVentilatorInUse = this.model.totalVentilatorInUse || 0;
-  @tracked totalCovidStatusPositive = this.model.totalCovidStatusPositive || 0;
-  @tracked totalCovidStatusNegative = this.model.totalCovidStatusNegative || 0;
-  @tracked totalCovidStatusSuspected = this.model.totalCovidStatusSuspected || 0;
   @tracked editBedModalIsOpen = false;
   @tracked bedInMemory = null;
   @tracked changesMade = false;
@@ -26,11 +21,11 @@ export default class WardController extends Controller {
   @tracked showDeleteForm = false;
 
   get availableBedsPercentage() {
-    if (this.totalBeds === 0) {
+    if (this.model.totalBeds === 0) {
       return 0;
     }
 
-    return Math.round((this.availableBeds / this.totalBeds) * 100);
+    return Math.round((this.model.availableBeds / this.model.totalBeds) * 100);
   }
 
   @action
@@ -119,11 +114,13 @@ export default class WardController extends Controller {
     try {
       const { updateBed } = await this.apollo.mutate({ mutation: UpdateBed, variables });
 
-      const mutatableBedsArray = [...this.model.beds];
-      const foundIndex = mutatableBedsArray.findIndex(x => x.id === updateBed.bed.id);
-      mutatableBedsArray[foundIndex] = updateBed.bed;
+      const foundIndex = this.model.beds.findIndex(x => x.id === updateBed.bed.id);
+      this.model.beds[foundIndex].available = updateBed.bed.available;
+      this.model.beds[foundIndex].covidStatus = updateBed.bed.covidStatus;
+      this.model.beds[foundIndex].ventilatorInUse = updateBed.bed.ventilatorInUse;
 
-      this.set('model.beds', mutatableBedsArray);
+      this.hospital.fetchHospital();
+
       this.closeModal();
       // this.set('model.showSuccessMessage', true);
     } catch (error) {

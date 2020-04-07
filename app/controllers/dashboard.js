@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
+// import { inject as service } from '@ember/service';
 // import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
+// import { tracked } from '@glimmer/tracking';
 // import UseQrCodeSystem from 'bed-checker/gql/mutations/use-qr-code-system';
 // import UpdateNumberOfBeds from 'bed-checker/gql/mutations/update-number-of-beds';
 // import RegisterBeds from 'bed-checker/gql/mutations/register-beds';
@@ -11,17 +11,17 @@ import { tracked } from '@glimmer/tracking';
 // import QRCode from 'qrcode';
 
 export default class DashboardController extends Controller {
-  @service apollo;
+  // @service apollo;
   // @service printThis;
 
   // @tracked useManagement = null;
   // @tracked totalBeds = this.model.hospital.totalBeds;
-  @tracked totalManagedBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
-  @tracked availableBeds = this.model.hospital.availableBeds || 0;
-  @tracked totalVentilators = this.model.hospital.totalVentilatorInUse || 0;
-  @tracked totalCovidStatusNegative = this.model.hospital.totalCovidStatusNegative || 0;
-  @tracked totalCovidStatusPositive = this.model.hospital.totalCovidStatusPositive || 0;
-  @tracked totalCovidStatusSuspected = this.model.hospital.totalCovidStatusSuspected || 0;
+  // @tracked totalManagedBeds = this.model.hospital.beds ? this.model.hospital.beds.length : 0;
+  // @tracked availableBeds = this.model.hospital.availableBeds || 0;
+  // @tracked totalVentilators = this.model.hospital.totalVentilatorInUse || 0;
+  // @tracked totalCovidStatusNegative = this.model.hospital.totalCovidStatusNegative || 0;
+  // @tracked totalCovidStatusPositive = this.model.hospital.totalCovidStatusPositive || 0;
+  // @tracked totalCovidStatusSuspected = this.model.hospital.totalCovidStatusSuspected || 0;
   // @tracked noOfBedsToEditAvailabiity = null;
   // @tracked makeBedsAvailable = true;
   // @tracked errorMessage = null;
@@ -38,11 +38,11 @@ export default class DashboardController extends Controller {
   // @tracked showDeleteBedModal = false;
 
   get availableBedsPercentage() {
-    if (this.totalManagedBeds === 0) {
+    if (this.model.totalBeds === 0) {
       return 0;
     }
     
-    return Math.round((this.availableBeds / this.totalManagedBeds) * 100);
+    return Math.round((this.model.availableBeds / this.model.totalBeds) * 100);
   }
 
   get availableBedsPercentageClass() {

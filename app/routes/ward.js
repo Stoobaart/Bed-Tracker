@@ -1,14 +1,13 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
-import { queryManager } from 'ember-apollo-client';
-import GetHospital from 'bed-checker/gql/queries/get-hospital';
+import { inject as service } from '@ember/service';
 
 export default class WardRoute extends Route {
-  @queryManager() apollo;
+  @service hospital;
 
   async model({ id }) {
-    const { getHospital } = await this.apollo.watchQuery({ query: GetHospital });
-    return getHospital.hospital.wards.find((ward) => ward.id === id);
+    await this.hospital.fetchHospital();
+    return this.hospital.hospital.wards.find((ward) => ward.id === id);
   }
 
   @action

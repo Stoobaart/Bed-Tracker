@@ -1,17 +1,15 @@
 import Route from '@ember/routing/route';
-import { queryManager } from "ember-apollo-client";
-import GetHospital from 'bed-checker/gql/queries/get-hospital';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class DashboardRoute extends Route {
-  @queryManager() apollo;
   @service errors;
+  @service hospital;
 
   async model() {
     try {
-      const response = await this.apollo.watchQuery({ query: GetHospital });
-      return response.getHospital;
+      await this.hospital.fetchHospital();
+      return this.hospital.hospital;
     } catch (error) {
       this.errors.hasError = true;
     }
@@ -32,3 +30,5 @@ export default class DashboardRoute extends Route {
     this.transitionTo('/');
   }
 }
+
+

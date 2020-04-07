@@ -53,7 +53,7 @@
   {{else}}
 --}}
 
-  {{#if this.model.hospital.useManagement}}
+  {{#if this.model.useManagement}}
 
 {{!-- REGISTER BEDS FUNCTIONALITY
       {{#if (eq this.totalManagedBeds 0)}}
@@ -94,11 +94,11 @@
       <div class="card">
         <div class="card_header">
           <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-          <div class="card_header-text">TOTAL COVID BEDS  {{this.totalManagedBeds}}</div>
+          <div class="card_header-text">TOTAL COVID BEDS  {{this.model.totalBeds}}</div>
         </div>
 
         <div class="card_data-block">
-          <div class="card_data-block--value">{{this.availableBeds}}</div>
+          <div class="card_data-block--value">{{this.model.availableBeds}}</div>
           <div class="card_data-block--label">Total available COVID beds</div>
         </div>
 
@@ -108,7 +108,7 @@
         </div>
 
         <div class="card_data-block">
-          <div class="card_data-block--value">{{this.totalVentilators}}</div>
+          <div class="card_data-block--value">{{this.model.totalVentilatorInUse}}</div>
           <div class="card_data-block--label">Total ventilators in use</div>
         </div>
       </div>
@@ -120,17 +120,17 @@
         </div>
 
         <div class="card_data-block">
-          <div class="card_data-block--value">{{this.totalCovidStatusPositive}}</div>
+          <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
           <div class="card_data-block--label">Total COVID positive</div>
         </div>
 
         <div class="card_data-block">
-          <div class="card_data-block--value">{{this.totalCovidStatusNegative}}</div>
+          <div class="card_data-block--value">{{this.model.totalCovidStatusNegative}}</div>
           <div class="card_data-block--label">Total COVID negative</div>
         </div>
 
         <div class="card_data-block">
-          <div class="card_data-block--value">{{this.totalCovidStatusSuspected}}</div>
+          <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
           <div class="card_data-block--label">Total COVID suspected</div>
         </div>
       </div>
@@ -184,8 +184,8 @@
         </LinkTo>
       </div>
 
-      {{#if this.model.hospital.wards.length}}
-        {{#each this.model.hospital.wards as |ward|}}
+      {{#if this.model.wards.length}}
+        {{#each this.model.wards as |ward|}}
           <div class="wards_card">
             <div class="wards_card--ward-name">{{ward.shortName}}</div>
             {{#if (eq ward.availableBeds 0)}}
