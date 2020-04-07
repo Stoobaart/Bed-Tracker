@@ -9,8 +9,8 @@ export default class AddWardController extends Controller {
   @service apollo;
   @service hospital;
 
-  shortName = '';
-  longName = '';
+  @tracked shortName = '';
+  @tracked longName = '';
 
   @tracked error = false;
 
@@ -31,6 +31,8 @@ export default class AddWardController extends Controller {
       const { createWard } = await this.apollo.mutate({ mutation: CreateWard, variables });
       this.hospital.addWard(createWard.ward);
       this.set('model.showSuccessMessage', true);
+      this.shortName = '';
+      this.longName = '';
       this.router.transitionTo('dashboard');
     } catch (error) {
       this.error = true;
