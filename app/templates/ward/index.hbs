@@ -118,16 +118,58 @@
     <form>
       <div class="subheader">The patient occupying the bed is:</div>
 
-      {{!-- <div class="edit-beds_radio">
+      <div class="radio">
         <input
           id="positive"
           type="radio"
-          checked={{this.patientPositive}}
-          onclick={{action this.setCovidStatus}}>
-        <label for="positive" class="edit-beds_radio--label">
-          <div class="edit-beds_radio--text">Mobile device QR scanning only</div>
+          checked={{eq this.bedInMemory.bed.covidStatus 'POSITIVE'}}
+          onclick={{action this.setCovidStatus 'POSITIVE'}}>
+        <label for="positive" class="radio--label">
+          <div class="radio--text">COVID positive</div>
         </label>
-      </div> --}}
+      </div>
+
+      <div class="radio">
+        <input
+          id="negative"
+          type="radio"
+          checked={{eq this.bedInMemory.bed.covidStatus 'NEGATIVE'}}
+          onclick={{action this.setCovidStatus 'NEGATIVE'}}>
+        <label for="negative" class="radio--label">
+          <div class="radio--text">COVID negative</div>
+        </label>
+      </div>
+
+      <div class="radio">
+        <input
+          id="suspected"
+          type="radio"
+          checked={{eq this.bedInMemory.bed.covidStatus 'SUSPECTED'}}
+          onclick={{action this.setCovidStatus 'SUSPECTED'}}>
+        <label for="suspected" class="radio--label">
+          <div class="radio--text">COVID suspected</div>
+        </label>
+      </div>
+
+      <div class="radio ventilation">
+        <input
+          id="ventilation"
+          type="radio"
+          checked={{this.bedInMemory.bed.ventilatorInUse}}
+          onclick={{action this.setVentilatorStatus}}>
+        <label for="ventilation" class="radio--label">
+          <div class="radio--text">Has ventilation</div>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="form_btn"
+        disabled={{not this.changesMade}}
+        {{on "click" (fn this.editBed false)}}>
+        Save changes
+      </button>
+
     </form>
     
   </ModalDialog>

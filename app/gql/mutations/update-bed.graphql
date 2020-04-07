@@ -1,0 +1,10 @@
+mutation ($input: UpdateBedInput!) {
+  updateBed (input: $input) {
+    bed {
+      available
+      covidStatus
+      id
+      ventilatorInUse
+    }
+  }
+}
