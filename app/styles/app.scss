@@ -963,6 +963,10 @@ button {
         padding-right: .2rem;
         position: relative;
         top: -2px;
+
+        &.occupied {
+          filter: brightness(0%);
+        }
       }
     }
   }

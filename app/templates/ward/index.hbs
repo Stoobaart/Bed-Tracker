@@ -95,7 +95,8 @@
             Available
           </div>
         {{else}}
-          <div class="column">
+          <div class="column" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+            <img class="icon occupied" src="/assets/images/cross-no-bg.svg" alt="">
             Occupied
           </div>
           <div class="column">
