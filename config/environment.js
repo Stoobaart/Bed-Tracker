@@ -25,6 +25,12 @@ module.exports = function(environment) {
     graphqlApi: {
       url: 'https://bed-checker.gigalixirapp.com/api'
     },
+    hotjar: {
+      id: 1747647,
+      snippetVersion: 6,
+      forceSSL: true
+    },
+
   };
 
   if (environment === 'development') {
