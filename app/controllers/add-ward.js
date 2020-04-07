@@ -7,6 +7,7 @@ import CreateWard from 'bed-checker/gql/mutations/create-ward';
 export default class AddWardController extends Controller {
   @service router;
   @service apollo;
+  @service hospital;
 
   shortName = '';
   longName = '';
@@ -28,7 +29,7 @@ export default class AddWardController extends Controller {
 
     try {
       const { createWard } = await this.apollo.mutate({ mutation: CreateWard, variables });
-      this.set('model.hospital.wards', [...this.model.hospital.wards, createWard.ward]);
+      this.model.wards.push(createWard.ward);
       this.set('model.showSuccessMessage', true);
       this.router.transitionTo('dashboard');
     } catch (error) {
