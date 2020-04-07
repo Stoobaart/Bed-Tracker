@@ -72,12 +72,13 @@
 
   <div class="ward-beds">
     <div class="header">
+      <div class="bed-number"></div>
       <div class="header--column">
-        <img class="icon" src="/assets/images/cross-no-bg.svg" alt="">
+        <img class="icon" src="/assets/images/occupied-white.svg" alt="">
         Availability
       </div>
       <div class="header--column">
-        <img class="icon" src="/assets/images/covid-19-positive.svg" alt="">
+        <img class="icon" src="/assets/images/covid-19-positive-white.svg" alt="">
         COVID
       </div>
       <div class="header--column">
@@ -90,20 +91,32 @@
       <div class="ward-beds_card">
         <div class="bed-number">{{plus-one index}}</div>
         {{#if bed.available}}
-          <div class="column column--available" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
-            <img class="icon" src="/assets/images/empty-new.svg" alt="">
+          <div class="column" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+            <img class="icon" src="/assets/images/available-yes-green.svg" alt="">
             Available
           </div>
+          <div class="column"></div>
+          <div class="column"></div>
         {{else}}
           <div class="column" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
-            <img class="icon occupied" src="/assets/images/cross-no-bg.svg" alt="">
+            <img class="icon" src="/assets/images/occupied-off-black.svg" alt="">
             Occupied
           </div>
           <div class="column">
+            {{#if (eq bed.covidStatus "POSITIVE")}}
+              <img class="icon" src="/assets/images/covid-19-positive-red.svg" alt="">
+            {{else if (eq bed.covidStatus "NEGATIVE")}}
+              <img class="icon" src="/assets/images/covid-19-negative.svg" alt="">
+            {{else}}
+              <img class="icon" src="/assets/images/covid-19-suspected-purple.svg" alt="">
+            {{/if}}
             {{bed.covidStatus}}
           </div>
           <div class="column">
-            {{bed.ventilatorInUse}}
+            {{#if bed.ventilatorInUse}}
+              <img class="icon tick" src="/assets/images/off-black.svg" alt="">
+              Ventilated
+            {{/if}}
           </div>
         {{/if}}
       </div>
@@ -114,43 +127,70 @@
 
 {{#if this.editBedModalIsOpen}}
   <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
-    <div class="header">Change status of bed {{this.bedInMemory.index}}</div>
+    <div class="header">
+      Change status of bed 
+      {{this.bedInMemory.index}} 
+      <div class="close-btn" role="button" {{action this.closeModal}}>
+        <img src="/assets/images/cross.svg" alt="">
+      </div>
+    </div>
 
     <form>
       <div class="subheader">The patient occupying the bed is:</div>
 
-      <div class="radio">
-        <input
-          id="positive"
-          type="radio"
-          checked={{eq this.bedInMemory.bed.covidStatus 'POSITIVE'}}
-          onclick={{action this.setCovidStatus 'POSITIVE'}}>
-        <label for="positive" class="radio--label">
-          <div class="radio--text">COVID positive</div>
-        </label>
-      </div>
+      {{#if this.showPatientPositiveRadio}}
+        <div class="radio">
+          <input
+            id="positive"
+            type="radio"
+            checked={{eq this.bedInMemory.bed.covidStatus 'POSITIVE'}}
+            onclick={{action this.setCovidStatus 'POSITIVE'}}>
+          <label for="positive" class="radio--label">
+            <div class="radio--text">COVID positive</div>
+          </label>
+        </div>
+      {{/if}}
 
-      <div class="radio">
-        <input
-          id="negative"
-          type="radio"
-          checked={{eq this.bedInMemory.bed.covidStatus 'NEGATIVE'}}
-          onclick={{action this.setCovidStatus 'NEGATIVE'}}>
-        <label for="negative" class="radio--label">
-          <div class="radio--text">COVID negative</div>
-        </label>
-      </div>
+      {{#if this.showPatientNegativeRadio}}
+        <div class="radio">
+          <input
+            id="negative"
+            type="radio"
+            checked={{eq this.bedInMemory.bed.covidStatus 'NEGATIVE'}}
+            onclick={{action this.setCovidStatus 'NEGATIVE'}}>
+          <label for="negative" class="radio--label">
+            <div class="radio--text">COVID negative</div>
+          </label>
+        </div>
+      {{/if}}
 
-      <div class="radio">
-        <input
-          id="suspected"
-          type="radio"
-          checked={{eq this.bedInMemory.bed.covidStatus 'SUSPECTED'}}
-          onclick={{action this.setCovidStatus 'SUSPECTED'}}>
-        <label for="suspected" class="radio--label">
-          <div class="radio--text">COVID suspected</div>
-        </label>
-      </div>
+      {{#if this.showPatientSuspectedRadio}}
+        <div class="radio">
+          <input
+            id="suspected"
+            type="radio"
+            checked={{eq this.bedInMemory.bed.covidStatus 'SUSPECTED'}}
+            onclick={{action this.setCovidStatus 'SUSPECTED'}}>
+          <label for="suspected" class="radio--label">
+            <div class="radio--text">COVID suspected</div>
+          </label>
+        </div>
+      {{/if}}
+
+      {{#if this.showBedAvailableRadio}}
+        <div class="radio">
+          <input
+            id="make-available"
+            type="radio"
+            checked={{this.bedInMemory.bed.available}}
+            onclick={{action this.setAvailability}}>
+          <label for="make-available" class="radio--label">
+            <div class="radio--text">This bed is now available</div>
+          </label>
+        </div>
+      {{/if}}
+
+      
 
       <div class="radio ventilation">
         <input
@@ -167,7 +207,7 @@
         type="submit"
         class="form_btn"
         disabled={{not this.changesMade}}
-        {{on "click" (fn this.editBed false)}}>
+        {{on "click" this.editBed}}>
         Save changes
       </button>
 

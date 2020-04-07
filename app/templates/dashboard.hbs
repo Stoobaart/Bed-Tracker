@@ -189,9 +189,9 @@
           <div class="wards_card">
             <div class="wards_card--ward-name">{{ward.shortName}}</div>
             {{#if (eq ward.availableBeds 0)}}
-              <img src="/assets/images/empty.svg" alt="">
+              <img src="/assets/images/available-no-red.svg" alt="">
             {{else}}
-              <img src="/assets/images/available-green.svg" alt="">
+              <img src="/assets/images/available-yes-green.svg" alt="">
             {{/if}}
             <div class="wards_card--beds-number">{{ward.availableBeds}}</div>
             <div class="wards_card--beds-text">Available COVID beds</div>

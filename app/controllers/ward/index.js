@@ -17,6 +17,11 @@ export default class WardController extends Controller {
   @tracked bedInMemory = null;
   @tracked changesMade = false;
 
+  @tracked showBedAvailableRadio = false;
+  @tracked showPatientPositiveRadio = false;
+  @tracked showPatientNegativeRadio = false;
+  @tracked showPatientSuspectedRadio = false;
+
   get availableBedsPercentage() {
     if (this.totalBeds === 0) {
       return 0;
@@ -31,6 +36,16 @@ export default class WardController extends Controller {
       bed,
       index: index + 1
     }
+
+    this.showBedAvailableRadio = !bed.available;
+    this.showPatientPositiveRadio = bed.covidStatus !== 'POSITIVE';
+    this.showPatientNegativeRadio = bed.covidStatus !== 'NEGATIVE';
+    this.showPatientSuspectedRadio = bed.covidStatus !== 'SUSPECTED';
+
+    if (bed.available) {
+      this.setAvailability();
+    }
+    
     this.editBedModalIsOpen = true;
   }
 
@@ -39,6 +54,19 @@ export default class WardController extends Controller {
     this.editBedModalIsOpen = false;
     this.bedInMemory = null;
     this.changesMade = false;
+  }
+
+  @action
+  setAvailability() {
+    this.set('bedInMemory', { 
+      bed: { 
+        available: !this.bedInMemory.bed.available,
+        covidStatus: this.bedInMemory.bed.covidStatus,
+        id: this.bedInMemory.bed.id,
+        ventilatorInUse: this.bedInMemory.bed.ventilatorInUse
+      }
+    });
+    this.changesMade = true;
   }
 
   @action
@@ -68,17 +96,19 @@ export default class WardController extends Controller {
   }
 
   @action
-  async editBed(available, event) {
+  async editBed(event) {
     event.preventDefault();
 
     this.error = false;
 
+    const available = this.bedInMemory.bed.available;
+
     const variables = {
       input: {
         available,
-        covidStatus: this.bedInMemory.bed.covidStatus,
+        covidStatus: available ? null : this.bedInMemory.bed.covidStatus,
         id: this.bedInMemory.bed.id,
-        ventilatorInUse: this.bedInMemory.bed.ventilatorInUse
+        ventilatorInUse: available ? false : this.bedInMemory.bed.ventilatorInUse
       }
     };
 
