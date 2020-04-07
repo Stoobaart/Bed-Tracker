@@ -29,7 +29,7 @@ export default class AddWardController extends Controller {
 
     try {
       const { createWard } = await this.apollo.mutate({ mutation: CreateWard, variables });
-      this.model.wards.push(createWard.ward);
+      this.hospital.addWard(createWard.ward);
       this.set('model.showSuccessMessage', true);
       this.router.transitionTo('dashboard');
     } catch (error) {

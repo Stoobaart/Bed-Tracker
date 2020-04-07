@@ -7,6 +7,7 @@ import RegisterBedsMutation from 'bed-checker/gql/mutations/register-beds';
 export default class WardAddBedsController extends Controller {
   @service router;
   @service apollo;
+  @service hospital;
 
   @tracked noOfBedsToAdd = null;
   @tracked error = false;
@@ -31,7 +32,7 @@ export default class WardAddBedsController extends Controller {
     try {
       const { registerBeds } = await this.apollo.mutate({ mutation: RegisterBedsMutation, variables });
       this.noOfBedsToAdd = null;
-      this.model.beds.push(...registerBeds.beds);
+      this.hospital.addBeds(this.model, registerBeds.beds);
       this.set('model.showSuccessMessage', true);
       this.router.transitionTo('ward', this.model.id);
     } catch (error) {

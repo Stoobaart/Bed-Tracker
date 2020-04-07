@@ -36,6 +36,16 @@ export default class AccountService extends Service {
 
     this.timeout = setTimeout(this.fetchHospital.bind(this), 10000);
   }
+
+  addWard(ward) {
+    this.hospital.wards.push(new Ward(ward));
+  }
+
+  addBeds(ward, beds) {
+    beds.forEach((bed) => {
+      ward.beds.push(new Bed(bed));
+    });
+  }
 }
 
 class Hospital {

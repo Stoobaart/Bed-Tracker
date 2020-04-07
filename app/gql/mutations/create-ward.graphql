@@ -7,6 +7,16 @@ mutation ($input:CreateWardInput!) {
       totalBeds
       availableBeds
       unavailableBeds
+      totalCovidStatusNegative
+      totalCovidStatusPositive
+      totalCovidStatusSuspected
+      totalVentilatorInUse
+      beds {
+        available
+        covidStatus
+        id
+        ventilatorInUse
+      }
     }
   }
 }
