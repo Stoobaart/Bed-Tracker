@@ -16,47 +16,49 @@
   <h1>{{this.model.shortName}}</h1>
   <p>{{this.model.longName}}</p>
 
-  <div class="card">
-    <div class="card_header">
-      <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-      <div class="card_header-text">WARD TOTAL COVID BEDS  {{this.model.totalBeds}}</div>
+  <div class="cards-container--wards">
+    <div class="card">
+      <div class="card_header">
+        <img class="card_icon" src="/assets/images/occupied.svg" alt="">
+        <div class="card_header-text">WARD TOTAL COVID BEDS  {{this.model.totalBeds}}</div>
+      </div>
+
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.availableBeds}}</div>
+        <div class="card_data-block--label">Total available COVID beds</div>
+      </div>
+
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.availableBedsPercentage}}%</div>
+        <div class="card_data-block--label">Total available bed capacity</div>
+      </div>
+
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalVentilatorInUse}}</div>
+        <div class="card_data-block--label">Total ventilators in use</div>
+      </div>
     </div>
 
-    <div class="card_data-block">
-      <div class="card_data-block--value">{{this.model.availableBeds}}</div>
-      <div class="card_data-block--label">Total available COVID beds</div>
-    </div>
+    <div class="card">
+      <div class="card_header">
+        <img class="card_icon" src="/assets/images/covid-19-positive.svg" alt="">
+        <div class="card_header-text">TOTAL COVID PATIENT STATS</div>
+      </div>
 
-    <div class="card_data-block">
-      <div class="card_data-block--value">{{this.availableBedsPercentage}}%</div>
-      <div class="card_data-block--label">Total available bed capacity</div>
-    </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
+        <div class="card_data-block--label">Total COVID positive</div>
+      </div>
 
-    <div class="card_data-block">
-      <div class="card_data-block--value">{{this.model.totalVentilatorInUse}}</div>
-      <div class="card_data-block--label">Total ventilators in use</div>
-    </div>
-  </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalCovidStatusNegative}}</div>
+        <div class="card_data-block--label">Total COVID negative</div>
+      </div>
 
-  <div class="card">
-    <div class="card_header">
-      <img class="card_icon" src="/assets/images/covid-19-positive.svg" alt="">
-      <div class="card_header-text">TOTAL COVID PATIENT STATS</div>
-    </div>
-
-    <div class="card_data-block">
-      <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
-      <div class="card_data-block--label">Total COVID positive</div>
-    </div>
-
-    <div class="card_data-block">
-      <div class="card_data-block--value">{{this.model.totalCovidStatusNegative}}</div>
-      <div class="card_data-block--label">Total COVID negative</div>
-    </div>
-
-    <div class="card_data-block">
-      <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
-      <div class="card_data-block--label">Total COVID suspected</div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
+        <div class="card_data-block--label">Total COVID suspected</div>
+      </div>
     </div>
   </div>
 </div>
