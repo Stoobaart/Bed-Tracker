@@ -59,12 +59,7 @@ class Hospital {
   }
 
   get totalCovidStatusNegative() {
-    return this.wards.reduce((totalCovidStatusNegative, ward) => {
-      if (ward.shortName === 'STUWARD') {
-        console.log('here');
-      }
-      return totalCovidStatusNegative + ward.totalCovidStatusNegative;
-    }, 0);
+    return this.wards.reduce((totalCovidStatusNegative, ward) => totalCovidStatusNegative + ward.totalCovidStatusNegative, 0);
   }
 
   get totalCovidStatusSuspected() {
