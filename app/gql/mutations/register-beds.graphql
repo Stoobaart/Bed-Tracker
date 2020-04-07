@@ -3,6 +3,8 @@ mutation ($input:RegisterBedsInput!) {
     beds {
       available
       id
+      covidStatus
+      ventilatorInUse
     }
   }
 }

@@ -838,8 +838,14 @@ button {
   position: relative;
   padding: 1rem;
   background-color: rgba(44, 152, 255, 0.25);
+  max-width: 876px;
+  margin: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
 
   .breadcrumbs {
+    flex-basis: 100%;
     display: flex;
     align-items: center;
     font-weight: 600;
@@ -864,7 +870,8 @@ button {
   }
 
   h1 {
-    margin: 1rem 0 0;
+    flex-basis: 100%;
+    margin: 1rem 0;
     font-size: 2rem;
     font-weight: 600;
   }
@@ -874,6 +881,8 @@ button {
   }
 
   .card {
+    flex-basis: 50%;
+
     a {
       text-decoration: none;
       color: #005eb8;
@@ -882,38 +891,38 @@ button {
     &_header-text {
       flex-grow: 1;
     }
+  }
+}
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+.ward-beds-top-bar {
+  display: flex;
+  max-width: 876px;
+  margin: auto;
+
+  .header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem 1rem;
+    width: calc(100% - 174px);
+  }
+
+  .link-button {
+    border-radius: 4px;
+    background-color: white;
+    height: 48px;
+    width: 124px;
+    text-align: center;
+    line-height: 3.2;
+    text-decoration: none;
+    color: #005eb8;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
   }
 }
 
 .ward-beds {
-
-  &--top-bar {
-    display: flex;
-    
-    .header {
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 1.5rem 1rem;
-      width: calc(100% - 174px);
-    }
-
-    .link-button {
-      border-radius: 4px;
-      background-color: white;
-      height: 48px;
-      width: 124px;
-      text-align: center;
-      line-height: 3.2;
-      text-decoration: none;
-      color: #005eb8;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      margin-top: 1rem;
-    }
-  }
+  max-width: 876px;
+  margin: auto;
 
   .header {
     display: inline-flex;
