@@ -23,7 +23,7 @@ module.exports = function(environment) {
 
     APP: {},
     graphqlApi: {
-      url: 'https://bed-tracking.gigalixirapp.com/api'
+      url: 'https://bed-checker.gigalixirapp.com/api'
     },
   };
 
