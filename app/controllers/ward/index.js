@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import UpdateBed from 'bed-checker/gql/mutations/update-bed';
+import RemoveBed from 'bed-checker/gql/mutations/remove-bed';
 
 export default class WardController extends Controller {
   @service apollo;
@@ -21,6 +22,8 @@ export default class WardController extends Controller {
   @tracked showPatientPositiveRadio = false;
   @tracked showPatientNegativeRadio = false;
   @tracked showPatientSuspectedRadio = false;
+
+  @tracked showDeleteForm = false;
 
   get availableBedsPercentage() {
     if (this.totalBeds === 0) {
@@ -45,7 +48,7 @@ export default class WardController extends Controller {
     if (bed.available) {
       this.setAvailability();
     }
-    
+
     this.editBedModalIsOpen = true;
   }
 
@@ -54,6 +57,7 @@ export default class WardController extends Controller {
     this.editBedModalIsOpen = false;
     this.bedInMemory = null;
     this.changesMade = false;
+    this.showDeleteForm = false;
   }
 
   @action
@@ -120,6 +124,37 @@ export default class WardController extends Controller {
       mutatableBedsArray[foundIndex] = updateBed.bed;
 
       this.set('model.beds', mutatableBedsArray);
+      this.closeModal();
+      // this.set('model.showSuccessMessage', true);
+    } catch (error) {
+      this.error = true;
+      console.error(error);
+    }
+  }
+
+  @action
+  toggleDeleteModal() {
+    this.showDeleteForm = !this.showDeleteForm;
+  }
+
+  @action
+  async deleteBed(event) {
+    event.preventDefault();
+    this.error = false;
+
+    const selectedBedId = this.bedInMemory.bed.id;
+
+    const variables = {
+      input: {
+        id: selectedBedId
+      }
+    };
+
+    try {
+      await this.apollo.mutate({ mutation: RemoveBed, variables });
+
+      const newBeds = this.model.beds.filter(x => x.id !== selectedBedId);
+      this.set('model.beds', newBeds);
       this.closeModal();
       // this.set('model.showSuccessMessage', true);
     } catch (error) {

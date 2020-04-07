@@ -760,6 +760,22 @@ button {
     padding-left: 2rem;
   }
 
+  .btns-container {
+    display: inline-flex;
+    width: 100%;
+    margin-top: 2rem;
+
+    .cancel {
+      color: #333333;
+      margin-right: .5rem;
+      background-color: #f6f6f6
+    }
+
+    .submit {
+      margin-left: .5rem;
+    }
+  }
+
   .radio {
     display: flex;
     line-height: 1;
@@ -790,6 +806,20 @@ button {
     margin: 0 2rem;
     width: calc(100% - 4rem);
   }
+
+  .delete-container {
+    display: flex;
+    font-size: 12px;
+    margin-left: 2rem;
+    margin-top: 2rem;
+
+    .text {
+      position: relative;
+      top: .25rem;
+      font-size: 12px;
+      padding-left: .5rem;
+    }
+  }
 }
 
 @keyframes fade {
@@ -801,31 +831,6 @@ button {
 @keyframes slideUp {
   100% {
     top: 74%;
-  }
-}
-
-.modal {
-
-  &_body {
-    padding: 0 1.5rem;
-  }
-
-  &_text {
-    font-size: .75rem;
-  }
-
-  &_btn-container {
-    padding-top: 2rem;
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  &_btn {
-    &.cancel {
-      color: #333333;
-      background-color: white;
-    }
   }
 }
 

@@ -128,90 +128,121 @@
 {{#if this.editBedModalIsOpen}}
   <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
     <div class="header">
-      Change status of bed 
+      {{#if this.showDeleteForm}}
+        <img src="/assets/images/delete.svg" alt="">
+        Delete bed
+      {{else}}
+        Change status of bed
+      {{/if}}
       {{this.bedInMemory.index}} 
       <div class="close-btn" role="button" {{action this.closeModal}}>
         <img src="/assets/images/cross.svg" alt="">
       </div>
     </div>
 
-    <form>
-      <div class="subheader">The patient occupying the bed is:</div>
+    {{#if this.showDeleteForm }}
+      <form>
+        <div class="subheader">Are you sure you want to delete this bed from the ward?</div>
 
-      {{#if this.showPatientPositiveRadio}}
-        <div class="radio">
+        <div class="btns-container">
+          <button
+            type="button"
+            class="form_btn cancel"
+            {{on "click" this.toggleDeleteModal}}>
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="form_btn submit"
+            {{on "click" this.deleteBed}}>
+            Delete
+          </button>
+        </div>
+      </form>
+    {{else}}
+      <form>
+        <div class="subheader">The patient occupying the bed is:</div>
+
+        {{#if this.showPatientPositiveRadio}}
+          <div class="radio">
+            <input
+              id="positive"
+              type="radio"
+              checked={{eq this.bedInMemory.bed.covidStatus 'POSITIVE'}}
+              onclick={{action this.setCovidStatus 'POSITIVE'}}>
+            <label for="positive" class="radio--label">
+              <div class="radio--text">COVID positive</div>
+            </label>
+          </div>
+        {{/if}}
+
+        {{#if this.showPatientNegativeRadio}}
+          <div class="radio">
+            <input
+              id="negative"
+              type="radio"
+              checked={{eq this.bedInMemory.bed.covidStatus 'NEGATIVE'}}
+              onclick={{action this.setCovidStatus 'NEGATIVE'}}>
+            <label for="negative" class="radio--label">
+              <div class="radio--text">COVID negative</div>
+            </label>
+          </div>
+        {{/if}}
+
+        {{#if this.showPatientSuspectedRadio}}
+          <div class="radio">
+            <input
+              id="suspected"
+              type="radio"
+              checked={{eq this.bedInMemory.bed.covidStatus 'SUSPECTED'}}
+              onclick={{action this.setCovidStatus 'SUSPECTED'}}>
+            <label for="suspected" class="radio--label">
+              <div class="radio--text">COVID suspected</div>
+            </label>
+          </div>
+        {{/if}}
+
+        {{#if this.showBedAvailableRadio}}
+          <div class="radio">
+            <input
+              id="make-available"
+              type="radio"
+              checked={{this.bedInMemory.bed.available}}
+              onclick={{action this.setAvailability}}>
+            <label for="make-available" class="radio--label">
+              <div class="radio--text">This bed is now available</div>
+            </label>
+          </div>
+        {{/if}}
+
+        
+
+        <div class="radio ventilation">
           <input
-            id="positive"
+            id="ventilation"
             type="radio"
-            checked={{eq this.bedInMemory.bed.covidStatus 'POSITIVE'}}
-            onclick={{action this.setCovidStatus 'POSITIVE'}}>
-          <label for="positive" class="radio--label">
-            <div class="radio--text">COVID positive</div>
+            checked={{this.bedInMemory.bed.ventilatorInUse}}
+            onclick={{action this.setVentilatorStatus}}>
+          <label for="ventilation" class="radio--label">
+            <div class="radio--text">Has ventilation</div>
           </label>
         </div>
-      {{/if}}
 
-      {{#if this.showPatientNegativeRadio}}
-        <div class="radio">
-          <input
-            id="negative"
-            type="radio"
-            checked={{eq this.bedInMemory.bed.covidStatus 'NEGATIVE'}}
-            onclick={{action this.setCovidStatus 'NEGATIVE'}}>
-          <label for="negative" class="radio--label">
-            <div class="radio--text">COVID negative</div>
-          </label>
+        <button
+          type="submit"
+          class="form_btn"
+          disabled={{not this.changesMade}}
+          {{on "click" this.editBed}}>
+          Save changes
+        </button>
+
+        <div class="delete-container" role="button" {{on "click" this.toggleDeleteModal}}>
+          <img src="/assets/images/delete.svg" alt="">
+          <div class="text">Remove bed from this ward</div>
         </div>
-      {{/if}}
-
-      {{#if this.showPatientSuspectedRadio}}
-        <div class="radio">
-          <input
-            id="suspected"
-            type="radio"
-            checked={{eq this.bedInMemory.bed.covidStatus 'SUSPECTED'}}
-            onclick={{action this.setCovidStatus 'SUSPECTED'}}>
-          <label for="suspected" class="radio--label">
-            <div class="radio--text">COVID suspected</div>
-          </label>
-        </div>
-      {{/if}}
-
-      {{#if this.showBedAvailableRadio}}
-        <div class="radio">
-          <input
-            id="make-available"
-            type="radio"
-            checked={{this.bedInMemory.bed.available}}
-            onclick={{action this.setAvailability}}>
-          <label for="make-available" class="radio--label">
-            <div class="radio--text">This bed is now available</div>
-          </label>
-        </div>
-      {{/if}}
-
-      
-
-      <div class="radio ventilation">
-        <input
-          id="ventilation"
-          type="radio"
-          checked={{this.bedInMemory.bed.ventilatorInUse}}
-          onclick={{action this.setVentilatorStatus}}>
-        <label for="ventilation" class="radio--label">
-          <div class="radio--text">Has ventilation</div>
-        </label>
-      </div>
-
-      <button
-        type="submit"
-        class="form_btn"
-        disabled={{not this.changesMade}}
-        {{on "click" this.editBed}}>
-        Save changes
-      </button>
-
-    </form>
+      </form>
+    {{/if}}
     
   </ModalDialog>
 {{/if}}
