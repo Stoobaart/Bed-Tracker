@@ -27,8 +27,7 @@ export default class AccountService extends Service {
     }
 
     if (JSON.parse(localStorage.getItem('bed_tracker_token'))) {
-      console.log('requesting');
-      const response = await this.apollo.query({ query: GetHospitalQuery, cachePolicy: 'network-only' });
+      const response = await this.apollo.query({ query: GetHospitalQuery, fetchPolicy: 'network-only' });
 
       if (response && response.getHospital && response.getHospital.hospital) {
         this.hospital = response.getHospital.hospital;
