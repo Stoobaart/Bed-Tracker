@@ -105,9 +105,6 @@ class Ward {
 
   get totalCovidStatusNegative() {
     return this.beds.reduce((totalCovidStatusNegative, bed) => {
-      // if (bed.shortName === 'STUWARD') {
-      //   console.log('here');
-      // }
       if (bed.covidStatus === 'NEGATIVE') {
         return totalCovidStatusNegative + 1
       }
