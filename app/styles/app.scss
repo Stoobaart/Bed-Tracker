@@ -84,6 +84,7 @@ html, body {
 
 .cards-container {
   display: flex;
+  flex-shrink: 0;
   flex-wrap: wrap;
   padding: 1rem 0 0.01rem 1rem;
   background-color: rgba(216,216,216, 0.3);
