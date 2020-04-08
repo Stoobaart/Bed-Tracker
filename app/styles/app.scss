@@ -349,12 +349,16 @@ html, body {
 
   &_input {
     border: none;
+    box-sizing: border-box;
+    padding-bottom: 4px;
     border-bottom: 1px solid #005eb8;
     margin: 1rem 0;
     width: 100%;
 
     &:focus {
+      padding-bottom: 3px;
       outline: none;
+      border-bottom: 2px solid #003e78;
     }
   }
 
@@ -763,7 +767,7 @@ button {
     margin-bottom: 1rem;
     border-bottom: 1px solid #d8d8d8;
   }
-  
+
   .subheader {
     padding-left: 2rem;
   }
@@ -976,7 +980,7 @@ button {
       font-size: .75rem;
       display: inline-flex;
       width: 25%;
-      
+
       &--available {
         width: 100%;
       }
