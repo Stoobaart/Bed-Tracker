@@ -19,7 +19,9 @@ export default class WardAddBedsController extends Controller {
 
   @action
   makeNumberPositive() {
-    this.noOfBedsToAdd = Math.abs(JSON.parse(this.noOfBedsToAdd));
+    if (this.noOfBedsToAdd) {
+      this.noOfBedsToAdd = Math.abs(JSON.parse(this.noOfBedsToAdd));
+    }
   }
 
   @action
