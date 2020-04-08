@@ -15,6 +15,13 @@ export default class AddWardController extends Controller {
   @tracked error = false;
 
   @action
+  cancel() {
+    this.shortName = '';
+    this.longName = '';
+    this.router.transitionTo('dashboard');
+  }
+
+  @action
   async createWard(event) {
     event.preventDefault();
 

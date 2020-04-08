@@ -25,6 +25,12 @@ export default class WardAddBedsController extends Controller {
   }
 
   @action
+  cancel() {
+    this.noOfBedsToAdd = null;
+    this.router.transitionTo('ward', this.model.id);
+  }
+
+  @action
   async addBeds() {
     this.error = false;
     this.isSaving = true;

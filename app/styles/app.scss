@@ -740,9 +740,25 @@ button {
   }
 }
 
+.btns-container {
+  display: inline-flex;
+  width: 100%;
+  margin-top: 2rem;
 
+  .cancel {
+    color: #333333;
+    margin-right: .5rem;
+    background-color: #f6f6f6;
 
+    &:active {
+      background-color: #d8d8d8;
+    }
+  }
 
+  .submit {
+    margin-left: .5rem;
+  }
+}
 
 .ember-modal-overlay {
   background-color: rgba(0,0,0,0.8);
@@ -771,22 +787,6 @@ button {
 
   .subheader {
     padding-left: 2rem;
-  }
-
-  .btns-container {
-    display: inline-flex;
-    width: 100%;
-    margin-top: 2rem;
-
-    .cancel {
-      color: #333333;
-      margin-right: .5rem;
-      background-color: #f6f6f6
-    }
-
-    .submit {
-      margin-left: .5rem;
-    }
   }
 
   .radio {

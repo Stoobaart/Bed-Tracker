@@ -31,12 +31,21 @@
       @key-up={{action (mut this.longName) value=@target.value}} />
     <div class="form_help-text">Enter the ward description</div>
 
-    <button
-      type="submit"
-      class="form_btn"
-      disabled={{not this.shortName}}>
-      Add ward
-    </button>
+    <div class="btns-container">
+      <button
+        type="button"
+        class="form_btn cancel"
+        {{on "click" this.cancel}}>
+        Cancel
+      </button>
+
+      <button
+        type="submit"
+        class="form_btn"
+        disabled={{not this.shortName}}>
+        Add ward
+      </button>
+    </div>
   </form>
 
   {{#if this.error}}
