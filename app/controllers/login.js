@@ -30,7 +30,6 @@ export default class LoginController extends Controller {
       this.account.hospital = response.loginHospitalManager.hospitalManager.hospital;
       localStorage.setItem('hospital', JSON.stringify(this.account.hospital));
       localStorage.setItem('bed_tracker_token', JSON.stringify(hospitalId));
-      localStorage.setItem('hospital_manager', true);
       this.router.transitionTo('dashboard');
     } catch (error) {
       this.errors.hasError = true;

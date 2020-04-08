@@ -50,6 +50,7 @@
     "ember-print-this": "^2.0.0",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^7.0.0",
+    "ember-slide-push-menu": "^1.1.1",
     "ember-source": "~3.16.0",
     "ember-truth-helpers": "^2.1.0",
     "ember-uuid": "^2.1.0",

@@ -1,4 +1,4 @@
-<div class="application">
+<div class="application {{if this.showSlideMenu "no-scroll"}}">
   <div class="top-bar">
     <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
     {{#if this.showHospitalDetails}}
@@ -6,9 +6,28 @@
         <div><strong>{{this.account.hospital.name}}</strong></div>
         <div>{{this.account.hospital.address}}</div>
       </div>
+      <div class="nav-toggle-btn" role="button" {{on "click" this.toggleMenu}}>
+        {{#if this.showSlideMenu}}
+          <img src="/assets/images/hamburger-close.svg" alt="">
+        {{else}}
+          <img src="/assets/images/hamburger.svg" alt="">
+        {{/if}}
+        MENU
+      </div>
     {{else}}
       <div class="app-name">Bed Checker</div>
     {{/if}}
   </div>
+
+  {{#if this.showSlideMenu}}
+    <div class="nav-overlay"></div>
+  {{/if}}
+  <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
+    <div class="nav-item" role="button" {{on "click" this.logout}}>
+      <img class="nav-item_image" src="/assets/images/logout.svg" alt="">
+      <div class="nav-item_text">Log out</div>
+    </div>
+  </EspMenu>
+
   {{outlet}}
 </div>

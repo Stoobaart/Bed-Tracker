@@ -26,7 +26,6 @@ export default class DashboardRoute extends Route {
   error() {
     localStorage.setItem('bed_tracker_token', JSON.stringify(null));
     localStorage.setItem('hospital', JSON.stringify(null));
-    localStorage.setItem('hospital_manager', JSON.stringify(null));
     this.transitionTo('/');
   }
 }
