@@ -9,6 +9,8 @@
          @type="number"
          @name="add-beds"
          @class="form_input"
+         min="0"
+         @key-up={{fn makeNumberPositive}}
          @value={{this.noOfBedsToAdd}} />
   <div class="help-text">The number of COVID beds to add to this ward</div>
 
