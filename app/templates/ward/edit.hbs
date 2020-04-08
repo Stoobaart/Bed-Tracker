@@ -1,0 +1,43 @@
+<div class="edit-ward">
+  <h1>Edit ward</h1>
+
+  <label for="ward-name" class="form_label">
+    Ward name
+  </label>
+  <Input @id="ward-name"
+         @name="ward-name"
+         @class="form_input"
+         @value={{this.shortName}}
+         @key-up={{action (mut this.shortName) value=@target.value}} />
+  <div class="help-text">Enter the ward name or abbreviation</div>
+
+  <label for="ward-description" class="form_label">
+    Ward description<span>~ optional</span>
+  </label>
+  <Input
+          @id="ward-description"
+          @name="ward-description"
+          @class="form_input form_longName-input"
+          @value={{this.longName}}
+          @key-up={{action (mut this.longName) value=@target.value}} />
+  <div class="help-text">Add a ward description</div>
+
+  <div class="btns-container">
+    <LinkTo @route="ward" @model={{this.model}} @tagName="button" class="form_btn cancel">Cancel</LinkTo>
+
+    <button
+      class="form_btn"
+      {{on "click" this.saveWard}}
+      disabled={{this.saveButtonDisabled}}>
+      Edit ward
+    </button>
+  </div>
+
+  {{#if this.error}}
+    <div class="banner banner--error">
+      <div class="banner_title"><img src="/assets/images/error.svg" alt="">Something went wrong</div>
+      <p>Please try saving again.</p>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.error) false)}}>
+    </div>
+  {{/if}}
+</div>

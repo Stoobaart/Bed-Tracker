@@ -18,5 +18,6 @@ Router.map(function() {
   this.route('add-ward');
   this.route('ward', { path: 'ward/:id' }, function() {
     this.route('add-beds');
+    this.route('edit');
   });
 });

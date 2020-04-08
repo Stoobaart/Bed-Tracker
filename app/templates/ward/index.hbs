@@ -13,8 +13,13 @@
       <div class="text">Dashboard</div>
     </LinkTo> > Ward {{this.model.shortName}}
   </div>
-  <h1>{{this.model.shortName}}</h1>
-  <p>{{this.model.longName}}</p>
+  <div class="ward-details_names">
+    <div>
+      <h1>{{this.model.shortName}}</h1>
+      <p>{{this.model.longName}}</p>
+    </div>
+    <LinkTo @route="ward.edit" @model={{this.model}}>Edit</LinkTo>
+  </div>
 
   <div class="cards-container--wards">
     <div class="card">
@@ -136,7 +141,7 @@
       {{else}}
         Change status of bed
       {{/if}}
-      {{this.bedInMemory.index}} 
+      {{this.bedInMemory.index}}
       <div class="close-btn" role="button" {{action this.closeModal}}>
         <img src="/assets/images/cross.svg" alt="">
       </div>
@@ -218,7 +223,7 @@
           </div>
         {{/if}}
 
-        
+
 
         <div class="radio ventilation">
           <input
@@ -245,6 +250,6 @@
         </div>
       </form>
     {{/if}}
-    
+
   </ModalDialog>
 {{/if}}
