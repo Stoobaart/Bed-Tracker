@@ -152,13 +152,18 @@ html, body {
     border-bottom: 2px solid #d8d8d8;
 
     &--ward-name {
-      width: 110px;
+      width: 30%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &--beds {
       &-number {
         line-height: 0.75;
         font-size: 1.5rem;
+        min-width: 53px;
+        text-align: center;
       }
 
       &-text {
@@ -358,10 +363,6 @@ html, body {
     line-height: 1.33;
     color: #737373;
     margin-bottom: 2.5rem;
-  }
-
-  &_short-name-input {
-    width: 80px;
   }
 
   &_error {
@@ -857,6 +858,9 @@ button {
     align-items: center;
     font-weight: 600;
     color: #003e78;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 97%;
 
     span {
       display: inline-flex;
@@ -975,6 +979,10 @@ button {
       
       &--available {
         width: 100%;
+      }
+
+      &.interactive {
+        cursor: pointer;
       }
 
       .icon {

@@ -5,32 +5,31 @@
     <div class="form_header">Add a ward</div>
 
     <label
-      for="shortName"
+      for="wardName"
       class="form_label">
-      Ward short name
+      Ward name
     </label>
     <Input
       @type="text"
-      @name="shortName"
+      @name="wardName"
       @class="form_input form_short-name-input"
       @value={{this.shortName}}
-      @maxlength="7"
       @key-up={{action (mut this.shortName) value=@target.value}} />
-    <div class="form_help-text">Enter the ward abbreviation</div>
+    <div class="form_help-text">Enter the ward name</div>
 
     <label
-      for="longName"
+      for="description"
       class="form_label">
-      Ward long name
+      Ward description
       <span>~ optional</span>
     </label>
     <Input
       @type="text"
-      @name="longName"
+      @name="description"
       @class="form_input form_longName-input"
       @value={{this.longName}}
       @key-up={{action (mut this.longName) value=@target.value}} />
-    <div class="form_help-text">Enter the ward full name</div>
+    <div class="form_help-text">Enter the ward description</div>
 
     <button
       type="submit"

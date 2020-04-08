@@ -30,6 +30,7 @@ export default class WardController extends Controller {
 
   @action
   openEditBedModal(bed, index) {
+    this.changesMade = false;
     this.bedInMemory = {
       bed,
       index: index + 1
@@ -60,9 +61,9 @@ export default class WardController extends Controller {
     this.set('bedInMemory', { 
       bed: { 
         available: !this.bedInMemory.bed.available,
-        covidStatus: this.bedInMemory.bed.covidStatus,
+        covidStatus: 'NEGATIVE',
         id: this.bedInMemory.bed.id,
-        ventilatorInUse: this.bedInMemory.bed.ventilatorInUse
+        ventilatorInUse: false
       }
     });
     this.changesMade = true;
@@ -72,7 +73,7 @@ export default class WardController extends Controller {
   setCovidStatus(status) {
     this.set('bedInMemory', { 
       bed: { 
-        available: this.bedInMemory.bed.available,
+        available: false,
         covidStatus: status,
         id: this.bedInMemory.bed.id,
         ventilatorInUse: this.bedInMemory.bed.ventilatorInUse
@@ -85,7 +86,7 @@ export default class WardController extends Controller {
   setVentilatorStatus() {
     this.set('bedInMemory', { 
       bed: { 
-        available: this.bedInMemory.bed.available,
+        available: false,
         covidStatus: this.bedInMemory.bed.covidStatus,
         id: this.bedInMemory.bed.id,
         ventilatorInUse: !this.bedInMemory.bed.ventilatorInUse

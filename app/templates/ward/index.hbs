@@ -93,14 +93,14 @@
       <div class="ward-beds_card">
         <div class="bed-number">{{plus-one index}}</div>
         {{#if bed.available}}
-          <div class="column" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+          <div class="column interactive" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
             <img class="icon" src="/assets/images/available-yes-green.svg" alt="">
             Available
           </div>
           <div class="column"></div>
           <div class="column"></div>
         {{else}}
-          <div class="column" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+          <div class="column interactive" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
             <img class="icon" src="/assets/images/occupied-off-black.svg" alt="">
             Occupied
           </div>
@@ -109,7 +109,7 @@
               <img class="icon" src="/assets/images/covid-19-positive-red.svg" alt="">
             {{else if (eq bed.covidStatus "NEGATIVE")}}
               <img class="icon" src="/assets/images/covid-19-negative.svg" alt="">
-            {{else}}
+            {{else if (eq bed.covidStatus "SUSPECTED")}}
               <img class="icon" src="/assets/images/covid-19-suspected-purple.svg" alt="">
             {{/if}}
             {{bed.covidStatus}}
@@ -223,7 +223,7 @@
         <div class="radio ventilation">
           <input
             id="ventilation"
-            type="radio"
+            type="checkbox"
             checked={{this.bedInMemory.bed.ventilatorInUse}}
             onclick={{action this.setVentilatorStatus}}>
           <label for="ventilation" class="radio--label">
