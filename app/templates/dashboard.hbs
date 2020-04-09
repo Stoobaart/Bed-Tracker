@@ -71,19 +71,47 @@
       </div>
 
       {{#if this.model.wards.length}}
+
+        <div class="table">
+          <div class="header header--wards">
+
+            <div class="header--column">
+              Ward
+            </div>
+            <div class="header--column">
+              <img class="icon" src="/assets/images/occupied-white.svg" alt="">
+              Availability
+            </div>
+            <div class="header--column view">
+              View
+            </div>
+          </div>
+        </div>
+        
         {{#each this.model.wards as |ward|}}
           <div class="wards_card">
-            <div class="wards_card--ward-name">{{ward.shortName}}</div>
-            {{#if (eq ward.availableBeds 0)}}
-              <img src="/assets/images/available-no-red.svg" alt="">
-            {{else}}
-              <img src="/assets/images/available-yes-green.svg" alt="">
-            {{/if}}
-            <div class="wards_card--beds-number">{{ward.availableBeds}}</div>
-            <div class="wards_card--beds-text">Available COVID beds</div>
-            <LinkTo class="wards_link--container" @route="ward" @model={{ward.id}} role="button">
-              <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
-            </LinkTo>
+            <div class="column interactive">
+              <div class="wards_card--ward-name">{{ward.shortName}}</div>
+            </div>
+
+            <div class="column">
+              {{#if (eq ward.availableBeds 0)}}
+                <img src="/assets/images/available-no-red.svg" alt="">
+              {{else}}
+                <img src="/assets/images/available-yes-green.svg" alt="">
+              {{/if}}
+              <div class="wards_card--beds-number">
+                {{ward.availableBeds}} /
+                <div>{{ward.beds.length}}</div>
+              </div>
+            </div>
+
+            <div class="column arrow">
+              <LinkTo class="wards_link--container" @route="ward" @model={{ward.id}} role="button">
+                <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
+              </LinkTo>
+            </div>
+
           </div>
         {{/each}}
       {{else}}

@@ -169,11 +169,6 @@ html, body {
   }
 
   &_link {
-    &--arrow {
-      position: relative;
-      top: -.2rem;
-      left: 1rem;
-    }
 
     &--button {
       border-radius: 4px;
@@ -188,6 +183,8 @@ html, body {
 
     &--container {
       width: 3rem;
+      justify-content: flex-end;
+      display: flex;
     }
   }
 
@@ -196,27 +193,44 @@ html, body {
   }
 
   &_card {
-    display: flex;
     justify-content: space-between;
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    display: inline-flex;
     height: 1.125rem;
     background-color: white;
-    padding: 1rem;
-    line-height: 1;
-    border-bottom: 2px solid #d8d8d8;
 
     &--ward-name {
-      width: 30%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    .column {
+      display: inline-flex;
+      font-size: .75rem;
+      width: 40%;
+      color: white;
+
+      &.arrow {
+        width: 10%;
+        justify-content: flex-end;
+      }      
+    }
+
     &--beds {
       &-number {
+        display: inline-flex;
         line-height: 0.75;
         font-size: 1.5rem;
-        min-width: 53px;
+        min-width: 90px;
         text-align: center;
+        padding-left: .5rem;
+
+        div {
+          line-height: 1.2;
+          padding-left: .2rem;
+        }
       }
 
       &-text {
@@ -1006,7 +1020,7 @@ button {
   }
 }
 
-.ward-beds {
+.table {
   max-width: 876px;
   margin: auto;
 
@@ -1018,6 +1032,23 @@ button {
     height: 24px;
     background-color: #003e78;
     padding: .6rem 2rem 1rem;
+
+    &--wards {
+      background-color: #005eb8;
+      justify-content: space-between;
+      padding: 1rem;
+      width: calc(100% - 2rem);
+
+      .header--column {
+        font-size: 1rem;
+        line-height: 1.8;
+
+        &.view {
+          width: 10%;
+          text-align: right;
+        }
+      }
+    }
 
     &--column {
       font-size: .75rem;
