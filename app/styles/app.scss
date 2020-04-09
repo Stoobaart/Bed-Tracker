@@ -180,12 +180,6 @@ html, body {
       text-decoration: none;
       color: #005eb8;
     }
-
-    &--container {
-      width: 3rem;
-      justify-content: flex-end;
-      display: flex;
-    }
   }
 
   &_body-text {
@@ -193,6 +187,7 @@ html, body {
   }
 
   &_card {
+    text-decoration: none;
     justify-content: space-between;
     padding: 1rem;
     width: calc(100% - 2rem);
@@ -214,6 +209,7 @@ html, body {
 
       &.arrow {
         width: 10%;
+        display: flex;
         justify-content: flex-end;
       }      
     }
