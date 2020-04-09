@@ -9,10 +9,16 @@ export default class EditWardController extends Controller {
   @service apollo;
   @service hospital;
 
-  @tracked shortName;
-  @tracked longName;
+  @tracked name;
+  @tracked description;
+  @tracked isCovidWard = this.model.isCovidWard;
 
   @tracked error = false;
+
+  @action
+  toggleIsCovidWard() {
+    this.isCovidWard = !this.isCovidWard;
+  }
 
   @action
   async saveWard() {
@@ -21,15 +27,16 @@ export default class EditWardController extends Controller {
     const variables = {
       input: {
         id: this.model.id,
-        shortName: this.shortName,
-        longName: this.longName
+        name: this.name,
+        description: this.description,
+        isCovidWard: this.isCovidWard
       }
     };
 
     try {
       await this.apollo.mutate({ mutation: UpdateWardMutation, variables });
-      this.model.shortName = this.shortName;
-      this.model.longName = this.longName;
+      this.model.name = this.name;
+      this.model.description = this.description;
       this.router.transitionTo('ward', this.model);
     } catch (error) {
       this.error = true;

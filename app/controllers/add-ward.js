@@ -9,16 +9,22 @@ export default class AddWardController extends Controller {
   @service apollo;
   @service hospital;
 
-  @tracked shortName = '';
-  @tracked longName = '';
+  @tracked name = '';
+  @tracked description = '';
+  @tracked isCovidWard = false;
 
   @tracked error = false;
 
   @action
   cancel() {
-    this.shortName = '';
-    this.longName = '';
+    this.name = '';
+    this.description = '';
     this.router.transitionTo('dashboard');
+  }
+
+  @action
+  toggleIsCovidWard() {
+    this.isCovidWard = !this.isCovidWard;
   }
 
   @action
@@ -29,8 +35,9 @@ export default class AddWardController extends Controller {
 
     const variables = {
       input: {
-        shortName: this.shortName,
-        longName: this.longName
+        name: this.name,
+        description: this.description,
+        isCovidWard: this.isCovidWard
       }
     };
 
@@ -38,8 +45,8 @@ export default class AddWardController extends Controller {
       const { createWard } = await this.apollo.mutate({ mutation: CreateWard, variables });
       this.hospital.addWard(createWard.ward);
       this.set('model.showSuccessMessage', true);
-      this.shortName = '';
-      this.longName = '';
+      this.name = '';
+      this.description = '';
       this.router.transitionTo('dashboard');
     } catch (error) {
       this.error = true;

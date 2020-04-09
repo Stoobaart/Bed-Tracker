@@ -12,6 +12,7 @@ module.exports = {
     "'self'",
     'localhost',
     "https://bed-checker.gigalixirapp.com/api",
+    "https://bed-checker-staging.gigalixirapp.com/",
     "http://*.hotjar.com:*",
     "https://*.hotjar.com:*",
     "http://*.hotjar.io",

@@ -21,8 +21,9 @@ query {
           ventilatorInUse
         }
         id
-        longName
-        shortName
+        description
+        name
+        isCovidWard
         totalBeds
         totalCovidStatusNegative
         totalCovidStatusPositive

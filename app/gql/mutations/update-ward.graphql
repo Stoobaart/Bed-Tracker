@@ -2,8 +2,9 @@ mutation ($input: UpdateWardInput!) {
   updateWard (input: $input) {
     ward {
       id
-      shortName
-      longName
+      name
+      description
+      isCovidWard
     }
   }
 }

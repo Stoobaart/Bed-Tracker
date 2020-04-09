@@ -8,7 +8,8 @@ export default class EditWardRoute extends Route {
   setupController(controller, model) {
     super.setupController(controller, model);
 
-    controller.shortName = model.shortName;
-    controller.longName = model.longName;
+    controller.name = model.name;
+    controller.description = model.description;
+    controller.isCovidWard = model.isCovidWard;
   }
 }

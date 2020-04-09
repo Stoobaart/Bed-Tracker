@@ -13,8 +13,8 @@
       @type="text"
       @name="wardName"
       @class="form_input form_short-name-input"
-      @value={{this.shortName}}
-      @key-up={{action (mut this.shortName) value=@target.value}} />
+      @value={{this.name}}
+      @key-up={{action (mut this.name) value=@target.value}} />
     <div class="form_help-text">Enter the ward name</div>
 
     <label
@@ -26,10 +26,23 @@
     <Input
       @type="text"
       @name="description"
-      @class="form_input form_longName-input"
-      @value={{this.longName}}
-      @key-up={{action (mut this.longName) value=@target.value}} />
+      @class="form_input form_description-input"
+      @value={{this.description}}
+      @key-up={{action (mut this.description) value=@target.value}} />
     <div class="form_help-text">Enter the ward description</div>
+
+    <div class="form_checkbox--container">
+      <input
+        id="covidWard"
+        type="checkbox"
+        class="form_checkbox"
+        checked={{this.isCovidWard}}
+        onclick={{action "toggleIsCovidWard"}}>
+      <label for="covidWard" class="form_checkbox--label">
+        <div class="form_checkbox--text">COVID ward</div>
+        <div class="form_checkbox--text small">This ward will be used for COVID patients</div>
+      </label>
+    </div>
 
     <div class="btns-container">
       <button
@@ -42,7 +55,7 @@
       <button
         type="submit"
         class="form_btn"
-        disabled={{not this.shortName}}>
+        disabled={{not this.name}}>
         Add ward
       </button>
     </div>

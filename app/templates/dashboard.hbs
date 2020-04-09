@@ -90,8 +90,13 @@
         
         {{#each this.model.wards as |ward|}}
           <LinkTo class="wards_card" @route="ward" @model={{ward.id}} role="button">
-            <div class="column interactive">
-              <div class="wards_card--ward-name">{{ward.shortName}}</div>
+            <div class="column wards_card--name-container">
+              <div class="wards_card--ward-name {{if ward.isCovidWard "with-covid-badge"}}">{{ward.name}}</div>
+              {{#if ward.isCovidWard}}
+                <div class="wards_card--covid-badge">
+                  COVID ward
+                </div>
+              {{/if}}
             </div>
 
             <div class="column">
@@ -102,14 +107,12 @@
               {{/if}}
               <div class="wards_card--beds-number">
                 {{ward.availableBeds}} /
-                <div>{{ward.beds.length}}</div>
+                <span>{{ward.beds.length}}</span>
               </div>
             </div>
 
             <div class="column arrow">
-              {{!-- <LinkTo class="wards_link--container" @route="ward" @model={{ward.id}} role="button"> --}}
-                <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
-              {{!-- </LinkTo> --}}
+              <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
             </div>
 
           </LinkTo>

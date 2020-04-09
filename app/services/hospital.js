@@ -96,8 +96,9 @@ class Hospital {
 
 class Ward {
   @tracked id = null;
-  @tracked shortName = null;
-  @tracked longName = null;
+  @tracked name = null;
+  @tracked description = null;
+  @tracked isCovidWard = false;
   @tracked beds = [];
 
   get totalBeds() {
