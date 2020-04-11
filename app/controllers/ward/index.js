@@ -43,12 +43,14 @@ export default class WardController extends Controller {
     this.index = bedIndex;
 
     this.editBedModalIsOpen = true;
+    document.body.classList.add('no-scroll');
   }
 
   @action
   closeModal() {
     this.editBedModalIsOpen = false;
     this.showDeleteForm = false;
+    document.body.classList.remove('no-scroll');
   }
 
   @action
