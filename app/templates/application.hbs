@@ -20,7 +20,7 @@
   </div>
 
   {{#if this.showSlideMenu}}
-    <div class="nav-overlay"></div>
+    <div class="nav-overlay" role="button" {{on "click" this.toggleMenu}}></div>
   {{/if}}
   <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
     <div class="nav-item" role="button" {{on "click" this.logout}}>
