@@ -23,7 +23,7 @@ module.exports = function(environment) {
 
     APP: {},
     graphqlApi: {
-      url: 'https://bed-checker-staging.gigalixirapp.com/api'
+      url: 'https://bed-checker.gigalixirapp.com/api'
     },
     hotjar: {
       id: 1747647,
