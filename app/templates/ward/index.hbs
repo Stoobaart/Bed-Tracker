@@ -3,7 +3,7 @@
     <div class="banner banner--success">
       <div class="banner_title"><img src="/assets/images/success.svg" alt="">COVID beds added successfully</div>
       <p>The beds are ready for patients</p>
-      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.model.showSuccessMessage) null)}}>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close"  role="button" {{on "click" (fn (mut this.model.showSuccessMessage) null)}}>
     </div>
   {{/if}}
 
@@ -80,33 +80,48 @@
   <div class="table">
     <div class="header">
       <div class="bed-number"></div>
-      <div class="header--column">
+      <div class="header--column availability-1">
         <img class="icon" src="/assets/images/occupied-white.svg" alt="">
+      </div>
+      <div class="header--column availability-2">
         Availability
       </div>
       <div class="header--column">
         <img class="icon" src="/assets/images/covid-19-positive-white.svg" alt="">
         COVID
       </div>
-      <div class="header--column">
-        <img class="icon" src="/assets/images/white.svg" alt="">
+      <div class="header--column centered">
+        Care Level
+      </div>
+      <div class="header--column centered">
         Ventilation
+      </div>
+      <div class="header--column centered">
+        Haemofiltration
       </div>
     </div>
 
     {{#each this.model.beds as |bed index|}}
-      <div class="table_card">
+      <div class="table_card"  role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
         <div class="bed-number">{{plus-one index}}</div>
         {{#if bed.available}}
-          <div class="column interactive" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+          <div class="column availability-1">
             <img class="icon" src="/assets/images/available-yes-green.svg" alt="">
+          </div>
+          <div class="column availability-2">
             Available
           </div>
+
           <div class="column"></div>
           <div class="column"></div>
+          <div class="column"></div>
+          <div class="column"></div>
+
         {{else}}
-          <div class="column interactive" role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+          <div class="column availability-1">
             <img class="icon" src="/assets/images/occupied-off-black.svg" alt="">
+          </div>
+          <div class="column availability-2">
             Occupied
           </div>
           <div class="column">
@@ -119,10 +134,27 @@
             {{/if}}
             {{bed.covidStatus}}
           </div>
-          <div class="column">
-            {{#if bed.ventilatorInUse}}
-              <img class="icon tick" src="/assets/images/off-black.svg" alt="">
-              Ventilated
+          <div class="column level">
+            {{#if (eq bed.levelOfCare 'LEVEL_1')}}
+              <div class="text">Level 1</div>
+            {{else if (eq bed.levelOfCare 'LEVEL_2')}}
+              <div class="text">Level 2</div>
+            {{else if (eq bed.levelOfCare 'LEVEL_3')}}
+              <div class="text">Level 3</div>
+            {{/if}}
+          </div>
+          <div class="column vent">
+            {{#if bed.ventilationType}}
+              <div class="text">{{bed.ventilationType}}</div>
+            {{else}}
+              <div class="text">No</div>
+            {{/if}}
+          </div>
+          <div class="column hemo">
+            {{#if bed.hemofilterInUse}}
+              <div class="text">Yes</div>
+            {{else}}
+              <div class="text">No</div>
             {{/if}}
           </div>
         {{/if}}
@@ -139,9 +171,9 @@
         <img src="/assets/images/delete.svg" alt="">
         Delete bed
       {{else}}
-        Change status of bed
+        Edit bed
       {{/if}}
-      {{this.bedInMemory.index}}
+      {{this.index}}
       <div class="close-btn" role="button" {{action this.closeModal}}>
         <img src="/assets/images/cross.svg" alt="">
       </div>
@@ -169,72 +201,151 @@
       </form>
     {{else}}
       <form>
-        <div class="subheader">The patient occupying the bed is:</div>
-
-        {{#if this.showPatientPositiveRadio}}
-          <div class="radio">
-            <input
-              id="positive"
-              type="radio"
-              checked={{eq this.bedInMemory.bed.covidStatus 'POSITIVE'}}
-              onclick={{action this.setCovidStatus 'POSITIVE'}}>
-            <label for="positive" class="radio--label">
-              <div class="radio--text">COVID positive</div>
-            </label>
+        <div class="availability-container">
+          <div>Availability</div>
+          <div role="button" class="toggle {{if this.available "toggle-on" "toggle-off"}}" {{on "click" setAvailability}}>
+            <img src="{{if this.available "/assets/images/toggle-tick.svg" "/assets/images/toggle-cross.svg"}}" alt="">
           </div>
-        {{/if}}
-
-        {{#if this.showPatientNegativeRadio}}
-          <div class="radio">
-            <input
-              id="negative"
-              type="radio"
-              checked={{eq this.bedInMemory.bed.covidStatus 'NEGATIVE'}}
-              onclick={{action this.setCovidStatus 'NEGATIVE'}}>
-            <label for="negative" class="radio--label">
-              <div class="radio--text">COVID negative</div>
-            </label>
-          </div>
-        {{/if}}
-
-        {{#if this.showPatientSuspectedRadio}}
-          <div class="radio">
-            <input
-              id="suspected"
-              type="radio"
-              checked={{eq this.bedInMemory.bed.covidStatus 'SUSPECTED'}}
-              onclick={{action this.setCovidStatus 'SUSPECTED'}}>
-            <label for="suspected" class="radio--label">
-              <div class="radio--text">COVID suspected</div>
-            </label>
-          </div>
-        {{/if}}
-
-        {{#if this.showBedAvailableRadio}}
-          <div class="radio">
-            <input
-              id="make-available"
-              type="radio"
-              checked={{this.bedInMemory.bed.available}}
-              onclick={{action this.setAvailability}}>
-            <label for="make-available" class="radio--label">
-              <div class="radio--text">This bed is now available</div>
-            </label>
-          </div>
-        {{/if}}
-
-
-
-        <div class="radio ventilation">
-          <input
-            id="ventilation"
-            type="checkbox"
-            checked={{this.bedInMemory.bed.ventilatorInUse}}
-            onclick={{action this.setVentilatorStatus}}>
-          <label for="ventilation" class="radio--label">
-            <div class="radio--text">Has ventilation</div>
-          </label>
         </div>
+        
+        {{#if (not this.available)}}
+          <section>
+            <div class="section-header">
+              COVID status:
+            </div>
+            <div class="radio">
+              <input
+                id="positive"
+                type="radio"
+                checked={{eq this.covidStatus "POSITIVE"}}
+                onclick={{action this.setCovidStatus "POSITIVE"}}>
+              <label for="positive" class="radio--label">
+                <div class="radio--text">COVID positive</div>
+              </label>
+            </div>
+
+            <div class="radio">
+              <input
+                id="negative"
+                type="radio"
+                checked={{eq this.covidStatus "NEGATIVE"}}
+                onclick={{action this.setCovidStatus "NEGATIVE"}}>
+              <label for="negative" class="radio--label">
+                <div class="radio--text">COVID negative</div>
+              </label>
+            </div>
+
+            <div class="radio third">
+              <input
+                id="suspected"
+                type="radio"
+                checked={{eq this.covidStatus "SUSPECTED"}}
+                onclick={{action this.setCovidStatus "SUSPECTED"}}>
+              <label for="suspected" class="radio--label">
+                <div class="radio--text">COVID suspected</div>
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <div class="section-header">
+              Level of care:
+            </div>
+            <div class="radio">
+              <input
+                id="level-1"
+                type="radio"
+                checked={{eq this.levelOfCare "LEVEL_1"}}
+                onclick={{action this.setLevelOfCare "LEVEL_1"}}>
+              <label for="level-1" class="radio--label">
+                <div class="radio--text">Level 1</div>
+              </label>
+            </div>
+
+            <div class="radio">
+              <input
+                id="level-2"
+                type="radio"
+                checked={{eq this.levelOfCare "LEVEL_2"}}
+                onclick={{action this.setLevelOfCare "LEVEL_2"}}>
+              <label for="level-2" class="radio--label">
+                <div class="radio--text">Level 2</div>
+              </label>
+            </div>
+
+            <div class="radio third">
+              <input
+                id="level-3"
+                type="radio"
+                checked={{eq this.levelOfCare "LEVEL_3"}}
+                onclick={{action this.setLevelOfCare "LEVEL_3"}}>
+              <label for="level-3" class="radio--label">
+                <div class="radio--text">Level 3</div>
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <div class="section-header">
+              Ventilation:
+            </div>
+
+            <div class="radio">
+              <input
+                id="no-ventilation"
+                type="radio"
+                checked={{eq this.ventilationType null}}
+                onclick={{action this.setVentilationType null}}>
+              <label for="no-ventilation" class="radio--label">
+                <div class="radio--text">No ventilation</div>
+              </label>
+            </div>
+
+            <div class="radio">
+              <input
+                id="sv"
+                type="radio"
+                checked={{eq this.ventilationType "SV"}}
+                onclick={{action this.setVentilationType "SV"}}>
+              <label for="sv" class="radio--label">
+                <div class="radio--text">SV</div>
+              </label>
+            </div>
+
+            <div class="radio third">
+              <input
+                id="niv"
+                type="radio"
+                checked={{eq this.ventilationType "NIV"}}
+                onclick={{action this.setVentilationType "NIV"}}>
+              <label for="niv" class="radio--label">
+                <div class="radio--text">NIV</div>
+              </label>
+            </div>
+
+            <div class="radio fourth">
+              <input
+                id="intubated"
+                type="radio"
+                checked={{eq this.ventilationType "INTUBATED"}}
+                onclick={{action this.setVentilationType "INTUBATED"}}>
+              <label for="intubated" class="radio--label">
+                <div class="radio--text">INTUBATED</div>
+              </label>
+            </div>
+          </section>
+
+          <div class="radio hemofiltration">
+            <input
+              id="hemofiltration"
+              type="checkbox"
+              checked={{false}}
+              onclick={{action this.setHemofilterInUse}}>
+            <label for="hemofiltration" class="radio--label">
+              <div class="radio--text">Using haemofiltration</div>
+            </label>
+          </div>
+        {{/if}}
 
         <button
           type="submit"

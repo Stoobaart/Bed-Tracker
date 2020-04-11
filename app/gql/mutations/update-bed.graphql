@@ -4,7 +4,9 @@ mutation ($input: UpdateBedInput!) {
       available
       covidStatus
       id
-      ventilatorInUse
+      levelOfCare
+      ventilationType
+      hemofilterInUse
     }
   }
 }

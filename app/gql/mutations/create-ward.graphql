@@ -16,7 +16,8 @@ mutation ($input:CreateWardInput!) {
         available
         covidStatus
         id
-        ventilatorInUse
+        levelOfCare
+        ventilationType
       }
     }
   }

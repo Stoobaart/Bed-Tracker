@@ -9,15 +9,16 @@ export default class WardController extends Controller {
   @service apollo;
   @service hospital;
 
+  @tracked available = null;
+  @tracked covidStatus = null;
+  @tracked id = null;
+  @tracked levelOfCare = null;
+  @tracked ventilationType = null;
+  @tracked index = null;
+  @tracked hemofilterInUse = null;
+
   @tracked editBedModalIsOpen = false;
-  @tracked bedInMemory = null;
   @tracked changesMade = false;
-
-  @tracked showBedAvailableRadio = false;
-  @tracked showPatientPositiveRadio = false;
-  @tracked showPatientNegativeRadio = false;
-  @tracked showPatientSuspectedRadio = false;
-
   @tracked showDeleteForm = false;
 
   get availableBedsPercentage() {
@@ -31,19 +32,15 @@ export default class WardController extends Controller {
   @action
   openEditBedModal(bed, index) {
     this.changesMade = false;
-    this.bedInMemory = {
-      bed,
-      index: index + 1
-    }
-
-    this.showBedAvailableRadio = !bed.available;
-    this.showPatientPositiveRadio = bed.covidStatus !== 'POSITIVE';
-    this.showPatientNegativeRadio = bed.covidStatus !== 'NEGATIVE';
-    this.showPatientSuspectedRadio = bed.covidStatus !== 'SUSPECTED';
-
-    if (bed.available) {
-      this.setAvailability();
-    }
+    const bedIndex = index + 1;
+    
+    this.available = bed.available;
+    this.covidStatus = bed.covidStatus;
+    this.id = bed.id;
+    this.levelOfCare = bed.levelOfCare;
+    this.ventilationType = bed.ventilationType;
+    this.hemofilterInUse = bed.hemofilterInUse;
+    this.index = bedIndex;
 
     this.editBedModalIsOpen = true;
   }
@@ -51,47 +48,43 @@ export default class WardController extends Controller {
   @action
   closeModal() {
     this.editBedModalIsOpen = false;
-    this.bedInMemory = null;
-    this.changesMade = false;
     this.showDeleteForm = false;
   }
 
   @action
   setAvailability() {
-    this.set('bedInMemory', { 
-      bed: { 
-        available: !this.bedInMemory.bed.available,
-        covidStatus: 'NEGATIVE',
-        id: this.bedInMemory.bed.id,
-        ventilatorInUse: false
-      }
-    });
+    this.available = !this.available;
+    this.covidStatus = null;
+    this.levelOfCare = null;
+    this.hemofilterInUse = null;
     this.changesMade = true;
   }
 
   @action
   setCovidStatus(status) {
-    this.set('bedInMemory', { 
-      bed: { 
-        available: false,
-        covidStatus: status,
-        id: this.bedInMemory.bed.id,
-        ventilatorInUse: this.bedInMemory.bed.ventilatorInUse
-      } 
-    });
+    this.covidStatus = status;
+    this.available = false;
     this.changesMade = true;
   }
 
   @action
-  setVentilatorStatus() {
-    this.set('bedInMemory', { 
-      bed: { 
-        available: false,
-        covidStatus: this.bedInMemory.bed.covidStatus,
-        id: this.bedInMemory.bed.id,
-        ventilatorInUse: !this.bedInMemory.bed.ventilatorInUse
-      }
-    });
+  setLevelOfCare(level) {
+    this.levelOfCare = level;
+    this.available = false;
+    this.changesMade = true;
+  }
+
+  @action
+  setVentilationType(status) {
+    this.ventilationType = status;
+    this.available = false;
+    this.changesMade = true;
+  }
+
+  @action
+  setHemofilterInUse() {
+    this.hemofilterInUse = !this.hemofilterInUse;
+    this.available = false;
     this.changesMade = true;
   }
 
@@ -101,14 +94,14 @@ export default class WardController extends Controller {
 
     this.error = false;
 
-    const available = this.bedInMemory.bed.available;
-
     const variables = {
       input: {
-        available,
-        covidStatus: available ? null : this.bedInMemory.bed.covidStatus,
-        id: this.bedInMemory.bed.id,
-        ventilatorInUse: available ? false : this.bedInMemory.bed.ventilatorInUse
+        available: this.available,
+        covidStatus: this.available ? null : this.covidStatus,
+        id: this.id,
+        levelOfCare: this.levelOfCare,
+        ventilationType: this.ventilationType,
+        hemofilterInUse: this.hemofilterInUse
       }
     };
 
@@ -118,7 +111,9 @@ export default class WardController extends Controller {
       const foundIndex = this.model.beds.findIndex(x => x.id === updateBed.bed.id);
       this.model.beds[foundIndex].available = updateBed.bed.available;
       this.model.beds[foundIndex].covidStatus = updateBed.bed.covidStatus;
-      this.model.beds[foundIndex].ventilatorInUse = updateBed.bed.ventilatorInUse;
+      this.model.beds[foundIndex].levelOfCare = updateBed.bed.levelOfCare;
+      this.model.beds[foundIndex].ventilationType = updateBed.bed.ventilationType;
+      this.model.beds[foundIndex].hemofilterInUse = updateBed.bed.hemofilterInUse;
 
       this.hospital.fetchHospital();
 
@@ -140,7 +135,7 @@ export default class WardController extends Controller {
     event.preventDefault();
     this.error = false;
 
-    const selectedBedId = this.bedInMemory.bed.id;
+    const selectedBedId = this.id;
 
     const variables = {
       input: {

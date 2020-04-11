@@ -18,7 +18,9 @@ query {
           available
           covidStatus
           id
-          ventilatorInUse
+          levelOfCare
+          ventilationType
+          hemofilterInUse
         }
         id
         description

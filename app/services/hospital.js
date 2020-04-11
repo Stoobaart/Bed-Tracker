@@ -145,7 +145,7 @@ class Ward {
 
   get totalVentilatorInUse() {
     return this.beds.reduce((totalVentilatorInUse, bed) => {
-      if (bed.ventilatorInUse) {
+      if (bed.ventilationType) {
         return totalVentilatorInUse + 1
       }
 
@@ -168,7 +168,9 @@ class Bed {
   @tracked id = null;
   @tracked available = null;
   @tracked covidStatus = null;
-  @tracked ventilatorInUse = null;
+  @tracked ventilationType = null;
+  @tracked levelOfCare = null;
+  @tracked hemofilterInUse = null;
 
   constructor(bed) {
     for (const property in this) {
