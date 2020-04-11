@@ -16,6 +16,12 @@ export default class ApplicationController extends Controller {
   @action
   toggleMenu() {
     this.showSlideMenu = !this.showSlideMenu;
+
+    if (this.showSlideMenu) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
   }
 
   @action
