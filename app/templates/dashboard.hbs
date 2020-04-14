@@ -77,7 +77,13 @@
         </div>
 
         <div class="card_data-block">
-          <div class="card_data-block--value">{{this.model.availableHemofilter}}</div>
+          <div class="card_data-block--value">
+            {{this.model.availableHemofilter}}
+            {{#if this.model.totalHemofilter}}
+              <div class="slash"> / </div> 
+              <div class="totals">{{this.model.totalHemofilter}}</div>
+            {{/if}}
+          </div>
           <div class="card_data-block--label hemo">Hemofilters in use</div>
         </div>
       </div>
