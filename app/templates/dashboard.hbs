@@ -23,7 +23,6 @@
         </div>
 
         <div class="card_data-block">
-          {{log this.model}}
           <div class="card_data-block--value">
             {{this.model.totalAvailableCovidBeds}} 
             <div class="slash"> / </div> 
@@ -74,12 +73,12 @@
       <div class="card">
         <div class="card_header">
           <img class="card_icon" src="/assets/images/ventilator.svg" alt="">
-          <div class="card_header-text">Available resources</div>
+          <div class="card_header-text">Hemofiltration</div>
         </div>
 
         <div class="card_data-block">
           <div class="card_data-block--value">{{this.model.availableHemofilter}}</div>
-          <div class="card_data-block--label">Total Hemofiltration</div>
+          <div class="card_data-block--label hemo">Total Hemofiltration in progress</div>
         </div>
       </div>
     </div>

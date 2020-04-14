@@ -1,9 +1,9 @@
 <div class="add-beds">
-  <h1>Add COVID beds</h1>
+  <h1>Add beds</h1>
   <p>to ward: {{this.model.name}}</p>
 
   <label for="add-beds" class="form_label">
-    Number of COVID beds
+    Number of beds
   </label>
   <Input @id="add-beds"
          @type="number"
@@ -12,7 +12,7 @@
          min="0"
          @key-up={{fn makeNumberPositive}}
          @value={{this.noOfBedsToAdd}} />
-  <div class="help-text">The number of COVID beds to add to this ward</div>
+  <div class="help-text">The number of beds to add to this ward</div>
 
   <div class="btns-container">
     <button
@@ -26,7 +26,7 @@
       class="form_btn"
       {{on "click" this.addBeds}} 
       disabled={{this.addButtonDisabled}}>
-      Add COVID beds
+      Add beds
     </button>
   </div>
 

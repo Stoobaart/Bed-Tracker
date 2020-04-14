@@ -347,6 +347,10 @@ body.no-scroll {
         position: relative;
         width: 16px;
       }
+
+      .hemo {
+        white-space: nowrap;
+      }
     }
   }
 
@@ -1258,14 +1262,11 @@ button {
   }
 }
 
-.edit-ward {
-  max-width: 876px;
-  margin: auto;
-}
-
 .add-beds, .edit-ward {
   position: relative;
   padding: 2rem;
+  max-width: 876px;
+  margin: auto;
 
   .btns-container {
     margin-top: 0;
