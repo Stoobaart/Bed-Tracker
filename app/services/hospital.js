@@ -59,6 +59,11 @@ class Hospital {
   @tracked totalAvailableCovidBeds = null;
   @tracked totalNonCovidBeds = null;
   @tracked totalAvailableNonCovidBeds = null;
+  @tracked totalHemofilter = null;
+
+  get totalAvailableHemofilters() {
+    return this.totalHemofilter ? this.totalHemofilter - this.availableHemofilter : 0;
+  }
 
   get totalBeds() {
     return this.wards.reduce((totalBeds, ward) => totalBeds + ward.totalBeds, 0);
