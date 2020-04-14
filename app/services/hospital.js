@@ -54,6 +54,11 @@ class Hospital {
   @tracked name = null;
   @tracked address = null;
   @tracked wards = [];
+  @tracked availableHemofilter = null;
+  @tracked totalCovidBeds = null;
+  @tracked totalAvailableCovidBeds = null;
+  @tracked totalNonCovidBeds = null;
+  @tracked totalAvailableNonCovidBeds = null;
 
   get totalBeds() {
     return this.wards.reduce((totalBeds, ward) => totalBeds + ward.totalBeds, 0);

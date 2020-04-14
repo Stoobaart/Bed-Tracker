@@ -270,7 +270,6 @@ body.no-scroll {
 .card {
   background-color: white;
   width: calc(100% - 2rem);
-  max-width: 382px;
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -280,11 +279,18 @@ body.no-scroll {
   justify-content: space-between;
 
   @media (min-width: 450px) {
+    min-width: 0;
+    width: 43%;
+    max-width: 19.5rem;
+  }
+
+  @media (min-width: 768px) {
     max-width: 20.5rem;
   }
 
-  @media (min-width: 769px) {
-    max-width: 382px;
+  @media (min-width: 1024px) {
+    width: 44%;
+    max-width: 44%;
   }
 
   &_last-card {
@@ -308,16 +314,39 @@ body.no-scroll {
   }
 
   &_data-block {
-    width: 98px;
+    width: 150px;
     height: 72px;
 
+    &.ward-dashboard {
+      width: 100px;
+    }
+
     &--value {
+      display: inline-flex;
       font-size: 32px;
       font-weight: 600;
+
+      .slash {
+        font-size: 32px;
+        color: #737373;
+        padding: 0 .5rem;
+      }
+
+      .totals {
+        color: #737373;
+        font-size: 1rem;
+        line-height: 2.8;
+      }
     }
 
     &--label {
       font-size: 12px;
+
+      .icon {
+        top: .2rem;
+        position: relative;
+        width: 16px;
+      }
     }
   }
 
@@ -861,7 +890,7 @@ button {
 
   .header {
     display: inline-flex;
-    width: 100%;
+    width: calc(100% - 4rem);
     font-size: 1.5rem;
     padding: 1rem 2rem;
     margin-bottom: 1rem;

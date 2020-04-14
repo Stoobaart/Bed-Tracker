@@ -3,13 +3,18 @@ query {
     hospital {
       address
       availableBeds
+      availableHemofilter
       id
       name
       totalBeds
+      totalCovidBeds
+      totalAvailableCovidBeds
+      totalNonCovidBeds
+      totalAvailableNonCovidBeds
       totalCovidStatusNegative
       totalCovidStatusPositive
       totalCovidStatusSuspected
-      totalVentilatorInUse
+      totalHemofilter
       unavailableBeds
       useManagement
       wards {
