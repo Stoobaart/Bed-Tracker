@@ -1105,6 +1105,7 @@ button {
   max-width: 876px;
   margin: auto;
   overflow-x: scroll;
+  font-size: 0.75rem;
 
   .header {
     display: inline-flex;
@@ -1138,7 +1139,7 @@ button {
 
     &--column {
       font-size: .75rem;
-      width: 6.5rem;
+      width: 5rem;
       color: white;
       line-height: 3;
       height: 40px;
@@ -1152,7 +1153,7 @@ button {
         &-1 {
           position: absolute;
           width: 2rem;
-          padding-left: 40px;
+          padding-left: 56px;
           background-color: #003e78;
           border-right: 2px solid #2c98ff;
           z-index: 1;
@@ -1163,13 +1164,18 @@ button {
         }
         &-2 {
           width: 4.5rem;
-          margin-left: 82px;
+          margin-left: 6rem;
 
           @media (min-width: 736px) {
-            width: 6.5rem;
-            margin-left: 40px;
+            width: 5rem;
+            margin-left: 4rem;
           }
         }
+      }
+
+      &.sex {
+        width: 2.5rem;
+        min-width: 2.5rem;
       }
 
       .icon {
@@ -1194,11 +1200,14 @@ button {
 
     .bed-number {
       height: 24px;
-      padding: .5rem 1rem;
+      padding: .5rem;
       position: absolute;
       background-color: white;
       z-index: 1;
       border-bottom: 2px solid #d8d8d8;
+      font-size: 12px;
+      line-height: 2;
+      min-width: 2.5rem;
 
       @media (min-width: 736px) {
         border-bottom: none;
@@ -1210,7 +1219,7 @@ button {
       display: inline-flex;
       height: 24px;
       line-height: 2;
-      min-width: 6.5rem;
+      min-width: 5rem;
       padding: .5rem 0;
       border-bottom: 2px solid #d8d8d8;
 
@@ -1226,7 +1235,7 @@ button {
           background-color: white;
           border-right: 2px solid #2c98ff;
           padding-left: 0;
-          left: 40px;
+          left: 56px;
           z-index: 1;
 
           @media (min-width: 736px) {
@@ -1235,17 +1244,22 @@ button {
           }
         }
         &-2 {
-          min-width: 69px;
-          width: 69px;
-          margin-left: 74px;
+          min-width: 4.5rem;
+          width: 4.5rem;
+          margin-left: 5.5rem;
           padding-left: 8px;
 
           @media (min-width: 736px) {
             min-width: 0;
-            width: 6.5rem;
-            margin-left: 0;
+            width: 5rem;
+            margin-left: 1.5rem;
           }
         }
+      }
+
+      &.sex {
+        width: 2.5rem;
+        min-width: 2.5rem;
       }
 
       .text {

@@ -16,6 +16,9 @@ export default class WardController extends Controller {
   @tracked ventilationType = null;
   @tracked index = null;
   @tracked hemofilterInUse = null;
+  @tracked reference = null;
+  @tracked initials = null;
+  @tracked sex = null;
 
   @tracked editBedModalIsOpen = false;
   @tracked changesMade = false;
@@ -33,13 +36,16 @@ export default class WardController extends Controller {
   openEditBedModal(bed, index) {
     this.changesMade = false;
     const bedIndex = index + 1;
-    
+
     this.available = bed.available;
     this.covidStatus = bed.covidStatus;
     this.id = bed.id;
     this.levelOfCare = bed.levelOfCare;
     this.ventilationType = bed.ventilationType;
     this.hemofilterInUse = bed.hemofilterInUse;
+    this.initials = bed.initials;
+    this.reference = bed.reference;
+    this.sex = bed.sex;
     this.index = bedIndex;
 
     this.editBedModalIsOpen = true;
@@ -59,6 +65,12 @@ export default class WardController extends Controller {
     this.covidStatus = null;
     this.levelOfCare = null;
     this.hemofilterInUse = null;
+    this.changesMade = true;
+  }
+
+  @action
+  setSex(sex) {
+    this.sex = sex;
     this.changesMade = true;
   }
 
@@ -103,7 +115,10 @@ export default class WardController extends Controller {
         id: this.id,
         levelOfCare: this.levelOfCare,
         ventilationType: this.ventilationType,
-        hemofilterInUse: this.hemofilterInUse
+        hemofilterInUse: this.hemofilterInUse,
+        reference: this.reference,
+        initials: this.initials,
+        sex: this.sex
       }
     };
 
@@ -116,6 +131,9 @@ export default class WardController extends Controller {
       this.model.beds[foundIndex].levelOfCare = updateBed.bed.levelOfCare;
       this.model.beds[foundIndex].ventilationType = updateBed.bed.ventilationType;
       this.model.beds[foundIndex].hemofilterInUse = updateBed.bed.hemofilterInUse;
+      this.model.beds[foundIndex].reference = updateBed.bed.reference;
+      this.model.beds[foundIndex].initials = updateBed.bed.initials;
+      this.model.beds[foundIndex].sex = updateBed.bed.sex;
 
       this.hospital.fetchHospital();
 

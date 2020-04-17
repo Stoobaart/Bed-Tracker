@@ -7,6 +7,9 @@ mutation ($input: UpdateBedInput!) {
       levelOfCare
       ventilationType
       hemofilterInUse
+      initials
+      reference
+      sex
     }
   }
 }

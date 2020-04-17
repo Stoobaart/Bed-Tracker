@@ -181,6 +181,9 @@ class Bed {
   @tracked ventilationType = null;
   @tracked levelOfCare = null;
   @tracked hemofilterInUse = null;
+  @tracked reference = null;
+  @tracked initials = null;
+  @tracked sex = null;
 
   constructor(bed) {
     for (const property in this) {

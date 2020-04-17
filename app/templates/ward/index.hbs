@@ -86,6 +86,12 @@
       <div class="header--column availability-2">
         Availability
       </div>
+      <div class="header--column centered">
+        Patient Initials
+      </div>
+      <div class="header--column centered sex">
+        Sex
+      </div>
       <div class="header--column">
         <img class="icon" src="/assets/images/covid-19-positive-white.svg" alt="">
         COVID
@@ -97,13 +103,13 @@
         Ventilation
       </div>
       <div class="header--column centered">
-        hemofiltration
+        Hemofilters
       </div>
     </div>
 
     {{#each this.model.beds as |bed index|}}
       <div class="table_card"  role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
-        <div class="bed-number">{{plus-one index}}</div>
+        <div class="bed-number">{{bed.reference}}</div>
         {{#if bed.available}}
           <div class="column availability-1">
             <img class="icon" src="/assets/images/available-yes-green.svg" alt="">
@@ -112,6 +118,8 @@
             Available
           </div>
 
+          <div class="column"></div>
+          <div class="column sex"></div>
           <div class="column"></div>
           <div class="column"></div>
           <div class="column"></div>
@@ -123,6 +131,12 @@
           </div>
           <div class="column availability-2">
             Occupied
+          </div>
+          <div class="column">
+            <div class="text">{{bed.initials}}</div>
+          </div>
+          <div class="column sex">
+            <div class="text">{{if (eq bed.sex "MALE") "M" "F"}}</div>
           </div>
           <div class="column">
             {{#if (eq bed.covidStatus "POSITIVE")}}
@@ -173,7 +187,7 @@
       {{else}}
         Edit bed
       {{/if}}
-      {{this.index}}
+      {{this.reference}}
       <div class="close-btn" role="button" {{action this.closeModal}}>
         <img src="/assets/images/cross.svg" alt="">
       </div>
@@ -207,8 +221,57 @@
             <img src="{{if this.available "/assets/images/toggle-tick.svg" "/assets/images/toggle-cross.svg"}}" alt="">
           </div>
         </div>
-        
+
+        <section>
+          <div class="section-header">
+            Reference:
+          </div>
+          <Input @id="reference"
+                 @name="reference"
+                 @class="form_input"
+                 @key-up={{fn (mut this.changesMade) true}}
+                 @value={{this.reference}} />
+        </section>
+
         {{#if (not this.available)}}
+          <section>
+            <div class="section-header">
+              Patient initials:
+            </div>
+            <Input @id="initials"
+                   @name="initials"
+                   @class="form_input"
+                   @key-up={{fn (mut this.changesMade) true}}
+                   @value={{this.initials}} />
+          </section>
+
+          <section>
+            <div class="section-header">
+              Sex:
+            </div>
+            <div class="radio">
+              <input
+                      id="sex-m"
+                      type="radio"
+                      checked={{eq this.sex "MALE"}}
+                      onclick={{action this.setSex "MALE"}}>
+              <label for="sex" class="radio--label">
+                <div class="radio--text">Male</div>
+              </label>
+            </div>
+
+            <div class="radio">
+              <input
+                      id="sex-f"
+                      type="radio"
+                      checked={{eq this.sex "FEMALE"}}
+                      onclick={{action this.setSex "FEMALE"}}>
+              <label for="sex" class="radio--label">
+                <div class="radio--text">Female</div>
+              </label>
+            </div>
+          </section>
+
           <section>
             <div class="section-header">
               COVID status:

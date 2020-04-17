@@ -26,6 +26,9 @@ query {
           levelOfCare
           ventilationType
           hemofilterInUse
+          initials
+          reference
+          sex
         }
         id
         description
