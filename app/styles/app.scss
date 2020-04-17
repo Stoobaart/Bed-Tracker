@@ -70,7 +70,7 @@ body.no-scroll {
     height: calc(100% - 80px);
     max-width: 352px;
     background-color: white;
-  
+
     &.open {
       width: 85%;
     }
@@ -212,7 +212,7 @@ body.no-scroll {
       font-size: 12px;
       line-height: 1.8;
       padding: 0 0.5rem;
-      min-width: 69px;   
+      min-width: 69px;
       max-width: 69px;
       font-size: 12px;
       line-height: 1.8;
@@ -239,7 +239,7 @@ body.no-scroll {
         width: 10%;
         display: flex;
         justify-content: flex-end;
-      }      
+      }
     }
 
     &--beds {
@@ -390,6 +390,10 @@ body.no-scroll {
   width: 80vw;
   max-width: 21rem;
 
+  &_field {
+    position: relative;
+  }
+
   &_header {
     font-size: 1.5rem;
     font-weight: 600;
@@ -428,6 +432,12 @@ body.no-scroll {
     }
   }
 
+  &_input + img.input-icon {
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+  }
+
   &_checkbox::before {
     content: url("/assets/images/empty.svg");
     position: relative;
@@ -438,7 +448,7 @@ body.no-scroll {
   &_checkbox:checked::before {
     content: url("/assets/images/filled.svg");
   }
-   
+
   &_checkbox {
     position: relative;
     top: .6rem;

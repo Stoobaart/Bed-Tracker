@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import LoginHospitalManager from 'bed-checker/gql/mutations/login-hospital-manager';
 
 export default class LoginController extends Controller {
@@ -9,8 +10,9 @@ export default class LoginController extends Controller {
   @service errors;
   @service account;
 
-  email = null;
-  passowrd = null;
+  @tracked email = null;
+  @tracked password = null;
+  @tracked isPasswordVisible = false;
 
   @action
   async submit(event) {
@@ -28,6 +30,7 @@ export default class LoginController extends Controller {
       const response = await this.apollo.mutate({ mutation: LoginHospitalManager, variables });
       const hospitalId = response.loginHospitalManager.hospitalManager.hospital.id;
       this.account.hospital = response.loginHospitalManager.hospitalManager.hospital;
+      this.isPasswordVisible = false;
       localStorage.setItem('hospital', JSON.stringify(this.account.hospital));
       localStorage.setItem('bed_tracker_token', JSON.stringify(hospitalId));
       this.router.transitionTo('dashboard');
