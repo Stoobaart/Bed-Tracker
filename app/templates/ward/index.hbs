@@ -136,7 +136,13 @@
             <div class="text">{{bed.initials}}</div>
           </div>
           <div class="column sex">
-            <div class="text">{{if (eq bed.sex "MALE") "M" "F"}}</div>
+            <div class="text">
+              {{#if (eq bed.sex "MALE")}}
+                M
+              {{else if (eq bed.sex "FEMALE")}}
+                F
+              {{/if}}
+            </div>
           </div>
           <div class="column">
             {{#if (eq bed.covidStatus "POSITIVE")}}
