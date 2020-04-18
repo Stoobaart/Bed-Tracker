@@ -6,6 +6,9 @@ mutation ($input:RegisterBedsInput!) {
       covidStatus
       levelOfCare
       ventilationType
+      reference
+      initials
+      sex
     }
   }
 }

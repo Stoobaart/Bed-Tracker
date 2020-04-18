@@ -10,9 +10,34 @@
          @name="add-beds"
          @class="form_input"
          min="0"
-         @key-up={{fn makeNumberPositive}}
+         @key-up={{fn this.makeNumberPositive}}
          @value={{this.noOfBedsToAdd}} />
   <div class="help-text">The number of beds to add to this ward</div>
+
+  <label for="prefix" class="form_label">
+    Prefix (optional)
+  </label>
+  <Input @id="prefix"
+         @name="prefix"
+         @class="form_input"
+         @value={{this.prefix}} />
+  <div class="help-text">Prefix to add to the bed reference e.g. ICU</div>
+
+  <label for="start-from" class="form_label">
+    Start numbering from:
+  </label>
+  <Input @id="start-from"
+         @type="number"
+         @name="start-from"
+         @class="form_input"
+         min=1
+         @key-up={{fn this.makeStartFromPositive}}
+         @value={{this.startFrom}} />
+
+  <div class="results {{if this.hideResults "results--hidden"}}">
+    <span>The following beds will be created:</span>
+    <div class="results_range">{{this.resultsRange}}</div>
+  </div>
 
   <div class="btns-container">
     <button
@@ -22,9 +47,9 @@
       Cancel
     </button>
 
-    <button 
+    <button
       class="form_btn"
-      {{on "click" this.addBeds}} 
+      {{on "click" this.addBeds}}
       disabled={{this.addButtonDisabled}}>
       Add beds
     </button>

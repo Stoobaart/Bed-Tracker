@@ -1158,11 +1158,8 @@ button {
   margin: auto;
   overflow-x: scroll;
   font-size: 0.75rem;
-  position: relative;
 
   .header {
-    position: sticky;
-    top: 0;
     display: inline-flex;
     white-space: nowrap;
     justify-content: space-between;
@@ -1346,6 +1343,25 @@ button {
   padding: 2rem;
   max-width: 876px;
   margin: auto;
+
+  .results {
+    margin-top: 1rem;
+    background-color: #f6f6f6;
+    font-weight: 600;
+
+    &--hidden {
+      visibility: hidden;
+    }
+
+    & span {
+      font-size: 0.75rem;
+      color: #333333;
+    }
+
+    &_range {
+      color: #003e78;
+    }
+  }
 
   .btns-container {
     margin-top: 0;

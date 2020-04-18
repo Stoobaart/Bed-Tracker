@@ -10,6 +10,8 @@ export default class WardAddBedsController extends Controller {
   @service hospital;
 
   @tracked noOfBedsToAdd = null;
+  @tracked prefix = null;
+  @tracked startFrom = '1';
   @tracked error = false;
   @tracked isSaving = false;
 
@@ -17,10 +19,29 @@ export default class WardAddBedsController extends Controller {
     return !this.noOfBedsToAdd || this.noOfBedsToAdd <= 0 || this.isSaving;
   }
 
+  get hideResults() {
+    return !this.noOfBedsToAdd || !this.startFrom;
+  }
+
+  get resultsRange() {
+    return `${this.prefix || ''}${parseInt(this.startFrom)} to ${this.prefix || ''}${parseInt(this.startFrom) + parseInt(this.noOfBedsToAdd) - 1}`;
+  }
+
   @action
   makeNumberPositive() {
     if (this.noOfBedsToAdd) {
       this.noOfBedsToAdd = Math.abs(JSON.parse(this.noOfBedsToAdd));
+    }
+  }
+
+  @action
+  makeStartFromPositive() {
+    if (this.startFrom) {
+      this.startFrom = Math.abs(JSON.parse(this.startFrom));
+    }
+
+    if (this.startFrom === 0) {
+      this.startFrom = 1;
     }
   }
 
@@ -38,9 +59,14 @@ export default class WardAddBedsController extends Controller {
     const variables = {
       input: {
         numberOfBeds: JSON.parse(this.noOfBedsToAdd),
-        wardId: this.model.id
+        wardId: this.model.id,
+        startFrom: JSON.parse(this.startFrom)
       }
     };
+
+    if (this.prefix) {
+      variables.input.prefix = this.prefix;
+    }
 
     try {
       const { registerBeds } = await this.apollo.mutate({ mutation: RegisterBedsMutation, variables });
