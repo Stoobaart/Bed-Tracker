@@ -23,9 +23,13 @@
     <div class="nav-overlay" role="button" {{on "click" this.toggleMenu}}></div>
   {{/if}}
   <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
-    <div class="nav-item" role="button" {{on "click" this.logout}}>
+    <a class="nav-item" href="https://bed-checker-dashboard.now.sh/">
+      <span>Regional dashboard</span>
+      <img src="/assets/images/view.svg" alt="">
+    </a>
+    <div class="nav-item nav-item--logout" role="button" {{on "click" this.logout}}>
       <img class="nav-item_image" src="/assets/images/logout.svg" alt="">
-      <div class="nav-item_text">Log out</div>
+      Log out
     </div>
   </EspMenu>
 

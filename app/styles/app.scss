@@ -2,6 +2,10 @@
 @import 'ember-modal-dialog/ember-modal-structure';
 @import 'ember-modal-dialog/ember-modal-appearance';
 
+:root {
+  --esp-menu-link-hover: #ffffff;
+}
+
 @mixin button {
   color: white;
   height: 48px;
@@ -66,7 +70,12 @@ body.no-scroll {
 .nav {
 
   &-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
     top: 80px;
+    padding: 1rem;
+    box-sizing: border-box;
     height: calc(100% - 80px);
     max-width: 352px;
     background-color: white;
@@ -74,21 +83,29 @@ body.no-scroll {
     &.open {
       width: 85%;
     }
-  }
 
-  &-item {
-    display: inline-flex;
-    padding: 1rem;
-
-    &_image {
-      padding-right: .5rem;
-    }
-
-    &_text {
+    & .nav-item {
+      display: inline-flex;
+      padding: 0.5rem 0;
       color: #005eb8;
       font-weight: 600;
-      position: relative;
-      top: .05rem;
+
+      &_image {
+        padding-right: .5rem;
+      }
+
+      &--logout {
+        border-top: 2px solid #005eb8;
+      }
+    }
+
+    & a.nav-item {
+      text-decoration: none;
+
+      & span {
+        flex-grow: 1;
+        color: #005eb8;
+      }
     }
   }
 
