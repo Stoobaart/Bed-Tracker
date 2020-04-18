@@ -520,11 +520,7 @@ button {
   @include button;
 
   &.button--secondary {
-    width: calc(100vw - 4rem);
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    background-color: #d8d8d8;
+    background-color: #f6f6f6;
     color: #000000;
   }
 }
@@ -1415,5 +1411,73 @@ button {
 
   .error {
     color: #e30a0a;
+  }
+}
+
+.edit-ward {
+  display: flex;
+  flex-direction: column;
+
+  &_delete {
+    display: flex;
+    align-self: center;
+    margin-top: 4rem;
+    cursor: pointer;
+
+    & span {
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  &_modal {
+    overflow: auto !important;
+
+    @media (max-width: 767px) {
+      transform: none !important;
+      position: absolute;
+      max-width: 100vw;
+      bottom: 0;
+      left: 0 !important;
+      padding: 0;
+    }
+
+    & .modal_header {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1rem 1rem 2rem;
+      border-bottom: 2px solid #d8d8d8;
+
+      & h1 {
+        flex-grow: 1;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0.5rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    & .modal_body {
+      padding: 1rem 2rem;
+
+      & p.warning {
+        margin-top: 1rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    & .modal_controls {
+      display: flex;
+      justify-content: center;
+
+      & button {
+        margin: 0.5rem;
+        padding: 0 2rem;
+        width: auto;
+      }
+    }
   }
 }

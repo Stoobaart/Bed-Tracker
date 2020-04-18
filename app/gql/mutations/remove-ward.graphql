@@ -1,0 +1,5 @@
+mutation ($input: RemoveWardInput!) {
+  removeWard (input: $input) {
+    success
+  }
+}

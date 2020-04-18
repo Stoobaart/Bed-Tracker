@@ -41,6 +41,11 @@ export default class AccountService extends Service {
     this.hospital.wards.push(new Ward(ward));
   }
 
+  removeWard(wardId) {
+    const wardIndex = this.hospital.wards.findIndex((ward) => ward.id === wardId);
+    this.hospital.wards.splice(wardIndex, 1);
+  }
+
   addBeds(ward, beds) {
     beds.forEach((bed) => {
       ward.beds.push(new Bed(bed));

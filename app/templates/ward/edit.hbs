@@ -45,6 +45,11 @@
     </button>
   </div>
 
+  <div class="edit-ward_delete" role="button" {{on "click" (toggle "showDeleteWardModal" this)}}>
+    <img src="/assets/images/delete.svg" alt="delete">
+    <span>Remove this ward</span>
+  </div>
+
   {{#if this.error}}
     <div class="banner banner--error">
       <div class="banner_title"><img src="/assets/images/error.svg" alt="">Something went wrong</div>
@@ -53,3 +58,24 @@
     </div>
   {{/if}}
 </div>
+
+{{#if this.showDeleteWardModal}}
+  <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}} @containerClass="edit-ward_modal">
+    <div class="modal_header">
+      <img src="/assets/images/delete.svg" alt="">
+      <h1>Delete ward {{this.name}}</h1>
+      <img src="/assets/images/cross.svg" alt="" role="button" {{on "click" this.closeModal}}>
+    </div>
+
+    <div class="modal_body">
+      <p>Are you sure you want to delete this ward from the hospital?</p>
+      <p class="warning">Once deleted this cannot be undone and all bed data will be lost.</p>
+    </div>
+
+    <div class="modal_controls">
+      <button class="button--secondary" {{on "click" this.closeModal}}>Cancel</button>
+      <button {{on "click" this.deleteWard}}>Delete</button>
+    </div>
+
+  </ModalDialog>
+{{/if}}
