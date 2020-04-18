@@ -144,6 +144,10 @@ body.no-scroll {
   &--wards {
     display: flex;
     flex-wrap: wrap;
+
+    & > div {
+      flex-basis: 50%;
+    }
   }
 }
 
@@ -162,9 +166,20 @@ body.no-scroll {
 
     &--container {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       width: 100%;
       margin-bottom: 1.5rem;
+
+      div {
+        flex-grow: 1;
+      }
+
+      p {
+        margin-top: 1rem;
+        flex-basis: 100%;
+        color: #ffffff;
+      }
     }
   }
 
@@ -188,13 +203,16 @@ body.no-scroll {
 
   &_card {
     text-decoration: none;
-    justify-content: space-between;
     padding: .75rem;
     width: calc(100% - 1.5rem);
     display: inline-flex;
     height: 52px;
     background-color: white;
     border-bottom: 2px solid #d8d8d8;
+
+    & > div {
+      flex-basis: 50%;
+    }
 
     &--ward-name {
       line-height: 3.5;
@@ -227,7 +245,7 @@ body.no-scroll {
     .column {
       display: inline-flex;
       font-size: .75rem;
-      width: 40%;
+      width: 50%;
       color: white;
 
       &.wards_card--name-container {
@@ -1129,14 +1147,21 @@ button {
 
 .ward-beds-top-bar {
   display: flex;
+  flex-wrap: wrap;
   max-width: 876px;
   margin: auto;
+  padding: 1rem;
+  align-items: center;
+
+  p {
+    margin-top: 1rem;
+    flex-basis: 100%;
+  }
 
   .header {
     font-size: 1.5rem;
     font-weight: 600;
-    padding: 1.5rem 1rem;
-    width: calc(100% - 174px);
+    flex-grow: 1;
   }
 
   .link-button {
@@ -1149,7 +1174,6 @@ button {
     text-decoration: none;
     color: #005eb8;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    margin-top: 1rem;
   }
 }
 
@@ -1181,11 +1205,7 @@ button {
       .header--column {
         font-size: 1rem;
         line-height: 1.8;
-
-        &.view {
-          width: 10%;
-          text-align: right;
-        }
+        flex-basis: 50%;
       }
     }
 

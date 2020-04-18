@@ -24,8 +24,8 @@
 
         <div class="card_data-block">
           <div class="card_data-block--value">
-            {{this.model.totalAvailableCovidBeds}} 
-            <div class="slash"> / </div> 
+            {{this.model.totalAvailableCovidBeds}}
+            <div class="slash"> / </div>
             <div class="totals">{{this.model.totalCovidBeds}}</div>
           </div>
           <div class="card_data-block--label">
@@ -37,7 +37,7 @@
         <div class="card_data-block">
           <div class="card_data-block--value">
             {{this.model.totalAvailableNonCovidBeds}}
-            <div class="slash"> / </div> 
+            <div class="slash"> / </div>
             <div class="totals">{{this.model.totalNonCovidBeds}}</div>
           </div>
           <div class="card_data-block--label">
@@ -80,7 +80,7 @@
           <div class="card_data-block--value">
             {{#if this.model.totalHemofilter}}
               {{this.model.totalAvailableHemofilters}}
-              <div class="slash"> / </div> 
+              <div class="slash"> / </div>
               <div class="totals">{{this.model.totalHemofilter}}</div>
             {{else}}
               {{this.model.availableHemofilter}}
@@ -104,6 +104,7 @@
           <img class="wards_link--icon" src="/assets/images/plus.svg" alt="">
           Add Ward
         </LinkTo>
+        <p>Tap a row to view the ward</p>
       </div>
 
       {{#if this.model.wards.length}}
@@ -118,12 +119,9 @@
               <img class="icon" src="/assets/images/available-white.svg" alt="">
               Availability
             </div>
-            <div class="header--column view">
-              View
-            </div>
           </div>
         </div>
-        
+
         {{#each this.model.wards as |ward|}}
           <LinkTo class="wards_card" @route="ward" @model={{ward.id}} role="button">
             <div class="column wards_card--name-container">
@@ -145,10 +143,6 @@
                 {{ward.availableBeds}} /
                 <span>{{ward.beds.length}}</span>
               </div>
-            </div>
-
-            <div class="column arrow">
-              <img class="wards_link--arrow" src="/assets/images/view.svg" alt="">
             </div>
 
           </LinkTo>
