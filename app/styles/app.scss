@@ -798,6 +798,58 @@ button {
   }
 }
 
+.edit-bed-form {
+  display: flex;
+  flex-direction: column;
+
+  .bed-toggle {
+    position: relative;
+    display: flex;
+    align-self: center;
+    width: 13rem;
+    margin-bottom: 1rem;
+    border: 2px solid #003e78;
+    border-radius: 2rem;
+    background-color: #d8d8d8;
+
+    & .toggle {
+      position: absolute;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: #ffffff;
+      border: none;
+      border-radius: 2rem;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+      transition: left 0.5s;
+
+      &--left {
+        left: 0;
+      }
+
+      &--right {
+        left: 50%;
+      }
+    }
+
+    & > div {
+      z-index: 1;
+      display: flex;
+      flex-grow: 1;
+
+      & > span {
+        flex: 1 0 0;
+        height: 3rem;
+        box-sizing: border-box;
+        padding: 1rem;
+        color: #003e78;
+        line-height: 1;
+        text-align: center;
+      }
+    }
+  }
+}
+
 .toggle {
   width: 4rem;
   height: 1.5rem;
@@ -1106,8 +1158,11 @@ button {
   margin: auto;
   overflow-x: scroll;
   font-size: 0.75rem;
+  position: relative;
 
   .header {
+    position: sticky;
+    top: 0;
     display: inline-flex;
     white-space: nowrap;
     justify-content: space-between;

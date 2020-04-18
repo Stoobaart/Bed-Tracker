@@ -220,11 +220,12 @@
         </div>
       </form>
     {{else}}
-      <form>
-        <div class="availability-container">
-          <div>Availability</div>
-          <div role="button" class="toggle {{if this.available "toggle-on" "toggle-off"}}" {{on "click" setAvailability}}>
-            <img src="{{if this.available "/assets/images/toggle-tick.svg" "/assets/images/toggle-cross.svg"}}" alt="">
+      <form class="edit-bed-form">
+        <div class="bed-toggle">
+          <span class="toggle {{if this.available "toggle--left" "toggle--right"}}"></span>
+          <div>
+            <span {{on "click" (fn this.setAvailability true)}}>Available</span>
+            <span {{on "click" (fn this.setAvailability false)}}>Occupied</span>
           </div>
         </div>
 

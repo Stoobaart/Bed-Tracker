@@ -60,7 +60,11 @@ export default class WardController extends Controller {
   }
 
   @action
-  setAvailability() {
+  setAvailability(available) {
+    if (this.available === available) {
+      return;
+    }
+    
     this.available = !this.available;
     this.covidStatus = null;
     this.levelOfCare = null;
