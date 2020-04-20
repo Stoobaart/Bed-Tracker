@@ -11,7 +11,7 @@ export default class WardAddBedsController extends Controller {
 
   @tracked noOfBedsToAdd = null;
   @tracked prefix = null;
-  @tracked startFrom = '1';
+  @tracked startFrom = this.model.beds.length + 1;
   @tracked error = false;
   @tracked isSaving = false;
 
@@ -71,7 +71,9 @@ export default class WardAddBedsController extends Controller {
     try {
       const { registerBeds } = await this.apollo.mutate({ mutation: RegisterBedsMutation, variables });
       this.noOfBedsToAdd = null;
+      this.prefix = null;
       this.hospital.addBeds(this.model, registerBeds.beds);
+      this.startFrom = this.model.beds.length;
       this.set('model.showSuccessMessage', true);
       this.router.transitionTo('ward', this.model.id);
     } catch (error) {

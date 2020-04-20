@@ -161,10 +161,6 @@ body.no-scroll {
   &--wards {
     display: flex;
     flex-wrap: wrap;
-
-    & > div {
-      flex-basis: 50%;
-    }
   }
 }
 
