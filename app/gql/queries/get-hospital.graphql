@@ -3,7 +3,6 @@ query {
     hospital {
       address
       availableBeds
-      availableHemofilter
       id
       name
       totalBeds
@@ -14,21 +13,22 @@ query {
       totalCovidStatusNegative
       totalCovidStatusPositive
       totalCovidStatusSuspected
-      totalHemofilter
       unavailableBeds
-      useManagement
       wards {
         availableBeds
         beds {
           available
           covidStatus
+          dateOfAdmission
           id
-          levelOfCare
-          ventilationType
-          hemofilterInUse
           initials
+          levelOfCare
           reference
+          rrtType
           sex
+          sourceOfAdmission
+          useTracheostomy
+          ventilationType
         }
         id
         description

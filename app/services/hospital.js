@@ -183,12 +183,13 @@ class Bed {
   @tracked id = null;
   @tracked available = null;
   @tracked covidStatus = null;
+  @tracked dateOfAdmission = null;
   @tracked ventilationType = null;
   @tracked levelOfCare = null;
-  @tracked hemofilterInUse = null;
   @tracked reference = null;
-  @tracked initials = null;
-  @tracked sex = null;
+  @tracked rrtType = null;
+  @tracked sourceOfAdmission = null;
+  @tracked useTracheostomy = false;
 
   constructor(bed) {
     for (const property in this) {

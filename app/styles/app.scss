@@ -1016,7 +1016,7 @@ button {
     margin: 1.5rem 0;
     width: 208px;
 
-    &.third, &.fourth {
+    &.no-top-margin {
       @media (min-width: 768px) {
         margin-top: 0;
       }

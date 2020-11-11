@@ -171,6 +171,7 @@
               <div class="text">No</div>
             {{/if}}
           </div>
+          {{!-- This will change --}}
           <div class="column hemo">
             {{#if bed.hemofilterInUse}}
               <div class="text">Yes</div>
@@ -244,38 +245,83 @@
         {{#if (not this.available)}}
           <section>
             <div class="section-header">
-              Patient initials:
+              Date of admission:
             </div>
-            <Input @id="initials"
-                   @name="initials"
+            <Input @type="date" 
+                   @id="dateOfAdmission"
+                   @name="dateOfAdmission"
                    @class="form_input"
-                   @key-up={{fn (mut this.changesMade) true}}
-                   @value={{this.initials}} />
+                   @change={{fn (mut this.changesMade) true}}
+                   @value={{this.dateOfAdmission}} />
           </section>
-
+          
           <section>
             <div class="section-header">
-              Sex:
+              Source of admission:
             </div>
             <div class="radio">
               <input
-                      id="sex-m"
-                      type="radio"
-                      checked={{eq this.sex "MALE"}}
-                      onclick={{action this.setSex "MALE"}}>
-              <label for="sex" class="radio--label">
-                <div class="radio--text">Male</div>
+                id="source"
+                type="radio"
+                checked={{eq this.sourceOfAdmission "ED"}}
+                onclick={{action this.setSourceOfAdmission "ED"}}>
+              <label for="source" class="radio--label">
+                <div class="radio--text">ED</div>
               </label>
             </div>
 
             <div class="radio">
               <input
-                      id="sex-f"
-                      type="radio"
-                      checked={{eq this.sex "FEMALE"}}
-                      onclick={{action this.setSex "FEMALE"}}>
-              <label for="sex" class="radio--label">
-                <div class="radio--text">Female</div>
+                id="extWard"
+                type="radio"
+                checked={{eq this.sourceOfAdmission "EXTERNAL_WARD"}}
+                onclick={{action this.setSourceOfAdmission "EXTERNAL_WARD"}}>
+              <label for="extWard" class="radio--label">
+                <div class="radio--text">External ward</div>
+              </label>
+            </div>
+
+            <div class="radio no-top-margin">
+              <input
+                id="intWard"
+                type="radio"
+                checked={{eq this.sourceOfAdmission "INTERNAL_WARD"}}
+                onclick={{action this.setSourceOfAdmission "INTERNAL_WARD"}}>
+              <label for="intWard" class="radio--label">
+                <div class="radio--text">Internal ward</div>
+              </label>
+            </div>
+
+            <div class="radio no-top-margin">
+              <input
+                id="extITU"
+                type="radio"
+                checked={{eq this.sourceOfAdmission "EXTERNAL_ITU"}}
+                onclick={{action this.setSourceOfAdmission "EXTERNAL_ITU"}}>
+              <label for="extITU" class="radio--label">
+                <div class="radio--text">External ITU</div>
+              </label>
+            </div>
+
+            <div class="radio no-top-margin">
+              <input
+                id="intITU"
+                type="radio"
+                checked={{eq this.sourceOfAdmission "INTERNAL_ITU"}}
+                onclick={{action this.setSourceOfAdmission "INTERNAL_ITU"}}>
+              <label for="intITU" class="radio--label">
+                <div class="radio--text">Internal ITU</div>
+              </label>
+            </div>
+
+            <div class="radio no-top-margin">
+              <input
+                id="ITURead"
+                type="radio"
+                checked={{eq this.sourceOfAdmission "ITU_READMISSION"}}
+                onclick={{action this.setSourceOfAdmission "ITU_READMISSION"}}>
+              <label for="ITURead" class="radio--label">
+                <div class="radio--text">ITU readmission</div>
               </label>
             </div>
           </section>
@@ -286,6 +332,17 @@
             </div>
             <div class="radio">
               <input
+                id="green"
+                type="radio"
+                checked={{eq this.covidStatus "GREEN"}}
+                onclick={{action this.setCovidStatus "GREEN"}}>
+              <label for="green" class="radio--label">
+                <div class="radio--text">Green</div>
+              </label>
+            </div>
+
+            <div class="radio {{this.covidStatus}}">
+              <input
                 id="positive"
                 type="radio"
                 checked={{eq this.covidStatus "POSITIVE"}}
@@ -295,7 +352,7 @@
               </label>
             </div>
 
-            <div class="radio">
+            <div class="radio no-top-margin">
               <input
                 id="negative"
                 type="radio"
@@ -306,7 +363,7 @@
               </label>
             </div>
 
-            <div class="radio third">
+            <div class="radio no-top-margin">
               <input
                 id="suspected"
                 type="radio"
@@ -344,7 +401,7 @@
               </label>
             </div>
 
-            <div class="radio third">
+            <div class="radio no-top-margin">
               <input
                 id="level-3"
                 type="radio"
@@ -358,64 +415,71 @@
 
           <section>
             <div class="section-header">
-              Ventilation:
+              Tracheostomy:
+            </div>
+            <div class="radio">
+              <input
+                id="trachNo"
+                type="radio"
+                checked={{not this.useTracheostomy}}
+                onclick={{this.setUseTracheostomy}}>
+              <label for="trachNo" class="radio--label">
+                <div class="radio--text">No</div>
+              </label>
             </div>
 
             <div class="radio">
               <input
-                id="no-ventilation"
+                id="trachYes"
                 type="radio"
-                checked={{eq this.ventilationType null}}
-                onclick={{action this.setVentilationType null}}>
-              <label for="no-ventilation" class="radio--label">
-                <div class="radio--text">No ventilation</div>
-              </label>
-            </div>
-
-            <div class="radio">
-              <input
-                id="sv"
-                type="radio"
-                checked={{eq this.ventilationType "SV"}}
-                onclick={{action this.setVentilationType "SV"}}>
-              <label for="sv" class="radio--label">
-                <div class="radio--text">SV</div>
-              </label>
-            </div>
-
-            <div class="radio third">
-              <input
-                id="niv"
-                type="radio"
-                checked={{eq this.ventilationType "NIV"}}
-                onclick={{action this.setVentilationType "NIV"}}>
-              <label for="niv" class="radio--label">
-                <div class="radio--text">NIV</div>
-              </label>
-            </div>
-
-            <div class="radio fourth">
-              <input
-                id="intubated"
-                type="radio"
-                checked={{eq this.ventilationType "INTUBATED"}}
-                onclick={{action this.setVentilationType "INTUBATED"}}>
-              <label for="intubated" class="radio--label">
-                <div class="radio--text">INTUBATED</div>
+                checked={{this.useTracheostomy}}
+                onclick={{this.setUseTracheostomy}}>
+              <label for="trachYes" class="radio--label">
+                <div class="radio--text">Yes</div>
               </label>
             </div>
           </section>
 
-          <div class="radio hemofiltration">
-            <input
-              id="hemofiltration"
-              type="checkbox"
-              checked={{false}}
-              onclick={{action this.setHemofilterInUse}}>
-            <label for="hemofiltration" class="radio--label">
-              <div class="radio--text">Using hemofiltration</div>
-            </label>
-          </div>
+          <section>
+            <div class="section-header">
+              Ventilation:
+            </div>
+
+            {{#each this.ventilationTypes as |ventilation index|}}
+              <div class="radio {{if (gt index 1) "no-top-margin"}}">
+                <input
+                  id={{ventilation.type}}
+                  type="radio"
+                  checked={{eq this.ventilationType ventilation.type}}
+                  onclick={{action this.setVentilationType ventilation.type}}
+                  disabled={{and this.useTracheostomy (or (eq ventilation.type "HFNO") (eq ventilation.type "BIPAP"))}}>
+                <label for={{ventilation.type}} class="radio--label">
+                  <div class="radio--text">{{ventilation.label}}</div>
+                </label>
+              </div>
+            {{/each}}
+
+          </section>
+
+          <section>
+            <div class="section-header">
+              RRT:
+            </div>
+
+            {{#each this.rrtTypes as |rrt index|}}
+              <div class="radio {{if (gt index 1) "no-top-margin"}}">
+                <input
+                  id={{rrt.type}}
+                  type="radio"
+                  checked={{eq this.rrtType rrt.type}}
+                  onclick={{action this.setRrtType rrt.type}}>
+                <label for={{rrt.type}} class="radio--label">
+                  <div class="radio--text">{{rrt.label}}</div>
+                </label>
+              </div>
+            {{/each}}
+
+          </section>
         {{/if}}
 
         <button

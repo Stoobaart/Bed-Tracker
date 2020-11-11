@@ -3,13 +3,16 @@ mutation ($input: UpdateBedInput!) {
     bed {
       available
       covidStatus
+      dateOfAdmission
       id
-      levelOfCare
-      ventilationType
-      hemofilterInUse
       initials
+      levelOfCare
       reference
+      rrtType
       sex
+      sourceOfAdmission
+      useTracheostomy
+      ventilationType
     }
   }
 }

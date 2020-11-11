@@ -2,13 +2,17 @@ mutation ($input:RegisterBedsInput!) {
   registerBeds (input: $input) {
     beds {
       available
-      id
       covidStatus
-      levelOfCare
-      ventilationType
-      reference
+      dateOfAdmission
+      id
       initials
+      levelOfCare
+      reference
+      rrtType
       sex
+      sourceOfAdmission
+      useTracheostomy
+      ventilationType
     }
   }
 }
