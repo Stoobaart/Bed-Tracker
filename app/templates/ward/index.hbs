@@ -82,29 +82,33 @@
     <div class="header">
       <div class="bed-number"></div>
       <div class="header--column availability-1">
+        {{t "beds-table.headers.ref"}}
         <img class="icon" src="/assets/images/occupied-white.svg" alt="">
       </div>
       <div class="header--column availability-2">
-        Availability
+        {{t "beds-table.headers.status"}}
       </div>
-      <div class="header--column centered">
+      {{!-- <div class="header--column centered">
         Initials
       </div>
       <div class="header--column centered sex">
         Sex
-      </div>
-      <div class="header--column">
+      </div> --}}
+      <div class="header--column centered day">
+        {{t "beds-table.headers.day"}}
+      </div> 
+      <div class="header--column covid-status">
         <img class="icon" src="/assets/images/covid-19-positive-white.svg" alt="">
-        COVID
+        {{t "beds-table.headers.covid"}}
       </div>
       <div class="header--column centered">
-        Care Level
+        {{t "beds-table.headers.care-level"}}
       </div>
-      <div class="header--column centered">
-        Ventilation
+      <div class="header--column centered vent">
+        {{t "beds-table.headers.ventilation"}}
       </div>
-      <div class="header--column centered">
-        Hemofilters
+      <div class="header--column centered rrt">
+        {{t "beds-table.headers.rrt"}}
       </div>
     </div>
 
@@ -116,24 +120,25 @@
             <img class="icon" src="/assets/images/available-yes-green.svg" alt="">
           </div>
           <div class="column availability-2">
-            Available
+            {{t "beds-table.data.available"}}
           </div>
 
+          {{!-- <div class="column"></div>
+          <div class="column sex"></div> --}}
+          <div class="column day"></div>
+          <div class="column covid-status"></div>
           <div class="column"></div>
-          <div class="column sex"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
+          <div class="column vent"></div>
+          <div class="column rrt"></div>
 
         {{else}}
           <div class="column availability-1">
             <img class="icon" src="/assets/images/occupied-off-black.svg" alt="">
           </div>
           <div class="column availability-2">
-            Occupied
+            {{t "beds-table.data.occupied"}}
           </div>
-          <div class="column initials">
+          {{!-- <div class="column initials">
             <div class="text">{{bed.initials}}</div>
           </div>
           <div class="column sex">
@@ -144,39 +149,40 @@
                 F
               {{/if}}
             </div>
+          </div> --}}
+          <div class="column day">
+            <div class="text">{{days-since-admission bed.dateOfAdmission}}</div>
           </div>
-          <div class="column">
+          <div class="column covid-status">
             {{#if (eq bed.covidStatus "POSITIVE")}}
-              <img class="icon" src="/assets/images/covid-19-positive-red.svg" alt="">
+              <img class="icon covid-status-table" src="/assets/images/covid-19-positive-red.svg" alt="">
             {{else if (eq bed.covidStatus "NEGATIVE")}}
-              <img class="icon" src="/assets/images/covid-19-negative.svg" alt="">
+              <img class="icon covid-status-table" src="/assets/images/covid-19-negative.svg" alt="">
             {{else if (eq bed.covidStatus "SUSPECTED")}}
-              <img class="icon" src="/assets/images/covid-19-suspected-purple.svg" alt="">
+              <img class="icon covid-status-table" src="/assets/images/covid-19-suspected-purple.svg" alt="">
+            {{else if (eq bed.covidStatus "GREEN")}}
+              <img class="icon covid-status-table" src="/assets/images/covid-19-green.svg" alt="">
             {{/if}}
             {{bed.covidStatus}}
           </div>
           <div class="column level">
-            {{#if (eq bed.levelOfCare 'LEVEL_1')}}
-              <div class="text">Level 1</div>
-            {{else if (eq bed.levelOfCare 'LEVEL_2')}}
-              <div class="text">Level 2</div>
-            {{else if (eq bed.levelOfCare 'LEVEL_3')}}
-              <div class="text">Level 3</div>
+            {{#if bed.levelOfCare}}
+              <div class="text">{{t (concat "beds-table.data." bed.levelOfCare)}}</div>
             {{/if}}
           </div>
           <div class="column vent">
             {{#if bed.ventilationType}}
-              <div class="text">{{bed.ventilationType}}</div>
+              <div class="text">{{t (concat "beds-table.data." bed.ventilationType)}}</div>
             {{else}}
-              <div class="text">No</div>
+              <div class="text">{{t "beds-table.data.NONE"}}</div>
             {{/if}}
           </div>
-          {{!-- This will change --}}
-          <div class="column hemo">
-            {{#if bed.hemofilterInUse}}
-              <div class="text">Yes</div>
+
+          <div class="column rrt">
+            {{#if bed.rrtType}}
+              <div class="text">{{t (concat "beds-table.data." bed.rrtType)}}</div>
             {{else}}
-              <div class="text">No</div>
+              <div class="text">{{t "beds-table.data.NONE"}}</div>
             {{/if}}
           </div>
         {{/if}}

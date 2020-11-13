@@ -1233,11 +1233,15 @@ button {
       &.availability {
         &-1 {
           position: absolute;
-          width: 2rem;
-          padding-left: 4.25rem;
+          width: 5.75rem;
+          padding-left: .5rem;
           background-color: #003e78;
           border-right: 2px solid #2c98ff;
           z-index: 1;
+
+          img {
+            padding-left: 2.25rem;
+          }
 
           @media (min-width: 736px) {
             border-right: none;
@@ -1254,9 +1258,17 @@ button {
         }
       }
 
-      &.sex {
+      &.sex, &.day {
         width: 2.5rem;
         min-width: 2.5rem;
+      }
+
+      &.rrt, &.covid-status, &.vent {
+        width: 7rem;
+        min-width: 7rem;
+      }
+      &.rrt, &.vent {
+        text-align: left;
       }
 
       .icon {
@@ -1338,9 +1350,23 @@ button {
         }
       }
 
-      &.sex {
+      &.sex, &.day {
         width: 2.5rem;
         min-width: 2.5rem;
+      }
+
+      &.rrt, &.covid-status, &.vent {
+        width: 7rem;
+        min-width: 7rem;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+      }
+
+      &.rrt, &.vent {
+        .text {
+          text-align: left;
+        }
       }
 
       &.initials {
@@ -1361,6 +1387,15 @@ button {
           min-width: 18px;
           max-height: 18px;
           padding-left: 0.5rem;
+        }
+
+        &.covid-status-table {
+          @media (max-width: 767px) {
+            position: relative;
+            top: .3rem;
+            max-height: 14px;
+            width: 14px;
+          }
         }
       }
     }

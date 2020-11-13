@@ -48,7 +48,6 @@ export default class WardController extends Controller {
     if (this.model.totalBeds === 0) {
       return 0;
     }
-
     return Math.round((this.model.availableBeds / this.model.totalBeds) * 100);
   }
 
@@ -177,7 +176,6 @@ export default class WardController extends Controller {
 
       this.closeModal();
       // this.set('model.showSuccessMessage', true);
-      console.log(this.model.beds[foundIndex]);
     } catch (error) {
       this.error = true;
       console.error(error);
