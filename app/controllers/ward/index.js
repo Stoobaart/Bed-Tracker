@@ -10,6 +10,9 @@ export default class WardController extends Controller {
   @service apollo;
   @service hospital;
 
+  dischargeReasons = ['Internal Ward', 'Internal ICU', 'External Ward', 'External ICU', 'Death', 'Other'];
+  @tracked selectedDischargeReason;
+
   @tracked available = null;
   @tracked covidStatus = null;
   @tracked dateOfAdmission = moment().format("YYYY-MM-DD");
@@ -23,6 +26,7 @@ export default class WardController extends Controller {
   @tracked useTracheostomy = false;
 
   @tracked editBedModalIsOpen = false;
+  @tracked dischargeBedModalIsOpen = false;
   @tracked changesMade = false;
   @tracked showDeleteForm = false;
 
@@ -52,30 +56,37 @@ export default class WardController extends Controller {
   }
 
   @action
-  openEditBedModal(bed, index) {
-    this.changesMade = false;
-    const bedIndex = index + 1;
-
-    this.available = bed.available;
-    this.covidStatus = bed.covidStatus;
-    this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
-    this.id = bed.id;
-    this.levelOfCare = bed.levelOfCare;
-    this.rrtType = bed.rrtType;
-    this.sourceOfAdmission = bed.sourceOfAdmission;
-    this.useTracheostomy = bed.useTracheostomy;
-    this.ventilationType = bed.ventilationType;
+  openModal(bed, index, event) {
     this.reference = bed.reference;
-    this.index = bedIndex;
+    if (event.target.outerText === 'Discharge') {
+      this.dischargeBedModalIsOpen = true;
+      document.body.classList.add('no-scroll');
+    } else {
+      this.changesMade = false;
+      const bedIndex = index + 1;
 
-    this.editBedModalIsOpen = true;
-    document.body.classList.add('no-scroll');
+      this.available = bed.available;
+      this.covidStatus = bed.covidStatus;
+      this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
+      this.id = bed.id;
+      this.levelOfCare = bed.levelOfCare;
+      this.rrtType = bed.rrtType;
+      this.sourceOfAdmission = bed.sourceOfAdmission;
+      this.useTracheostomy = bed.useTracheostomy;
+      this.ventilationType = bed.ventilationType;
+      this.index = bedIndex;
+
+      this.editBedModalIsOpen = true;
+      document.body.classList.add('no-scroll');
+    }
   }
 
   @action
   closeModal() {
     this.editBedModalIsOpen = false;
+    this.dischargeBedModalIsOpen = false;
     this.showDeleteForm = false;
+    this.selectedDischargeReason = null;
     document.body.classList.remove('no-scroll');
   }
 
@@ -211,5 +222,15 @@ export default class WardController extends Controller {
       this.error = true;
       console.error(error);
     }
+  }
+
+  @action
+  dischargePatient() {
+    console.log('patient discharged!')
+  }
+
+  @action
+  setDischargeReason(reason) {
+    this.selectedDischargeReason = reason;
   }
 }

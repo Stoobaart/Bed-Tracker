@@ -988,6 +988,11 @@ button {
 
   .subheader {
     padding-left: 2rem;
+
+    &.ref {
+      font-size: 12px;
+      padding: 1rem 2rem 1.5rem;
+    }
   }
 
   .availability-container {
@@ -1015,6 +1020,11 @@ button {
     line-height: 1;
     margin: 1.5rem 0;
     width: 208px;
+
+    &.discharge:not(:last-child) {
+      margin: 1.5rem 0 0;
+      width: 100%;
+    }
 
     &.no-top-margin {
       @media (min-width: 768px) {
@@ -1202,7 +1212,7 @@ button {
 
     @media (min-width: 736px) {
       width: 100%;
-      border-bottom: none;
+      // border-bottom: none;
     }
 
     &--wards {
@@ -1292,8 +1302,13 @@ button {
     }
 
     .bed-number {
-      height: 24px;
-      padding: .5rem;
+      display: flex;
+      align-items: center;
+      height: 40px;
+      // padding: .5rem;
+      padding-left: .5rem;
+
+
       position: absolute;
       background-color: white;
       z-index: 1;
@@ -1325,10 +1340,12 @@ button {
           position: absolute;
           min-width: 2rem;
           width: 2rem;
+          height: 24px;
           background-color: white;
           border-right: 2px solid #2c98ff;
-          padding-left: 0;
-          left: 4.25rem;
+          border-left: 1px solid #d8d8d8;
+          padding-left: .5rem;
+          left: 3.75rem;
           z-index: 1;
 
           @media (min-width: 736px) {
@@ -1366,6 +1383,18 @@ button {
       &.rrt, &.vent {
         .text {
           text-align: left;
+        }
+      }
+
+      &.discharge {
+        border-left: 1px solid #d8d8d8;
+        height: 24px;
+        .text {
+          color: #005eb8;
+        } 
+
+        @media (min-width: 736px) {
+          height: 26px;
         }
       }
 

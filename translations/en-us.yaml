@@ -3,6 +3,7 @@ beds-table:
     available: 'Available'
     BIPAP: 'BiPAP / NIV'
     CPAP: 'CPAP'
+    discharge: 'Discharge'
     HFNO: 'HFNO (Optiflow)'
     HAEMODIALYSIS: 'Haemodialysis'
     HAEMOFILTRATION: 'Haemofiltration'
@@ -24,3 +25,9 @@ beds-table:
     rrt: 'RRT'
     ventilation: 'Ventilation'
     status: 'Status'
+modal: 
+  discharge:
+    header: 'Discharge patient'
+    reason: 'Reason'
+    ref: 'REF: '
+    warning: 'Important: Discharge cannot be undone.'

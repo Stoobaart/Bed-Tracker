@@ -110,10 +110,11 @@
       <div class="header--column centered rrt">
         {{t "beds-table.headers.rrt"}}
       </div>
+      <div class="header--column centered"></div>
     </div>
 
     {{#each this.model.beds as |bed index|}}
-      <div class="table_card"  role="button" {{on "click" (fn this.openEditBedModal bed index)}}>
+      <div class="table_card"  role="button" {{on "click" (fn this.openModal bed index)}}>
         <div class="bed-number">{{bed.reference}}</div>
         {{#if bed.available}}
           <div class="column availability-1">
@@ -138,18 +139,6 @@
           <div class="column availability-2">
             {{t "beds-table.data.occupied"}}
           </div>
-          {{!-- <div class="column initials">
-            <div class="text">{{bed.initials}}</div>
-          </div>
-          <div class="column sex">
-            <div class="text">
-              {{#if (eq bed.sex "MALE")}}
-                M
-              {{else if (eq bed.sex "FEMALE")}}
-                F
-              {{/if}}
-            </div>
-          </div> --}}
           <div class="column day">
             <div class="text">{{days-since-admission bed.dateOfAdmission}}</div>
           </div>
@@ -184,6 +173,10 @@
             {{else}}
               <div class="text">{{t "beds-table.data.NONE"}}</div>
             {{/if}}
+          </div>
+
+          <div class="column discharge" role="button">
+            <div class="text">{{t "beds-table.data.discharge"}}</div>
           </div>
         {{/if}}
       </div>
@@ -503,5 +496,48 @@
       </form>
     {{/if}}
 
+  </ModalDialog>
+{{/if}}
+
+{{#if this.dischargeBedModalIsOpen}}
+  <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+    <div class="header">{{t "modal.discharge.header"}}</div>
+    <form>
+      <div class="subheader ref">{{t "modal.discharge.ref"}}{{this.reference}}</div>
+      <section>
+        <div class="section-header">{{t "modal.discharge.reason"}}</div>
+        {{#each this.dischargeReasons as |reason|}}
+          <div class="radio discharge">
+            <input
+              id={{reason}}
+              type="radio"
+              checked={{eq this.selectedDischargeReason reason}}
+              onclick={{action this.setDischargeReason reason}}>
+            <label for={{reason}} class="radio--label">{{reason}}</label>
+          </div>
+        {{/each}}
+
+        {{#if (eq this.selectedDischargeReason 'Internal ICU')}}
+          <h1>test</h1>
+        {{/if}}
+      </section>
+
+      <p class="subheader">{{t "modal.discharge.warning"}}</p>
+      <div class="btns-container">
+        <button
+          type="button"
+          class="form_btn cancel"
+          {{on "click" this.closeModal}}>
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="form_btn submit"
+          {{on "click" this.dischargePatient}}>
+          Delete
+        </button>
+      </div>
+    </form>
   </ModalDialog>
 {{/if}}
