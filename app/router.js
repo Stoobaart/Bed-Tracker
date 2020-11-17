@@ -20,4 +20,5 @@ Router.map(function() {
     this.route('add-beds');
     this.route('edit');
   });
+  this.route('4a2b2d7c58df5c43d63986fb23385307.txt');
 });
