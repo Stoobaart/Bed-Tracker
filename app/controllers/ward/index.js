@@ -84,7 +84,7 @@ export default class WardController extends Controller {
       this.beds = [];
     } else {
       this.wardHasNoBeds = false;
-      this.beds = selectedWard.beds;
+      this.beds = selectedWard.beds.filter((bed) => bed.available === true);
     }
   }
 
