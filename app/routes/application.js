@@ -19,7 +19,8 @@ export default class extends Route {
     const hasToken = JSON.parse(localStorage.getItem('bed_tracker_token'));
     // const isManager = JSON.parse(localStorage.getItem('hospital_manager'));
 
-    if (!hasToken) {
+    const isDetectifyRoute = this.router._router.url === '/4a2b2d7c58df5c43d63986fb23385307.txt';
+    if (!hasToken && !isDetectifyRoute) {
       // if (isQrRoute) {
       //   this.transitionTo('/qr');
       // } else {
