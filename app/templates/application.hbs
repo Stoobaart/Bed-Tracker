@@ -1,41 +1,37 @@
-{{#if this.isDetectifyRoute}}
-  detectify
-{{else}}
-  <div class="application">
-    <div class="top-bar">
-      <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
-      {{#if this.showHospitalDetails}}
-        <div class="hospital-details">
-          <div><strong>{{this.account.hospital.name}}</strong></div>
-          <div>{{this.account.hospital.address}}</div>
-        </div>
-        <div class="nav-toggle-btn" role="button" {{on "click" this.toggleMenu}}>
-          {{#if this.showSlideMenu}}
-            <img src="/assets/images/hamburger-close.svg" alt="">
-          {{else}}
-            <img src="/assets/images/hamburger.svg" alt="">
-          {{/if}}
-          MENU
-        </div>
-      {{else}}
-        <div class="app-name">Bed Checker</div>
-      {{/if}}
-    </div>
-
-    {{#if this.showSlideMenu}}
-      <div class="nav-overlay" role="button" {{on "click" this.toggleMenu}}></div>
-    {{/if}}
-    <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
-      <a class="nav-item" href="https://bed-checker-dashboard.now.sh/">
-        <span>Regional dashboard</span>
-        <img src="/assets/images/view.svg" alt="">
-      </a>
-      <div class="nav-item nav-item--logout" role="button" {{on "click" this.logout}}>
-        <img class="nav-item_image" src="/assets/images/logout.svg" alt="">
-        Log out
+<div class="application">
+  <div class="top-bar">
+    <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
+    {{#if this.showHospitalDetails}}
+      <div class="hospital-details">
+        <div><strong>{{this.account.hospital.name}}</strong></div>
+        <div>{{this.account.hospital.address}}</div>
       </div>
-    </EspMenu>
-
-    {{outlet}}
+      <div class="nav-toggle-btn" role="button" {{on "click" this.toggleMenu}}>
+        {{#if this.showSlideMenu}}
+          <img src="/assets/images/hamburger-close.svg" alt="">
+        {{else}}
+          <img src="/assets/images/hamburger.svg" alt="">
+        {{/if}}
+        MENU
+      </div>
+    {{else}}
+      <div class="app-name">Bed Checker</div>
+    {{/if}}
   </div>
-{{/if}}
+
+  {{#if this.showSlideMenu}}
+    <div class="nav-overlay" role="button" {{on "click" this.toggleMenu}}></div>
+  {{/if}}
+  <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
+    <a class="nav-item" href="https://bed-checker-dashboard.now.sh/">
+      <span>Regional dashboard</span>
+      <img src="/assets/images/view.svg" alt="">
+    </a>
+    <div class="nav-item nav-item--logout" role="button" {{on "click" this.logout}}>
+      <img class="nav-item_image" src="/assets/images/logout.svg" alt="">
+      Log out
+    </div>
+  </EspMenu>
+
+  {{outlet}}
+</div>
