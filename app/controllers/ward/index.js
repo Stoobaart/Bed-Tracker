@@ -76,6 +76,7 @@ export default class WardController extends Controller {
 
   @action
   selectWard(wardId) {
+    this.transferPatientToBedId = null;
     this.transferPatientToWardId = wardId;
     const selectedWard = this.wards.find((ward) => ward.id === wardId);
     if (selectedWard.beds.length === 0) {
