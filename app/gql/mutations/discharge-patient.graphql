@@ -1,0 +1,5 @@
+mutation ($input:DischargePatientInput!) {
+  dischargePatient (input: $input) {
+    success
+  }
+}

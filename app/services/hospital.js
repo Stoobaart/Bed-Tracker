@@ -37,6 +37,14 @@ export default class AccountService extends Service {
     this.timeout = setTimeout(this.fetchHospital.bind(this), 10000);
   }
 
+  async fetchWards() {
+    if (JSON.parse(localStorage.getItem('bed_tracker_token'))) {
+      const response = await this.apollo.query({ query: GetHospitalQuery, fetchPolicy: 'network-only' });
+      const wards = response.getHospital.hospital.wards;
+      return wards;
+    }
+  }
+
   addWard(ward) {
     this.hospital.wards.push(new Ward(ward));
   }

@@ -1072,6 +1072,14 @@ button {
       padding-left: .5rem;
     }
   }
+
+  .transfer-patient-container {
+    padding: 1.5rem 0 1rem;
+
+    .ember-select {
+      margin: .5rem 0;
+    }
+  }
 }
 
 @keyframes fade {

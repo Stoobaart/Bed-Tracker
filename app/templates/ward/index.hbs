@@ -1,8 +1,8 @@
 <div class="ward-details">
   {{#if this.model.showSuccessMessage}}
     <div class="banner banner--success">
-      <div class="banner_title"><img src="/assets/images/success.svg" alt="">Beds added successfully</div>
-      <p>The beds are ready for patients</p>
+      <div class="banner_title"><img src="/assets/images/success.svg" alt="">{{t (concat "message.success." this.model.showSuccessMessage.type ".title")}}</div>
+      <p>{{t (concat "message.success." this.model.showSuccessMessage.type ".body")}}</p>
       <img src="/assets/images/close.svg" alt="close" class="banner_close"  role="button" {{on "click" (fn (mut this.model.showSuccessMessage) null)}}>
     </div>
   {{/if}}
@@ -131,7 +131,7 @@
           <div class="column"></div>
           <div class="column vent"></div>
           <div class="column rrt"></div>
-
+          <div class="column discharge"></div>
         {{else}}
           <div class="column availability-1">
             <img class="icon" src="/assets/images/occupied-off-black.svg" alt="">
@@ -509,16 +509,26 @@
         {{#each this.dischargeReasons as |reason|}}
           <div class="radio discharge">
             <input
-              id={{reason}}
+              id={{reason.string}}
               type="radio"
-              checked={{eq this.selectedDischargeReason reason}}
-              onclick={{action this.setDischargeReason reason}}>
-            <label for={{reason}} class="radio--label">{{reason}}</label>
+              checked={{eq this.selectedDischargeReason reason.code}}
+              onclick={{action this.setDischargeReason reason.code}}>
+            <label for={{reason.string}} class="radio--label">{{reason.string}}</label>
           </div>
         {{/each}}
 
-        {{#if (eq this.selectedDischargeReason 'Internal ICU')}}
-          <h1>test</h1>
+        {{#if (eq this.selectedDischargeReason 'INTERNAL_ICU')}}
+          <div class="transfer-patient-container">
+            <div class="section-header">{{t "modal.discharge.transfer"}}</div>
+
+            {{x-select model=this.wards openOnFocus=true placeholder="Ward" labelKey="name" valueKey="id" onSelect=(fn this.selectWard wardId="target.value")}}
+            {{#if this.beds}}
+              {{x-select model=this.beds openOnFocus=true  placeholder="Bed" labelKey="reference" valueKey="id" onSelect=(action 'selectBed' bedId="target")}}
+            {{/if}}
+            {{#if this.wardHasNoBeds}}
+              <div class="form_error">{{t "modal.discharge.no-beds"}}</div>
+            {{/if}}
+          </div>
         {{/if}}
       </section>
 
@@ -534,6 +544,7 @@
         <button
           type="submit"
           class="form_btn submit"
+          disabled={{this.dischargeIsDisabled}}
           {{on "click" this.dischargePatient}}>
           Delete
         </button>

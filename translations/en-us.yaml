@@ -28,6 +28,22 @@ beds-table:
 modal: 
   discharge:
     header: 'Discharge patient'
+    no-beds: "This ward has no beds"
     reason: 'Reason'
     ref: 'REF: '
     warning: 'Important: Discharge cannot be undone.'
+    transfer: 'Transfer patient'
+message:
+  success:
+    bed-discharged: 
+      title: 'Patient discharged from bed successfully'
+      body: 'The bed has been marked as available'
+    beds-added: 
+      title: 'Beds added successfully'
+      body: 'The beds are ready for patients'
+    bed-edited: 
+      title: 'Bed edited successfully'
+      body: 'The bed has been successfully updated'
+    bed-deleted: 
+      title: 'Bed deleted successfully'
+      body: 'The bed has been successfully deleted'

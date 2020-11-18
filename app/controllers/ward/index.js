@@ -4,13 +4,27 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import UpdateBed from 'bed-checker/gql/mutations/update-bed';
 import RemoveBed from 'bed-checker/gql/mutations/remove-bed';
+import DischargePatient from 'bed-checker/gql/mutations/discharge-patient';
 import moment from 'moment';
 
 export default class WardController extends Controller {
   @service apollo;
   @service hospital;
 
-  dischargeReasons = ['Internal Ward', 'Internal ICU', 'External Ward', 'External ICU', 'Death', 'Other'];
+  @tracked wards = [];
+  @tracked beds = [];
+  @tracked wardHasNoBeds = false;
+  @tracked transferPatientToWardId = null;
+  @tracked transferPatientToBedId = null;
+
+  dischargeReasons = [
+    { code: 'INTERNAL_WARD', string: 'Internal Ward'}, 
+    { code: 'INTERNAL_ICU', string: 'Internal ICU' }, 
+    { code: 'EXTERNAL_WARD', string: 'External Ward' }, 
+    { code: 'EXTERNAL_ICU', string: 'External ICU' }, 
+    { code: 'DEATH', string: 'Death' }, 
+    { code: 'OTHER', string: 'Other' }
+  ];
   @tracked selectedDischargeReason;
 
   @tracked available = null;
@@ -55,10 +69,35 @@ export default class WardController extends Controller {
     return Math.round((this.model.availableBeds / this.model.totalBeds) * 100);
   }
 
+  get dischargeIsDisabled() {
+    if (!this.selectedDischargeReason && this.selectedDischargeReason !== 'INTERNAL_ICU') return true;
+    if (this.selectedDischargeReason === 'INTERNAL_ICU' && !this.transferPatientToBedId) return true;
+  }
+
   @action
-  openModal(bed, index, event) {
+  selectWard(wardId) {
+    this.transferPatientToWardId = wardId;
+    const selectedWard = this.wards.find((ward) => ward.id === wardId);
+    if (selectedWard.beds.length === 0) {
+      this.wardHasNoBeds = true;
+      this.beds = [];
+    } else {
+      this.wardHasNoBeds = false;
+      this.beds = selectedWard.beds;
+    }
+  }
+
+  @action
+  selectBed(bedId) {
+    this.transferPatientToBedId = bedId;
+  }
+
+  @action
+  async openModal(bed, index, event) {
     this.reference = bed.reference;
+    this.id = bed.id;
     if (event.target.outerText === 'Discharge') {
+      this.wards = await this.hospital.fetchWards();
       this.dischargeBedModalIsOpen = true;
       document.body.classList.add('no-scroll');
     } else {
@@ -68,7 +107,6 @@ export default class WardController extends Controller {
       this.available = bed.available;
       this.covidStatus = bed.covidStatus;
       this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
-      this.id = bed.id;
       this.levelOfCare = bed.levelOfCare;
       this.rrtType = bed.rrtType;
       this.sourceOfAdmission = bed.sourceOfAdmission;
@@ -186,7 +224,7 @@ export default class WardController extends Controller {
       this.hospital.fetchHospital();
 
       this.closeModal();
-      // this.set('model.showSuccessMessage', true);
+      this.set('model.showSuccessMessage', { type: 'bed-edited'});
     } catch (error) {
       this.error = true;
       console.error(error);
@@ -217,7 +255,7 @@ export default class WardController extends Controller {
       const newBeds = this.model.beds.filter(x => x.id !== selectedBedId);
       this.set('model.beds', newBeds);
       this.closeModal();
-      // this.set('model.showSuccessMessage', true);
+      this.set('model.showSuccessMessage', { type: 'bed-deleted'});
     } catch (error) {
       this.error = true;
       console.error(error);
@@ -225,12 +263,60 @@ export default class WardController extends Controller {
   }
 
   @action
-  dischargePatient() {
-    console.log('patient discharged!')
+  async dischargePatient(event) {
+    event.preventDefault();
+
+    this.error = false;
+    const bedId = this.transferPatientToBedId ? this.transferPatientToBedId : null;
+
+    const variables = {
+      input: {
+        bedId,
+        id: this.id,
+        reason: this.selectedDischargeReason
+      }
+    };
+
+    try {
+      await this.apollo.mutate({ mutation: DischargePatient, variables });
+
+      const resetBed = {
+        available: true,
+        covidStatus: null,
+        dateOfAdmission: null,
+        id: this.id,
+        levelOfCare: null,
+        reference: this.reference,
+        rrtType: null,
+        sourceOfAdmission: null,
+        useTracheostomy: null,
+        ventilationType: null
+      }
+
+      const newBeds = this.model.beds.map(x => {
+        if (x.id === this.id) {
+          return resetBed;
+        } else {
+          return x;
+        }
+      });
+
+      this.set('model.beds', newBeds);
+
+
+      this.set('model.showSuccessMessage', { type: 'bed-discharged' });
+      this.closeModal();
+    } catch (error) {
+      this.error = true;
+      console.error(error);
+    }
   }
 
   @action
   setDischargeReason(reason) {
     this.selectedDischargeReason = reason;
+    this.beds = [];
+    this.transferPatientToBedId = null;
+    this.wardHasNoBeds = false;
   }
 }
