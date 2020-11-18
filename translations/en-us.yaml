@@ -25,14 +25,59 @@ beds-table:
     rrt: 'RRT'
     ventilation: 'Ventilation'
     status: 'Status'
-modal: 
-  discharge:
-    header: 'Discharge patient'
-    no-beds: "This ward has no beds"
-    reason: 'Reason'
-    ref: 'REF: '
-    warning: 'Important: Discharge cannot be undone.'
-    transfer: 'Transfer patient'
+breadcrumbs:
+  dashboard: 'Dashboard'
+  ward: ' > Ward'
+buttons: 
+  cancel: 'Cancel'
+  delete: 'Delete'
+  discharge: 'Discharge'
+  remove-bed: 'Remove bed from this ward'
+  save-changes: 'Save changes'
+edit-bed-modal:
+  available: 'Available'
+  header:
+    delete: 'Delete bed'
+    edit: 'Edit bed'
+  occupied: 'Occupied'
+  section-header: 
+    covid-status: 'COVID status:'
+    date-of-admission: 'Date of admission:'
+    level-of-care: 'Level of care:'
+    reference: 'Reference:'
+    rrt: 'RRT:'
+    source-of-admission: 'Source of admission:'
+    tracheostomy: 'Tracheostomy:'
+    ventilation: 'Ventilation:'
+  subheader:
+    delete: 'Are you sure you want to delete this bed from the ward?'
+labels:
+  bipap: 'BiPAP / NIV'
+  cpap: 'CPAP'
+  ed: 'ED'
+  external_itu: 'External ITU'
+  external_ward: 'External ward'
+  green: 'Green'
+  haemodialysis: 'Using Haemodialysis'
+  haemofiltration: 'Using Haemofiltration'
+  hfno: 'HFNO (Optiflow)'
+  internal_itu: 'Internal ITU'
+  internal_ward: 'Internal ward'
+  invasive: 'Invasive Ventilation'
+  itu_readmission: 'ITU readmission'
+  level_1: 'Level 1'
+  level_2: 'Level 2'
+  level_3: 'Level 3'
+  nasal: 'Nasal / FM'
+  negative: 'COVID negative'
+  no: 'No'
+  none: 'None'
+  pd: 'Using Peritoneal Dialysis'
+  positive: 'COVID positive'
+  risk_of_next_twenty_four_h: 'Risk of RRT in next 24 hours'
+  suspected: 'COVID suspected'
+  sv: 'SV no supplemental O2'
+  yes: 'Yes'
 message:
   success:
     bed-discharged: 
@@ -47,3 +92,25 @@ message:
     bed-deleted: 
       title: 'Bed deleted successfully'
       body: 'The bed has been successfully deleted'
+modal: 
+  discharge:
+    header: 'Discharge patient'
+    no-beds: "This ward has no beds"
+    reason: 'Reason'
+    ref: 'REF: '
+    warning: 'Important: Discharge cannot be undone.'
+    transfer: 'Transfer patient'
+ward-beds:
+  add-beds: 'Add beds'
+  beds: 'Beds'
+  info: 'Tap a row to edit the bed status'
+ward-dashboard:
+  edit: 'Edit'
+  total-avail-beds: 'Total available beds'
+  total-avail-capacity: 'Total available bed capacity'
+  total-beds: 'WARD TOTAL BEDS'
+  total-covid-neg: 'Total COVID negative'
+  total-covid-pos: 'Total COVID positive'
+  total-covid-sus: 'Total COVID suspected'
+  total-covid-stats: 'TOTAL COVID PATIENT STATS'
+  total-ventilators: 'Total ventilators in use'

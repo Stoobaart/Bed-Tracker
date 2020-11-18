@@ -44,23 +44,11 @@ export default class WardController extends Controller {
   @tracked changesMade = false;
   @tracked showDeleteForm = false;
 
-  ventilationTypes = [
-    { type: 'NONE', label: 'None' }, 
-    { type: 'SV', label: 'SV no supplemental O2' }, 
-    { type: 'NASAL', label: 'Nasal / FM' }, 
-    { type: 'CPAP', label: 'CPAP' }, 
-    { type: 'HFNO', label: 'HFNO (Optiflow)' }, 
-    { type: 'BIPAP', label: 'BiPAP / NIV' }, 
-    { type: 'INVASIVE', label: 'Invasive Ventilation' }
-  ];
-
-  rrtTypes = [
-    { type: 'NONE', label: 'None' }, 
-    { type: 'RISK_OF_NEXT_TWENTY_FOUR_H', label: 'Risk of RRT in next 24 hours' }, 
-    { type: 'HAEMOFILTRATION', label: 'Using Haemofiltration' }, 
-    { type: 'HAEMODIALYSIS', label: 'Using Haemodialysis' }, 
-    { type: 'PD', label: 'Using Peritoneal Dialysis' },
-  ];
+  covidStatuses = [ 'GREEN', 'POSITIVE', 'NEGATIVE', 'SUSPECTED' ];
+  levelsOfCare = [ 'LEVEL_1', 'LEVEL_2', 'LEVEL_3']
+  sourcesOfAdmission = [ 'ED', 'EXTERNAL_WARD', 'INTERNAL_WARD', 'EXTERNAL_ITU', 'INTERNAL_ITU', 'ITU_READMISSION' ];
+  ventilationTypes = [ 'NONE', 'SV', 'NASAL', 'CPAP', 'HFNO', 'BIPAP', 'INVASIVE' ];
+  rrtTypes = [ 'NONE', 'RISK_OF_NEXT_TWENTY_FOUR_H', 'HAEMOFILTRATION', 'HAEMODIALYSIS', 'PD' ];
 
   get availableBedsPercentage() {
     if (this.model.totalBeds === 0) {

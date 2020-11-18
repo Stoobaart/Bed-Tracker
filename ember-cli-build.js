@@ -7,6 +7,9 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true
     },
+    'ember-cli-string-helpers': {
+      only: ['lowercase'],
+    },
     emberApolloClient: {
       keepGraphqlFileExtension: false
     },
