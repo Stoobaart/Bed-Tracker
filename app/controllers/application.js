@@ -11,6 +11,10 @@ export default class ApplicationController extends Controller {
     return this.router._router.url !== '/' && !this.router._router.url.includes('/qr') && this.account.hospital;
   }
 
+  get isDetectifyRoute() {
+    return this.router._router.url === '/4a2b2d7c58df5c43d63986fb23385307.txt';
+  }
+
   @tracked showSlideMenu = false;
 
   @action
