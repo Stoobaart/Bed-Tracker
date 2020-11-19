@@ -38,6 +38,11 @@ buttons:
   save-changes: 'Save changes'
   update: 'Update'
 dashboard: 
+  available-beds:
+    amber-beds: 'Amber beds'
+    covid-beds: 'COVID ITU beds'
+    green-beds: 'Green beds'
+    title: 'AVAILABLE BEDS'
   staffing: 
     can-provide-nurses: 'Can provide nurse ratios to ICS'
     critical-care-nurses: 'Critical Care Nurses'

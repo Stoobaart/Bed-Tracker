@@ -61,7 +61,6 @@ export default class WardController extends Controller {
   staffingTypes = [ 'CRIT_CARE_NURSES', 'NURSE_SUPPORT', 'OTHER_RNS'];
 
   get availableBedsPercentage() {
-    console.log(this.model);
     if (this.model.totalBeds === 0) {
       return 0;
     }

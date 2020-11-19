@@ -8,8 +8,6 @@
     </div>
   {{/if}}
 
-  {{!-- {{#if this.model.useManagement}} --}}
-
   <div class="cards-container">
     <div class="page_header">
       <img class="page_icon" src="/assets/images/hospital.svg" alt="">
@@ -19,30 +17,42 @@
     <div class="card">
       <div class="card_header">
         <img class="card_icon" src="/assets/images/occupied.svg" alt="">
-        <div class="card_header-text">AVAILABLE BEDS</div>
+        <div class="card_header-text">{{t "dashboard.available-beds.title"}}</div>
       </div>
 
       <div class="card_data-block">
         <div class="card_data-block--value">
-          {{this.model.totalAvailableCovidBeds}}
+          {{if (gt this.model.totalAvailableCovidBeds 0) this.model.totalAvailableCovidBeds "0"}}
           <div class="slash"> / </div>
           <div class="totals">{{this.model.totalCovidBeds}}</div>
         </div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-positive-small.svg" alt="">
-          COVID ITU beds
+          {{t "dashboard.available-beds.covid-beds"}}
+        </div>
+      </div>
+{{!-- {{log this.model}} --}}
+      <div class="card_data-block">
+        <div class="card_data-block--value">
+          {{if (gt this.model.totalAvailableAmberBeds 0) this.model.totalAvailableAmberBeds "0"}}
+          <div class="slash"> / </div>
+          <div class="totals">{{this.model.totalAmberBeds}}</div>
+        </div>
+        <div class="card_data-block--label">
+          <img class="icon" src="/assets/images/covid-19-amber.svg" alt="">
+          {{t "dashboard.available-beds.amber-beds"}}
         </div>
       </div>
 
       <div class="card_data-block">
         <div class="card_data-block--value">
-          {{this.model.totalAvailableNonCovidBeds}}
+          {{if (gt this.model.totalCovidStatusGreen 0) this.model.totalCovidStatusGreen "0"}}
           <div class="slash"> / </div>
-          <div class="totals">{{this.model.totalNonCovidBeds}}</div>
+          <div class="totals">{{this.model.totalGreenBeds}}</div>
         </div>
         <div class="card_data-block--label">
-          <img class="icon" src="/assets/images/covid-19-negative.svg" alt="">
-          Non COVID beds
+          <img class="icon" src="/assets/images/covid-19-green.svg" alt="">
+          {{t "dashboard.available-beds.green-beds"}}
         </div>
       </div>
     </div>

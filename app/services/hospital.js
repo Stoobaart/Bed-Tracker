@@ -72,6 +72,10 @@ class Hospital {
   @tracked totalNumberOfOtherRns = null;
   @tracked totalNumberOfCritcareNurses = null;
   @tracked totalNumberOfNurseSupportStaff = null;
+  @tracked totalCovidStatusGreen = null;
+  @tracked totalGreenBeds = null;
+  @tracked totalAvailableAmberBeds = null;
+  @tracked totalAmberBeds = null;
   // @tracked totalNonCovidBeds = null;
   // @tracked totalAvailableNonCovidBeds = null;
   // @tracked totalHemofilter = null;
@@ -104,9 +108,9 @@ class Hospital {
     return this.wards.reduce((totalCovidStatusPositive, ward) => totalCovidStatusPositive + ward.totalCovidStatusPositive, 0);
   }
 
-  // get totalVentilatorInUse() {
-  //   return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
-  // }
+  get totalVentilatorInUse() {
+    return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
+  }
 
   constructor(hospital) {
     for (const property in this) {
@@ -173,15 +177,15 @@ class Ward {
     }, 0);
   }
 
-  // get totalVentilatorInUse() {
-  //   return this.beds.reduce((totalVentilatorInUse, bed) => {
-  //     if (bed.ventilationType) {
-  //       return totalVentilatorInUse + 1
-  //     }
+  get totalVentilatorInUse() {
+    return this.beds.reduce((totalVentilatorInUse, bed) => {
+      if (bed.ventilationType && bed.ventilationType !== 'NONE') {
+        return totalVentilatorInUse + 1
+      }
 
-  //     return totalVentilatorInUse;
-  //   }, 0);
-  // }
+      return totalVentilatorInUse;
+    }, 0);
+  }
 
   constructor(ward) {
     for (const property in this) {
