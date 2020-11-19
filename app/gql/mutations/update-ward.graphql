@@ -4,7 +4,7 @@ mutation ($input: UpdateWardInput!) {
       id
       name
       description
-      isCovidWard
+      wardType
     }
   }
 }

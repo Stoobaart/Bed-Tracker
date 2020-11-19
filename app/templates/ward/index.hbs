@@ -18,6 +18,7 @@
       <h1>{{this.model.name}}</h1>
       <p>{{this.model.description}}</p>
     </div>
+    <p class="update-staff-btn" {{on "click" (fn (mut this.updateStaffModalIsOpen) true)}}>{{t "ward-dashboard.update-staffing"}}</p>
     <LinkTo @route="ward.edit" @model={{this.model}}>{{t "ward-dashboard.edit"}}</LinkTo>
   </div>
 
@@ -165,6 +166,12 @@
       </div>
     {{/each}}
   </div>
+{{/if}}
+
+{{#if this.updateStaffModalIsOpen}}
+  <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
+    <div class="header">{{t "update-staff-modal.header"}}</div>
+  </ModalDialog>
 {{/if}}
 
 {{#if this.editBedModalIsOpen}}

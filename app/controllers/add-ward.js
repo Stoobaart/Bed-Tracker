@@ -15,6 +15,9 @@ export default class AddWardController extends Controller {
 
   @tracked error = false;
 
+  @tracked wardType = null;
+  wardTypes = ['COVID', 'AMBER', 'GREEN'];
+
   @action
   cancel() {
     this.name = '';
@@ -23,8 +26,8 @@ export default class AddWardController extends Controller {
   }
 
   @action
-  toggleIsCovidWard() {
-    this.isCovidWard = !this.isCovidWard;
+  setWardType(type) {
+    this.wardType = type;
   }
 
   @action
@@ -37,7 +40,7 @@ export default class AddWardController extends Controller {
       input: {
         name: this.name,
         description: this.description,
-        isCovidWard: this.isCovidWard
+        wardType: this.wardType
       }
     };
 
@@ -47,6 +50,7 @@ export default class AddWardController extends Controller {
       this.set('model.showSuccessMessage', true);
       this.name = '';
       this.description = '';
+      this.wardType = null;
       this.router.transitionTo('dashboard');
     } catch (error) {
       this.error = true;

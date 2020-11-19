@@ -31,18 +31,20 @@
       @key-up={{action (mut this.description) value=@target.value}} />
     <div class="form_help-text">Enter the ward description</div>
 
-    <div class="form_checkbox--container">
-      <input
-        id="covidWard"
-        type="checkbox"
-        class="form_checkbox"
-        checked={{this.isCovidWard}}
-        onclick={{action "toggleIsCovidWard"}}>
-      <label for="covidWard" class="form_checkbox--label">
-        <div class="form_checkbox--text">COVID ward</div>
-        <div class="form_checkbox--text small">This ward will be used for COVID patients</div>
-      </label>
-    </div>
+    <section>
+      <div class="section-header">{{t "add-ward.ward-type"}}</div>
+      {{#each this.wardTypes as |type|}}
+        <div class="radio add-ward">
+          <input
+            id={{type}}
+            type="radio"
+            checked={{eq this.wardType type}}
+            onclick={{action this.setWardType type}}>
+          <label for={{type}} class="radio--label">{{t (concat "labels.ward." (lowercase type))}}</label>
+        </div>
+        <p class="helper">{{t (concat "labels.helper." (lowercase type))}}</p>
+      {{/each}}
+    </section>
 
     <div class="btns-container">
       <button
@@ -55,7 +57,7 @@
       <button
         type="submit"
         class="form_btn"
-        disabled={{not this.name}}>
+        disabled={{or (not this.name) (eq this.wardType null)}}>
         Add ward
       </button>
     </div>

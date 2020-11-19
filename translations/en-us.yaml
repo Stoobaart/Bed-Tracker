@@ -1,3 +1,5 @@
+add-ward:
+  ward-type: 'Ward type'
 beds-table:
   data:
     available: 'Available'
@@ -60,6 +62,10 @@ labels:
   green: 'Green'
   haemodialysis: 'Using Haemodialysis'
   haemofiltration: 'Using Haemofiltration'
+  helper:
+    amber: 'This ward will be used for AMBER patients'
+    covid: 'This ward will be used for COVID patients'
+    green: 'This ward will be used for GREEN patients'
   hfno: 'HFNO (Optiflow)'
   internal_itu: 'Internal ITU'
   internal_ward: 'Internal ward'
@@ -77,6 +83,10 @@ labels:
   risk_of_next_twenty_four_h: 'Risk of RRT in next 24 hours'
   suspected: 'COVID suspected'
   sv: 'SV no supplemental O2'
+  ward: 
+    amber: 'Amber ward'
+    covid: 'COVID (BLUE) ward'
+    green: 'Green ward'
   yes: 'Yes'
 message:
   success:
@@ -100,6 +110,8 @@ modal:
     ref: 'REF: '
     warning: 'Important: Discharge cannot be undone.'
     transfer: 'Transfer patient'
+update-staff-modal: 
+  header: 'Update staffing'
 ward-beds:
   add-beds: 'Add beds'
   beds: 'Beds'
@@ -114,3 +126,4 @@ ward-dashboard:
   total-covid-sus: 'Total COVID suspected'
   total-covid-stats: 'TOTAL COVID PATIENT STATS'
   total-ventilators: 'Total ventilators in use'
+  update-staffing: 'Update staffing'

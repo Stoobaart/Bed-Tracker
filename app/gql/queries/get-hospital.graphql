@@ -1,45 +1,87 @@
 query {
   getHospital {
     hospital {
-      address
-      availableBeds
-      id
-      name
-      totalBeds
-      totalCovidBeds
-      totalAvailableCovidBeds
-      totalNonCovidBeds
-      totalAvailableNonCovidBeds
-      totalCovidStatusNegative
-      totalCovidStatusPositive
-      totalCovidStatusSuspected
-      unavailableBeds
+      # totalVentilationTypeInvasive,
+      unavailableBeds,
+      totalCovidBeds,
+      # totalAmberBeds,
+      # totalRrtTypeNone,
+      # totalAvailableAmberBeds,
+      # totalLevelOfCareLevelOne,
+      # totalVentilationTypeHfno,
+      # totalRrtTypePd,
+      # totalCovidStatusNegative,
+      # totalNumberOfOtherRns,
+      totalCovidStatusPositive,
+      id,
+      # totalVentilationTypeCpap,
+      # totalVentilationTypeSv,
+      # totalNumberOfCritcareNurses,
+      # totalVentilationTypeNasal,
+      totalCovidStatusSuspected,
+      # totalRrtTypeHaemofiltration,
+      # totalVentilationTypeBipap,
+      # totalCovidStatusGreen,
+      # totalRrtTypeHaemodialysis,
+      # totalVentilationTypeNone,
+      # totalLevelOfCareLevelThree,
+      # totalGreenBeds,
+      totalBeds,
+      address,
+      # totalRrtTypeRiskOfNextTwentyFourH,
+      # totalNumberOfNurseSupportStaff,
+      totalAvailableCovidBeds,
+      # totalAvailableGreenBeds,
+      # totalLevelOfCareLevelTwo,
+      name,
+      availableBeds,
       wards {
-        availableBeds
+        # totalVentilationTypeInvasive,
+        # unavailableBeds,
+        # totalRrtTypeNone,
+        # totalLevelOfCareLevelOne,
+        # totalVentilationTypeHfno,
+        # totalRrtTypePd,
+        # totalCovidStatusNegative,
+        description,
+        totalCovidStatusPositive,
+        id,
+        # totalVentilationTypeCpap,
+        # canProvideIcsRatios,
+        # totalVentilationTypeSv,
+        # maxAdmissionCapacity,
+        # totalVentilationTypeNasal,
+        totalCovidStatusSuspected,
+        # numberOfNurseSupportStaff,
+        # totalRrtTypeHaemofiltration,
+        # numberOfCritcareNurses,
+        # totalVentilationTypeBipap,
+        # totalCovidStatusGreen,
+        # totalRrtTypeHaemodialysis,
+        # totalVentilationTypeNone,
+        # totalLevelOfCareLevelThree,
+        wardType,
+        # totalBeds,
+        # isSurgeWard,
+        # totalRrtTypeRiskOfNextTwentyFourH,
+        # numberOfOtherRns,
+        # totalLevelOfCareLevelTwo,
+        name,
+        # availableBeds,
         beds {
-          available
-          covidStatus
-          dateOfAdmission
-          id
-          initials
-          levelOfCare
-          reference
-          rrtType
-          sex
-          sourceOfAdmission
-          useTracheostomy
+          available,
+          covidStatus,
+          dateOfAdmission,
+          id,
+          initials,
+          levelOfCare,
+          reference,
+          rrtType,
+          sex,
+          sourceOfAdmission,
+          useTracheostomy,
           ventilationType
         }
-        id
-        description
-        name
-        isCovidWard
-        totalBeds
-        totalCovidStatusNegative
-        totalCovidStatusPositive
-        totalCovidStatusSuspected
-        totalVentilatorInUse
-        unavailableBeds
       }
     }
   }

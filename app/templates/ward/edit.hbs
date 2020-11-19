@@ -21,7 +21,21 @@
          @key-up={{action (mut this.description) value=@target.value}} />
   <div class="help-text">Add a ward description</div>
 
-  <div class="form_checkbox--container">
+  <section>
+    <div class="section-header">{{t "add-ward.ward-type"}}</div>
+    {{#each this.wardTypes as |type|}}
+      <div class="radio add-ward">
+        <input
+          id={{type}}
+          type="radio"
+          checked={{eq this.wardType type}}
+          onclick={{action this.setWardType type}}>
+        <label for={{type}} class="radio--label">{{t (concat "labels.ward." (lowercase type))}}</label>
+      </div>
+      <p class="helper">{{t (concat "labels.helper." (lowercase type))}}</p>
+    {{/each}}
+  </section>
+  {{!-- <div class="form_checkbox--container">
     <input
       id="covidWard"
       type="checkbox"
@@ -32,7 +46,7 @@
       <div class="form_checkbox--text">COVID ward</div>
       <div class="form_checkbox--text small">This ward will be used for COVID patients</div>
     </label>
-  </div>
+  </div> --}}
 
   <div class="btns-container">
     <LinkTo @route="ward" @model={{this.model}} @tagName="button" class="form_btn cancel">Cancel</LinkTo>

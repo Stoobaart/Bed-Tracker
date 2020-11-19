@@ -41,6 +41,7 @@ export default class WardController extends Controller {
 
   @tracked editBedModalIsOpen = false;
   @tracked dischargeBedModalIsOpen = false;
+  @tracked updateStaffModalIsOpen = false;
   @tracked changesMade = false;
   @tracked showDeleteForm = false;
 
@@ -113,6 +114,7 @@ export default class WardController extends Controller {
     this.editBedModalIsOpen = false;
     this.dischargeBedModalIsOpen = false;
     this.showDeleteForm = false;
+    this.updateStaffModalIsOpen = false;
     this.selectedDischargeReason = null;
     document.body.classList.remove('no-scroll');
   }

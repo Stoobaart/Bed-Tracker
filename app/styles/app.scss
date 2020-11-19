@@ -1015,38 +1015,6 @@ button {
     font-weight: 600;
   }
 
-  .radio {
-    display: flex;
-    line-height: 1;
-    margin: 1.5rem 0;
-    width: 208px;
-
-    &.discharge:not(:last-child) {
-      margin: 1.5rem 0 0;
-    }
-
-    &.no-top-margin {
-      @media (min-width: 768px) {
-        margin-top: 0;
-      }
-    }
-
-    input {
-      width: 1.1rem;
-      height: 1.1rem;
-    }
-
-    &--label {
-      padding-left: .5rem;
-      line-height: 1.5;
-    }
-
-    &.hemofiltration {
-      padding-left: 2rem;
-      margin: 2.5rem 0;
-    }
-  }
-
   .close-btn {
     position: absolute;
     right: 1rem;
@@ -1054,6 +1022,7 @@ button {
   }
 
   button {
+    cursor: pointer;
     margin: 0 2rem;
     width: calc(100% - 4rem);
   }
@@ -1079,6 +1048,49 @@ button {
       margin: .5rem 0;
     }
   }
+}
+
+.radio {
+  display: flex;
+  line-height: 1;
+  margin: 1.5rem 0;
+  width: 208px;
+
+  &.add-ward {
+    margin-bottom: 0;
+  }
+
+  &.discharge:not(:last-child) {
+    margin: 1.5rem 0 0;
+  }
+
+  &.no-top-margin {
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
+  input {
+    cursor: pointer;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  &--label {
+    cursor: pointer;
+    padding-left: .5rem;
+    line-height: 1.5;
+  }
+
+  &.hemofiltration {
+    padding-left: 2rem;
+    margin: 2.5rem 0;
+  }
+}
+
+section > .helper {
+  padding-left: 2rem;
+  font-size: 12px;
 }
 
 @keyframes fade {
@@ -1114,6 +1126,7 @@ button {
     max-width: 97%;
 
     span {
+      cursor: pointer;
       display: inline-flex;
       margin: 0 0.4rem;
       color: #005eb8;
@@ -1148,6 +1161,15 @@ button {
       p {
         margin-bottom: 1rem;
       }
+    }
+
+    .update-staff-btn {
+      cursor: pointer;
+      color: #005eb8;
+      display: flex;
+      align-items: center;
+      padding-right: 1rem;
+      font-weight: 600;
     }
 
     a {
@@ -1299,6 +1321,7 @@ button {
   }
 
   &_card {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     height: 42px;
@@ -1394,6 +1417,7 @@ button {
       }
 
       &.discharge {
+        cursor: pointer;
         border-left: 1px solid #d8d8d8;
         height: 24px;
         .text {
@@ -1475,7 +1499,7 @@ button {
     margin-top: 0.5rem;
   }
 
-  label {
+  label:not(.radio--label) {
     margin-top: 2rem;
   }
 
@@ -1500,6 +1524,22 @@ button {
 .edit-ward {
   display: flex;
   flex-direction: column;
+  top: 0;
+  max-width: 311px;
+  margin: 1rem auto;
+
+  section {
+    padding-top: 2rem;
+
+    .radio > label {
+      line-height: 2.1;
+    }
+
+    .helper {
+      padding-left: 1.5rem;
+      margin-top: 0;
+    }
+  }
 
   &_delete {
     display: flex;

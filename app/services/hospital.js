@@ -63,20 +63,19 @@ export default class AccountService extends Service {
 
 class Hospital {
   @tracked id = null;
-  @tracked useManagement = null;
   @tracked name = null;
   @tracked address = null;
   @tracked wards = [];
-  @tracked availableHemofilter = null;
+  // @tracked availableHemofilter = null;
   @tracked totalCovidBeds = null;
   @tracked totalAvailableCovidBeds = null;
-  @tracked totalNonCovidBeds = null;
-  @tracked totalAvailableNonCovidBeds = null;
-  @tracked totalHemofilter = null;
+  // @tracked totalNonCovidBeds = null;
+  // @tracked totalAvailableNonCovidBeds = null;
+  // @tracked totalHemofilter = null;
 
-  get totalAvailableHemofilters() {
-    return this.totalHemofilter ? this.totalHemofilter - this.availableHemofilter : 0;
-  }
+  // get totalAvailableHemofilters() {
+  //   return this.totalHemofilter ? this.totalHemofilter - this.availableHemofilter : 0;
+  // }
 
   get totalBeds() {
     return this.wards.reduce((totalBeds, ward) => totalBeds + ward.totalBeds, 0);
@@ -102,9 +101,9 @@ class Hospital {
     return this.wards.reduce((totalCovidStatusPositive, ward) => totalCovidStatusPositive + ward.totalCovidStatusPositive, 0);
   }
 
-  get totalVentilatorInUse() {
-    return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
-  }
+  // get totalVentilatorInUse() {
+  //   return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
+  // }
 
   constructor(hospital) {
     for (const property in this) {
@@ -121,7 +120,8 @@ class Ward {
   @tracked id = null;
   @tracked name = null;
   @tracked description = null;
-  @tracked isCovidWard = false;
+  // @tracked isCovidWard = false;
+  @tracked wardType = null;
   @tracked beds = [];
 
   get totalBeds() {
@@ -166,15 +166,15 @@ class Ward {
     }, 0);
   }
 
-  get totalVentilatorInUse() {
-    return this.beds.reduce((totalVentilatorInUse, bed) => {
-      if (bed.ventilationType) {
-        return totalVentilatorInUse + 1
-      }
+  // get totalVentilatorInUse() {
+  //   return this.beds.reduce((totalVentilatorInUse, bed) => {
+  //     if (bed.ventilationType) {
+  //       return totalVentilatorInUse + 1
+  //     }
 
-      return totalVentilatorInUse;
-    }, 0);
-  }
+  //     return totalVentilatorInUse;
+  //   }, 0);
+  // }
 
   constructor(ward) {
     for (const property in this) {

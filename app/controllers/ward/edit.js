@@ -10,17 +10,17 @@ export default class EditWardController extends Controller {
   @service apollo;
   @service hospital;
 
-  @tracked name;
-  @tracked description;
-  @tracked isCovidWard = this.model.isCovidWard;
-
   @tracked showDeleteWardModal = false;
-
   @tracked error = false;
 
+  @tracked name;
+  @tracked description;
+  @tracked wardType = this.model.wardType;
+  wardTypes = ['COVID', 'AMBER', 'GREEN'];
+
   @action
-  toggleIsCovidWard() {
-    this.isCovidWard = !this.isCovidWard;
+  setWardType(type) {
+    this.wardType = type;
   }
 
   @action
@@ -32,7 +32,7 @@ export default class EditWardController extends Controller {
         id: this.model.id,
         name: this.name,
         description: this.description,
-        isCovidWard: this.isCovidWard
+        wardType: this.wardType
       }
     };
 
@@ -40,6 +40,7 @@ export default class EditWardController extends Controller {
       await this.apollo.mutate({ mutation: UpdateWardMutation, variables });
       this.model.name = this.name;
       this.model.description = this.description;
+      this.model.wardType = this.wardType;
       this.router.transitionTo('ward', this.model);
     } catch (error) {
       this.error = true;
