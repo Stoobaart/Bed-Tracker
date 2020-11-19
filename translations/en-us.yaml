@@ -120,7 +120,7 @@ update-staff-modal:
   help-text: 'Specify how many available L3 beds you have'
   max-admission-capacity: 'Maximum admission capacity'
   other-rns: 'Other RNs'
-  ratios-to-ics: 'Can provode nurse ratios to ICS?'
+  ratios-to-ics: 'Can provide nurse ratios to ICS?'
   support: 'Nurse support staff'
 ward-beds:
   add-beds: 'Add beds'
@@ -128,6 +128,9 @@ ward-beds:
   info: 'Tap a row to edit the bed status'
 ward-dashboard:
   edit: 'Edit'
+  staffing: 
+    title: 'WARD STAFFING'
+    critical-care-nurses: 'Critical Care Nurses'
   total-avail-beds: 'Total available beds'
   total-avail-capacity: 'Total available bed capacity'
   total-beds: 'WARD TOTAL BEDS'

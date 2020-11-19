@@ -122,9 +122,9 @@ class Ward {
   @tracked description = null;
   @tracked wardType = null;
   @tracked beds = [];
-  @tracked numberOfNurseSupportStaff = 0;
-  @tracked numberOfCritcareNurses = 0;
-  @tracked numberOfOtherRns = 0;
+  @tracked numberOfNurseSupportStaff = null;
+  @tracked numberOfCritcareNurses = null;
+  @tracked numberOfOtherRns = null;
   @tracked canProvideIcsRatios = null;
   @tracked maxAdmissionCapacity = null;
 
