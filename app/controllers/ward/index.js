@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 import UpdateBed from 'bed-checker/gql/mutations/update-bed';
 import RemoveBed from 'bed-checker/gql/mutations/remove-bed';
 import DischargePatient from 'bed-checker/gql/mutations/discharge-patient';
+import UpdateWardMutation from 'bed-checker/gql/mutations/update-ward';
 import moment from 'moment';
 
 export default class WardController extends Controller {
@@ -45,13 +46,22 @@ export default class WardController extends Controller {
   @tracked changesMade = false;
   @tracked showDeleteForm = false;
 
+  @tracked numberOfCritcareNurses = this.model.numberOfCritcareNurses ? this.model.numberOfCritcareNurses : 0;
+  @tracked numberOfNurseSupportStaff = this.model.numberOfNurseSupportStaff ? this.model.numberOfNurseSupportStaff : 0;
+  @tracked numberOfOtherRns = this.model.numberOfOtherRns ? this.model.numberOfOtherRns : 0;
+  @tracked canProvideIcsRatios = this.model.canProvideIcsRatios;
+  @tracked maxAdmissionCapacity = this.model.maxAdmissionCapacity;
+
   covidStatuses = [ 'GREEN', 'POSITIVE', 'NEGATIVE', 'SUSPECTED' ];
   levelsOfCare = [ 'LEVEL_1', 'LEVEL_2', 'LEVEL_3']
   sourcesOfAdmission = [ 'ED', 'EXTERNAL_WARD', 'INTERNAL_WARD', 'EXTERNAL_ITU', 'INTERNAL_ITU', 'ITU_READMISSION' ];
   ventilationTypes = [ 'NONE', 'SV', 'NASAL', 'CPAP', 'HFNO', 'BIPAP', 'INVASIVE' ];
   rrtTypes = [ 'NONE', 'RISK_OF_NEXT_TWENTY_FOUR_H', 'HAEMOFILTRATION', 'HAEMODIALYSIS', 'PD' ];
 
+  staffingTypes = [ 'CRIT_CARE_NURSES', 'NURSE_SUPPORT', 'OTHER_RNS'];
+
   get availableBedsPercentage() {
+    console.log(this.model);
     if (this.model.totalBeds === 0) {
       return 0;
     }
@@ -309,5 +319,62 @@ export default class WardController extends Controller {
     this.beds = [];
     this.transferPatientToBedId = null;
     this.wardHasNoBeds = false;
+  }
+
+  @action
+  updateCritCareTotal(type) {
+    if (type === 'add') {
+      this.numberOfCritcareNurses++;
+    } else if (this.numberOfCritcareNurses >= 1) {
+      this.numberOfCritcareNurses--;
+    }
+  }
+
+  @action
+  updateOtherRnsTotal(type) {
+    if (type === 'add') {
+      this.numberOfOtherRns++;
+    } else if (this.numberOfOtherRns >= 1) {
+      this.numberOfOtherRns--;
+    }
+  }
+
+  @action
+  updateNurseSupportTotal(type) {
+    if (type === 'add') {
+      this.numberOfNurseSupportStaff++;
+    } else {
+      this.numberOfNurseSupportStaff--;
+    }
+  }
+
+  @action
+  setCanProvideNurseRatios(bool) {
+    this.canProvideIcsRatios = bool;
+  }
+
+  @action
+  async updateStaffing() {
+    this.error = false;
+
+    const variables = {
+      input: {
+        id: this.model.id,
+        numberOfCritcareNurses: this.numberOfCritcareNurses,
+        numberOfOtherRns: this.numberOfOtherRns,
+        numberOfNurseSupportStaff: this.numberOfNurseSupportStaff,
+        canProvideIcsRatios: this.canProvideIcsRatios,
+        maxAdmissionCapacity: parseInt(this.maxAdmissionCapacity)
+      }
+    };
+
+    try {
+      await this.apollo.mutate({ mutation: UpdateWardMutation, variables });
+      this.closeModal();
+      this.set('model.showSuccessMessage', { type: 'staff-updated' });
+    } catch (error) {
+      this.error = true;
+      console.error(error);
+    }
   }
 }

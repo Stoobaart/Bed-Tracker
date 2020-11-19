@@ -5,6 +5,11 @@ mutation ($input: UpdateWardInput!) {
       name
       description
       wardType
+      numberOfCritcareNurses
+      numberOfNurseSupportStaff
+      numberOfOtherRns
+      canProvideIcsRatios
+      maxAdmissionCapacity
     }
   }
 }

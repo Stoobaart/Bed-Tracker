@@ -36,6 +36,7 @@ buttons:
   discharge: 'Discharge'
   remove-bed: 'Remove bed from this ward'
   save-changes: 'Save changes'
+  update: 'Update'
 edit-bed-modal:
   available: 'Available'
   header:
@@ -111,7 +112,13 @@ modal:
     warning: 'Important: Discharge cannot be undone.'
     transfer: 'Transfer patient'
 update-staff-modal: 
+  crit-care: 'Crit care nurses'
   header: 'Update staffing'
+  help-text: 'Specify how many available L3 beds you have'
+  max-admission-capacity: 'Maximum admission capacity'
+  other-rns: 'Other RNs'
+  ratios-to-ics: 'Can provode nurse ratios to ICS?'
+  support: 'Nurse support staff'
 ward-beds:
   add-beds: 'Add beds'
   beds: 'Beds'

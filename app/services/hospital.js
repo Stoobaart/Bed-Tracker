@@ -120,9 +120,13 @@ class Ward {
   @tracked id = null;
   @tracked name = null;
   @tracked description = null;
-  // @tracked isCovidWard = false;
   @tracked wardType = null;
   @tracked beds = [];
+  @tracked numberOfNurseSupportStaff = 0;
+  @tracked numberOfCritcareNurses = 0;
+  @tracked numberOfOtherRns = 0;
+  @tracked canProvideIcsRatios = null;
+  @tracked maxAdmissionCapacity = null;
 
   get totalBeds() {
     return this.beds.length;

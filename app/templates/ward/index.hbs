@@ -171,6 +171,75 @@
 {{#if this.updateStaffModalIsOpen}}
   <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
     <div class="header">{{t "update-staff-modal.header"}}</div>
+
+    <form class="update-staff">
+      <div class="form_input--counter">
+        <label>{{t "update-staff-modal.crit-care"}}</label>
+        <button class="round minus" disabled={{eq this.numberOfCritcareNurses 0}} {{on "click" (fn this.updateCritCareTotal 'sub')}}>-</button>
+        <p>{{this.numberOfCritcareNurses}}</p>
+        <button class="round" {{on "click" (fn this.updateCritCareTotal 'add')}}>+</button>
+      </div>
+      <div class="form_input--counter">
+        <label>{{t "update-staff-modal.other-rns"}}</label>
+        <button class="round minus" disabled={{eq this.numberOfOtherRns 0}} {{on "click" (fn this.updateOtherRnsTotal 'sub')}}>-</button>
+        <p>{{this.numberOfOtherRns}}</p>
+        <button class="round" {{on "click" (fn this.updateOtherRnsTotal 'add')}}>+</button>
+      </div>
+      <div class="form_input--counter">
+        <label>{{t "update-staff-modal.support"}}</label>
+        <button class="round minus" disabled={{eq this.numberOfNurseSupportStaff 0}} {{on "click" (fn this.updateNurseSupportTotal 'sub')}}>-</button>
+        <p>{{this.numberOfNurseSupportStaff}}</p>
+        <button class="round" {{on "click" (fn this.updateNurseSupportTotal 'add')}}>+</button>
+      </div>
+
+      <section>
+        <div class="subheader">{{t "update-staff-modal.ratios-to-ics"}}</div>
+
+        <div class="radio">
+          <input
+            id="ratiosYes"
+            type="radio"
+            checked={{this.canProvideIcsRatios}}
+            onclick={{action this.setCanProvideNurseRatios true}}>
+          <label for="ratiosYes" class="radio--label">{{t "labels.yes"}}</label>
+        </div>
+        <div class="radio">
+          <input
+            id="ratiosNo"
+            type="radio"
+            checked={{and (not this.canProvideIcsRatios) (not (eq this.canProvideIcsRatios null))}}
+            onclick={{action this.setCanProvideNurseRatios false}}>
+          <label for="ratiosNo" class="radio--label">{{t "labels.no"}}</label>
+        </div>
+      </section>
+
+      <section class="capacity">
+        <div class="subheader capacity">{{t "update-staff-modal.max-admission-capacity"}}</div>
+        <Input @type="number"
+               @class="form_input form_input--capacity"
+               min="0"
+               @key-up={{fn (mut this.maxAdmissionCapacity value)}}
+               @value={{this.maxAdmissionCapacity}} />
+        <div class="help-text">{{t "update-staff-modal.help-text"}}</div>
+      </section>
+
+      <div class="btns-container">
+        <button
+          type="button"
+          class="form_btn cancel"
+          {{on "click" this.closeModal}}>
+          {{t "buttons.cancel"}}
+        </button>
+
+        <button
+          type="submit"
+          class="form_btn submit"
+          {{!-- disabled={{this.dischargeIsDisabled}} --}}
+          {{on "click" this.updateStaffing}}>
+          {{t "buttons.update"}}
+        </button>
+      </div>
+    </form>
   </ModalDialog>
 {{/if}}
 

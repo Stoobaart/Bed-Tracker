@@ -461,6 +461,23 @@ body.no-scroll {
       outline: none;
       border-bottom: 2px solid #003e78;
     }
+
+    &--counter {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #d8d8d8;
+      padding: 1rem 0;
+      margin: 0 2rem;
+      width: calc(100% - 4rem);
+
+      label {
+        width: 10rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
   }
 
   &_input + img.input-icon {
@@ -960,6 +977,7 @@ button {
 .ember-modal-dialog {
   top: 56vh !important;
   min-width: 100%;
+  width: 100%;
   height: auto;
   max-height: 75%;
   padding: 0 0 6rem;
@@ -1025,6 +1043,24 @@ button {
     cursor: pointer;
     margin: 0 2rem;
     width: calc(100% - 4rem);
+
+    &.round {
+      background-color: white;
+      color: #737373;
+      font-size: 2rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 100%;
+      border: 1px solid #737373;
+      line-height: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.minus {
+        padding-bottom: 1.4rem;
+      }
+    }
   }
 
   .delete-container {
@@ -1518,6 +1554,33 @@ section > .helper {
 
   .error {
     color: #e30a0a;
+  }
+}
+
+.update-staff {
+  section {
+    border-bottom: none;
+
+    &.capacity {
+      flex-direction: column;
+    }
+
+    .subheader {
+      padding: 1.5rem 0 0;
+
+      &.capacity {
+        padding-top: 0;
+      }
+    }
+
+    .form_input--capacity {
+      width: 5rem;
+    }
+
+    .help-text {
+      font-size: 0.75rem;
+      color: #737373;
+    }
   }
 }
 
