@@ -103,6 +103,9 @@ message:
     bed-deleted: 
       title: 'Bed deleted successfully'
       body: 'The bed has been successfully deleted'
+    staff-updated:
+      title: 'Ward staffing updated successfuly'
+      body: 'The staffing levels have been updated'
 modal: 
   discharge:
     header: 'Discharge patient'

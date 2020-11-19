@@ -18,7 +18,7 @@
       <h1>{{this.model.name}}</h1>
       <p>{{this.model.description}}</p>
     </div>
-    <p class="update-staff-btn" {{on "click" (fn (mut this.updateStaffModalIsOpen) true)}}>{{t "ward-dashboard.update-staffing"}}</p>
+    <p class="update-staff-btn" {{on "click" this.openStaffModal}}>{{t "ward-dashboard.update-staffing"}}</p>
     <LinkTo @route="ward.edit" @model={{this.model}}>{{t "ward-dashboard.edit"}}</LinkTo>
   </div>
 
@@ -172,7 +172,7 @@
   <ModalDialog @onClose={{this.closeModal}} @targetAttachment="center" @attachment="middle" @hasOverlay={{true}}>
     <div class="header">{{t "update-staff-modal.header"}}</div>
 
-    <form class="update-staff">
+    <div class="update-staff">
       <div class="form_input--counter">
         <label>{{t "update-staff-modal.crit-care"}}</label>
         <button class="round minus" disabled={{eq this.numberOfCritcareNurses 0}} {{on "click" (fn this.updateCritCareTotal 'sub')}}>-</button>
@@ -239,7 +239,7 @@
           {{t "buttons.update"}}
         </button>
       </div>
-    </form>
+    </div>
   </ModalDialog>
 {{/if}}
 

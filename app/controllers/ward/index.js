@@ -46,11 +46,11 @@ export default class WardController extends Controller {
   @tracked changesMade = false;
   @tracked showDeleteForm = false;
 
-  @tracked numberOfCritcareNurses = this.model.numberOfCritcareNurses ? this.model.numberOfCritcareNurses : 0;
-  @tracked numberOfNurseSupportStaff = this.model.numberOfNurseSupportStaff ? this.model.numberOfNurseSupportStaff : 0;
-  @tracked numberOfOtherRns = this.model.numberOfOtherRns ? this.model.numberOfOtherRns : 0;
-  @tracked canProvideIcsRatios = this.model.canProvideIcsRatios;
-  @tracked maxAdmissionCapacity = this.model.maxAdmissionCapacity;
+  @tracked numberOfCritcareNurses = 0;
+  @tracked numberOfNurseSupportStaff = 0;
+  @tracked numberOfOtherRns = 0;
+  @tracked canProvideIcsRatios = null;
+  @tracked maxAdmissionCapacity = null;
 
   covidStatuses = [ 'GREEN', 'POSITIVE', 'NEGATIVE', 'SUSPECTED' ];
   levelsOfCare = [ 'LEVEL_1', 'LEVEL_2', 'LEVEL_3']
@@ -117,6 +117,16 @@ export default class WardController extends Controller {
       this.editBedModalIsOpen = true;
       document.body.classList.add('no-scroll');
     }
+  }
+
+  @action
+  openStaffModal() {
+    this.numberOfCritcareNurses = this.model.numberOfCritcareNurses ? this.model.numberOfCritcareNurses : 0;
+    this.numberOfNurseSupportStaff = this.model.numberOfNurseSupportStaff ? this.model.numberOfNurseSupportStaff : 0;
+    this.numberOfOtherRns = this.model.numberOfOtherRns ? this.model.numberOfOtherRns : 0;
+    this.canProvideIcsRatios = this.model.canProvideIcsRatios;
+    this.maxAdmissionCapacity = this.model.maxAdmissionCapacity;
+    this.updateStaffModalIsOpen = true;
   }
 
   @action
@@ -372,6 +382,12 @@ export default class WardController extends Controller {
       await this.apollo.mutate({ mutation: UpdateWardMutation, variables });
       this.closeModal();
       this.set('model.showSuccessMessage', { type: 'staff-updated' });
+
+      this.model.numberOfCritcareNurses = this.numberOfCritcareNurses;
+      this.model.numberOfOtherRns = this.numberOfOtherRns;
+      this.model.numberOfNurseSupportStaff = this.numberOfNurseSupportStaff;
+      this.model.canProvideIcsRatios = this.canProvideIcsRatios;
+      this.model.maxAdmissionCapacity = this.maxAdmissionCapacity;
     } catch (error) {
       this.error = true;
       console.error(error);
