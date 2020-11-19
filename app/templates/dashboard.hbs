@@ -95,7 +95,42 @@
         </div>
       </div>
     </div>
+
+
+
+    <div class="card">
+      <div class="card_header">
+        <img class="card_icon" src="/assets/images/staffing.svg" alt="">
+        <div class="card_header-text">{{t "dashboard.staffing.title"}}</div>
+      </div>
+
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{if (gt this.model.totalNumberOfCritcareNurses 0) this.model.totalNumberOfCritcareNurses "0"}}</div>
+        <div class="card_data-block--label">{{t "dashboard.staffing.critical-care-nurses"}}</div>
+      </div>
+
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{if (gt this.model.totalNumberOfOtherRns 0) this.model.totalNumberOfOtherRns "0"}}</div>
+        <div class="card_data-block--label">{{t "dashboard.staffing.other-rns"}}</div>
+      </div>
+
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{if (gt this.model.totalNumberOfNurseSupportStaff 0) this.model.totalNumberOfNurseSupportStaff "0"}}</div>
+        <div class="card_data-block--label">{{t "dashboard.staffing.support-staff"}}</div>
+      </div>
+
+      {{#if this.canProvideIcsRatios}}
+        <div class="card_footer">
+          <img class="icon" src="/assets/images/green-tick.svg" alt="">
+          <p>{{t "dashboard.staffing.can-provide-nurses"}}</p>
+        </div>
+      {{/if}}
+    </div>
   </div>
+
+
+
+
 
   <div class="wards_container">
     <div class="wards_header--container">

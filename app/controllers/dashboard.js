@@ -4,6 +4,10 @@ import Controller from '@ember/controller';
 export default class DashboardController extends Controller {
   // @service printThis;
 
+  get canProvideIcsRatios() {
+    return !this.model.wards.some((ward) => ward.canProvideIcsRatios === false);
+  }
+
   get availableBedsPercentage() {
     if (this.model.totalBeds === 0) {
       return 0;

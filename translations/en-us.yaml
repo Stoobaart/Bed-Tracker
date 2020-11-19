@@ -37,6 +37,14 @@ buttons:
   remove-bed: 'Remove bed from this ward'
   save-changes: 'Save changes'
   update: 'Update'
+dashboard: 
+  staffing: 
+    can-provide-nurses: 'Can provide nurse ratios to ICS'
+    critical-care-nurses: 'Critical Care Nurses'
+    max-capacity: 'Max. admission capacity'
+    other-rns: 'Other RNs'
+    title: 'WARD STAFFING'
+    support-staff: 'Nurse support staff'
 edit-bed-modal:
   available: 'Available'
   header:
@@ -128,9 +136,6 @@ ward-beds:
   info: 'Tap a row to edit the bed status'
 ward-dashboard:
   edit: 'Edit'
-  staffing: 
-    title: 'WARD STAFFING'
-    critical-care-nurses: 'Critical Care Nurses'
   total-avail-beds: 'Total available beds'
   total-avail-capacity: 'Total available bed capacity'
   total-beds: 'WARD TOTAL BEDS'

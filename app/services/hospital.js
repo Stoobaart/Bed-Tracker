@@ -69,6 +69,9 @@ class Hospital {
   // @tracked availableHemofilter = null;
   @tracked totalCovidBeds = null;
   @tracked totalAvailableCovidBeds = null;
+  @tracked totalNumberOfOtherRns = null;
+  @tracked totalNumberOfCritcareNurses = null;
+  @tracked totalNumberOfNurseSupportStaff = null;
   // @tracked totalNonCovidBeds = null;
   // @tracked totalAvailableNonCovidBeds = null;
   // @tracked totalHemofilter = null;

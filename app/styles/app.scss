@@ -316,7 +316,7 @@ body.no-scroll {
   }
 
   @media (min-width: 768px) {
-    max-width: 20.5rem;
+    min-width: calc(50% - 3rem);
   }
 
   @media (min-width: 1024px) {
@@ -344,12 +344,31 @@ body.no-scroll {
     }
   }
 
+  &_footer {
+    display: flex;
+    padding-top: 1rem;
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    p {
+      padding-left: .25rem;
+      font-size: .75rem;
+    }
+  }
+
   &_data-block {
-    width: 150px;
+    width: 33%;
     height: 72px;
 
     &.ward-dashboard {
-      width: 100px;
+      width: 50%;
+
+      @media (min-width: 64rem) {
+        width: 25%;
+      }
     }
 
     &--value {
@@ -471,11 +490,14 @@ body.no-scroll {
       width: calc(100% - 4rem);
 
       label {
-        width: 10rem;
+        width: 100%;
       }
 
       p {
         font-size: 1.5rem;
+        min-width: 2rem;
+        display: flex;
+        justify-content: center;
       }
     }
   }
@@ -1056,6 +1078,11 @@ button {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: .5rem;
+
+      &.plus {
+        margin-right: 0;
+      }
 
       &.minus {
         padding-bottom: 1.4rem;
