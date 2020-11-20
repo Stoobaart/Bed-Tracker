@@ -107,7 +107,7 @@ export default class WardController extends Controller {
       this.available = bed.available;
       this.covidStatus = bed.covidStatus;
       this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
-      this.timeOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("hh:mm") : moment().format("hh:mm");
+      this.timeOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("HH:mm") : moment().format("HH:mm");
       this.levelOfCare = bed.levelOfCare;
       this.rrtType = bed.rrtType;
       this.sourceOfAdmission = bed.sourceOfAdmission;
