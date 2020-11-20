@@ -36,6 +36,11 @@ query {
       name,
       availableBeds,
       wards {
+        lastUpdatedByHospitalManagerOfWardOrBeds {
+          firstname
+          lastname
+        }
+        lastUpdatedAtOfWardOrBeds
         # totalVentilationTypeInvasive,
         # unavailableBeds,
         # totalRrtTypeNone,

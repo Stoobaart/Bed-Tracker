@@ -168,46 +168,57 @@
     {{#if this.model.wards.length}}
       <div class="table">
         <div class="header header--wards">
-          <div class="header--column">{{t "ward-table.table-headers.ward"}}</div>
-          <div class="header--column">
+          <div class="header--column ward-column">
+            <p>{{t "ward-table.table-headers.ward"}}</p>
+          </div>
+          <div class="header--column availability-column">
             <img class="icon" src="/assets/images/available-white.svg" alt="">
             {{t "ward-table.table-headers.availability"}}
           </div>
-          {{!-- <div class="header--column">{{t "ward-table.table-headers.last-updated"}}</div> --}}
+          <div class="header--column last-updated-column">{{t "ward-table.table-headers.last-updated"}}</div>
         </div>
+      
+
+        {{#each this.model.wards as |ward|}}
+          <LinkTo class="wards_card" @route="ward" @model={{ward.id}} role="button">
+            <div class="column ward-name">
+              <div class="wards_card--ward-name {{if ward.isCovidWard "with-covid-badge"}}">
+                {{#if (eq ward.wardType "COVID")}}
+                  <img src="/assets/images/covid-19-positive.svg" alt="">
+                {{else if (eq ward.wardType "AMBER")}}
+                  <img src="/assets/images/covid-19-amber.svg" alt="">
+                {{else if (eq ward.wardType "GREEN")}}
+                  <img src="/assets/images/covid-19-green.svg" alt="">
+                {{/if}}
+                <p>{{ward.name}}</p>
+              </div>
+            </div>
+
+            <div class="column availability">
+              {{#if (eq ward.availableBeds 0)}}
+                <img src="/assets/images/available-no-red.svg" alt="">
+              {{else}}
+                <img src="/assets/images/available-yes-green.svg" alt="">
+              {{/if}}
+              <div class="wards_card--beds-number">
+                {{ward.availableBeds}} /
+                <span>{{ward.beds.length}}</span>
+              </div>
+            </div>
+
+            <div class="column last-updated">
+              <div class="wards_card--last-edited-time">{{time-since ward.lastUpdatedAtOfWardOrBeds}}</div>
+              <div class="wards_card--last-edited-by">by {{ward.lastUpdatedByHospitalManagerOfWardOrBeds.firstname}} {{ward.lastUpdatedByHospitalManagerOfWardOrBeds.lastname}}</div>
+            </div>
+
+          </LinkTo>
+        {{/each}}
       </div>
-
-      {{#each this.model.wards as |ward|}}
-        <LinkTo class="wards_card" @route="ward" @model={{ward.id}} role="button">
-          <div class="column wards_card--name-container">
-            <div class="wards_card--ward-name {{if ward.isCovidWard "with-covid-badge"}}">
-              {{!-- {{log ward}} --}}
-              {{!-- <img class="" src={{concat "/assets/images/table-icon-" (lowercase bed.covidStatus) ".svg"}} alt=""> --}}
-              {{ward.name}}
-            </div>
-          </div>
-
-          <div class="column">
-            {{#if (eq ward.availableBeds 0)}}
-              <img src="/assets/images/available-no-red.svg" alt="">
-            {{else}}
-              <img src="/assets/images/available-yes-green.svg" alt="">
-            {{/if}}
-            <div class="wards_card--beds-number">
-              {{ward.availableBeds}} /
-              <span>{{ward.beds.length}}</span>
-            </div>
-          </div>
-
-        </LinkTo>
-      {{/each}}
     {{else}}
       <div class="wards_body-text">
         To get started add a ward and register the number of COVID beds.<br><br>If a bed is occupied, set the COVID status of the patient and whether any ventilators are being used.
       </div>
     {{/if}}
   </div>
-  {{!-- {{/if}} --}}
-</div>
 
-{{!-- <img class="qr-code" src={{this.qrCode}} alt=""> --}}
+</div>

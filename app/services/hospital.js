@@ -146,6 +146,8 @@ class Ward {
   @tracked numberOfOtherRns = null;
   @tracked canProvideIcsRatios = null;
   @tracked maxAdmissionCapacity = null;
+  @tracked lastUpdatedByHospitalManagerOfWardOrBeds = { firstName: null, lastName: null };
+  @tracked lastUpdatedAtOfWardOrBeds = null;
 
   get totalBeds() {
     return this.beds.length;
