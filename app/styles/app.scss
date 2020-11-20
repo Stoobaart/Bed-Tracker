@@ -1070,6 +1070,7 @@ button {
       background-color: white;
       color: #737373;
       font-size: 2rem;
+      min-width: 3rem;
       width: 3rem;
       height: 3rem;
       border-radius: 100%;
@@ -1693,4 +1694,10 @@ section > .helper {
       }
     }
   }
+}
+
+input[type=number] {
+  -webkit-appearance: none;
+  -webkit-border-radius:0; 
+  border-radius:0;
 }
