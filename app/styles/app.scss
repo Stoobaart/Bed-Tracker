@@ -48,7 +48,7 @@ body.no-scroll {
 }
 
 .top-bar {
-  height: 80px;
+  height: 64px;
   display: flex;
   overflow: hidden;
   box-sizing: border-box;
@@ -58,64 +58,19 @@ body.no-scroll {
   max-width: 64rem;
   border-bottom: 2px solid #2c98ff;
 
-  .nav-toggle-btn {
-    font-size: 12px;
-    color: #005eb8;
-    width: 37px;
-    padding: 1.2rem 0 0 1rem;
-    text-align: center;
+  .app-logo {
+    width: 64px;
+    height: 64px;
   }
-}
 
-.nav {
-
-  &-menu {
+  .logout {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    top: 80px;
-    padding: 1rem;
-    box-sizing: border-box;
-    height: calc(100% - 80px);
-    max-width: 352px;
-    background-color: white;
-
-    &.open {
-      width: 85%;
-    }
-
-    & .nav-item {
-      display: inline-flex;
-      padding: 0.5rem 0;
-      color: #005eb8;
-      font-weight: 600;
-
-      &_image {
-        padding-right: .5rem;
-      }
-
-      &--logout {
-        border-top: 2px solid #005eb8;
-      }
-    }
-
-    & a.nav-item {
-      text-decoration: none;
-
-      & span {
-        flex-grow: 1;
-        color: #005eb8;
-      }
-    }
-  }
-
-  &-overlay {
-    position: absolute;
-    width: 100%;
-    height: calc(100vh - 80px);
-    background-color: black;
-    opacity: .75;
-    z-index: 2;
+    justify-content: center;
+    padding-left: 1rem;
+    font-size: .75rem;
+    font-weight: 600;
+    color: #005eb8;
   }
 }
 
@@ -321,7 +276,7 @@ body.no-scroll {
 
   @media (min-width: 450px) {
     min-width: 0;
-    width: 43%;
+    width: 42%;
     max-width: 19.5rem;
   }
 
@@ -382,6 +337,16 @@ body.no-scroll {
     &.two-by-two {
       width: 50%;
 
+      &.no-wrap {
+        white-space: nowrap;
+      }
+
+      &.beds {
+        @media (min-width: 64rem) {
+          width: 33%;
+        }
+      }
+
       @media (min-width: 64rem) {
         width: 25%;
       }
@@ -407,11 +372,21 @@ body.no-scroll {
 
     &--label {
       font-size: 12px;
+      display: flex;
+      align-items: center;
 
       .icon {
-        top: .2rem;
+        top: .1rem;
         position: relative;
-        width: 16px;
+        width: 12px;
+      }
+
+      div {
+        font-size: 12px;
+        padding-left: 0.2rem;
+        min-height: 2rem;
+        display: flex;
+        align-items: center;
       }
     }
   }

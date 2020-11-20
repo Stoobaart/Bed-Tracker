@@ -168,3 +168,11 @@ ward-dashboard:
   total-covid-stats: 'TOTAL COVID PATIENT STATS'
   total-ventilators: 'Total ventilators in use'
   update-staffing: 'Update staffing'
+ward-table:
+  add-ward: 'Add Ward'
+  info: 'Tap a row to view the ward'
+  table-headers: 
+    availability: 'Availability'
+    last-updated: 'Last updated'
+    ward: 'Ward'
+  title: 'WARDS'

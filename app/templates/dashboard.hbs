@@ -19,7 +19,7 @@
         <img class="card_icon" src="/assets/images/occupied.svg" alt="">
         <div class="card_header-text">{{t "dashboard.available-beds.title"}}</div>
       </div>
-      <div class="card_data-block two-by-two">
+      <div class="card_data-block two-by-two no-wrap beds">
         <div class="card_data-block--value">
           {{if (gt this.model.totalAvailableCovidBeds 0) this.model.totalAvailableCovidBeds "0"}}
           <div class="slash"> / </div>
@@ -27,10 +27,10 @@
         </div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-positive-small.svg" alt="">
-          {{t "dashboard.available-beds.covid-beds"}}
+          <div>{{t "dashboard.available-beds.covid-beds"}}</div>
         </div>
       </div>
-      <div class="card_data-block two-by-two">
+      <div class="card_data-block two-by-two beds">
         <div class="card_data-block--value">
           {{if (gt this.model.totalAvailableAmberBeds 0) this.model.totalAvailableAmberBeds "0"}}
           <div class="slash"> / </div>
@@ -38,10 +38,10 @@
         </div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-amber.svg" alt="">
-          {{t "dashboard.available-beds.amber-beds"}}
+          <div>{{t "dashboard.available-beds.amber-beds"}}</div>
         </div>
       </div>
-      <div class="card_data-block two-by-two">
+      <div class="card_data-block two-by-two beds">
         <div class="card_data-block--value">
           {{if (gt this.model.totalCovidStatusGreen 0) this.model.totalCovidStatusGreen "0"}}
           <div class="slash"> / </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-green.svg" alt="">
-          {{t "dashboard.available-beds.green-beds"}}
+          <div>{{t "dashboard.available-beds.green-beds"}}</div>
         </div>
       </div>
     </div>
@@ -64,28 +64,28 @@
         <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-positive-red.svg" alt="">
-          {{t "dashboard.patient-stats.positive"}}
+          <div>{{t "dashboard.patient-stats.positive"}}</div>
         </div>
       </div>
       <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusNegative}}</div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-negative.svg" alt="">
-          {{t "dashboard.patient-stats.negative"}}
+          <div>{{t "dashboard.patient-stats.negative"}}</div>
         </div>
       </div>
       <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-suspected-purple.svg" alt="">
-          {{t "dashboard.patient-stats.suspected"}}
+          <div>{{t "dashboard.patient-stats.suspected"}}</div>
         </div>
       </div>
       <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusGreen}}</div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-green.svg" alt="">
-          {{t "dashboard.patient-stats.green"}}
+          <div>{{t "dashboard.patient-stats.green"}}</div>
         </div>
       </div>
     </div>
@@ -157,38 +157,34 @@
 
   <div class="wards_container">
     <div class="wards_header--container">
-      <div class="wards_header">WARDS</div>
+      <div class="wards_header">{{t "ward-table.title"}}</div>
       <LinkTo @route="add-ward" class="wards_link--button" role="button">
         <img class="wards_link--icon" src="/assets/images/plus.svg" alt="">
-        Add Ward
+        {{t "ward-table.add-ward"}}
       </LinkTo>
-      <p>Tap a row to view the ward</p>
+      <p>{{t "ward-table.info"}}</p>
     </div>
 
     {{#if this.model.wards.length}}
-
       <div class="table">
         <div class="header header--wards">
-
-          <div class="header--column">
-            Ward
-          </div>
+          <div class="header--column">{{t "ward-table.table-headers.ward"}}</div>
           <div class="header--column">
             <img class="icon" src="/assets/images/available-white.svg" alt="">
-            Availability
+            {{t "ward-table.table-headers.availability"}}
           </div>
+          {{!-- <div class="header--column">{{t "ward-table.table-headers.last-updated"}}</div> --}}
         </div>
       </div>
 
       {{#each this.model.wards as |ward|}}
         <LinkTo class="wards_card" @route="ward" @model={{ward.id}} role="button">
           <div class="column wards_card--name-container">
-            <div class="wards_card--ward-name {{if ward.isCovidWard "with-covid-badge"}}">{{ward.name}}</div>
-            {{#if ward.isCovidWard}}
-              <div class="wards_card--covid-badge">
-                COVID ward
-              </div>
-            {{/if}}
+            <div class="wards_card--ward-name {{if ward.isCovidWard "with-covid-badge"}}">
+              {{!-- {{log ward}} --}}
+              {{!-- <img class="" src={{concat "/assets/images/table-icon-" (lowercase bed.covidStatus) ".svg"}} alt=""> --}}
+              {{ward.name}}
+            </div>
           </div>
 
           <div class="column">
