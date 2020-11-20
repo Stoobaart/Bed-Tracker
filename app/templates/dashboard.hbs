@@ -83,26 +83,19 @@
     <div class="card">
       <div class="card_header">
         <img class="card_icon" src="/assets/images/ventilator.svg" alt="">
-        <div class="card_header-text">AVAILABLE RESOURCES</div>
+        <div class="card_header-text">{{t "dashboard.ventilation.title"}}</div>
       </div>
-
       <div class="card_data-block">
-        <div class="card_data-block--value">
-          {{#if this.model.totalHemofilter}}
-            {{this.model.totalAvailableHemofilters}}
-            <div class="slash"> / </div>
-            <div class="totals">{{this.model.totalHemofilter}}</div>
-          {{else}}
-            {{this.model.availableHemofilter}}
-          {{/if}}
-        </div>
-        <div class="card_data-block--label hemo">
-          {{#if this.model.totalHemofilter}}
-            Hemofiltraion
-          {{else}}
-            Hemofilters in use
-          {{/if}}
-        </div>
+        <div class="card_data-block--value">{{this.totalBipapCpapNiv}}</div>
+        <div class="card_data-block--label hemo">{{t "dashboard.ventilation.cpap-bipap-niv"}}</div>
+      </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalVentilationTypeInvasive}}</div>
+        <div class="card_data-block--label hemo">{{t "dashboard.ventilation.iv"}}</div>
+      </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalVentilationTypeHfno}}</div>
+        <div class="card_data-block--label hemo">{{t "dashboard.ventilation.hfno"}}</div>
       </div>
     </div>
 

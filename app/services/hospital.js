@@ -76,6 +76,13 @@ class Hospital {
   @tracked totalGreenBeds = null;
   @tracked totalAvailableAmberBeds = null;
   @tracked totalAmberBeds = null;
+  @tracked totalVentilationTypeInvasive = null;
+  @tracked totalVentilationTypeHfno = null;
+  @tracked totalVentilationTypeCpap = null;
+  @tracked totalVentilationTypeSv = null;
+  @tracked totalVentilationTypeNasal = null;
+  @tracked totalVentilationTypeBipap = null;
+  @tracked totalVentilationTypeNone = null;
   // @tracked totalNonCovidBeds = null;
   // @tracked totalAvailableNonCovidBeds = null;
   // @tracked totalHemofilter = null;

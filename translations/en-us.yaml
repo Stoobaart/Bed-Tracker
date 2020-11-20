@@ -50,6 +50,11 @@ dashboard:
     other-rns: 'Other RNs'
     title: 'WARD STAFFING'
     support-staff: 'Nurse support staff'
+  ventilation:
+    cpap-bipap-niv: 'CPAP / BiPap / NIV'
+    hfno: 'HFNO'
+    iv: 'Invasive ventilation'
+    title: 'VENTILATION'
 edit-bed-modal:
   available: 'Available'
   header:

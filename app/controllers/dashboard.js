@@ -2,6 +2,10 @@ import Controller from '@ember/controller';
 
 export default class DashboardController extends Controller {
 
+  get totalBipapCpapNiv() {
+    return this.model.totalVentilationTypeCpap + this.model.totalVentilationTypeBipap + this.model.totalVentilationTypeNasal;
+  }
+
   get canProvideIcsRatios() {
     return !this.model.wards.some((ward) => ward.canProvideIcsRatios === false);
   }
