@@ -43,6 +43,11 @@ dashboard:
     covid-beds: 'COVID ITU beds'
     green-beds: 'Green beds'
     title: 'AVAILABLE BEDS'
+  rrt:
+    at-risk: 'At risk of needing RRT in next 24 hours'
+    haemodialysis: 'Currently on haemodialysis'
+    haemofiltration: 'Currently on haemofiltration'
+    title: 'RRT'
   staffing: 
     can-provide-nurses: 'Can provide nurse ratios to ICS'
     critical-care-nurses: 'Critical Care Nurses'
@@ -50,6 +55,7 @@ dashboard:
     other-rns: 'Other RNs'
     title: 'WARD STAFFING'
     support-staff: 'Nurse support staff'
+  title: 'Hospital Dashboard'
   ventilation:
     cpap-bipap-niv: 'CPAP / BiPap / NIV'
     hfno: 'HFNO'

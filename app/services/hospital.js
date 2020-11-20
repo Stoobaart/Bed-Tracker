@@ -83,6 +83,9 @@ class Hospital {
   @tracked totalVentilationTypeNasal = null;
   @tracked totalVentilationTypeBipap = null;
   @tracked totalVentilationTypeNone = null;
+  @tracked totalRrtTypeRiskOfNextTwentyFourH = null;
+  @tracked totalRrtTypeHaemofiltration = null;
+  @tracked totalRrtTypeHaemodialysis = null;
   // @tracked totalNonCovidBeds = null;
   // @tracked totalAvailableNonCovidBeds = null;
   // @tracked totalHemofilter = null;

@@ -8,10 +8,10 @@
     </div>
   {{/if}}
 
-  <div class="cards-container">
+  <div class="cards-container {{if (user-agent "device.isMobile") "mobile"}}">
     <div class="page_header">
       <img class="page_icon" src="/assets/images/hospital.svg" alt="">
-      Hospital Dashboard
+      {{t "dashboard.title"}}
     </div>
 
     <div class="card">
@@ -19,7 +19,6 @@
         <img class="card_icon" src="/assets/images/occupied.svg" alt="">
         <div class="card_header-text">{{t "dashboard.available-beds.title"}}</div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">
           {{if (gt this.model.totalAvailableCovidBeds 0) this.model.totalAvailableCovidBeds "0"}}
@@ -31,7 +30,6 @@
           {{t "dashboard.available-beds.covid-beds"}}
         </div>
       </div>
-{{!-- {{log this.model}} --}}
       <div class="card_data-block">
         <div class="card_data-block--value">
           {{if (gt this.model.totalAvailableAmberBeds 0) this.model.totalAvailableAmberBeds "0"}}
@@ -43,7 +41,6 @@
           {{t "dashboard.available-beds.amber-beds"}}
         </div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">
           {{if (gt this.model.totalCovidStatusGreen 0) this.model.totalCovidStatusGreen "0"}}
@@ -62,7 +59,6 @@
         <img class="card_icon" src="/assets/images/covid-19-positive.svg" alt="">
         <div class="card_header-text">TOTAL COVID PATIENT STATS</div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
         <div class="card_data-block--label">
@@ -70,7 +66,6 @@
           COVID positive
         </div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
         <div class="card_data-block--label">
@@ -99,29 +94,42 @@
       </div>
     </div>
 
-
+    <div class="card rrt">
+      <div class="card_header">
+        <img class="card_icon" src="/assets/images/rrt.svg" alt="">
+        <div class="card_header-text">{{t "dashboard.rrt.title"}}</div>
+      </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalRrtTypeRiskOfNextTwentyFourH}}</div>
+        <div class="card_data-block--label hemo">{{t "dashboard.rrt.at-risk"}}</div>
+      </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalRrtTypeHaemofiltration}}</div>
+        <div class="card_data-block--label hemo">{{t "dashboard.rrt.haemofiltration"}}</div>
+      </div>
+      <div class="card_data-block">
+        <div class="card_data-block--value">{{this.model.totalRrtTypeHaemodialysis}}</div>
+        <div class="card_data-block--label hemo">{{t "dashboard.rrt.haemodialysis"}}</div>
+      </div>
+    </div>
 
     <div class="card">
       <div class="card_header">
         <img class="card_icon" src="/assets/images/staffing.svg" alt="">
         <div class="card_header-text">{{t "dashboard.staffing.title"}}</div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">{{if (gt this.model.totalNumberOfCritcareNurses 0) this.model.totalNumberOfCritcareNurses "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.critical-care-nurses"}}</div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">{{if (gt this.model.totalNumberOfOtherRns 0) this.model.totalNumberOfOtherRns "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.other-rns"}}</div>
       </div>
-
       <div class="card_data-block">
         <div class="card_data-block--value">{{if (gt this.model.totalNumberOfNurseSupportStaff 0) this.model.totalNumberOfNurseSupportStaff "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.support-staff"}}</div>
       </div>
-
       {{#if this.canProvideIcsRatios}}
         <div class="card_footer">
           <img class="icon" src="/assets/images/green-tick.svg" alt="">
@@ -129,11 +137,8 @@
         </div>
       {{/if}}
     </div>
+
   </div>
-
-
-
-
 
   <div class="wards_container">
     <div class="wards_header--container">

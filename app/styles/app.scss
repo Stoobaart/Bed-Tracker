@@ -162,6 +162,16 @@ body.no-scroll {
     display: flex;
     flex-wrap: wrap;
   }
+
+  &.mobile {
+    .card {
+      @media (min-width: 450px) {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
 }
 
 .wards {
@@ -322,6 +332,12 @@ body.no-scroll {
   @media (min-width: 1024px) {
     width: 44%;
     max-width: 44%;
+  }
+
+  &.rrt {
+    @media (max-width: 48rem) {
+      padding-bottom: 2rem;
+    }
   }
 
   &_last-card {
