@@ -56,7 +56,7 @@ query {
         # totalRrtTypeHaemofiltration,
         numberOfCritcareNurses,
         # totalVentilationTypeBipap,
-        # totalCovidStatusGreen,
+        totalCovidStatusGreen,
         # totalRrtTypeHaemodialysis,
         # totalVentilationTypeNone,
         # totalLevelOfCareLevelThree,

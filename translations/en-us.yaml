@@ -161,6 +161,7 @@ ward-dashboard:
   total-avail-beds: 'Total available beds'
   total-avail-capacity: 'Total available bed capacity'
   total-beds: 'WARD TOTAL BEDS'
+  total-covid-green: 'Green'
   total-covid-neg: 'Total COVID negative'
   total-covid-pos: 'Total COVID positive'
   total-covid-sus: 'Total COVID suspected'

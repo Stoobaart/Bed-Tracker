@@ -146,8 +146,6 @@ class Ward {
   @tracked numberOfOtherRns = null;
   @tracked canProvideIcsRatios = null;
   @tracked maxAdmissionCapacity = null;
-  @tracked totalCovidStatusNegative = null;
-  @tracked totalCovidStatusPositive = null;
 
   get totalBeds() {
     return this.beds.length;
@@ -161,15 +159,15 @@ class Ward {
     return this.beds.filter((bed) => !bed.available).length;
   }
 
-  // get totalCovidStatusNegative() {
-  //   return this.beds.reduce((totalCovidStatusNegative, bed) => {
-  //     if (bed.covidStatus === 'NEGATIVE') {
-  //       return totalCovidStatusNegative + 1
-  //     }
+  get totalCovidStatusNegative() {
+    return this.beds.reduce((totalCovidStatusNegative, bed) => {
+      if (bed.covidStatus === 'NEGATIVE') {
+        return totalCovidStatusNegative + 1
+      }
 
-  //     return totalCovidStatusNegative;
-  //   }, 0);
-  // }
+      return totalCovidStatusNegative;
+    }, 0);
+  }
 
   get totalCovidStatusSuspected() {
     return this.beds.reduce((totalCovidStatusSuspected, bed) => {
@@ -181,15 +179,25 @@ class Ward {
     }, 0);
   }
 
-  // get totalCovidStatusPositive() {
-  //   return this.beds.reduce((totalCovidStatusPositive, bed) => {
-  //     if (bed.covidStatus === 'POSITIVE') {
-  //       return totalCovidStatusPositive + 1
-  //     }
+  get totalCovidStatusPositive() {
+    return this.beds.reduce((totalCovidStatusPositive, bed) => {
+      if (bed.covidStatus === 'POSITIVE') {
+        return totalCovidStatusPositive + 1
+      }
 
-  //     return totalCovidStatusPositive;
-  //   }, 0);
-  // }
+      return totalCovidStatusPositive;
+    }, 0);
+  }
+
+  get totalCovidStatusGreen() {
+    return this.beds.reduce((totalCovidStatusGreen, bed) => {
+      if (bed.covidStatus === 'GREEN') {
+        return totalCovidStatusGreen + 1
+      }
+
+      return totalCovidStatusGreen;
+    }, 0);
+  }
 
   get totalVentilatorInUse() {
     return this.beds.reduce((totalVentilatorInUse, bed) => {
