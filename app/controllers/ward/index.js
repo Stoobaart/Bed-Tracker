@@ -31,6 +31,7 @@ export default class WardController extends Controller {
   @tracked available = null;
   @tracked covidStatus = null;
   @tracked dateOfAdmission = moment().format("YYYY-MM-DD");
+  @tracked timeOfAdmission = moment().format("HH-MM");
   @tracked id = null;
   @tracked levelOfCare = null;
   @tracked rrtType = null;
@@ -106,6 +107,7 @@ export default class WardController extends Controller {
       this.available = bed.available;
       this.covidStatus = bed.covidStatus;
       this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
+      this.timeOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("hh:mm") : moment().format("hh:mm");
       this.levelOfCare = bed.levelOfCare;
       this.rrtType = bed.rrtType;
       this.sourceOfAdmission = bed.sourceOfAdmission;
@@ -201,12 +203,13 @@ export default class WardController extends Controller {
     event.preventDefault();
 
     this.error = false;
+    const dateTime = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`);
 
     const variables = {
       input: {
         available: this.available,
         covidStatus: this.available ? null : this.covidStatus,
-        dateOfAdmission: moment(this.dateOfAdmission),
+        dateOfAdmission: dateTime,
         id: this.id,
         useTracheostomy: this.useTracheostomy,
         levelOfCare: this.levelOfCare,

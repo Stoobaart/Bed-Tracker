@@ -80,6 +80,7 @@ edit-bed-modal:
     reference: 'Reference:'
     rrt: 'RRT:'
     source-of-admission: 'Source of admission:'
+    time-of-admission: 'Time:'
     tracheostomy: 'Tracheostomy:'
     ventilation: 'Ventilation:'
   subheader:

@@ -352,14 +352,21 @@
 
         {{#if (not this.available)}}
           <section>
-            <div class="section-header">{{t "edit-bed-modal.section-header.date-of-admission"}}</div>
+            <div class="section-header date">{{t "edit-bed-modal.section-header.date-of-admission"}}</div>
+            <div class="section-header time">{{t "edit-bed-modal.section-header.time-of-admission"}}</div>
             <Input @type="date" 
                    @id="dateOfAdmission"
                    @name="dateOfAdmission"
-                   @class="form_input"
+                   @class="form_input date"
                    @change={{fn (mut this.changesMade) true}}
                    @value={{this.dateOfAdmission}} />
-          </section>
+            <Input @type="time" 
+                   @id="timeOfAdmission"
+                   @name="timeOfAdmission"
+                   @class="form_input time"
+                   @change={{fn (mut this.changesMade) true}}
+                   @value={{this.timeOfAdmission}} />
+          </section>{{log this.timeOfAdmission}}
           
           <section>
             <div class="section-header">{{t "edit-bed-modal.section-header.source-of-admission"}}</div>
