@@ -1,7 +1,7 @@
 <div class="radio {{if (gt @index 1) "no-top-margin"}} @type">
   {{#if (not @disabled)}}
     <input
-      id={{@type}}
+      id={{concat @identifier @type}}
       type="radio"
       checked={{eq @checkedProperty @type}}
       onclick={{action @setPropMethod @type}}>
@@ -13,5 +13,5 @@
       onclick={{action @setPropMethod @type}}
       disabled=@disabled>
   {{/if}}
-  <label for={{@type}} class="radio--label">{{t (concat "labels." (lowercase @type))}}</label>
+  <label for={{concat @identifier @type}} class="radio--label">{{t (concat "labels." (lowercase @type))}}</label>
 </div>

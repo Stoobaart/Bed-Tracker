@@ -422,7 +422,7 @@
           <section>
             <div class="section-header">{{t "edit-bed-modal.section-header.rrt"}}</div>
             {{#each this.rrtTypes as |rrt index|}}
-              <Radio @type={{rrt}} @index={{index}} @checkedProperty={{this.rrtType}} @setPropMethod={{this.setRrtType}} />
+              <Radio @identifier="rrt" @type={{rrt}} @index={{index}} @checkedProperty={{this.rrtType}} @setPropMethod={{this.setRrtType}} />
             {{/each}}
 
           </section>
