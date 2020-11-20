@@ -28,11 +28,10 @@ export default class LoginController extends Controller {
 
     try {
       const response = await this.apollo.mutate({ mutation: LoginHospitalManager, variables });
-      const hospitalId = response.loginHospitalManager.hospitalManager.hospital.id;
-      this.account.hospital = response.loginHospitalManager.hospitalManager.hospital;
+
+      const token = response.loginHospitalManager.token;
       this.isPasswordVisible = false;
-      localStorage.setItem('hospital', JSON.stringify(this.account.hospital));
-      localStorage.setItem('bed_tracker_token', JSON.stringify(hospitalId));
+      localStorage.setItem('token', JSON.stringify(token));
       this.router.transitionTo('dashboard');
     } catch (error) {
       this.errors.hasError = true;

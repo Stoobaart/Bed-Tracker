@@ -1,14 +1,5 @@
 mutation ($input:LoginHospitalManagerInput!) {
   loginHospitalManager (input: $input) {
-    hospitalManager {
-      email
-      hospital {
-        id
-        name
-        address
-        availableBeds
-        totalBeds
-      }
-    }
+    token
   }
 }

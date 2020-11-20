@@ -26,7 +26,7 @@ export default class AccountService extends Service {
       clearTimeout(this.timeout);
     }
 
-    if (JSON.parse(localStorage.getItem('bed_tracker_token'))) {
+    if (JSON.parse(localStorage.getItem('token'))) {
       const response = await this.apollo.query({ query: GetHospitalQuery, fetchPolicy: 'network-only' });
 
       if (response && response.getHospital && response.getHospital.hospital) {
@@ -38,7 +38,7 @@ export default class AccountService extends Service {
   }
 
   async fetchWards() {
-    if (JSON.parse(localStorage.getItem('bed_tracker_token'))) {
+    if (JSON.parse(localStorage.getItem('token'))) {
       const response = await this.apollo.query({ query: GetHospitalQuery, fetchPolicy: 'network-only' });
       const wards = response.getHospital.hospital.wards;
       return wards;

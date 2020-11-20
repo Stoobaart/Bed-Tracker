@@ -16,7 +16,7 @@ export default class QrController extends Controller {
   @action
   async submit(event) {
     event.preventDefault();
-    localStorage.setItem('bed_tracker_token', JSON.stringify(this.hospitalId));
+    localStorage.setItem('token', JSON.stringify(this.hospitalId));
     localStorage.setItem('hospital_manager', false);
 
     const response = await this.apollo.watchQuery({ query: GetHospitalQuery });

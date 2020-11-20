@@ -16,13 +16,16 @@ export default class Service extends ApolloService {
     let httpLink = super.link();
 
     let authLink = setContext(() => {
-      if (!JSON.parse(localStorage.getItem('bed_tracker_token'))) {
+      if (!JSON.parse(localStorage.getItem('token'))) {
         return {};
       }
       return {
-        headers: { hospitalId: JSON.parse(localStorage.getItem('bed_tracker_token')) }
+        headers: { authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`}
       };
     });
+
+
+
 
     return authLink.concat(httpLink);
   }

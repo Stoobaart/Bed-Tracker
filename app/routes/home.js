@@ -16,7 +16,7 @@ export default class HomeRoute extends Route {
 
   @action
   error() {
-    localStorage.setItem('bed_tracker_token', JSON.stringify(null));
+    localStorage.setItem('token', JSON.stringify(null));
     this.transitionTo('/qr');
   }
 }
