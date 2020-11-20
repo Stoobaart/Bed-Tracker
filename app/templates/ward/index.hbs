@@ -29,17 +29,17 @@
         <div class="card_header-text">{{t "ward-dashboard.total-beds"}} {{this.model.totalBeds}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.availableBeds}}</div>
         <div class="card_data-block--label">{{t "ward-dashboard.total-avail-beds"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.availableBedsPercentage}}%</div>
         <div class="card_data-block--label">{{t "ward-dashboard.total-avail-capacity"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalVentilatorInUse}}</div>
         <div class="card_data-block--label">{{t "ward-dashboard.total-ventilators"}}</div>
       </div>
@@ -51,17 +51,17 @@
         <div class="card_header-text">{{t "ward-dashboard.total-covid-stats"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
         <div class="card_data-block--label">{{t "ward-dashboard.total-covid-pos"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusNegative}}</div>
         <div class="card_data-block--label">{{t "ward-dashboard.total-covid-neg"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
         <div class="card_data-block--label">{{t "ward-dashboard.total-covid-sus"}}</div>
       </div>
@@ -73,22 +73,22 @@
         <div class="card_header-text">{{t "dashboard.staffing.title"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{if (gt this.model.numberOfCritcareNurses 0) this.model.numberOfCritcareNurses "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.critical-care-nurses"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{if (gt this.model.numberOfOtherRns 0) this.model.numberOfOtherRns "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.other-rns"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{if (gt this.model.numberOfNurseSupportStaff 0) this.model.numberOfNurseSupportStaff "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.support-staff"}}</div>
       </div>
 
-      <div class="card_data-block ward-dashboard">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{if (gt this.model.maxAdmissionCapacity 0) this.model.maxAdmissionCapacity "0"}}</div>
         <div class="card_data-block--label">{{t "dashboard.staffing.max-capacity"}}</div>
       </div>

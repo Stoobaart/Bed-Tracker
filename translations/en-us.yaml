@@ -43,6 +43,12 @@ dashboard:
     covid-beds: 'COVID ITU beds'
     green-beds: 'Green beds'
     title: 'AVAILABLE BEDS'
+  patient-stats:
+    green: 'Green'
+    negative: 'Total COVID negative'
+    positive: 'COVID positive'
+    title: 'TOTAL COVID PATIENT STATS'
+    suspected: 'COVID suspected'
   rrt:
     at-risk: 'At risk of needing RRT in next 24 hours'
     haemodialysis: 'Currently on haemodialysis'

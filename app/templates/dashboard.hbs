@@ -19,7 +19,7 @@
         <img class="card_icon" src="/assets/images/occupied.svg" alt="">
         <div class="card_header-text">{{t "dashboard.available-beds.title"}}</div>
       </div>
-      <div class="card_data-block">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">
           {{if (gt this.model.totalAvailableCovidBeds 0) this.model.totalAvailableCovidBeds "0"}}
           <div class="slash"> / </div>
@@ -30,7 +30,7 @@
           {{t "dashboard.available-beds.covid-beds"}}
         </div>
       </div>
-      <div class="card_data-block">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">
           {{if (gt this.model.totalAvailableAmberBeds 0) this.model.totalAvailableAmberBeds "0"}}
           <div class="slash"> / </div>
@@ -41,7 +41,7 @@
           {{t "dashboard.available-beds.amber-beds"}}
         </div>
       </div>
-      <div class="card_data-block">
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">
           {{if (gt this.model.totalCovidStatusGreen 0) this.model.totalCovidStatusGreen "0"}}
           <div class="slash"> / </div>
@@ -57,20 +57,35 @@
     <div class="card">
       <div class="card_header">
         <img class="card_icon" src="/assets/images/covid-19-positive.svg" alt="">
-        <div class="card_header-text">TOTAL COVID PATIENT STATS</div>
+        <div class="card_header-text">{{t "dashboard.patient-stats.title"}}</div>
       </div>
-      <div class="card_data-block">
+
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusPositive}}</div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-positive-red.svg" alt="">
-          COVID positive
+          {{t "dashboard.patient-stats.positive"}}
         </div>
       </div>
-      <div class="card_data-block">
+      <div class="card_data-block two-by-two">
+        <div class="card_data-block--value">{{this.model.totalCovidStatusNegative}}</div>
+        <div class="card_data-block--label">
+          <img class="icon" src="/assets/images/covid-19-negative.svg" alt="">
+          {{t "dashboard.patient-stats.negative"}}
+        </div>
+      </div>
+      <div class="card_data-block two-by-two">
         <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
         <div class="card_data-block--label">
           <img class="icon" src="/assets/images/covid-19-suspected-purple.svg" alt="">
-          COVID suspected
+          {{t "dashboard.patient-stats.suspected"}}
+        </div>
+      </div>
+      <div class="card_data-block two-by-two">
+        <div class="card_data-block--value">{{this.model.totalCovidStatusGreen}}</div>
+        <div class="card_data-block--label">
+          <img class="icon" src="/assets/images/covid-19-green.svg" alt="">
+          {{t "dashboard.patient-stats.green"}}
         </div>
       </div>
     </div>

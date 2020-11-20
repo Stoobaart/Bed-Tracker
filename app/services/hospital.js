@@ -73,6 +73,8 @@ class Hospital {
   @tracked totalNumberOfCritcareNurses = null;
   @tracked totalNumberOfNurseSupportStaff = null;
   @tracked totalCovidStatusGreen = null;
+  @tracked totalCovidStatusNegative = null;
+  @tracked totalCovidStatusPositive = null;
   @tracked totalGreenBeds = null;
   @tracked totalAvailableAmberBeds = null;
   @tracked totalAmberBeds = null;
@@ -106,17 +108,17 @@ class Hospital {
     return this.wards.reduce((unavailableBeds, ward) => unavailableBeds + ward.unavailableBeds, 0);
   }
 
-  get totalCovidStatusNegative() {
-    return this.wards.reduce((totalCovidStatusNegative, ward) => totalCovidStatusNegative + ward.totalCovidStatusNegative, 0);
-  }
+  // get totalCovidStatusNegative() {
+  //   return this.wards.reduce((totalCovidStatusNegative, ward) => totalCovidStatusNegative + ward.totalCovidStatusNegative, 0);
+  // }
 
   get totalCovidStatusSuspected() {
     return this.wards.reduce((totalCovidStatusSuspected, ward) => totalCovidStatusSuspected + ward.totalCovidStatusSuspected, 0);
   }
 
-  get totalCovidStatusPositive() {
-    return this.wards.reduce((totalCovidStatusPositive, ward) => totalCovidStatusPositive + ward.totalCovidStatusPositive, 0);
-  }
+  // get totalCovidStatusPositive() {
+  //   return this.wards.reduce((totalCovidStatusPositive, ward) => totalCovidStatusPositive + ward.totalCovidStatusPositive, 0);
+  // }
 
   get totalVentilatorInUse() {
     return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
@@ -144,6 +146,8 @@ class Ward {
   @tracked numberOfOtherRns = null;
   @tracked canProvideIcsRatios = null;
   @tracked maxAdmissionCapacity = null;
+  @tracked totalCovidStatusNegative = null;
+  @tracked totalCovidStatusPositive = null;
 
   get totalBeds() {
     return this.beds.length;
@@ -157,15 +161,15 @@ class Ward {
     return this.beds.filter((bed) => !bed.available).length;
   }
 
-  get totalCovidStatusNegative() {
-    return this.beds.reduce((totalCovidStatusNegative, bed) => {
-      if (bed.covidStatus === 'NEGATIVE') {
-        return totalCovidStatusNegative + 1
-      }
+  // get totalCovidStatusNegative() {
+  //   return this.beds.reduce((totalCovidStatusNegative, bed) => {
+  //     if (bed.covidStatus === 'NEGATIVE') {
+  //       return totalCovidStatusNegative + 1
+  //     }
 
-      return totalCovidStatusNegative;
-    }, 0);
-  }
+  //     return totalCovidStatusNegative;
+  //   }, 0);
+  // }
 
   get totalCovidStatusSuspected() {
     return this.beds.reduce((totalCovidStatusSuspected, bed) => {
@@ -177,15 +181,15 @@ class Ward {
     }, 0);
   }
 
-  get totalCovidStatusPositive() {
-    return this.beds.reduce((totalCovidStatusPositive, bed) => {
-      if (bed.covidStatus === 'POSITIVE') {
-        return totalCovidStatusPositive + 1
-      }
+  // get totalCovidStatusPositive() {
+  //   return this.beds.reduce((totalCovidStatusPositive, bed) => {
+  //     if (bed.covidStatus === 'POSITIVE') {
+  //       return totalCovidStatusPositive + 1
+  //     }
 
-      return totalCovidStatusPositive;
-    }, 0);
-  }
+  //     return totalCovidStatusPositive;
+  //   }, 0);
+  // }
 
   get totalVentilatorInUse() {
     return this.beds.reduce((totalVentilatorInUse, bed) => {
