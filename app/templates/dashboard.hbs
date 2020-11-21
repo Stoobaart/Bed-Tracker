@@ -42,8 +42,8 @@
         </div>
       </div>
       <div class="card_data-block two-by-two beds">
-        <div class="card_data-block--value">
-          {{if (gt this.model.totalCovidStatusGreen 0) this.model.totalCovidStatusGreen "0"}}
+        <div class="card_data-block--value">{{log this.model}}
+          {{if (gt this.model.totalAvailableGreenBeds 0) this.model.totalAvailableGreenBeds "0"}}
           <div class="slash"> / </div>
           <div class="totals">{{this.model.totalGreenBeds}}</div>
         </div>

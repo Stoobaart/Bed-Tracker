@@ -75,6 +75,7 @@ class Hospital {
   @tracked totalCovidStatusGreen = null;
   @tracked totalCovidStatusNegative = null;
   @tracked totalCovidStatusPositive = null;
+  @tracked totalAvailableGreenBeds = null;
   @tracked totalGreenBeds = null;
   @tracked totalAvailableAmberBeds = null;
   @tracked totalAmberBeds = null;
