@@ -1330,11 +1330,11 @@ section > .helper {
 .table {
   max-width: 876px;
   margin: auto;
-  overflow-x: scroll;
   font-size: 0.75rem;
 
   @media (max-width: 46rem) and (orientation: portrait) {
     max-width: none;
+    overflow-x: scroll;
   }
 
   .header {
@@ -1345,7 +1345,10 @@ section > .helper {
     background-color: #003e78;
     border-bottom: 2px solid #2c98ff;
 
-    @media (min-width: 736px) {
+    @media (min-width: 46rem) {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       width: 100%;
     }
 
