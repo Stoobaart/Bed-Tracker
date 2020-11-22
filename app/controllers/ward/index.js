@@ -222,20 +222,7 @@ export default class WardController extends Controller {
 
     try {
       const { updateBed } = await this.apollo.mutate({ mutation: UpdateBed, variables });
-
-      const foundIndex = this.model.beds.findIndex(x => x.id === updateBed.bed.id);
-      this.model.beds[foundIndex].available = updateBed.bed.available;
-      this.model.beds[foundIndex].covidStatus = updateBed.bed.covidStatus;
-      this.model.beds[foundIndex].dateOfAdmission = updateBed.bed.dateOfAdmission;
-      this.model.beds[foundIndex].useTracheostomy = updateBed.bed.useTracheostomy;
-      this.model.beds[foundIndex].levelOfCare = updateBed.bed.levelOfCare;
-      this.model.beds[foundIndex].ventilationType = updateBed.bed.ventilationType;
-      this.model.beds[foundIndex].reference = updateBed.bed.reference;
-      this.model.beds[foundIndex].rrtType = updateBed.bed.rrtType;
-      this.model.beds[foundIndex].sourceOfAdmission = updateBed.bed.sourceOfAdmission;
-
-      this.hospital.fetchHospital();
-
+      this.hospital.editBed(this.model, updateBed);
       this.closeModal();
       this.set('model.showSuccessMessage', { type: 'bed-edited'});
     } catch (error) {
@@ -264,7 +251,7 @@ export default class WardController extends Controller {
 
     try {
       await this.apollo.mutate({ mutation: RemoveBed, variables });
-
+      
       const newBeds = this.model.beds.filter(x => x.id !== selectedBedId);
       this.set('model.beds', newBeds);
       this.closeModal();

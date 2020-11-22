@@ -59,6 +59,19 @@ export default class AccountService extends Service {
       ward.beds.push(new Bed(bed));
     });
   }
+
+  editBed(ward, updateBed) {
+    const foundIndex = ward.beds.findIndex(x => x.id === updateBed.bed.id);
+    ward.beds[foundIndex].available = updateBed.bed.available;
+    ward.beds[foundIndex].covidStatus = updateBed.bed.covidStatus;
+    ward.beds[foundIndex].dateOfAdmission = updateBed.bed.dateOfAdmission;
+    ward.beds[foundIndex].useTracheostomy = updateBed.bed.useTracheostomy;
+    ward.beds[foundIndex].levelOfCare = updateBed.bed.levelOfCare;
+    ward.beds[foundIndex].ventilationType = updateBed.bed.ventilationType;
+    ward.beds[foundIndex].reference = updateBed.bed.reference;
+    ward.beds[foundIndex].rrtType = updateBed.bed.rrtType;
+    ward.beds[foundIndex].sourceOfAdmission = updateBed.bed.sourceOfAdmission;
+  }
 }
 
 class Hospital {
@@ -66,7 +79,6 @@ class Hospital {
   @tracked name = null;
   @tracked address = null;
   @tracked wards = [];
-  // @tracked availableHemofilter = null;
   @tracked totalCovidBeds = null;
   @tracked totalAvailableCovidBeds = null;
   @tracked totalNumberOfOtherRns = null;
@@ -89,13 +101,6 @@ class Hospital {
   @tracked totalRrtTypeRiskOfNextTwentyFourH = null;
   @tracked totalRrtTypeHaemofiltration = null;
   @tracked totalRrtTypeHaemodialysis = null;
-  // @tracked totalNonCovidBeds = null;
-  // @tracked totalAvailableNonCovidBeds = null;
-  // @tracked totalHemofilter = null;
-
-  // get totalAvailableHemofilters() {
-  //   return this.totalHemofilter ? this.totalHemofilter - this.availableHemofilter : 0;
-  // }
 
   get totalBeds() {
     return this.wards.reduce((totalBeds, ward) => totalBeds + ward.totalBeds, 0);
@@ -121,9 +126,9 @@ class Hospital {
   //   return this.wards.reduce((totalCovidStatusPositive, ward) => totalCovidStatusPositive + ward.totalCovidStatusPositive, 0);
   // }
 
-  get totalVentilatorInUse() {
-    return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
-  }
+  // get totalVentilatorInUse() {
+  //   return this.wards.reduce((totalVentilatorInUse, ward) => totalVentilatorInUse + ward.totalVentilatorInUse, 0);
+  // }
 
   constructor(hospital) {
     for (const property in this) {

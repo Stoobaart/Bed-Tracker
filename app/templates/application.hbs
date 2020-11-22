@@ -1,6 +1,8 @@
 <div class="application">
   <div class="top-bar">
-    <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
+    <LinkTo @route="dashboard">
+      <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
+    </LinkTo>
     {{#if this.showHospitalDetails}}
       <div class="hospital-details">
         <div><strong>{{this.account.hospital.name}}</strong></div>
