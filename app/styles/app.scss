@@ -1332,7 +1332,7 @@ section > .helper {
   margin: auto;
   font-size: 0.75rem;
 
-  @media (max-width: 46rem) and (orientation: portrait) {
+  @media (max-width: 46rem) {
     max-width: none;
     overflow-x: scroll;
   }
@@ -1359,7 +1359,7 @@ section > .helper {
       min-width: 100%;
       align-items: center;
 
-      @media (max-width: 46rem) and (orientation: portrait) {
+      @media (max-width: 46rem) {
         width: 40rem;
         padding-right: 2.75rem;
       }
@@ -1442,7 +1442,7 @@ section > .helper {
 
           @media (min-width: 736px) {
             width: 5rem;
-            margin-left: 4.75rem;
+            margin-left: 5.75rem;
           }
         }
       }
@@ -1541,7 +1541,7 @@ section > .helper {
           @media (min-width: 736px) {
             min-width: 0;
             width: 5rem;
-            margin-left: 2.25rem;
+            margin-left: 2.75rem;
           }
         }
       }
