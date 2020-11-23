@@ -11,13 +11,13 @@
     {{#let this.model.getReport.report as |report|}}
 
 
-      {{log report}}
+      {{!-- {{log report}} --}}
 
-
-      <div class="reports_report-row">
+      <DosReportRow @key={{t "reports.dos-report.totalBedsOfNonSurgeWards"}} @value={{report.totalBedsOfNonSurgeWards}} />
+      {{!-- <div class="reports_report-row">
         <div class="key">{{t "reports.dos-report.totalBedsOfNonSurgeWards"}}</div> 
         <div class="value">{{report.totalBedsOfNonSurgeWards}}</div> 
-      </div>
+      </div> --}}
 
       <div class="reports_report-row">
         <div class="key">{{t "reports.dos-report.totalBedsOfSurgeWards"}}</div> 
@@ -134,14 +134,159 @@
         <div class="value">{{report.totalDischargesWhereReasonDeathAndInsertedAtYesterday}}</div> 
       </div>
 
+      <h1 class="admissions">{{t "reports.admissions-report.title"}}</h1>
+
+      {{#if (user-agent "device.isMobile")}}
+        <div class="reports_admissions-card">
+          <div class="title">{{t "reports.admissions-report.admissions-from-ed"}}</div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}}</p></div>
+          </div>
+        </div>
+
+        <div class="reports_admissions-card">
+          <div class="title">{{t "reports.admissions-report.admissions-from-internal-ward"}}</div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}}</p></div>
+          </div>
+        </div>
+
+        <div class="reports_admissions-card">
+          <div class="title">{{t "reports.admissions-report.admissions-from-internal-itu"}}</div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}}</p></div>
+          </div>
+        </div>
+
+        <div class="reports_admissions-card">
+          <div class="title">{{t "reports.admissions-report.admissions-from-external-ward"}}</div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}}</p></div>
+          </div>
+        </div>
+
+        <div class="reports_admissions-card">
+          <div class="title">{{t "reports.admissions-report.admissions-from-external-itu"}}</div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}}</p></div>
+          </div>
+        </div>
+
+        <div class="reports_admissions-card">
+          <div class="title">{{t "reports.admissions-report.readmissions-to-itu"}}</div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}</p></div>
+          </div>
+          <div class="data-container">
+            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
+            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}}</p></div>
+          </div>
+        </div>
+
+      {{else}}
+
+        <div class="reports_admissions-table">
+          <div class="headers">
+            <div class="column-labels"></div>
+            <div class="column-data">{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</div>
+            <div class="column-data">{{t "reports.admissions-report.table-headers.amber"}}</div>
+            <div class="column-data">{{t "reports.admissions-report.table-headers.green"}}</div>
+          </div>
+
+          <div class="row">
+            <div class="column-labels">{{t "reports.admissions-report.admissions-from-ed"}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}}</div>
+          </div>
+
+          <div class="row">
+            <div class="column-labels">{{t "reports.admissions-report.admissions-from-internal-ward"}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}}</div>
+          </div>
+
+          <div class="row">
+            <div class="column-labels">{{t "reports.admissions-report.admissions-from-internal-itu"}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}}</div>
+          </div>
+
+          <div class="row">
+            <div class="column-labels">{{t "reports.admissions-report.admissions-from-external-ward"}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}}</div>
+          </div>
+
+          <div class="row">
+            <div class="column-labels">{{t "reports.admissions-report.admissions-from-external-itu"}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}}</div>
+          </div>
+
+          <div class="row last-row">
+            <div class="column-labels">{{t "reports.admissions-report.readmissions-to-itu"}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}</div>
+            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}}</div>
+          </div>
+        </div>
+      {{/if}}
     {{/let}}
-
-    {{!-- <h1>{{t "reports.admissions-report.title"}}</h1>
-
-    {{#if (user-agent "device.isMobile")}}
-    {{else}}
-      TABLE
-    {{/if}} --}}
   </div>
 
 </div>

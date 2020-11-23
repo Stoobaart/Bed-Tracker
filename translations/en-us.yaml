@@ -151,7 +151,18 @@ modal:
     transfer: 'Transfer patient'
 reports:
   admissions-report: 
+    admissions-from-ed: 'Admissions from ED'
+    admissions-from-external-itu: 'Admissions from external ITU'
+    admissions-from-external-ward: 'Admissions from external ward'
+    admissions-from-internal-itu: 'Admissions from internal ITU'
+    admissions-from-internal-ward: 'Admissions from internal ward'
+    readmissions-to-itu: 'Readmissions to ITU'
+    table-headers: 
+      amber: 'Amber Ward'
+      covid: 'COVID <br>(Blue Ward)'
+      green: 'Green Ward'
     title: 'Admissions Report'
+
   dos-report:
     allWardsCanProvideIcsRatios: 'Are you currently able to provide nurse ratios as per Intensive Care Society (ICS) guidelines'
     title: 'DoS Report'

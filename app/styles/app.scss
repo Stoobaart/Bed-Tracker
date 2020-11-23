@@ -1899,6 +1899,10 @@ section.icu {
     font-size: 2rem;
     font-weight: 600;
     width: 100%;
+
+    &.admissions {
+      margin-top: 2rem;
+    }
   }
 
   &_report-row {
@@ -1925,6 +1929,98 @@ section.icu {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+
+  &_admissions-card {
+    border: 1px solid #d8d8d8;
+    width: 100%;
+    height: 7.6875rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+
+    .title {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    .data-container {
+      flex-grow: 1;
+
+      .label {
+        width: 100%;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+
+        p {
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-align: center;
+        }
+      }
+
+      .value {
+        width: 100%;
+        height: 1.875rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+        border: 1px solid #d8d8d8;
+        border-bottom: none;
+        border-left: none;
+
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &_admissions-table {
+    width: 100%;
+    border-bottom: 1px solid #d8d8d8;
+
+    .headers {
+      display: flex;
+
+      .column {
+        &-data {
+          font-weight: 600;
+          justify-content: center;
+          padding: 1rem;
+          text-align: center;
+        }
+      }
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .column {
+      &-labels {
+        flex-grow: 1;
+        border: 1px solid #d8d8d8;
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        padding-left: 1rem;
+      }
+
+      &-data {
+        width: 6.125rem;
+        border: 1px solid #d8d8d8;
+        border-bottom: none;
+        border-left: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+      }
     }
   }
 }
