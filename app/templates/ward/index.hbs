@@ -15,11 +15,16 @@
   </div>
   <div class="ward-details_names">
     <div>
-      <h1>{{this.model.name}}</h1>
-      <p>{{this.model.description}}</p>
+      <div class="name-container">
+        <img class="icon" src={{concat "/assets/images/covid-19-" this.model.wardType ".svg"}} alt="">
+        <h1>{{this.model.name}}</h1>
+      </div>
+      <div class="description-container">
+        <p class="description">{{this.model.description}}</p>
+        <p class="update-staff-btn" {{on "click" this.openStaffModal}}>{{t "ward-dashboard.update-staffing"}}</p>
+        <LinkTo @route="ward.edit" @model={{this.model}}>{{t "ward-dashboard.edit"}}</LinkTo>
+      </div>
     </div>
-    <p class="update-staff-btn" {{on "click" this.openStaffModal}}>{{t "ward-dashboard.update-staffing"}}</p>
-    <LinkTo @route="ward.edit" @model={{this.model}}>{{t "ward-dashboard.edit"}}</LinkTo>
   </div>
 
   <div class="cards-container--wards">
