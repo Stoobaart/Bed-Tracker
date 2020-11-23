@@ -16,7 +16,7 @@
   <div class="ward-details_names">
     <div>
       <div class="name-container">
-        <img class="icon" src={{concat "/assets/images/covid-19-" this.model.wardType ".svg"}} alt="">
+        <img class="icon" src={{concat "/assets/images/covid-19-" (lowercase this.model.wardType) ".svg"}} alt="">
         <h1>{{this.model.name}}</h1>
       </div>
       <div class="description-container">

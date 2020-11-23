@@ -8,233 +8,63 @@
     </div>
 
     <h1>{{t "reports.dos-report.title"}}</h1>
+
     {{#let this.model.getReport.report as |report|}}
-
-
-      {{!-- {{log report}} --}}
-
-      <DosReportRow @key={{t "reports.dos-report.totalBedsOfNonSurgeWards"}} @value={{report.totalBedsOfNonSurgeWards}} />
-      {{!-- <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalBedsOfNonSurgeWards"}}</div> 
-        <div class="value">{{report.totalBedsOfNonSurgeWards}}</div> 
-      </div> --}}
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalBedsOfSurgeWards"}}</div> 
-        <div class="value">{{report.totalBedsOfSurgeWards}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalCritcareNursesOfWards"}}</div> 
-        <div class="value">{{report.totalCritcareNursesOfWards}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalOtherRnsOfWards"}}</div> 
-        <div class="value">{{report.totalOtherRnsOfWards}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNurseSupportStaffOfWards"}}</div> 
-        <div class="value">{{report.totalNurseSupportStaffOfWards}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.allWardsCanProvideIcsRatios"}}</div> 
-        <div class="value">{{if report.allWardsCanProvideIcsRatios "Yes" "No"}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBeds"}}</div> 
-        <div class="value">{{report.totalNonAvailableBeds}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositive"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositive}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusSuspected"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusSuspected}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeInvasive"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeInvasive}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeNonInvasive"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeNonInvasive}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeHfno"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeHfno}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemofiltration"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemofiltration}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemodialysis"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemodialysis}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypePd"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypePd}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeInvasive"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeInvasive}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeNonInvasive"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeNonInvasive}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeHfno"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeHfno}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemofiltration"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemofiltration}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemodialysis"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemodialysis}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd}}</div> 
-      </div>
-
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereDateAdmittedYesterday"}}</div> 
-        <div class="value">{{report.totalNonAvailableBedsWhereDateAdmittedYesterday}}</div> 
-      </div>
-      
-      <div class="reports_report-row">
-        <div class="key">{{t "reports.dos-report.totalDischargesWhereReasonNotDeathAndInsertedAtYesterday"}}</div> 
-        <div class="value">{{report.totalDischargesWhereReasonNotDeathAndInsertedAtYesterday}}</div> 
-      </div>
-
-      <div class="reports_report-row last-row">
-        <div class="key">{{t "reports.dos-report.totalDischargesWhereReasonDeathAndInsertedAtYesterday"}}</div> 
-        <div class="value">{{report.totalDischargesWhereReasonDeathAndInsertedAtYesterday}}</div> 
+      <div class="dos-table">
+        <DosReportRow @key={{t "reports.dos-report.totalBedsOfNonSurgeWards"}} @value={{report.totalBedsOfNonSurgeWards}} />
+        <DosReportRow @key={{t "reports.dos-report.totalBedsOfSurgeWards"}} @value={{report.totalBedsOfSurgeWards}} />
+        <DosReportRow @key={{t "reports.dos-report.totalCritcareNursesOfWards"}} @value={{report.totalCritcareNursesOfWards}} />
+        <DosReportRow @key={{t "reports.dos-report.totalOtherRnsOfWards"}} @value={{report.totalOtherRnsOfWards}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNurseSupportStaffOfWards"}} @value={{report.totalNurseSupportStaffOfWards}} />
+        <DosReportRow @key={{t "reports.dos-report.allWardsCanProvideIcsRatios"}} @value={{if report.allWardsCanProvideIcsRatios "Yes" "No"}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBeds"}} @value={{report.totalNonAvailableBeds}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositive"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositive}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusSuspected"}} @value={{report.totalNonAvailableBedsWhereCovidStatusSuspected}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeInvasive"}} @value={{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeInvasive}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeNonInvasive"}} @value={{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeNonInvasive}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeHfno"}} @value={{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeHfno}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemofiltration"}} @value={{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemofiltration}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemodialysis"}} @value={{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemodialysis}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypePd"}} @value={{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypePd}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeInvasive"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeInvasive}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeNonInvasive"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeNonInvasive}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeHfno"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeHfno}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemofiltration"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemofiltration}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemodialysis"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemodialysis}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd"}} @value={{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd}} />
+        <DosReportRow @key={{t "reports.dos-report.totalNonAvailableBedsWhereDateAdmittedYesterday"}} @value={{report.totalNonAvailableBedsWhereDateAdmittedYesterday}} />
+        <DosReportRow @key={{t "reports.dos-report.totalDischargesWhereReasonNotDeathAndInsertedAtYesterday"}} @value={{report.totalDischargesWhereReasonNotDeathAndInsertedAtYesterday}} />
+        <DosReportRow @key={{t "reports.dos-report.totalDischargesWhereReasonDeathAndInsertedAtYesterday"}} @value={{report.totalDischargesWhereReasonDeathAndInsertedAtYesterday}} />
       </div>
 
       <h1 class="admissions">{{t "reports.admissions-report.title"}}</h1>
 
       {{#if (user-agent "device.isMobile")}}
-        <div class="reports_admissions-card">
-          <div class="title">{{t "reports.admissions-report.admissions-from-ed"}}</div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}}</p></div>
-          </div>
-        </div>
-
-        <div class="reports_admissions-card">
-          <div class="title">{{t "reports.admissions-report.admissions-from-internal-ward"}}</div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}}</p></div>
-          </div>
-        </div>
-
-        <div class="reports_admissions-card">
-          <div class="title">{{t "reports.admissions-report.admissions-from-internal-itu"}}</div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}}</p></div>
-          </div>
-        </div>
-
-        <div class="reports_admissions-card">
-          <div class="title">{{t "reports.admissions-report.admissions-from-external-ward"}}</div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}}</p></div>
-          </div>
-        </div>
-
-        <div class="reports_admissions-card">
-          <div class="title">{{t "reports.admissions-report.admissions-from-external-itu"}}</div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}}</p></div>
-          </div>
-        </div>
-
-        <div class="reports_admissions-card">
-          <div class="title">{{t "reports.admissions-report.readmissions-to-itu"}}</div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.amber" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}</p></div>
-          </div>
-          <div class="data-container">
-            <div class="label"><p>{{t "reports.admissions-report.table-headers.green" htmlSafe=true}}</p></div>
-            <div class="value"><p>{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}}</p></div>
-          </div>
-        </div>
-
+        <AdmissionsReportCard @title={{t "reports.admissions-report.admissions-from-ed"}} 
+                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
+                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}
+                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}} />
+        <AdmissionsReportCard @title={{t "reports.admissions-report.admissions-from-internal-ward"}} 
+                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}} 
+                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}
+                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}} />
+        <AdmissionsReportCard @title={{t "reports.admissions-report.admissions-from-internal-itu"}} 
+                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}} 
+                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}
+                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}} />
+        <AdmissionsReportCard @title={{t "reports.admissions-report.admissions-from-external-ward"}} 
+                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}} 
+                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}
+                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}} />
+        <AdmissionsReportCard @title={{t "reports.admissions-report.admissions-from-external-itu"}} 
+                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}} 
+                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}
+                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}} />
+        <AdmissionsReportCard @title={{t "reports.admissions-report.readmissions-to-itu"}} 
+                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}} 
+                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}
+                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}} />
       {{else}}
-
         <div class="reports_admissions-table">
           <div class="headers">
             <div class="column-labels"></div>
@@ -242,48 +72,30 @@
             <div class="column-data">{{t "reports.admissions-report.table-headers.amber"}}</div>
             <div class="column-data">{{t "reports.admissions-report.table-headers.green"}}</div>
           </div>
-
-          <div class="row">
-            <div class="column-labels">{{t "reports.admissions-report.admissions-from-ed"}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}}</div>
-          </div>
-
-          <div class="row">
-            <div class="column-labels">{{t "reports.admissions-report.admissions-from-internal-ward"}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}}</div>
-          </div>
-
-          <div class="row">
-            <div class="column-labels">{{t "reports.admissions-report.admissions-from-internal-itu"}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}}</div>
-          </div>
-
-          <div class="row">
-            <div class="column-labels">{{t "reports.admissions-report.admissions-from-external-ward"}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}}</div>
-          </div>
-
-          <div class="row">
-            <div class="column-labels">{{t "reports.admissions-report.admissions-from-external-itu"}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}}</div>
-          </div>
-
-          <div class="row last-row">
-            <div class="column-labels">{{t "reports.admissions-report.readmissions-to-itu"}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}</div>
-            <div class="column-data">{{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}}</div>
-          </div>
+          <AdmissionsReportRow @label={{t "reports.admissions-report.admissions-from-ed"}} 
+                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
+                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}
+                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}} />
+          <AdmissionsReportRow @label={{t "reports.admissions-report.admissions-from-internal-ward"}} 
+                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}} 
+                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}
+                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}} />
+          <AdmissionsReportRow @label={{t "reports.admissions-report.admissions-from-internal-itu"}} 
+                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}} 
+                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}
+                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}} />
+          <AdmissionsReportRow @label={{t "reports.admissions-report.admissions-from-external-ward"}} 
+                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}} 
+                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}
+                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}} />
+          <AdmissionsReportRow @label={{t "reports.admissions-report.admissions-from-external-itu"}} 
+                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}} 
+                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}
+                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}} />
+          <AdmissionsReportRow @label={{t "reports.admissions-report.readmissions-to-itu"}} 
+                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}} 
+                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}
+                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}} />
         </div>
       {{/if}}
     {{/let}}
