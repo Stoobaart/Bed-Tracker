@@ -21,9 +21,9 @@
         <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}}>
           <p>Dashboard</p>
         </div>
-        <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
+        {{!-- <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
           <p>Reports</p>
-        </div>
+        </div> --}}
         <div class="logout" role="button" {{on "click" this.logout}}>
           <img class="icon" src="/assets/images/logout.svg" alt="">
           Log out
@@ -42,10 +42,10 @@
       <span>Dashboard</span>
       <img src="/assets/images/view.svg" alt="">
     </div>
-    <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
+    {{!-- <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
       <span>Reports</span>
       <img src="/assets/images/view.svg" alt="">
-    </div>
+    </div> --}}
     <div class="nav-item nav-item--logout" role="button" {{on "click" this.logout}}>
       <img class="nav-item_image" src="/assets/images/logout.svg" alt="">
       <p>Log out</p>
