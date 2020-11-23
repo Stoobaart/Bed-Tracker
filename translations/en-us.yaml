@@ -29,6 +29,7 @@ beds-table:
     status: 'Status'
 breadcrumbs:
   dashboard: 'Dashboard'
+  dos-report: ' > DoS Report'
   ward: ' > Ward'
 buttons: 
   cancel: 'Cancel'
@@ -145,6 +146,10 @@ modal:
     ref: 'REF: '
     warning: 'Important: Discharge cannot be undone.'
     transfer: 'Transfer patient'
+reports:
+  dos-report:
+    title: 'DoS Report'
+    totalBedsOfSurgeWards: 'Number of physical beds managed by critical care within your standard footprint'
 update-staff-modal: 
   crit-care: 'Crit care nurses'
   header: 'Update staffing'

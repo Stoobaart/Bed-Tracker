@@ -1,0 +1,21 @@
+<div class="page">
+  <div class="reports">
+    <div class="breadcrumbs">
+      <LinkTo @route="dashboard" @tagName="span">
+        <img src="/assets/images/hospital.svg" alt="">
+        <div class="text">{{t "breadcrumbs.dashboard"}}</div>
+      </LinkTo>{{t "breadcrumbs.dos-report"}}
+    </div>
+
+    <h1>{{t "reports.dos-report.title"}}</h1>
+    {{#let this.model.getReport.report as |report|}}
+      {{log report}}
+
+      <div class="reports_report-row">
+        <div>{{t "reports.dos-report.totalBedsOfSurgeWards"}}</div> 
+        <div>{{report.totalBedsOfSurgeWards}}</div> 
+      </div>
+    {{/let}}
+  </div>
+  
+</div>

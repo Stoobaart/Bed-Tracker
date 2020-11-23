@@ -1,6 +1,6 @@
 <div class="application">
   <div class="top-bar">
-    <LinkTo @route="dashboard">
+    <LinkTo  @route="dashboard">
       <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
     </LinkTo>
     {{#if this.showHospitalDetails}}
@@ -8,13 +8,48 @@
         <div><strong>{{this.account.hospital.name}}</strong></div>
         <div>{{this.account.hospital.address}}</div>
       </div>
-      <div class="logout" role="button" {{on "click" this.logout}}>
-        <img class="icon" src="/assets/images/logout.svg" alt="">
-        Log out
-      </div>
+      {{#if (user-agent "device.isMobile")}}
+        <div class="menu-btn" role="button" {{on "click" this.toggleMenu}}>
+          {{#if this.showSlideMenu}}
+            <img src="/assets/images/hamburger-close.svg" alt="">
+          {{else}}
+            <img src="/assets/images/hamburger.svg" alt="">
+          {{/if}}
+          MENU
+        </div>
+      {{else}}
+        <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}}>
+          <p>Dashboard</p>
+        </div>
+        <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
+          <p>Reports</p>
+        </div>
+        <div class="logout" role="button" {{on "click" this.logout}}>
+          <img class="icon" src="/assets/images/logout.svg" alt="">
+          Log out
+        </div>
+      {{/if}}
     {{else}}
       <div class="app-name">Bed Checker</div>
     {{/if}}
   </div>
+
+  {{#if this.showSlideMenu}}
+    <div class="nav-overlay" role="button" {{on "click" this.toggleMenu}}></div>
+  {{/if}}
+  <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
+    <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}}>
+      <span>Dashboard</span>
+      <img src="/assets/images/view.svg" alt="">
+    </div>
+    <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
+      <span>Reports</span>
+      <img src="/assets/images/view.svg" alt="">
+    </div>
+    <div class="nav-item nav-item--logout" role="button" {{on "click" this.logout}}>
+      <img class="nav-item_image" src="/assets/images/logout.svg" alt="">
+      <p>Log out</p>
+    </div>
+  </EspMenu>
   {{outlet}}
 </div>

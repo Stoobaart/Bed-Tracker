@@ -209,7 +209,7 @@ class Ward {
 
   get totalVentilatorInUse() {
     return this.beds.reduce((totalVentilatorInUse, bed) => {
-      if (bed.ventilationType && bed.ventilationType !== 'NONE') {
+      if (bed.ventilationType === 'INVASIVE') {
         return totalVentilatorInUse + 1
       }
 

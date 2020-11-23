@@ -14,9 +14,9 @@ export default class HomeRoute extends Route {
     return response.getHospital;
   }
 
-  @action
-  error() {
-    localStorage.setItem('token', JSON.stringify(null));
-    this.transitionTo('/qr');
-  }
+  // @action
+  // error() {
+  //   localStorage.setItem('token', JSON.stringify(null));
+  //   this.transitionTo('/qr');
+  // }
 }
