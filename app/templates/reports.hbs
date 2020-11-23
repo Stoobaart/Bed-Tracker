@@ -9,7 +9,6 @@
 
     <h1>{{t "reports.dos-report.title"}}</h1>
     {{#let this.model.getReport.report as |report|}}
-      {{log report}}
 
       <div class="reports_report-row">
         <div class="key">{{t "reports.dos-report.totalBedsOfNonSurgeWards"}}</div> 
@@ -132,6 +131,13 @@
       </div>
 
     {{/let}}
+
+    {{!-- <h1>{{t "reports.admissions-report.title"}}</h1>
+
+    {{#if (user-agent "device.isMobile")}}
+    {{else}}
+      TABLE
+    {{/if}} --}}
   </div>
 
 </div>

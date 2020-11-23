@@ -147,6 +147,8 @@ modal:
     warning: 'Important: Discharge cannot be undone.'
     transfer: 'Transfer patient'
 reports:
+  admissions-report: 
+    title: 'Admissions Report'
   dos-report:
     allWardsCanProvideIcsRatios: 'Are you currently able to provide nurse ratios as per Intensive Care Society (ICS) guidelines'
     title: 'DoS Report'

@@ -35,5 +35,6 @@ export default class ApplicationController extends Controller {
   gotToRoute(route) {
     this.router.transitionTo(`/${route}`);
     this.showSlideMenu = false;
+    document.body.classList.remove('no-scroll');
   }
 }
