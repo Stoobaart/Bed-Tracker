@@ -12,6 +12,7 @@ export default class AddWardController extends Controller {
   @tracked name = '';
   @tracked description = '';
   @tracked isCovidWard = false;
+  @tracked isSurgeWard = false;
 
   @tracked error = false;
 
@@ -31,6 +32,11 @@ export default class AddWardController extends Controller {
   }
 
   @action
+  setIsSurgeWard(bool) {
+    this.isSurgeWard = bool;
+  }
+
+  @action
   async createWard(event) {
     event.preventDefault();
 
@@ -40,6 +46,7 @@ export default class AddWardController extends Controller {
       input: {
         name: this.name,
         description: this.description,
+        isSurgeWard: this.isSurgeWard,
         wardType: this.wardType
       }
     };

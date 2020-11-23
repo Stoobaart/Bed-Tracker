@@ -15,12 +15,19 @@ export default class EditWardController extends Controller {
 
   @tracked name;
   @tracked description;
+  @tracked isSurgeWard = this.model.isSurgeWard;
+
   @tracked wardType = this.model.wardType;
   wardTypes = ['COVID', 'AMBER', 'GREEN'];
 
   @action
   setWardType(type) {
     this.wardType = type;
+  }
+
+  @action
+  setIsSurgeWard(bool) {
+    this.isSurgeWard = bool;
   }
 
   @action
@@ -32,6 +39,7 @@ export default class EditWardController extends Controller {
         id: this.model.id,
         name: this.name,
         description: this.description,
+        isSurgeWard: this.isSurgeWard,
         wardType: this.wardType
       }
     };

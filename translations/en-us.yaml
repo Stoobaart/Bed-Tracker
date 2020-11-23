@@ -1,4 +1,5 @@
 add-ward:
+  icu: 'ICU Estate'
   ward-type: 'Ward type'
 beds-table:
   data:
@@ -120,6 +121,8 @@ labels:
     amber: 'Amber ward'
     covid: 'COVID (BLUE) ward'
     green: 'Green ward'
+    standard: 'Standard'
+    surge: 'Surge'
   yes: 'Yes'
 message:
   success:

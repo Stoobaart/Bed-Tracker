@@ -48,6 +48,27 @@
     </label>
   </div> --}}
 
+  <section>
+    <div class="section-header">{{t "add-ward.icu"}}</div>
+      <div class="radio add-ward">
+        <input
+          id="standard"
+          type="radio"
+          checked={{not this.isSurgeWard}}
+          onclick={{action this.setIsSurgeWard false}}>
+        <label for="standard" class="radio--label">{{t "labels.ward.standard"}}</label>
+      </div>
+
+      <div class="radio add-ward">
+        <input
+          id="surge"
+          type="radio"
+          checked={{this.isSurgeWard}}
+          onclick={{action this.setIsSurgeWard true}}>
+        <label for="surge" class="radio--label">{{t "labels.ward.surge"}}</label>
+      </div>
+  </section>
+
   <div class="btns-container">
     <LinkTo @route="ward" @model={{this.model}} @tagName="button" class="form_btn cancel">Cancel</LinkTo>
 

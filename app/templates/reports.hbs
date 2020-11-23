@@ -10,6 +10,10 @@
     <h1>{{t "reports.dos-report.title"}}</h1>
     {{#let this.model.getReport.report as |report|}}
 
+
+      {{!-- {{log report}} --}}
+
+
       <div class="reports_report-row">
         <div class="key">{{t "reports.dos-report.totalBedsOfNonSurgeWards"}}</div> 
         <div class="value">{{report.totalBedsOfNonSurgeWards}}</div> 

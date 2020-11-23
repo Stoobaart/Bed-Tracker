@@ -10,6 +10,7 @@ export default class EditWardRoute extends Route {
 
     controller.name = model.name;
     controller.description = model.description;
-    controller.isCovidWard = model.isCovidWard;
+    controller.isSurgeWard = model.isSurgeWard;
+    controller.wardType = model.wardType;
   }
 }

@@ -67,7 +67,7 @@ query {
         # totalLevelOfCareLevelThree,
         wardType,
         # totalBeds,
-        # isSurgeWard,
+        isSurgeWard,
         # totalRrtTypeRiskOfNextTwentyFourH,
         numberOfOtherRns,
         # totalLevelOfCareLevelTwo,
