@@ -12,10 +12,126 @@
       {{log report}}
 
       <div class="reports_report-row">
-        <div>{{t "reports.dos-report.totalBedsOfSurgeWards"}}</div> 
-        <div>{{report.totalBedsOfSurgeWards}}</div> 
+        <div class="key">{{t "reports.dos-report.totalBedsOfNonSurgeWards"}}</div> 
+        <div class="value">{{report.totalBedsOfNonSurgeWards}}</div> 
       </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalBedsOfSurgeWards"}}</div> 
+        <div class="value">{{report.totalBedsOfSurgeWards}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalCritcareNursesOfWards"}}</div> 
+        <div class="value">{{report.totalCritcareNursesOfWards}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalOtherRnsOfWards"}}</div> 
+        <div class="value">{{report.totalOtherRnsOfWards}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNurseSupportStaffOfWards"}}</div> 
+        <div class="value">{{report.totalNurseSupportStaffOfWards}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.allWardsCanProvideIcsRatios"}}</div> 
+        <div class="value">{{if report.allWardsCanProvideIcsRatios "Yes" "No"}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBeds"}}</div> 
+        <div class="value">{{report.totalNonAvailableBeds}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositive"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositive}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusSuspected"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusSuspected}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeInvasive"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeInvasive}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeNonInvasive"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeNonInvasive}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeHfno"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndVentilationTypeHfno}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemofiltration"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemofiltration}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemodialysis"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypeHaemodialysis}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypePd"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusGreenOrNegativeAndRrtTypePd}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeInvasive"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeInvasive}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeNonInvasive"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeNonInvasive}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeHfno"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndVentilationTypeHfno}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemofiltration"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemofiltration}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemodialysis"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypeHaemodialysis}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd}}</div> 
+      </div>
+
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalNonAvailableBedsWhereDateAdmittedYesterday"}}</div> 
+        <div class="value">{{report.totalNonAvailableBedsWhereDateAdmittedYesterday}}</div> 
+      </div>
+      
+      <div class="reports_report-row">
+        <div class="key">{{t "reports.dos-report.totalDischargesWhereReasonNotDeathAndInsertedAtYesterday"}}</div> 
+        <div class="value">{{report.totalDischargesWhereReasonNotDeathAndInsertedAtYesterday}}</div> 
+      </div>
+
+      <div class="reports_report-row last-row">
+        <div class="key">{{t "reports.dos-report.totalDischargesWhereReasonDeathAndInsertedAtYesterday"}}</div> 
+        <div class="value">{{report.totalDischargesWhereReasonDeathAndInsertedAtYesterday}}</div> 
+      </div>
+
     {{/let}}
   </div>
-  
+
 </div>
