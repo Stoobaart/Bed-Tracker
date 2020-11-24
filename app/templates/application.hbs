@@ -18,10 +18,10 @@
           MENU
         </div>
       {{else}}
-        <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}}>
+        <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}} role="button">
           <p>Dashboard</p>
         </div>
-        <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
+        <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}} role="button">
           <p>Reports</p>
         </div>
         <div class="logout" role="button" {{on "click" this.logout}}>
@@ -38,11 +38,11 @@
     <div class="nav-overlay" role="button" {{on "click" this.toggleMenu}}></div>
   {{/if}}
   <EspMenu @class="nav-menu {{if this.showSlideMenu "open"}}" @position="right" @open={{this.showSlideMenu}}>
-    <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}}>
+    <div class="nav-item" {{on "click" (fn this.gotToRoute "dashboard")}} role="button">
       <span>Dashboard</span>
       <img src="/assets/images/view.svg" alt="">
     </div>
-    <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}}>
+    <div class="nav-item" {{on "click" (fn this.gotToRoute "reports")}} role="button">
       <span>Reports</span>
       <img src="/assets/images/view.svg" alt="">
     </div>

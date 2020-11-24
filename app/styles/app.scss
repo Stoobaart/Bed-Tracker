@@ -1904,7 +1904,7 @@ section.icu {
   }
 
   h1 {
-    margin: 1rem 0 2rem;
+    margin: 1rem 0 1rem;
     font-size: 2rem;
     font-weight: 600;
     width: 100%;
@@ -1912,6 +1912,10 @@ section.icu {
     &.middle-header {
       margin-top: 2rem;
     }
+  }
+
+  .since-time-date {
+    margin-bottom: 1rem;
   }
 
   .dos-table {

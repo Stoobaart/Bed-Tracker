@@ -75,6 +75,7 @@ export default class WardController extends Controller {
   get dischargeIsDisabled() {
     if (!this.selectedDischargeReason && this.selectedDischargeReason !== 'INTERNAL_ICU') return true;
     if (this.selectedDischargeReason === 'INTERNAL_ICU' && !this.transferPatientToBedId) return true;
+    return false;
   }
 
   @action
@@ -295,7 +296,7 @@ export default class WardController extends Controller {
         sourceOfAdmission: null,
         useTracheostomy: null,
         ventilationType: null
-      }
+      };
 
       const newBeds = this.model.beds.map(x => {
         if (x.id === this.id) {

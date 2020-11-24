@@ -9,6 +9,7 @@
 
     {{#let this.model.getReport.report as |report|}}
       <h1>{{t "reports.dos-report.title"}}</h1>
+      <p class="since-time-date">{{t "reports.since"}} {{moment-format (now) 'DD/MM/YYYY HH:mm'}}</p>
 
       <div class="dos-table">
         <ReportRow @key={{t "reports.dos-report.totalBedsOfNonSurgeWards"}} @value={{report.totalBedsOfNonSurgeWards}} />
@@ -38,7 +39,7 @@
       </div>
 
       <h1 class="middle-header">{{t "reports.admissions-report.title"}}</h1>
-
+      <p class="since-time-date">{{t "reports.since"}} {{moment-format (now) 'DD/MM/YYYY HH:mm'}}</p>
       {{#if (user-agent "device.isMobile")}}
         <ReportCard @title={{t "reports.admissions-report.admissions-from-ed"}} 
                     @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
@@ -100,6 +101,7 @@
       {{/if}}
 
       <h1 class="middle-header">{{t "reports.ward-report.title"}}</h1>
+      <p class="since-time-date">{{t "reports.since"}} {{moment-format (now) 'DD/MM/YYYY HH:mm'}}</p>
 
       {{#if (user-agent "device.isMobile")}}
         <ReportCard @title={{t "reports.ward-report.receiving-level-three-care"}} 
@@ -146,6 +148,7 @@
       {{/if}}
 
       <h1 class="middle-header">{{t "reports.discharge-report.title"}}</h1>
+      <p class="since-time-date">{{t "reports.since"}} {{moment-format (now) 'DD/MM/YYYY HH:mm'}}</p>
 
       {{#if (user-agent "device.isMobile")}}
         <ReportCard @title={{t "reports.discharge-report.discharged-alive"}} 

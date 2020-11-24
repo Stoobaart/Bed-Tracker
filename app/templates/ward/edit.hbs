@@ -50,23 +50,23 @@
 
   <section>
     <div class="section-header">{{t "add-ward.icu"}}</div>
-      <div class="radio add-ward">
-        <input
-          id="standard"
-          type="radio"
-          checked={{not this.isSurgeWard}}
-          onclick={{action this.setIsSurgeWard false}}>
-        <label for="standard" class="radio--label">{{t "labels.ward.standard"}}</label>
-      </div>
+    <div class="radio add-ward">
+      <input
+        id="standard"
+        type="radio"
+        checked={{not this.isSurgeWard}}
+        onclick={{action this.setIsSurgeWard false}}>
+      <label for="standard" class="radio--label">{{t "labels.ward.standard"}}</label>
+    </div>
 
-      <div class="radio add-ward">
-        <input
-          id="surge"
-          type="radio"
-          checked={{this.isSurgeWard}}
-          onclick={{action this.setIsSurgeWard true}}>
-        <label for="surge" class="radio--label">{{t "labels.ward.surge"}}</label>
-      </div>
+    <div class="radio add-ward">
+      <input
+        id="surge"
+        type="radio"
+        checked={{this.isSurgeWard}}
+        onclick={{action this.setIsSurgeWard true}}>
+      <label for="surge" class="radio--label">{{t "labels.ward.surge"}}</label>
+    </div>
   </section>
 
   <div class="btns-container">
@@ -89,7 +89,7 @@
     <div class="banner banner--error">
       <div class="banner_title"><img src="/assets/images/error.svg" alt="">Something went wrong</div>
       <p>Please try saving again.</p>
-      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.error) false)}}>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.error) false)}} role="button">
     </div>
   {{/if}}
 </div>

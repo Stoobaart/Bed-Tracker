@@ -32,8 +32,10 @@
       @value={{this.password}}
       @key-up={{action (mut this.password) value=@target.value}} />
     <img class="input-icon"
+         alt=""
          src={{if this.isPasswordVisible "/assets/images/eye-not-visible.svg" "/assets/images/eye-visible.svg"}}
-         {{on "click" (toggle "isPasswordVisible" this)}}>
+         {{on "click" (toggle "isPasswordVisible" this)}}
+         role="button">
     <div class="form_error--container">
       {{#if this.errors.hasError}}
         <div class="form_error">Error. Please check your credentials and try again</div>

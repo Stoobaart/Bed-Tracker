@@ -4,7 +4,7 @@
     <div class="banner banner--success">
       <div class="banner_title"><img src="/assets/images/success.svg" alt="">Ward successfully added</div>
       <p>Click on the ward to add the number of COVID beds</p>
-      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.model.showSuccessMessage) null)}}>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.model.showSuccessMessage) null)}} role="button">
     </div>
   {{/if}}
 

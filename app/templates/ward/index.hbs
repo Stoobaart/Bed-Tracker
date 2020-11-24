@@ -21,7 +21,7 @@
       </div>
       <div class="description-container">
         <p class="description">{{this.model.description}}</p>
-        <p class="update-staff-btn" {{on "click" this.openStaffModal}}>{{t "ward-dashboard.update-staffing"}}</p>
+        <p class="update-staff-btn" {{on "click" this.openStaffModal}} role="button">{{t "ward-dashboard.update-staffing"}}</p>
         <LinkTo @route="ward.edit" @model={{this.model}}>{{t "ward-dashboard.edit"}}</LinkTo>
       </div>
     </div>
@@ -260,7 +260,7 @@
               <div class="text">{{t "beds-table.data.NONE"}}</div>
             {{/if}}
           </div>
-          <div class="column discharge" role="button">
+          <div class="column discharge">
             <p class="text">{{t "beds-table.data.discharge"}}</p>
           </div>
         {{/if}}
@@ -276,21 +276,21 @@
     <div class="update-staff">
       <div class="form_input--counter">
         <label>{{t "update-staff-modal.crit-care"}}</label>
-        <button class="round minus" disabled={{eq this.numberOfCritcareNurses 0}} {{on "click" (fn this.updateCritCareTotal 'sub')}}>-</button>
+        <button class="round minus" disabled={{eq this.numberOfCritcareNurses 0}} {{on "click" (fn this.updateCritCareTotal "sub")}}>-</button>
         <p>{{this.numberOfCritcareNurses}}</p>
-        <button class="round plus" {{on "click" (fn this.updateCritCareTotal 'add')}}>+</button>
+        <button class="round plus" {{on "click" (fn this.updateCritCareTotal "add")}}>+</button>
       </div>
       <div class="form_input--counter">
         <label>{{t "update-staff-modal.other-rns"}}</label>
-        <button class="round minus" disabled={{eq this.numberOfOtherRns 0}} {{on "click" (fn this.updateOtherRnsTotal 'sub')}}>-</button>
+        <button class="round minus" disabled={{eq this.numberOfOtherRns 0}} {{on "click" (fn this.updateOtherRnsTotal "sub")}}>-</button>
         <p>{{this.numberOfOtherRns}}</p>
-        <button class="round plus" {{on "click" (fn this.updateOtherRnsTotal 'add')}}>+</button>
+        <button class="round plus" {{on "click" (fn this.updateOtherRnsTotal "add")}}>+</button>
       </div>
       <div class="form_input--counter">
         <label>{{t "update-staff-modal.support"}}</label>
-        <button class="round minus" disabled={{eq this.numberOfNurseSupportStaff 0}} {{on "click" (fn this.updateNurseSupportTotal 'sub')}}>-</button>
+        <button class="round minus" disabled={{eq this.numberOfNurseSupportStaff 0}} {{on "click" (fn this.updateNurseSupportTotal "sub")}}>-</button>
         <p>{{this.numberOfNurseSupportStaff}}</p>
-        <button class="round plus" {{on "click" (fn this.updateNurseSupportTotal 'add')}}>+</button>
+        <button class="round plus" {{on "click" (fn this.updateNurseSupportTotal "add")}}>+</button>
       </div>
 
       <section>
@@ -384,8 +384,8 @@
         <div class="bed-toggle">
           <span class="toggle {{if this.available "toggle--left" "toggle--right"}}"></span>
           <div>
-            <span {{on "click" (fn this.setAvailability true)}}>{{t "edit-bed-modal.available"}}</span>
-            <span {{on "click" (fn this.setAvailability false)}}>{{t "edit-bed-modal.occupied"}}</span>
+            <span {{on "click" (fn this.setAvailability true)}} role="button">{{t "edit-bed-modal.available"}}</span>
+            <span {{on "click" (fn this.setAvailability false)}} role="button">{{t "edit-bed-modal.occupied"}}</span>
           </div>
         </div>
 
@@ -438,8 +438,7 @@
           </section>
 
           <section>
-            <div class="section-header">{{t "edit-bed-modal.section-header.tracheostomy"}}
-            </div>
+            <div class="section-header">{{t "edit-bed-modal.section-header.tracheostomy"}}</div>
             <div class="radio">
               <input
                 id="trachNo"
@@ -512,13 +511,13 @@
           </div>
         {{/each}}
 
-        {{#if (eq this.selectedDischargeReason 'INTERNAL_ICU')}}
+        {{#if (eq this.selectedDischargeReason "INTERNAL_ICU")}}
           <div class="transfer-patient-container">
             <div class="section-header">{{t "modal.discharge.transfer"}}</div>
 
             {{x-select model=this.wards openOnFocus=true placeholder="Ward" labelKey="name" valueKey="id" onSelect=(fn this.selectWard wardId="target.value")}}
             {{#if this.beds}}
-              {{x-select model=this.beds openOnFocus=true  placeholder="Bed" labelKey="reference" valueKey="id" onSelect=(action 'selectBed' bedId="target")}}
+              {{x-select model=this.beds openOnFocus=true  placeholder="Bed" labelKey="reference" valueKey="id" onSelect=(action "selectBed" bedId="target")}}
             {{/if}}
             {{#if this.wardHasNoBeds}}
               <div class="form_error">{{t "modal.discharge.no-beds"}}</div>

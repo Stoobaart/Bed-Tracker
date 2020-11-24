@@ -11,7 +11,7 @@
       type="radio"
       checked={{eq @checkedProperty @type}}
       onclick={{action @setPropMethod @type}}
-      disabled=@disabled>
+      disabled={{@disabled}}>
   {{/if}}
   <label for={{concat @identifier @type}} class="radio--label">{{t (concat "labels." (lowercase @type))}}</label>
 </div>

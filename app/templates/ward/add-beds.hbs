@@ -30,7 +30,7 @@
          @type="number"
          @name="start-from"
          @class="form_input"
-         min=1
+         min={{1}}
          @key-up={{fn this.makeStartFromPositive}}
          @value={{this.startFrom}} />
 
@@ -59,7 +59,7 @@
     <div class="banner banner--error">
       <div class="banner_title"><img src="/assets/images/error.svg" alt="">Something went wrong</div>
       <p>Please try adding the beds again</p>
-      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.error) false)}}>
+      <img src="/assets/images/close.svg" alt="close" class="banner_close" {{on "click" (fn (mut this.error) false)}} role="button">
     </div>
   {{/if}}
 </div>

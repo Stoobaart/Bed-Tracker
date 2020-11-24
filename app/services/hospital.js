@@ -205,7 +205,7 @@ class Ward {
   get totalCovidStatusNegative() {
     return this.beds.reduce((totalCovidStatusNegative, bed) => {
       if (bed.covidStatus === 'NEGATIVE') {
-        return totalCovidStatusNegative + 1
+        return totalCovidStatusNegative + 1;
       }
 
       return totalCovidStatusNegative;
@@ -215,7 +215,7 @@ class Ward {
   get totalCovidStatusSuspected() {
     return this.beds.reduce((totalCovidStatusSuspected, bed) => {
       if (bed.covidStatus === 'SUSPECTED') {
-        return totalCovidStatusSuspected + 1
+        return totalCovidStatusSuspected + 1;
       }
 
       return totalCovidStatusSuspected;
@@ -225,7 +225,7 @@ class Ward {
   get totalCovidStatusPositive() {
     return this.beds.reduce((totalCovidStatusPositive, bed) => {
       if (bed.covidStatus === 'POSITIVE') {
-        return totalCovidStatusPositive + 1
+        return totalCovidStatusPositive + 1;
       }
 
       return totalCovidStatusPositive;
@@ -235,7 +235,7 @@ class Ward {
   get totalCovidStatusGreen() {
     return this.beds.reduce((totalCovidStatusGreen, bed) => {
       if (bed.covidStatus === 'GREEN') {
-        return totalCovidStatusGreen + 1
+        return totalCovidStatusGreen + 1;
       }
 
       return totalCovidStatusGreen;
@@ -245,7 +245,7 @@ class Ward {
   get totalVentilatorInUse() {
     return this.beds.reduce((totalVentilatorInUse, bed) => {
       if (bed.ventilationType === 'INVASIVE') {
-        return totalVentilatorInUse + 1
+        return totalVentilatorInUse + 1;
       }
 
       return totalVentilatorInUse;

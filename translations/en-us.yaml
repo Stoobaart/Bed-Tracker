@@ -190,6 +190,7 @@ reports:
     totalNonAvailableBedsWhereDateAdmittedYesterday: 'Number of patients admitted in the last 24 hours (am only)'
     totalNurseSupportStaffOfWards: 'No. of nursing support staff on shift today'
     totalOtherRnsOfWards: 'Number of registered nurses on shift who normally do not practice within critical care'
+  since: 'Last 24 hours since'
   table-headers: 
     amber: 'Amber Ward'
     covid: 'COVID <br>(Blue Ward)'
