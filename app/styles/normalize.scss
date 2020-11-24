@@ -18,3 +18,14 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+textarea,
+input.text,
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="phoneNumber"] {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
