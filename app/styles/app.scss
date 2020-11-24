@@ -391,7 +391,8 @@ body.no-scroll {
 
         span {
           position: relative;
-          top: .6rem;
+          display: flex;
+          align-items: center;
           padding-left: .3rem;
         }
       }
