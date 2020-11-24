@@ -161,6 +161,35 @@ class Ward {
   @tracked lastUpdatedAtOfWardOrBeds = null;
   @tracked isSurgeWard = null;
 
+  get totalRrtTypeHaemodialysis() {
+    return this.beds.filter((bed) => bed.rrtType === 'HAEMODIALYSIS').length;
+  }
+
+  get totalRrtTypeHaemofiltration() {
+    return this.beds.filter((bed) => bed.rrtType === 'HAEMOFILTRATION').length;
+  }
+
+  get totalRrtTypeRiskOfNextTwentyFourH() {
+    return this.beds.filter((bed) => bed.rrtType === 'RISK_OF_NEXT_TWENTY_FOUR_H').length;
+  }
+
+  get totalVentilationTypeCpap() {
+    return this.beds.filter((bed) => bed.ventilationType === 'CPAP').length;
+  }
+
+  get totalVentilationTypeBipap() {
+    return this.beds.filter((bed) => bed.ventilationType === 'BIPAP').length;
+  }
+
+  get totalVentilationTypeInvasive() {
+    return this.beds.filter((bed) => bed.ventilationType === 'INVASIVE').length;
+  }
+
+  get totalVentilationTypeHfno() {
+    return this.beds.filter((bed) => bed.ventilationType === 'HFNO').length;
+  }
+
+
   get totalBeds() {
     return this.beds.length;
   }

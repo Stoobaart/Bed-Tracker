@@ -68,6 +68,10 @@ export default class WardController extends Controller {
     return Math.round((this.model.availableBeds / this.model.totalBeds) * 100);
   }
 
+  get totalBipapAndCpap() {
+    return this.model.totalVentilationTypeCpap + this.model.totalVentilationTypeBipap;
+  }
+
   get dischargeIsDisabled() {
     if (!this.selectedDischargeReason && this.selectedDischargeReason !== 'INTERNAL_ICU') return true;
     if (this.selectedDischargeReason === 'INTERNAL_ICU' && !this.transferPatientToBedId) return true;
