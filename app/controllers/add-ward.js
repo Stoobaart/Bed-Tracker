@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import CreateWard from 'bed-checker/gql/mutations/create-ward';
+import { later } from '@ember/runloop';
 
 export default class AddWardController extends Controller {
   @service router;
