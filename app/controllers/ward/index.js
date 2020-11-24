@@ -7,6 +7,7 @@ import RemoveBed from 'bed-checker/gql/mutations/remove-bed';
 import DischargePatient from 'bed-checker/gql/mutations/discharge-patient';
 import UpdateWardMutation from 'bed-checker/gql/mutations/update-ward';
 import moment from 'moment';
+import { later } from '@ember/runloop';
 
 export default class WardController extends Controller {
   @service apollo;
@@ -230,6 +231,9 @@ export default class WardController extends Controller {
       this.hospital.editBed(this.model, updateBed);
       this.closeModal();
       this.set('model.showSuccessMessage', { type: 'bed-edited'});
+      later(() => {
+        this.set('model.showSuccessMessage', false);
+      }, 4000);
     } catch (error) {
       this.error = true;
       console.error(error);
@@ -261,6 +265,9 @@ export default class WardController extends Controller {
       this.set('model.beds', newBeds);
       this.closeModal();
       this.set('model.showSuccessMessage', { type: 'bed-deleted'});
+      later(() => {
+        this.set('model.showSuccessMessage', false);
+      }, 4000);
     } catch (error) {
       this.error = true;
       console.error(error);
@@ -310,6 +317,9 @@ export default class WardController extends Controller {
 
 
       this.set('model.showSuccessMessage', { type: 'bed-discharged' });
+      later(() => {
+        this.set('model.showSuccessMessage', false);
+      }, 4000);
       this.closeModal();
     } catch (error) {
       this.error = true;
@@ -376,6 +386,9 @@ export default class WardController extends Controller {
       await this.apollo.mutate({ mutation: UpdateWardMutation, variables });
       this.closeModal();
       this.set('model.showSuccessMessage', { type: 'staff-updated' });
+      later(() => {
+        this.set('model.showSuccessMessage', false);
+      }, 4000);
 
       this.model.numberOfCritcareNurses = this.numberOfCritcareNurses;
       this.model.numberOfOtherRns = this.numberOfOtherRns;

@@ -75,6 +75,9 @@ export default class WardAddBedsController extends Controller {
       this.hospital.addBeds(this.model, registerBeds.beds);
       this.startFrom = this.model.beds.length;
       this.set('model.showSuccessMessage', { type: 'beds-added' });
+      later(() => {
+        this.set('model.showSuccessMessage', false);
+      }, 4000);
       this.router.transitionTo('ward', this.model.id);
     } catch (error) {
       this.error = true;

@@ -173,7 +173,7 @@
 <div class="ward-beds-top-bar">
   <div class="header">{{t "ward-beds.beds"}}</div>
   <LinkTo class="link-button" role="button" @route="ward.add-beds" @model={{this.model.id}}>
-    <img src="/assets/images/plus.svg" alt="">{{t "ward-beds.add-beds"}}
+    <img class="wards_link--icon" src="/assets/images/plus.svg" alt="">{{t "ward-beds.add-beds"}}
   </LinkTo>
   <p>{{t "ward-beds.info"}}</p>
 </div>
@@ -205,7 +205,7 @@
       <div class="header--column centered rrt">
         {{t "beds-table.headers.rrt"}}
       </div>
-      <div class="header--column centered"></div>
+      <div class="header--column centered discharge"></div>
     </div>
 
     {{#each this.model.beds as |bed index|}}

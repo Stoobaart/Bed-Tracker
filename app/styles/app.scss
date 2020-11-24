@@ -1,6 +1,7 @@
 @import 'normalize';
 @import 'ember-modal-dialog/ember-modal-structure';
 @import 'ember-modal-dialog/ember-modal-appearance';
+@import 'fonts';
 
 :root {
   --esp-menu-link-hover: #ffffff;
@@ -27,7 +28,7 @@
 }
 
 html * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: OpenSans, sans-serif;
   font-size: 16px;
   color: #292929;
 }
@@ -82,7 +83,7 @@ body.no-scroll {
       text-overflow: ellipsis;
   
       strong {
-        font-weight: 600;
+        font-family: OpenSans-SemiBold;
       }
     }
   }
@@ -94,7 +95,7 @@ body.no-scroll {
     justify-content: center;
     padding: 0 1rem;
     font-size: .75rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     color: #005eb8;
     white-space: nowrap;
   }
@@ -116,7 +117,7 @@ body.no-scroll {
 
     p {
       color: #005eb8;	
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
     }
   }
 }
@@ -138,9 +139,11 @@ body.no-scroll {
     }	
 
     .nav-item {	
-      display: inline-flex;	
-      padding: 0.5rem 0;	
-      font-weight: 600;	
+      display: inline-flex;
+      align-items: center;
+      padding: .75rem 0;
+      font-family: OpenSans-SemiBold;
+      height: 1.5rem;
 
       &:not(:nth-child(2)):not(:last-child) {
         border-bottom: 1px solid grey;
@@ -202,7 +205,7 @@ body.no-scroll {
   }
 
   &_header {
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     color: #003e78;
     margin-bottom: 1rem;
     width: 100%;
@@ -243,7 +246,7 @@ body.no-scroll {
   &_header {
     color: white;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     padding-top: .5rem;
 
     &--container {
@@ -267,6 +270,10 @@ body.no-scroll {
 
   &_link {
 
+    &--icon {
+      padding-right: .25rem;
+    }
+
     &--button {
       border-radius: 4px;
       background-color: white;
@@ -288,7 +295,7 @@ body.no-scroll {
     padding: .75rem;
     width: calc(100% - 1.5rem);
     display: inline-flex;
-    height: 52px;
+    height: 1.5rem;
     background-color: white;
     border-bottom: 2px solid #d8d8d8;
 
@@ -324,12 +331,13 @@ body.no-scroll {
     }
 
     &--last-edited-time {
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
       padding-right: .5rem;
     }
 
     .column {
       display: inline-flex;
+      align-items: center;
       font-size: .75rem;
       width: 50%;
       color: white;
@@ -344,7 +352,7 @@ body.no-scroll {
           background-color: white;
           z-index: 1;
           border-right: 2px solid #2c98ff;
-          height: 4.79rem;
+          height: 3rem;
         }
       }
 
@@ -352,6 +360,7 @@ body.no-scroll {
         @media (max-width: 46rem) and (orientation: portrait)  {
           position: relative;
           left: 12.75rem;
+          height: 2.5rem;
         }
       }
 
@@ -436,13 +445,13 @@ body.no-scroll {
     width: 100%;
     height: 2rem;
     font-size: 12px;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     display: flex;
 
     &-text {
       font-size: 12px;
       margin: 0 .5rem;
-      font-weight: normal;
+      font-family: OpenSans;
       height: 1.5rem;
       align-self: center;
     }
@@ -488,7 +497,7 @@ body.no-scroll {
     &--value {
       display: inline-flex;
       font-size: 32px;
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
 
       .slash {
         font-size: 32px;
@@ -575,7 +584,7 @@ body.no-scroll {
 
   &_header {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     margin-bottom: 2.5rem;
   }
 
@@ -737,7 +746,7 @@ button {
 
   h1 {
     margin: 2rem 0;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     font-size: 1.5rem;
   }
 
@@ -759,7 +768,7 @@ button {
 
     div + div {
       flex-grow: 1;
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
       text-align: end;
     }
   }
@@ -771,7 +780,7 @@ button {
     border-radius: 0.5rem;
     color: #ffffff;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     text-align: center;
 
     &--success {
@@ -791,12 +800,12 @@ button {
 
     &.bold {
       font-size: 16px;
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
       color: black;
     }
 
     &.error {
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
       color: red;
     }
   }
@@ -805,12 +814,12 @@ button {
 .qr-choice {
 
   &_warning {
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     padding: 2rem;
   }
 
   &_final-warning {
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
   }
 
   &_form {
@@ -942,7 +951,7 @@ button {
 
   &_title {
     display: flex;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
 
     img {
       margin-right: 0.5rem;
@@ -1076,13 +1085,13 @@ button {
   }
 
   strong {
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
   }
 
   h1 {
     margin: 2rem 0;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
   }
 
   &_form {
@@ -1172,7 +1181,7 @@ button {
   .section-header {
     width: 100%;
     color: #003e78;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
 
     &.date {
       width: calc(50% + .5rem);
@@ -1305,7 +1314,7 @@ section.icu {
   flex-basis: 100%;
   display: flex;
   align-items: center;
-  font-weight: 600;
+  font-family: OpenSans-SemiBold;
   color: #003e78;
   white-space: nowrap;
   overflow: hidden;
@@ -1363,7 +1372,7 @@ section.icu {
 
       h1 {
         font-size: 2rem;
-        font-weight: 600;
+        font-family: OpenSans-SemiBold;
       }
 
       .description {
@@ -1381,14 +1390,14 @@ section.icu {
       display: flex;
       align-items: center;
       padding-right: 1rem;
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
     }
 
     a {
       align-self: center;
       text-decoration: none;
       color: #005eb8;
-      font-weight: 600;
+      font-family: OpenSans-SemiBold;
     }
   }
 
@@ -1420,7 +1429,7 @@ section.icu {
 
   .header {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     flex-grow: 1;
   }
 
@@ -1448,7 +1457,9 @@ section.icu {
   }
 
   .header {
-    display: inline-flex;
+    display: flex;
+    width: 44.8rem;
+    // display: inline-flex;
     white-space: nowrap;
     justify-content: space-between;
     height: 48px;
@@ -1465,7 +1476,7 @@ section.icu {
     &--wards {
       background-color: #005eb8;
       justify-content: space-between;
-      height: 5rem;
+      height: 3rem;
       min-width: 100%;
       align-items: center;
 
@@ -1475,11 +1486,10 @@ section.icu {
       }
 
       .header--column {
-        font-size: 1rem;
         line-height: 1.8;
         flex-basis: 33%;
         padding-top: 0;
-        height: 5rem;
+        height: 3rem;
         display: flex;
         align-items: center;
 
@@ -1490,7 +1500,7 @@ section.icu {
             width: 10.3rem;
             position: absolute;
             left: 15px;
-            z-index: 1;
+            z-index: 2;
             border-right: 2px solid #2c98ff;
           }
 
@@ -1518,12 +1528,18 @@ section.icu {
     }
 
     &--column {
-      font-size: .75rem;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
       width: 5rem;
       color: white;
       line-height: 3;
       height: 40px;
       padding-top: 8px;
+
+      @media (max-width: 46rem) {
+        font-size: .75rem;
+      }
 
       &.centered {
         text-align: center;
@@ -1532,10 +1548,11 @@ section.icu {
       &.availability {
         &-1 {
           position: absolute;
-          width: 5.75rem;
+          width: 5.79rem;
           padding-left: .5rem;
           background-color: #003e78;
-          border-right: 2px solid #2c98ff;
+          // border-right: 2px solid #2c98ff;
+          box-shadow: 2px 0px 0px 0px #2C98FF;
           z-index: 1;
 
           img {
@@ -1544,6 +1561,7 @@ section.icu {
 
           @media (min-width: 736px) {
             border-right: none;
+            box-shadow: none;
           }
         }
         &-2 {
@@ -1566,8 +1584,17 @@ section.icu {
         width: 7rem;
         min-width: 7rem;
       }
+
       &.rrt, &.vent {
         text-align: left;
+      }
+
+      &.discharge {
+        width: 6.0625rem;
+
+        @media (max-width: 46rem) {
+          width: 5rem;
+        }
       }
 
       .icon {
@@ -1594,26 +1621,27 @@ section.icu {
       display: flex;
       align-items: center;
       height: 40px;
-      // padding: .5rem;
       padding-left: .5rem;
-
-
       position: absolute;
       background-color: white;
       z-index: 1;
       border-bottom: 2px solid #d8d8d8;
-      font-size: 12px;
       line-height: 2;
       min-width: 3.5rem;
 
       @media (min-width: 736px) {
         border-bottom: none;
       }
+
+      @media (max-width: 46rem) {
+        font-size: .75rem;
+      }
     }
 
     .column {
-      font-size: .75rem;
+      font-size: 1rem;
       display: inline-flex;
+      align-items: center;
       height: 24px;
       line-height: 2;
       min-width: 5rem;
@@ -1624,14 +1652,19 @@ section.icu {
         border-bottom: none;
       }
 
+      @media (max-width: 46rem) {
+        font-size: .75rem;
+      }
+
       &.availability {
         &-1 {
           position: absolute;
           min-width: 2rem;
           width: 2rem;
-          height: 24px;
+          height: 26px;
           background-color: white;
-          border-right: 2px solid #2c98ff;
+          // border-right: 2px solid #2c98ff;
+          box-shadow: 2px 0px 0px 0px #2C98FF;
           border-left: 1px solid #d8d8d8;
           padding-left: .5rem;
           left: 3.75rem;
@@ -1640,6 +1673,11 @@ section.icu {
           @media (min-width: 736px) {
             position: relative;
             border-right: none;
+            box-shadow: none;
+          }
+
+          @media (max-width: 46rem) {
+            height: 24px;
           }
         }
         &-2 {
@@ -1664,7 +1702,7 @@ section.icu {
       &.rrt, &.covid-status, &.vent {
         width: 7rem;
         min-width: 7rem;
-        line-height: 1;
+        line-height: 1.2;
         display: flex;
         align-items: center;
       }
@@ -1685,6 +1723,7 @@ section.icu {
 
         @media (min-width: 736px) {
           height: 26px;
+          padding: .5rem;
         }
       }
 
@@ -1695,7 +1734,11 @@ section.icu {
       .text {
         width: 100%;
         text-align: center;
-        font-size: 12px;
+        font-size: 1rem;
+
+        @media (max-width: 46rem) {
+          font-size: .75rem;
+        }
       }
 
       .icon {
@@ -1723,13 +1766,13 @@ section.icu {
 .add-beds, .edit-ward {
   position: relative;
   padding: 2rem;
-  max-width: 876px;
+  max-width: 311px;
   margin: auto;
 
   .results {
     margin-top: 1rem;
     background-color: #f6f6f6;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
 
     &--hidden {
       visibility: hidden;
@@ -1751,7 +1794,7 @@ section.icu {
 
   h1 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
   }
 
   p {
@@ -1781,11 +1824,17 @@ section.icu {
 }
 
 .update-staff {
+
+  div:first-child {
+    padding-top: 0;
+  }
+
   section {
     border-bottom: none;
 
     &.capacity {
       flex-direction: column;
+      margin-bottom: 0;
     }
 
     .subheader {
@@ -1811,7 +1860,6 @@ section.icu {
   display: flex;
   flex-direction: column;
   top: 0;
-  max-width: 311px;
   margin: 1rem auto;
 
   section {
@@ -1861,7 +1909,7 @@ section.icu {
       & h1 {
         flex-grow: 1;
         font-size: 1.5rem;
-        font-weight: 600;
+        font-family: OpenSans-SemiBold;
         margin: 0 0.5rem;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -1906,7 +1954,7 @@ section.icu {
   h1 {
     margin: 1rem 0 1rem;
     font-size: 2rem;
-    font-weight: 600;
+    font-family: OpenSans-SemiBold;
     width: 100%;
 
     &.middle-header {
@@ -1971,7 +2019,7 @@ section.icu {
 
         p {
           font-size: 0.75rem;
-          font-weight: 600;
+          font-family: OpenSans-SemiBold;
           text-align: center;
         }
       }
@@ -2002,7 +2050,7 @@ section.icu {
 
       .column {
         &-data {
-          font-weight: 600;
+          font-family: OpenSans-SemiBold;
           justify-content: center;
           padding: 1rem;
           text-align: center;

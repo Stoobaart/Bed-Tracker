@@ -30,7 +30,7 @@ beds-table:
     status: 'Status'
 breadcrumbs:
   dashboard: 'Dashboard'
-  dos-report: ' > DoS Report'
+  dos-report: ' > Reports'
   ward: ' > Ward'
 buttons: 
   cancel: 'Cancel'
@@ -226,7 +226,7 @@ ward-dashboard:
   total-ventilators: 'Total ventilators in use'
   update-staffing: 'Update staffing'
 ward-table:
-  add-ward: 'Add Ward'
+  add-ward: 'Add ward'
   info: 'Tap a row to view the ward'
   table-headers: 
     availability: 'Availability'
