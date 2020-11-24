@@ -1,5 +1,5 @@
 <div class="application">
-  <div class="top-bar">
+  <div class="top-bar {{if (user-agent "device.isDesktop") "is-desktop"}}">
     <LinkTo  @route="dashboard">
       <img class="app-logo" src="/assets/images/bed-checker-logo.svg" alt="">
     </LinkTo>
