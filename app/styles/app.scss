@@ -562,6 +562,10 @@ body.no-scroll {
   width: 80vw;
   max-width: 21rem;
 
+  @media (max-width: 357px) {
+    top: 3rem;
+  }
+
   &_field {
     position: relative;
   }

@@ -41,29 +41,29 @@
 
       {{#if (user-agent "device.isMobile")}}
         <ReportCard @title={{t "reports.admissions-report.admissions-from-ed"}} 
-                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
-                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}
-                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}} />
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}} />
         <ReportCard @title={{t "reports.admissions-report.admissions-from-internal-ward"}} 
-                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}} 
-                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}
-                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}} />
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}} />
         <ReportCard @title={{t "reports.admissions-report.admissions-from-internal-itu"}} 
-                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}} 
-                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}
-                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}} />
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}} />
         <ReportCard @title={{t "reports.admissions-report.admissions-from-external-ward"}} 
-                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}} 
-                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}
-                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}} />
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}} />
         <ReportCard @title={{t "reports.admissions-report.admissions-from-external-itu"}} 
-                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}} 
-                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}
-                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}} />
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}} />
         <ReportCard @title={{t "reports.admissions-report.readmissions-to-itu"}} 
-                              @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}} 
-                              @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}
-                              @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}} />
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}} />
       {{else}}
         <div class="reports_admissions-table">
           <div class="headers">
@@ -73,49 +73,77 @@
             <div class="column-data">{{t "reports.table-headers.green"}}</div>
           </div>
           <ReportRowTriple @label={{t "reports.admissions-report.admissions-from-ed"}} 
-                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
-                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}
-                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}} />
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionEd}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionEd}} />
           <ReportRowTriple @label={{t "reports.admissions-report.admissions-from-internal-ward"}} 
-                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}} 
-                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}
-                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}} />
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalWard}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalWard}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalWard}} />
           <ReportRowTriple @label={{t "reports.admissions-report.admissions-from-internal-itu"}} 
-                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}} 
-                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}
-                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}} />
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionInternalItu}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionInternalItu}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionInternalItu}} />
           <ReportRowTriple @label={{t "reports.admissions-report.admissions-from-external-ward"}} 
-                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}} 
-                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}
-                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}} />
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalWard}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalWard}} />
           <ReportRowTriple @label={{t "reports.admissions-report.admissions-from-external-itu"}} 
-                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}} 
-                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}
-                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}} />
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalItu}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionExternalItu}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionExternalItu}} />
           <ReportRowTriple @label={{t "reports.admissions-report.readmissions-to-itu"}} 
-                               @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}} 
-                               @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}
-                               @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}} />
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionItuReadmission}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndSourceOfAdmissionItuReadmission}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndSourceOfAdmissionItuReadmission}} />
         </div>
       {{/if}}
 
       <h1 class="middle-header">{{t "reports.ward-report.title"}}</h1>
 
-      <div class="dos-table">
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelThree"}} @value={{report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelThree}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelTwo"}} @value={{report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelTwo}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelThree"}} @value={{report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelThree}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelTwo"}} @value={{report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelTwo}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelThree"}} @value={{report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelThree}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelTwo"}} @value={{report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelTwo}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeRiskOfNextTwentyFourH}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeRiskOfNextTwentyFourH}} />
-        <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeRiskOfNextTwentyFourH}} />
-
-      </div>
+      {{#if (user-agent "device.isMobile")}}
+        <ReportCard @title={{t "reports.ward-report.receiving-level-three-care"}} 
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelThree}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelThree}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelThree}} />
+        <ReportCard @title={{t "reports.ward-report.receiving-level-two-care"}} 
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelTwo}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelTwo}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelTwo}} />
+        <ReportCard @title={{t "reports.ward-report.receiving-rrt"}} 
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} />
+        <ReportCard @title={{t "reports.ward-report.at-risk-of-rrt"}} 
+                    @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeRiskOfNextTwentyFourH}} 
+                    @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeRiskOfNextTwentyFourH}}
+                    @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeRiskOfNextTwentyFourH}} />
+      {{else}}
+        <div class="reports_admissions-table">
+          <div class="headers">
+            <div class="column-labels"></div>
+            <div class="column-data">{{t "reports.table-headers.covid" htmlSafe=true}}</div>
+            <div class="column-data">{{t "reports.table-headers.amber"}}</div>
+            <div class="column-data">{{t "reports.table-headers.green"}}</div>
+          </div>
+          <ReportRowTriple @label={{t "reports.ward-report.receiving-level-three-care"}} 
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelThree}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelThree}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelThree}} />
+          <ReportRowTriple @label={{t "reports.ward-report.receiving-level-two-care"}} 
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndLevelOfCareLevelTwo}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelTwo}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndLevelOfCareLevelTwo}} />
+          <ReportRowTriple @label={{t "reports.ward-report.receiving-rrt"}} 
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeNotNoneOrNotRiskOfNextTwentyFourH}} />
+          <ReportRowTriple @label={{t "reports.ward-report.at-risk-of-rrt"}} 
+                           @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndRrtTypeRiskOfNextTwentyFourH}} 
+                           @valueTwo={{report.totalNonAvailableBedsWhereWardTypeAmberAndRrtTypeRiskOfNextTwentyFourH}}
+                           @valueThree={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeRiskOfNextTwentyFourH}} />
+        </div>
+      {{/if}}
 
       <h1 class="middle-header">{{t "reports.discharge-report.title"}}</h1>
 
