@@ -101,6 +101,11 @@ class Hospital {
   @tracked totalRrtTypeRiskOfNextTwentyFourH = null;
   @tracked totalRrtTypeHaemofiltration = null;
   @tracked totalRrtTypeHaemodialysis = null;
+  @tracked totalMaxAdmissionCapacity = null;
+
+  // get totalMaxAdmissionCapacity() {
+  //   return this.wards.reduce((totalMaxAdmissionCapacity, ward) => totalMaxAdmissionCapacity + ward.maxAdmissionCapacity, 0);
+  // }
 
   get totalBeds() {
     return this.wards.reduce((totalBeds, ward) => totalBeds + ward.totalBeds, 0);

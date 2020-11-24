@@ -7,7 +7,7 @@ export default class DashboardController extends Controller {
   }
 
   get canProvideIcsRatios() {
-    return !this.model.wards.some((ward) => ward.canProvideIcsRatios === false);
+    return !this.model.wards.some((ward) => ward.canProvideIcsRatios !== true);
   }
 
   get availableBedsPercentage() {

@@ -120,6 +120,11 @@
           <img class="icon" src="/assets/images/green-tick.svg" alt="">
           <p>{{t "dashboard.staffing.can-provide-nurses"}}</p>
         </div>
+      {{else}}
+        <div class="card_footer">
+          <img class="icon" src="/assets/images/red-cross.svg" alt="">
+          <p>{{t "dashboard.staffing.cannot-provide-nurses"}}</p>
+        </div>
       {{/if}}
     </div>
 

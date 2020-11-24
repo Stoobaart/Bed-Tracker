@@ -68,9 +68,9 @@
         <div class="reports_admissions-table">
           <div class="headers">
             <div class="column-labels"></div>
-            <div class="column-data">{{t "reports.admissions-report.table-headers.covid" htmlSafe=true}}</div>
-            <div class="column-data">{{t "reports.admissions-report.table-headers.amber"}}</div>
-            <div class="column-data">{{t "reports.admissions-report.table-headers.green"}}</div>
+            <div class="column-data">{{t "reports.table-headers.covid" htmlSafe=true}}</div>
+            <div class="column-data">{{t "reports.table-headers.amber"}}</div>
+            <div class="column-data">{{t "reports.table-headers.green"}}</div>
           </div>
           <ReportRowTriple @label={{t "reports.admissions-report.admissions-from-ed"}} 
                                @valueOne={{report.totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionEd}} 
@@ -116,6 +116,44 @@
         <ReportRow @key={{t "reports.ward-report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeRiskOfNextTwentyFourH"}} @value={{report.totalNonAvailableBedsWhereWardTypeGreenAndRrtTypeRiskOfNextTwentyFourH}} />
 
       </div>
+
+      <h1 class="middle-header">{{t "reports.discharge-report.title"}}</h1>
+
+      {{#if (user-agent "device.isMobile")}}
+        <ReportCard @title={{t "reports.discharge-report.discharged-alive"}} 
+                              @valueOne={{report.totalDischargesWhereReasonNotDeathAndWardTypeCovidAndInsertedAtYesterday}} 
+                              @valueTwo={{report.totalDischargesWhereReasonNotDeathAndWardTypeAmberAndInsertedAtYesterday}}
+                              @valueThree={{report.totalDischargesWhereReasonNotDeathAndWardTypeGreenAndInsertedAtYesterday}} />
+        <ReportCard @title={{t "reports.discharge-report.discharged-to-ext-icu"}} 
+                              @valueOne={{report.totalDischargesWhereReasonExternalIcuAndWardTypeCovidAndInsertedAtYesterday}} 
+                              @valueTwo={{report.totalDischargesWhereReasonExternalIcuAndWardTypeAmberAndInsertedAtYesterday}}
+                              @valueThree={{report.totalDischargesWhereReasonExternalIcuAndWardTypeGreenAndInsertedAtYesterday}} />
+        <ReportCard @title={{t "reports.discharge-report.discharged-deceased"}} 
+                              @valueOne={{report.totalDischargesWhereReasonDeathAndWardTypeCovidAndInsertedAtYesterday}} 
+                              @valueTwo={{report.totalDischargesWhereReasonDeathAndWardTypeAmberAndInsertedAtYesterday}}
+                              @valueThree={{report.totalDischargesWhereReasonDeathAndWardTypeGreenAndInsertedAtYesterday}} />
+      {{else}}
+        <div class="reports_admissions-table">
+          <div class="headers">
+            <div class="column-labels"></div>
+            <div class="column-data">{{t "reports.table-headers.covid" htmlSafe=true}}</div>
+            <div class="column-data">{{t "reports.table-headers.amber"}}</div>
+            <div class="column-data">{{t "reports.table-headers.green"}}</div>
+          </div>
+          <ReportRowTriple @label={{t "reports.discharge-report.discharged-alive"}} 
+                               @valueOne={{report.totalDischargesWhereReasonNotDeathAndWardTypeCovidAndInsertedAtYesterday}} 
+                               @valueTwo={{report.totalDischargesWhereReasonNotDeathAndWardTypeAmberAndInsertedAtYesterday}}
+                               @valueThree={{report.totalDischargesWhereReasonNotDeathAndWardTypeGreenAndInsertedAtYesterday}} />
+          <ReportRowTriple @label={{t "reports.discharge-report.discharged-to-ext-icu"}} 
+                               @valueOne={{report.totalDischargesWhereReasonExternalIcuAndWardTypeCovidAndInsertedAtYesterday}} 
+                               @valueTwo={{report.totalDischargesWhereReasonExternalIcuAndWardTypeAmberAndInsertedAtYesterday}}
+                               @valueThree={{report.totalDischargesWhereReasonExternalIcuAndWardTypeGreenAndInsertedAtYesterday}} />
+          <ReportRowTriple @label={{t "reports.discharge-report.discharged-deceased"}} 
+                               @valueOne={{report.totalDischargesWhereReasonDeathAndWardTypeCovidAndInsertedAtYesterday}} 
+                               @valueTwo={{report.totalDischargesWhereReasonDeathAndWardTypeAmberAndInsertedAtYesterday}}
+                               @valueThree={{report.totalDischargesWhereReasonDeathAndWardTypeGreenAndInsertedAtYesterday}} />
+        </div>
+      {{/if}}
 
     {{/let}}
   </div>

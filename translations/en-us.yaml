@@ -58,6 +58,7 @@ dashboard:
     title: 'RRT'
   staffing: 
     can-provide-nurses: 'Can provide nurse ratios to ICS'
+    cannot-provide-nurses: 'Cannot provide nurse ratios to ICS'
     critical-care-nurses: 'Critical Care Nurses'
     max-capacity: 'Max. admission capacity'
     other-rns: 'Other RNs'
@@ -157,11 +158,12 @@ reports:
     admissions-from-internal-itu: 'Admissions from internal ITU'
     admissions-from-internal-ward: 'Admissions from internal ward'
     readmissions-to-itu: 'Readmissions to ITU'
-    table-headers: 
-      amber: 'Amber Ward'
-      covid: 'COVID <br>(Blue Ward)'
-      green: 'Green Ward'
     title: 'Admissions Report'
+  discharge-report:
+    discharged-alive: 'Discharged alive'
+    discharged-deceased: 'Discharged deceased'
+    discharged-to-ext-icu: 'Discharged to External ICU'
+    title: 'Discharge Report'
   dos-report:
     allWardsCanProvideIcsRatios: 'Are you currently able to provide nurse ratios as per Intensive Care Society (ICS) guidelines'
     title: 'DoS Report'
@@ -188,6 +190,10 @@ reports:
     totalNonAvailableBedsWhereDateAdmittedYesterday: 'Number of patients admitted in the last 24 hours (am only)'
     totalNurseSupportStaffOfWards: 'No. of nursing support staff on shift today'
     totalOtherRnsOfWards: 'Number of registered nurses on shift who normally do not practice within critical care'
+  table-headers: 
+    amber: 'Amber Ward'
+    covid: 'COVID <br>(Blue Ward)'
+    green: 'Green Ward'
   ward-report:
     title: 'Ward Report'
     totalNonAvailableBedsWhereWardTypeAmberAndLevelOfCareLevelThree: 'Amber patients receiving L3 care'

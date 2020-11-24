@@ -55,6 +55,15 @@ query {
       totalNurseSupportStaffOfWards,
       totalNonAvailableBedsWhereCovidStatusPositiveOrSuspectedAndRrtTypePd,
       totalNonAvailableBedsWhereWardTypeCovidAndSourceOfAdmissionExternalWard,
+      totalDischargesWhereReasonNotDeathAndWardTypeCovidAndInsertedAtYesterday,
+      totalDischargesWhereReasonNotDeathAndWardTypeAmberAndInsertedAtYesterday,
+      totalDischargesWhereReasonNotDeathAndWardTypeGreenAndInsertedAtYesterday,
+      totalDischargesWhereReasonDeathAndWardTypeCovidAndInsertedAtYesterday,
+      totalDischargesWhereReasonDeathAndWardTypeAmberAndInsertedAtYesterday,
+      totalDischargesWhereReasonDeathAndWardTypeGreenAndInsertedAtYesterday,
+      totalDischargesWhereReasonExternalIcuAndWardTypeCovidAndInsertedAtYesterday,
+      totalDischargesWhereReasonExternalIcuAndWardTypeAmberAndInsertedAtYesterday,
+      totalDischargesWhereReasonExternalIcuAndWardTypeGreenAndInsertedAtYesterday,
     }
   }
 }

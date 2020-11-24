@@ -1,6 +1,7 @@
 query {
   getHospital {
     hospital {
+      totalMaxAdmissionCapacity,
       totalVentilationTypeInvasive,
       unavailableBeds,
       totalCovidBeds,
