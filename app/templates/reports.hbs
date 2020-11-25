@@ -39,7 +39,6 @@
       </div>
 
       <h1 class="middle-header">{{t "reports.ward-report.title"}}</h1>
-      <p class="since-time-date">{{t "reports.since"}} {{moment-format (now) "DD/MM/YYYY HH:mm"}}</p>
 
       {{#if (user-agent "device.isMobile")}}
         <ReportCard @title={{t "reports.ward-report.receiving-level-three-care"}} 
