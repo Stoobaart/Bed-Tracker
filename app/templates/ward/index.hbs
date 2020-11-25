@@ -390,51 +390,69 @@
         </div>
 
         <section>
-          <div class="section-header">{{t "edit-bed-modal.section-header.reference"}}</div>
+          <div class="section-header {{if this.refError "error"}}">{{t "edit-bed-modal.section-header.reference"}}</div>
           <Input @id="reference"
                  @name="reference"
-                 @class="form_input"
-                 @key-up={{fn (mut this.changesMade) true}}
+                 @class="form_input ref {{if this.refError "error"}}"
+                 @key-up={{action (queue (fn (mut this.changesMade) true) (fn (mut this.refError) false))}}
                  @value={{this.reference}} />
+          {{#if this.refError}}
+            <p class="form_error-message">{{t "errors.reference"}}</p>
+          {{/if}}
         </section>
 
         {{#if (not this.available)}}
           <section>
-            <div class="section-header date">{{t "edit-bed-modal.section-header.date-of-admission"}}</div>
-            <div class="section-header time">{{t "edit-bed-modal.section-header.time-of-admission"}}</div>
+            <div class="section-header date {{if this.dateTimeError "error"}}">{{t "edit-bed-modal.section-header.date-of-admission"}}</div>
+            <div class="section-header time {{if this.dateTimeError "error"}}">{{t "edit-bed-modal.section-header.time-of-admission"}}</div>
             <Input @type="date" 
                    @id="dateOfAdmission"
                    @name="dateOfAdmission"
-                   @class="form_input date"
-                   @change={{fn (mut this.changesMade) true}}
+                   @class="form_input date {{if this.dateTimeError "error"}}"
+                   @change={{action (queue (fn (mut this.changesMade) true) (fn (mut this.dateTimeError) false))}}
                    @value={{this.dateOfAdmission}} />
             <Input @type="time" 
                    @id="timeOfAdmission"
                    @name="timeOfAdmission"
-                   @class="form_input time"
-                   @change={{fn (mut this.changesMade) true}}
+                   @class="form_input time {{if this.dateTimeError "error"}}"
+                   @change={{action (queue (fn (mut this.changesMade) true) (fn (mut this.dateTimeError) false))}}
                    @value={{this.timeOfAdmission}} />
+            {{#if this.dateTimeError}}
+              <p class="form_error-message">{{t "errors.date-time"}}</p>
+            {{/if}}
           </section>
           
           <section>
-            <div class="section-header">{{t "edit-bed-modal.section-header.source-of-admission"}}</div>
+            <div class="section-header {{if this.sourceOfAdmissionError "error"}}">{{t "edit-bed-modal.section-header.source-of-admission"}}</div>
             {{#each this.sourcesOfAdmission as |source index|}}
               <Radio @type={{source}} @index={{index}} @checkedProperty={{this.sourceOfAdmission}} @setPropMethod={{this.setSourceOfAdmission}} />
             {{/each}}
+            
+            {{#if this.sourceOfAdmissionError}}
+              <p class="form_error-message">{{t "errors.source-of-admission"}}</p>
+            {{/if}}
           </section>
 
           <section>
-            <div class="section-header">{{t "edit-bed-modal.section-header.covid-status"}}</div>
+            <div class="section-header {{if this.covidStatusError "error"}}">{{t "edit-bed-modal.section-header.covid-status"}}</div>
             {{#each this.covidStatuses as |status index|}}
               <Radio @type={{status}} @index={{index}} @checkedProperty={{this.covidStatus}} @setPropMethod={{this.setCovidStatus}} />
             {{/each}}
+
+            {{#if this.covidStatusError}}
+              <p class="form_error-message">{{t "errors.covid-status"}}</p>
+            {{/if}}
           </section>
 
           <section>
-            <div class="section-header">{{t "edit-bed-modal.section-header.level-of-care"}}</div>
+            <div class="section-header {{if this.levelOfCareError "error"}}">{{t "edit-bed-modal.section-header.level-of-care"}}</div>
             {{#each this.levelsOfCare as |status index|}}
               <Radio @type={{status}} @index={{index}} @checkedProperty={{this.levelOfCare}} @setPropMethod={{this.setLevelOfCare}} />
             {{/each}}
+
+            {{#if this.levelOfCareError}}
+              <p class="form_error-message">{{t "errors.level-of-care"}}</p>
+            {{/if}}
           </section>
 
           <section>
@@ -463,7 +481,6 @@
             {{#each this.ventilationTypes as |ventilation index|}}
               <Radio @type={{ventilation}} @index={{index}} @checkedProperty={{this.ventilationType}} @setPropMethod={{this.setVentilationType}} @disabled={{and this.useTracheostomy (or (eq ventilation "HFNO") (eq ventilation "BIPAP"))}} />
             {{/each}}
-
           </section>
 
           <section>
@@ -471,7 +488,6 @@
             {{#each this.rrtTypes as |rrt index|}}
               <Radio @identifier="rrt" @type={{rrt}} @index={{index}} @checkedProperty={{this.rrtType}} @setPropMethod={{this.setRrtType}} />
             {{/each}}
-
           </section>
         {{/if}}
 
@@ -482,6 +498,10 @@
           {{on "click" this.editBed}}>
           {{t "buttons.save-changes"}}
         </button>
+
+        {{#if this.hasFormError}}
+          <p class="form_error-message notification">{{t "errors.errors-present"}}</p>
+        {{/if}}
 
         <div class="delete-container" role="button" {{on "click" this.toggleDeleteModal}}>
           <img src="/assets/images/delete.svg" alt="">

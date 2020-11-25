@@ -13,9 +13,13 @@ export default class WardController extends Controller {
   @service apollo;
   @service hospital;
 
+  // ward properties
   @tracked wards = [];
   @tracked beds = [];
   @tracked wardHasNoBeds = false;
+
+  // discharge properties
+  @tracked selectedDischargeReason;
   @tracked transferPatientToWardId = null;
   @tracked transferPatientToBedId = null;
 
@@ -27,27 +31,40 @@ export default class WardController extends Controller {
     { code: 'DEATH', string: 'Death' }, 
     { code: 'OTHER', string: 'Other' }
   ];
-  @tracked selectedDischargeReason;
 
+  // bed properties
   @tracked available = null;
   @tracked covidStatus = null;
   @tracked dateOfAdmission = moment().format("YYYY-MM-DD");
   @tracked timeOfAdmission = moment().format("HH-MM");
   @tracked id = null;
   @tracked levelOfCare = null;
-  @tracked rrtType = null;
-  @tracked ventilationType = null;
+  @tracked rrtType = 'NONE';
+  @tracked ventilationType = 'NONE';
   @tracked index = null;
   @tracked sourceOfAdmission = null;
   @tracked reference = null;
   @tracked useTracheostomy = false;
 
+  // modals properties
   @tracked editBedModalIsOpen = false;
   @tracked dischargeBedModalIsOpen = false;
   @tracked updateStaffModalIsOpen = false;
   @tracked changesMade = false;
   @tracked showDeleteForm = false;
 
+  // edit bed form error properties
+  @tracked refError = false;
+  @tracked dateTimeError = false;
+  @tracked sourceOfAdmissionError = false;
+  @tracked covidStatusError = false;
+  @tracked levelOfCareError = false;
+
+  get hasFormError() {
+    return this.refError || this.dateTimeError || this.sourceOfAdmissionError || this.covidStatusError || this.levelOfCareError;
+  }
+
+  // staffing properties
   @tracked numberOfCritcareNurses = 0;
   @tracked numberOfNurseSupportStaff = 0;
   @tracked numberOfOtherRns = 0;
@@ -115,10 +132,10 @@ export default class WardController extends Controller {
       this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
       this.timeOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("HH:mm") : moment().format("HH:mm");
       this.levelOfCare = bed.levelOfCare;
-      this.rrtType = bed.rrtType;
+      this.rrtType = bed.rrtType === null ? 'NONE' : bed.rrtType;
       this.sourceOfAdmission = bed.sourceOfAdmission;
       this.useTracheostomy = bed.useTracheostomy;
-      this.ventilationType = bed.ventilationType;
+      this.ventilationType = bed.ventilationType === null ? 'NONE' : bed.ventilationType;
       this.index = bedIndex;
 
       this.editBedModalIsOpen = true;
@@ -143,6 +160,7 @@ export default class WardController extends Controller {
     this.showDeleteForm = false;
     this.updateStaffModalIsOpen = false;
     this.selectedDischargeReason = null;
+    this.clearFormErrors();
     document.body.classList.remove('no-scroll');
   }
 
@@ -155,12 +173,13 @@ export default class WardController extends Controller {
     this.available = !this.available;
     this.covidStatus = null;
     this.levelOfCare = null;
-    
+    this.clearFormErrors();
     this.changesMade = true;
   }
   
   @action
   setSourceOfAdmission(source) {
+    this.sourceOfAdmissionError = false;
     this.sourceOfAdmission = source;
     this.available = false;
     this.changesMade = true;
@@ -168,6 +187,7 @@ export default class WardController extends Controller {
 
   @action
   setCovidStatus(status) {
+    this.covidStatusError = false;
     this.covidStatus = status;
     this.available = false;
     this.changesMade = true;
@@ -179,12 +199,13 @@ export default class WardController extends Controller {
     this.available = false;
     this.changesMade = true;
     if (this.useTracheostomy && this.ventilationType === 'HFNO' || this.useTracheostomy && this.ventilationType === 'BIPAP') {
-      this.ventilationType = null;
+      this.ventilationType = 'NONE';
     }
   }
 
   @action
   setLevelOfCare(level) {
+    this.levelOfCareError = false;
     this.levelOfCare = level;
     this.available = false;
     this.changesMade = true;
@@ -207,37 +228,67 @@ export default class WardController extends Controller {
   @action
   async editBed(event) {
     event.preventDefault();
-
     this.error = false;
-    const dateTime = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`);
+    this.checkFormErrors();
 
-    const variables = {
-      input: {
-        available: this.available,
-        covidStatus: this.available ? null : this.covidStatus,
-        dateOfAdmission: dateTime,
-        id: this.id,
-        useTracheostomy: this.useTracheostomy,
-        levelOfCare: this.levelOfCare,
-        ventilationType: this.ventilationType,
-        reference: this.reference,
-        rrtType: this.rrtType,
-        sourceOfAdmission: this.sourceOfAdmission
+    if (!this.hasFormError) {
+      const dateTime = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`);
+
+      const variables = {
+        input: {
+          available: this.available,
+          covidStatus: this.covidStatus,
+          dateOfAdmission: dateTime,
+          id: this.id,
+          useTracheostomy: this.useTracheostomy,
+          levelOfCare: this.levelOfCare,
+          ventilationType: this.ventilationType,
+          reference: this.reference,
+          rrtType: this.rrtType,
+          sourceOfAdmission: this.sourceOfAdmission
+        }
+      };
+
+      try {
+        const { updateBed } = await this.apollo.mutate({ mutation: UpdateBed, variables });
+        this.hospital.editBed(this.model, updateBed);
+        this.closeModal();
+        this.set('model.showSuccessMessage', { type: 'bed-edited'});
+        later(() => {
+          this.set('model.showSuccessMessage', false);
+        }, 4000);
+      } catch (error) {
+        this.error = true;
+        console.error(error);
       }
-    };
-
-    try {
-      const { updateBed } = await this.apollo.mutate({ mutation: UpdateBed, variables });
-      this.hospital.editBed(this.model, updateBed);
-      this.closeModal();
-      this.set('model.showSuccessMessage', { type: 'bed-edited'});
-      later(() => {
-        this.set('model.showSuccessMessage', false);
-      }, 4000);
-    } catch (error) {
-      this.error = true;
-      console.error(error);
     }
+  }
+
+  @action
+  checkFormErrors() {
+    const dateTimeIsInFuture = moment().diff(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`) < 0;
+
+    if (!this.available) {
+      this.dateTimeError = this.dateOfAdmission === '' || this.timeOfAdmission === '' || dateTimeIsInFuture;
+      this.sourceOfAdmissionError = !this.sourceOfAdmission;
+      this.covidStatusError = !this.covidStatus;
+      this.levelOfCareError = !this.levelOfCare;
+    } else {
+      this.dateTimeError = false;
+      this.sourceOfAdmissionError = false;
+      this.covidStatusError = false;
+      this.levelOfCareError = false;
+    }
+
+    this.refError = this.reference === '';
+  }
+
+  clearFormErrors() {
+    this.refError = false;
+    this.dateTimeError = false;
+    this.sourceOfAdmissionError = false;
+    this.covidStatusError = false;
+    this.levelOfCareError = false;
   }
 
   @action
@@ -299,10 +350,10 @@ export default class WardController extends Controller {
         id: this.id,
         levelOfCare: null,
         reference: this.reference,
-        rrtType: null,
+        rrtType: 'NONE',
         sourceOfAdmission: null,
-        useTracheostomy: null,
-        ventilationType: null
+        useTracheostomy: false,
+        ventilationType: 'NONE'
       };
 
       const newBeds = this.model.beds.map(x => {

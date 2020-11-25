@@ -88,6 +88,13 @@ edit-bed-modal:
     ventilation: 'Ventilation:'
   subheader:
     delete: 'Are you sure you want to delete this bed from the ward?'
+errors:
+  covid-status: 'Please choose a COVID status'
+  errors-present: 'Please check the errors above'
+  date-time: 'Please enter a date and time that is not in the future'
+  level-of-care: 'Please choose a level of care'
+  reference: 'Please enter a reference'
+  source-of-admission: 'Please choose a source of admission'
 labels:
   bipap: 'BiPAP / NIV'
   cpap: 'CPAP'
