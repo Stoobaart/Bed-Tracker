@@ -362,7 +362,7 @@ export default class WardController extends Controller {
         } else if (x.id === bedId) {
           const dateTime = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`);
           return {
-            available: false,
+            available: this.available,
             covidStatus: this.covidStatus,
             dateOfAdmission: dateTime,
             id: x.id,
