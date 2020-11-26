@@ -1,0 +1,41 @@
+.policy {
+
+  &_container {
+    padding: 2rem;
+
+    .date-of-creation {
+      padding-bottom: 1rem;
+    }
+  } 
+
+  &_content-block {
+    padding-top: 1rem;
+
+    div {
+      padding-bottom: 1rem;
+
+      strong {
+        font-family: OpenSans-SemiBold;
+      }
+    }
+
+    @media (min-width: 46rem) {
+      width: 35.3125rem;
+    }
+
+    &:last-of-type {
+      padding-bottom: 2rem;
+    }
+  }
+
+  &_content-seperator {
+    border-bottom: .125rem solid #d8d8d8;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &_header {
+    font-family: OpenSans-SemiBold;
+    font-size: 1.5rem;
+  }
+}
