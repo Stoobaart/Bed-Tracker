@@ -45,6 +45,7 @@ export default class WardController extends Controller {
   @tracked sourceOfAdmission = null;
   @tracked reference = null;
   @tracked useTracheostomy = false;
+  @tracked today = moment().format("YYYY-MM-DD");
 
   // modals properties
   @tracked editBedModalIsOpen = false;

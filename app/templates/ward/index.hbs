@@ -410,7 +410,8 @@
                    @name="dateOfAdmission"
                    @class="form_input date {{if this.dateTimeError "error"}}"
                    @change={{action (queue (fn (mut this.changesMade) true) (fn (mut this.dateTimeError) false))}}
-                   @value={{this.dateOfAdmission}} />
+                   @value={{this.dateOfAdmission}} 
+                   @max={{this.today}} />
             <Input @type="time" 
                    @id="timeOfAdmission"
                    @name="timeOfAdmission"
@@ -418,7 +419,7 @@
                    @change={{action (queue (fn (mut this.changesMade) true) (fn (mut this.dateTimeError) false))}}
                    @value={{this.timeOfAdmission}} />
             {{#if this.dateTimeError}}
-              {{#if (user-agent "browser.isSafari")}}
+              {{#if (and (user-agent "browser.isSafari") (user-agent "device.isDesktop"))}}
                 <p class="form_error-message safari">{{t "errors.date-time-safari"}}</p>
               {{else}}
                 <p class="form_error-message">{{t "errors.date-time"}}</p>
