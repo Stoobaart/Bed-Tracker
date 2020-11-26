@@ -420,9 +420,9 @@
                    @value={{this.timeOfAdmission}} />
             {{#if this.dateTimeError}}
               {{#if (and (user-agent "browser.isSafari") (user-agent "device.isDesktop"))}}
-                <p class="form_error-message safari">{{t "errors.date-time-safari"}}</p>
+                <p class="form_error-message extra-bottom ">{{t "errors.date-time-safari"}}</p>
               {{else}}
-                <p class="form_error-message">{{t "errors.date-time"}}</p>
+                <p class="form_error-message {{if (and (user-agent "device.isMobile") (user-agent "browser.isSafari")) "extra-bottom"}}">{{t "errors.date-time"}}</p>
               {{/if}}
             {{/if}}
           </section>
