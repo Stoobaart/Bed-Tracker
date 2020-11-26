@@ -267,9 +267,10 @@ export default class WardController extends Controller {
   @action
   checkFormErrors() {
     const dateTimeIsInFuture = moment().diff(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`) < 0;
+    const dateTimeIsValid = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`, true).isValid();
 
     if (!this.available) {
-      this.dateTimeError = this.dateOfAdmission === '' || this.timeOfAdmission === '' || dateTimeIsInFuture;
+      this.dateTimeError = this.dateOfAdmission === '' || this.timeOfAdmission === '' || dateTimeIsInFuture || !dateTimeIsValid;
       this.sourceOfAdmissionError = !this.sourceOfAdmission;
       this.covidStatusError = !this.covidStatus;
       this.levelOfCareError = !this.levelOfCare;
