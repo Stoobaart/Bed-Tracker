@@ -119,6 +119,16 @@ export default class WardController extends Controller {
   async openModal(bed, index, event) {
     this.reference = bed.reference;
     this.id = bed.id;
+    this.available = bed.available;
+    this.covidStatus = bed.covidStatus;
+    this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
+    this.timeOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("HH:mm") : moment().format("HH:mm");
+    this.levelOfCare = bed.levelOfCare;
+    this.rrtType = bed.rrtType === null ? 'NONE' : bed.rrtType;
+    this.sourceOfAdmission = bed.sourceOfAdmission;
+    this.useTracheostomy = bed.useTracheostomy;
+    this.ventilationType = bed.ventilationType === null ? 'NONE' : bed.ventilationType;
+
     if (event.target.outerText === 'Discharge') {
       this.wards = await this.hospital.fetchWards();
       this.dischargeBedModalIsOpen = true;
@@ -126,16 +136,6 @@ export default class WardController extends Controller {
     } else {
       this.changesMade = false;
       const bedIndex = index + 1;
-
-      this.available = bed.available;
-      this.covidStatus = bed.covidStatus;
-      this.dateOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD");
-      this.timeOfAdmission = bed.dateOfAdmission ? moment(bed.dateOfAdmission).format("HH:mm") : moment().format("HH:mm");
-      this.levelOfCare = bed.levelOfCare;
-      this.rrtType = bed.rrtType === null ? 'NONE' : bed.rrtType;
-      this.sourceOfAdmission = bed.sourceOfAdmission;
-      this.useTracheostomy = bed.useTracheostomy;
-      this.ventilationType = bed.ventilationType === null ? 'NONE' : bed.ventilationType;
       this.index = bedIndex;
 
       this.editBedModalIsOpen = true;
@@ -359,6 +359,20 @@ export default class WardController extends Controller {
       const newBeds = this.model.beds.map(x => {
         if (x.id === this.id) {
           return resetBed;
+        } else if (x.id === bedId) {
+          const dateTime = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`);
+          return {
+            available: false,
+            covidStatus: this.covidStatus,
+            dateOfAdmission: dateTime,
+            id: x.id,
+            levelOfCare: this.levelOfCare,
+            reference: x.reference,
+            rrtType: this.rrtType,
+            sourceOfAdmission: this.sourceOfAdmission,
+            useTracheostomy: this.useTracheostomy,
+            ventilationType: this.ventilationType
+          };
         } else {
           return x;
         }

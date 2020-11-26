@@ -614,6 +614,10 @@ body.no-scroll {
     margin: 1rem 0;
     width: 100%;
 
+    &.ref {
+      width: 7rem;
+    }
+
     &.ref, &.date, &.time {
       margin-bottom: 1.5rem;
     }
@@ -1199,6 +1203,10 @@ button {
     flex-wrap: wrap;
     border-bottom: 1px solid #d8d8d8;
     margin: 0 2rem 1rem;
+
+    &.no-border {
+      border-bottom: none;
+    }
   }
 
   .section-header {

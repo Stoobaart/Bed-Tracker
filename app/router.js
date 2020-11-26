@@ -21,4 +21,5 @@ Router.map(function() {
     this.route('edit');
   });
   this.route('reports');
+  this.route('terms-of-use');
 });

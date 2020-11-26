@@ -389,7 +389,7 @@
           </div>
         </div>
 
-        <section>
+        <section class="no-border">
           <div class="section-header {{if this.refError "error"}}">{{t "edit-bed-modal.section-header.reference"}}</div>
           <Input @id="reference"
                  @name="reference"
@@ -402,7 +402,7 @@
         </section>
 
         {{#if (not this.available)}}
-          <section>
+          <section  class="no-border">
             <div class="section-header date {{if this.dateTimeError "error"}}">{{t "edit-bed-modal.section-header.date-of-admission"}}</div>
             <div class="section-header time {{if this.dateTimeError "error"}}">{{t "edit-bed-modal.section-header.time-of-admission"}}</div>
             <Input @type="date" 
@@ -483,7 +483,7 @@
             {{/each}}
           </section>
 
-          <section>
+          <section  class="no-border">
             <div class="section-header">{{t "edit-bed-modal.section-header.rrt"}}</div>
             {{#each this.rrtTypes as |rrt index|}}
               <Radio @identifier="rrt" @type={{rrt}} @index={{index}} @checkedProperty={{this.rrtType}} @setPropMethod={{this.setRrtType}} />
