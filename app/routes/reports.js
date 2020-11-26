@@ -7,6 +7,13 @@ export default class ReportsRoute extends Route {
   @service apollo;
   @service errors;
 
+  beforeModel() {
+    const hasToken = JSON.parse(localStorage.getItem('token'));
+    if (!hasToken) {
+      this.transitionTo('/');
+    }
+  }
+
   async model() {
     try {
       return await this.apollo.query({ query: GetReport, fetchPolicy: 'network-only' });

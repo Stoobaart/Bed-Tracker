@@ -17,7 +17,7 @@
     @key-up={{action (mut this.email) value=@target.value}} />
   <div class="form_error--container"></div>
 
-  <div class="form_field">
+  <div class="form_field password">
     <label
       for="password"
       class="form_label">
@@ -42,6 +42,12 @@
       {{/if}}
     </div>
   </div>
+
+  <div class="terms-link">
+    {{t "terms.link-text"}}
+    <LinkTo @route="terms-of-use">{{t "terms.terms-of-use"}}</LinkTo>
+  </div>
+
   <button
     type="submit"
     class="form_btn"

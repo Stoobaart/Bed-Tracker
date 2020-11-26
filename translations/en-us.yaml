@@ -223,6 +223,8 @@ terms:
   law:
     header: '6.	GOVERNING LAW AND JURISDICTION'
     6: 'These Terms are governed by the laws of England. Any disputes concerning these Terms shall be brought before the courts of England, which will have exclusive jurisdiction.'
+  link-text: 'By logging in, you confirm you’ve read and agree to our'
+  terms-of-use: 'Terms of Use'
   termination:
     header: '4.	TERMINATION'
     4: 

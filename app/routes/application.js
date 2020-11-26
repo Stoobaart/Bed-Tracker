@@ -20,9 +20,5 @@ export default class extends Route {
       const response = await this.apollo.watchQuery({ query: GetHospital });
       this.account.hospital = response.getHospital.hospital;
     }
-
-    if (!hasToken) {
-      this.transitionTo('/');
-    }
   }
 }

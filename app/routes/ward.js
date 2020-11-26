@@ -5,6 +5,13 @@ import { inject as service } from '@ember/service';
 export default class WardRoute extends Route {
   @service hospital;
 
+  beforeModel() {
+    const hasToken = JSON.parse(localStorage.getItem('token'));
+    if (!hasToken) {
+      this.transitionTo('/');
+    }
+  }
+
   async model({ id }) {
     await this.hospital.fetchHospital();
     return this.hospital.hospital.wards.find((ward) => ward.id === id);

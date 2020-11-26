@@ -6,6 +6,13 @@ export default class DashboardRoute extends Route {
   @service errors;
   @service hospital;
 
+  beforeModel() {
+    const hasToken = JSON.parse(localStorage.getItem('token'));
+    if (!hasToken) {
+      this.transitionTo('/');
+    }
+  }
+
   async model() {
     try {
       await this.hospital.fetchHospital();

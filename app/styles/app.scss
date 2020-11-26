@@ -582,6 +582,10 @@ body.no-scroll {
 
   &_field {
     position: relative;
+
+    &.password {
+      height: 7rem;
+    }
   }
 
   &_header {
@@ -733,6 +737,18 @@ body.no-scroll {
     &.notification {
       bottom: 2rem;
       margin-left: 2rem;
+    }
+  }
+
+  .terms-link {
+    font-size: .75rem;
+    margin-bottom: 1rem;
+    width: 14rem;
+
+    a {
+      font-size: .75rem;
+      color: #005eb8;
+      text-decoration: none;
     }
   }
 }
