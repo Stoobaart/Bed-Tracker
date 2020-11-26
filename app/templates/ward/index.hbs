@@ -418,7 +418,11 @@
                    @change={{action (queue (fn (mut this.changesMade) true) (fn (mut this.dateTimeError) false))}}
                    @value={{this.timeOfAdmission}} />
             {{#if this.dateTimeError}}
-              <p class="form_error-message">{{t "errors.date-time"}}</p>
+              {{#if (user-agent "browser.isSafari")}}
+                <p class="form_error-message safari">{{t "errors.date-time-safari"}}</p>
+              {{else}}
+                <p class="form_error-message">{{t "errors.date-time"}}</p>
+              {{/if}}
             {{/if}}
           </section>
           

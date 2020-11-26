@@ -734,6 +734,10 @@ body.no-scroll {
     position: absolute;
     bottom: .25rem;
 
+    &.safari {
+      bottom: -0.75rem;
+    }
+
     &.notification {
       bottom: 2rem;
       margin-left: 2rem;
