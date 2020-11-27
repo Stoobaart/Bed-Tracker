@@ -241,7 +241,7 @@ export default class WardController extends Controller {
           covidStatus: this.covidStatus,
           dateOfAdmission: dateTime,
           id: this.id,
-          useTracheostomy: this.useTracheostomy,
+          useTracheostomy: this.useTracheostomy ? true : false,
           levelOfCare: this.levelOfCare,
           ventilationType: this.ventilationType,
           reference: this.reference,
