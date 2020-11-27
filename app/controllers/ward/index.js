@@ -260,7 +260,7 @@ export default class WardController extends Controller {
         }, 4000);
       } catch (error) {
         this.error = true;
-        console.error(error);
+        // console.error(error);
       }
     }
   }
@@ -323,7 +323,7 @@ export default class WardController extends Controller {
       }, 4000);
     } catch (error) {
       this.error = true;
-      console.error(error);
+      // console.error(error);
     }
   }
 
@@ -378,7 +378,7 @@ export default class WardController extends Controller {
       this.closeModal();
     } catch (error) {
       this.error = true;
-      console.error(error);
+      // console.error(error);
     }
   }
 
@@ -452,7 +452,7 @@ export default class WardController extends Controller {
       this.model.maxAdmissionCapacity = this.maxAdmissionCapacity;
     } catch (error) {
       this.error = true;
-      console.error(error);
+      // console.error(error);
     }
   }
 }

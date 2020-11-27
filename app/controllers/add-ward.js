@@ -65,7 +65,7 @@ export default class AddWardController extends Controller {
       this.router.transitionTo('dashboard');
     } catch (error) {
       this.error = true;
-      console.error(error);
+      // console.error(error);
     }
   }
 }

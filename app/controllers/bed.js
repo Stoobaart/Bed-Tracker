@@ -25,7 +25,7 @@ export default class BedController extends Controller {
       await this.apollo.mutate({ mutation: UpdateBedAvailabilityMutation, variables: this.variables });
       this.set('model.available', this.variables.input.available);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       this.errors.hasError = true;
     }
   }
@@ -46,7 +46,7 @@ export default class BedController extends Controller {
       this.set('model.reference', this.bedReference);
       this.set('model.active', true);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       this.errors.hasError = true;
     }
   }

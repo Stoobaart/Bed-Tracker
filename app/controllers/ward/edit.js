@@ -52,7 +52,7 @@ export default class EditWardController extends Controller {
       this.router.transitionTo('ward', this.model);
     } catch (error) {
       this.error = true;
-      console.error(error);
+      // console.error(error);
     }
   }
 
@@ -69,7 +69,7 @@ export default class EditWardController extends Controller {
       this.hospital.removeWard(this.model.id);
       this.router.transitionTo('dashboard');
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
 
     this.closeModal();

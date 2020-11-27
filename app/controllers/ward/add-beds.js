@@ -82,7 +82,7 @@ export default class WardAddBedsController extends Controller {
       this.router.transitionTo('ward', this.model.id);
     } catch (error) {
       this.error = true;
-      console.error(error);
+      // console.error(error);
     }
 
     this.isSaving = false;
