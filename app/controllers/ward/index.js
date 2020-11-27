@@ -345,42 +345,30 @@ export default class WardController extends Controller {
     try {
       await this.apollo.mutate({ mutation: DischargePatient, variables });
 
-      const resetBed = {
-        available: true,
-        covidStatus: null,
-        dateOfAdmission: null,
-        id: this.id,
-        levelOfCare: null,
-        reference: this.reference,
-        rrtType: 'NONE',
-        sourceOfAdmission: null,
-        useTracheostomy: false,
-        ventilationType: 'NONE'
-      };
-
-      const newBeds = this.model.beds.map(x => {
+      this.model.beds.forEach(x => {
         if (x.id === this.id) {
-          return resetBed;
+          x.available = true;
+          x.covidStatus = null;
+          x.dateOfAdmission = null;
+          x.levelOfCare = null;
+          x.rrtType = 'NONE';
+          x.sourceOfAdmission = null;
+          x.useTracheostomy = false;
+          x.ventilationType = 'NONE';
         } else if (x.id === bedId) {
           const dateTime = moment(`${this.dateOfAdmission}T${this.timeOfAdmission}:00`);
-          return {
-            available: this.available,
-            covidStatus: this.covidStatus,
-            dateOfAdmission: dateTime,
-            id: x.id,
-            levelOfCare: this.levelOfCare,
-            reference: x.reference,
-            rrtType: this.rrtType,
-            sourceOfAdmission: this.sourceOfAdmission,
-            useTracheostomy: this.useTracheostomy,
-            ventilationType: this.ventilationType
-          };
+          x.available = this.available;
+          x.covidStatus = this.covidStatus;
+          x.dateOfAdmission = dateTime;
+          x.levelOfCare = this.levelOfCare;
+          x.rrtType = this.rrtType;
+          x.sourceOfAdmission = this.sourceOfAdmission;
+          x.useTracheostomy = this.useTracheostomy;
+          x.ventilationType = this.ventilationType;
         } else {
           return x;
         }
       });
-
-      this.set('model.beds', newBeds);
 
 
       this.set('model.showSuccessMessage', { type: 'bed-discharged' });
