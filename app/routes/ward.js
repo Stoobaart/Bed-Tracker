@@ -26,7 +26,7 @@ export default class WardRoute extends Route {
 
   @action
   error(error) {
-    console.error(error);
+    // console.error(error);
     this.transitionTo('dashboard');
   }
 }
