@@ -43,7 +43,7 @@
     "ember-composable-helpers": "^2.4.0",
     "ember-data": "~3.16.0",
     "ember-export-application-global": "^2.0.1",
-    "ember-fetch": "^6.7.2",
+    "ember-fetch": "6.7.0",
     "ember-graphql-tag-shim": "^0.1.1",
     "ember-intl": "^5.5.0",
     "ember-load-initializers": "^2.1.1",
@@ -78,6 +78,7 @@
     "apollo-link-context": "^1.0.19",
     "jsqr": "^1.2.0",
     "qr-scanner": "^1.1.1",
-    "qrcode": "^1.4.4"
+    "qrcode": "^1.4.4",
+    "whatwg-fetch": "3.3.1"
   }
 }
