@@ -16,7 +16,7 @@ mutation ($input:CreateWardInput!) {
       # totalVentilationTypeSv,
       # maxAdmissionCapacity,
       # totalVentilationTypeNasal,
-      totalCovidStatusSuspected,
+      totalCovidStatusUnknownSuspected,
       # numberOfNurseSupportStaff,
       # totalRrtTypeHaemofiltration,
       # numberOfCritcareNurses,

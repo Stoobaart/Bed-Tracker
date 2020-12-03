@@ -123,8 +123,8 @@ class Hospital {
   //   return this.wards.reduce((totalCovidStatusNegative, ward) => totalCovidStatusNegative + ward.totalCovidStatusNegative, 0);
   // }
 
-  get totalCovidStatusSuspected() {
-    return this.wards.reduce((totalCovidStatusSuspected, ward) => totalCovidStatusSuspected + ward.totalCovidStatusSuspected, 0);
+  get totalCovidStatusUnknownSuspected() {
+    return this.wards.reduce((totalCovidStatusUnknownSuspected, ward) => totalCovidStatusUnknownSuspected + ward.totalCovidStatusUnknownSuspected, 0);
   }
 
   // get totalCovidStatusPositive() {
@@ -212,13 +212,13 @@ class Ward {
     }, 0);
   }
 
-  get totalCovidStatusSuspected() {
-    return this.beds.reduce((totalCovidStatusSuspected, bed) => {
+  get totalCovidStatusUnknownSuspected() {
+    return this.beds.reduce((totalCovidStatusUnknownSuspected, bed) => {
       if (bed.covidStatus === 'SUSPECTED') {
-        return totalCovidStatusSuspected + 1;
+        return totalCovidStatusUnknownSuspected + 1;
       }
 
-      return totalCovidStatusSuspected;
+      return totalCovidStatusUnknownSuspected;
     }, 0);
   }
 

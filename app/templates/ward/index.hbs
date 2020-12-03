@@ -73,9 +73,9 @@
       </div>
 
       <div class="card_data-block two-by-two">
-        <div class="card_data-block--value">{{this.model.totalCovidStatusSuspected}}</div>
+        <div class="card_data-block--value">{{this.model.totalCovidStatusUnknownSuspected}}</div>
         <div class="card_data-block--label">
-          <img class="icon" src="/assets/images/covid-19-suspected-purple.svg" alt="">
+          <img class="icon" src="/assets/images/covid-19-unknown_suspected-purple.svg" alt="">
           <div>{{t "ward-dashboard.total-covid-sus"}}</div>
         </div>
       </div>
@@ -239,7 +239,7 @@
             {{#if bed.covidStatus}}
               <img class="icon covid-status-table" src={{concat "/assets/images/table-icon-" (lowercase bed.covidStatus) ".svg"}} alt="">
             {{/if}}
-            {{bed.covidStatus}}
+            {{t (concat "beds-table.status." bed.covidStatus) htmlSafe=true}}
           </div>
           <div class="column level">
             {{#if bed.levelOfCare}}

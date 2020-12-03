@@ -72,7 +72,7 @@ export default class WardController extends Controller {
   @tracked canProvideIcsRatios = null;
   @tracked maxAdmissionCapacity = null;
 
-  covidStatuses = [ 'GREEN', 'POSITIVE', 'NEGATIVE', 'SUSPECTED' ];
+  covidStatuses = [ 'GREEN', 'POSITIVE', 'NEGATIVE', 'UNKNOWN_SUSPECTED', 'UNKNOWN_NOT_SUSPECTED' ];
   levelsOfCare = [ 'LEVEL_1', 'LEVEL_2', 'LEVEL_3']
   sourcesOfAdmission = [ 'ED', 'EXTERNAL_WARD', 'INTERNAL_WARD', 'EXTERNAL_ITU', 'INTERNAL_ITU', 'ITU_READMISSION' ];
   ventilationTypes = [ 'NONE', 'SV', 'NASAL', 'CPAP', 'HFNO', 'BIPAP', 'INVASIVE' ];
